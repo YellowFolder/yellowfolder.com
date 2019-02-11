@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import Header from './Header';
 import Meta from './Meta';
 
 export const theme = {
 	red: '#FF0000',
 	black: '#393939',
-	grey: '#3A3A3A',
+	grey: '#5B6670',
+	gray: '#5B6670',
 	lightgrey: '#E1E1E1',
+	lightgray: '#E1E1E1',
+  yellow: '#FFC629',
 	offWhite: '#EDEDED',
-	maxWidth: '1000px',
-	bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+	maxWidth: '1200px',
+  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
 
 const StyledPage = styled.div`
@@ -40,9 +44,15 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-size: 1.5rem; /* 1.5rem = 15px. 1.5 * 10 (base font-size) = 15 */
-    line-height: 2;
-    font-family: 'Clear Sans';
+    font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
+    line-height: 17px;
+    font-family: 'Clear Sans', 'Helvetica Neue', Helvetica;
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+  svg {
+    shape-rendering: geometricPrecision;
   }
   a {
     text-decoration: none;
@@ -57,7 +67,10 @@ class Page extends Component {
 				<StyledPage>
           <GlobalStyle />
 					<Meta />
-					<Inner> {this.props.children} </Inner>
+          <Header />
+					<Inner>
+            { this.props.children }
+          </Inner>
 				</StyledPage>
 			</ThemeProvider>
 		);
