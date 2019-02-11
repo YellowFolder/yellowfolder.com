@@ -6,23 +6,21 @@ class Nav extends Component {
 	render() {
 		return (
 			<NavStyles>
-				<>
-					<Link prefetch href='/about'>
-						<a>about us</a>
-					</Link>
-					<Link prefetch href='/services'>
-						<a>services</a>
-					</Link>
-					<Link prefetch href='/contact'>
-						<a>contact</a>
-					</Link>
-					<Link prefetch href='/training'>
-						<a>training</a>
-					</Link>
-					<Link href='/login'>
-						<a target="_blank">log in</a>
-					</Link>
-				</>
+				<Link prefetch href='/about' as='about-us'>
+					<a>about us</a>
+				</Link>
+				<Link prefetch href='/services'>
+					<a>services</a>
+				</Link>
+				<Link prefetch href='/contact'>
+					<a>contact</a>
+				</Link>
+				<Link prefetch href='/training' as='weekly-training'>
+					<a>training</a>
+				</Link>
+				<Link href='https://erm.yellowfolder.com/login'>
+					<a target="_blank">log in</a>
+				</Link>
 			</NavStyles>
 		)
 	}

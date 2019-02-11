@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const NavStyles = styled.ul`
+const NavStyles = styled.nav`
   margin: 0;
   padding: 0;
   display: flex;
@@ -30,6 +30,7 @@ const NavStyles = styled.ul`
     }
     &:hover,
     &:focus {
+			cursor: pointer;
       outline: none;
 			color: ${props => props.theme.yellow}
     }

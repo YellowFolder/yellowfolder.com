@@ -1,5 +1,7 @@
-const Index = () => (
-	<div>This is the home page!</div>
+import Home from '../components/Home';
+
+const HomePage = () => (
+	<Home />
 );
 
-export default Index;
+export default HomePage;
