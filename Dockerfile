@@ -11,4 +11,4 @@ FROM mhart/alpine-node:base
 WORKDIR /app
 COPY --from=builder /app .
 EXPOSE 3000
-CMD ["node_modules/.bin/next", "start"]
+CMD ["node_modules/.bin/next", "dev"]

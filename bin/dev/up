@@ -12,4 +12,10 @@ if [ ! -f .env ]; then
     cp .env.dist /.env
 fi
 
+docker-compose up -d "$@"
+echo "Waiting for docker to boot up..."
+sleep 5
+
 docker build -t yellowfolder -f ./Dockerfile .
+
+popd
