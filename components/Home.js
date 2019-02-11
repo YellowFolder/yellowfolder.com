@@ -6,13 +6,14 @@ const Masthead = styled.section`
 	background: white;
 	background-image: url(static/images/pattern-bg.svg);
 	background-position: left top;
-  /* background-size: cover; */
-  background-size: 95% 98%;
+  background-size: 100% 95%;
   background-repeat: no-repeat;
 	display: flex;
-	/* align-items: flex-start; */
 	width: 100%;
-	height: calc(100vh - 90px);
+	/* height: calc(100vh - 90px); */
+	height: 600px;
+	/* max-height: 550px; */
+	padding: 0;
 	margin: 0;
 `;
 
@@ -20,9 +21,10 @@ const SectionCopy = styled.div`
 	order: 1;
 	flex: 1 1 auto;
 	padding-left: 5.8rem;
-	margin-top: 146px;
+	/* margin-top: 146px; */
 	justify-self: flex-start;
-	align-self: flex-start;
+	align-self: center;
+	width: 100%;
 	h1 {
 		font-size: 8rem;
 		line-height: 120%;
@@ -47,17 +49,12 @@ const SectionCopy = styled.div`
 
 const MastheadImage = styled.div`
 	order: 2;
-	flex: 1 0 auto;
-	align-self: flex-end;
-	min-height: calc(100vh - 90px);
-	width: 50%;
-	max-height: calc(100vh - 90px);
-	margin-top: 23px;
-
+	display: flex;
+	width: 100%;
+	height: auto;
 	img {
-    width: fit-content;
-    height: auto;
-		margin: 0 0 0 -100px;
+		width: 100%;
+		height: auto;
 	}
 `;
 
