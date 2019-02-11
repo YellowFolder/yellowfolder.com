@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+root="$(git rev-parse --show-toplevel)"
+
+pushd "$root"
+
+if [ ! -f .env ]; then
+    echo ""
+    echo "Copying default .env file."
+    cp .env.dist /.env
+fi
+
+docker build -t yellowfolder -f ./Dockerfile .
