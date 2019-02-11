@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-// import Nav from './Nav';
+import Nav from './Nav';
 
 const StyledHeader = styled.header`
 	.bar {
@@ -37,7 +37,7 @@ const Logo = styled.div`
 	}
 `;
 
-export default class Header extends Component {
+class Header extends Component {
 	render() {
 		return (
 			<StyledHeader>
@@ -49,9 +49,12 @@ export default class Header extends Component {
 						</a>
 						</Link>
 					</Logo>
+					<Nav />
 				</div>
 				<div className="sub-bar"></div>
 			</StyledHeader>
 		)
 	}
 }
+
+export default Header;

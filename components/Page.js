@@ -4,14 +4,13 @@ import Header from './Header';
 import Meta from './Meta';
 
 export const theme = {
-	red: '#FF0000',
-	black: '#393939',
+  black: '#393939',
+  white: '#fff',
 	grey: '#5B6670',
 	gray: '#5B6670',
 	lightgrey: '#E1E1E1',
 	lightgray: '#E1E1E1',
   yellow: '#FFC629',
-	offWhite: '#EDEDED',
 	maxWidth: '1200px',
   bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
@@ -32,6 +31,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Clear Sans';
     src: url('/static/fonts/ClearSans-Regular.woff2') format('woff2');
     font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Clear Sans Bold';
+    src: url('/static/fonts/ClearSans-Bold.woff2') format('woff2');
+    font-weight: bold;
     font-style: normal;
   }
   html {
