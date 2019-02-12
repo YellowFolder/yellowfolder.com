@@ -14,6 +14,8 @@ const ContentContainer = styled.div`
 	max-width: ${props => props.theme.maxWidth};
 	margin: 0 auto;
 	display: flex;
+	height: 100%;
+	padding: ${props => props.padding || 0};
 `;
 
 const Masthead = styled.section`
@@ -74,7 +76,7 @@ const MastheadImage = styled.div`
 const InfoRow = styled(ContentRow)`
 	height: calc(100vh / 2);
 	max-height: 350px;
-	background: ${props => props.theme.yellow} url('/static/images/papers-bg.svg') no-repeat center center;
+	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center center;
 	background-size: 1920px 1080px;
 `;
 
@@ -144,11 +146,102 @@ const InfoRowContent = styled(ContentContainer)`
 	}
 `;
 
+const CabinetToCloud = styled(ContentContainer)`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-flow: column nowrap;
+	width: 60%;
+	h1 {
+		font-family: 'Clear Sans Bold';
+		font-size: 6.4rem;
+		line-height: 58px;
+		color: ${props => props.theme.yellow};
+
+		span {
+			vertical-align: super;
+			font-size: 66%;
+			line-height: 0px;
+		}
+	}
+
+	p {
+		font-weight: 400;
+		color: ${props => props.theme.grey};
+		line-height: 21px;
+		text-align: center;
+		width: 100%;
+	}
+`;
+
+const OptionsContent = styled(ContentRow)`
+	background: ${props => props.theme.grey} url(/static/images/pattern-bg-2.svg) no-repeat center;
+	background-size: cover;
+	z-index: 15;
+	margin-top: 200px;
+`;
+
+const ContactOptions = styled.div`
+	display: grid;
+	grid-gap: 0px;
+	grid-template-columns: repeat(12, [col] 100px);
+	grid-template-rows: repeat(3, [row] 300px);
+	background-color: white;
+	position: relative;
+	align-items: center;
+	justify-content: center;
+	background: transparent;
+
+	div {
+		z-index: 10;
+	}
+
+	.cabinet-to-cloud {
+		position: absolute;
+		top: -154px;
+		grid-column: col / span 12;
+		grid-row: row / span 1;
+		z-index: 20;
+		align-self: flex-start;
+		justify-self: center;
+		background-color: transparent;
+
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	.options {
+		grid-column: col / span 12;
+		grid-row: row / span 2;
+
+		.cards {
+			margin-top: 200px;
+			display: grid;
+			grid-gap: 20px;
+			grid-template-columns: repeat(4, minmax(220px, 280px));
+
+			.card {
+				width: 220px;
+				padding: 20px;
+				background-color: ${props => props.theme.yellow};
+				height: 392px;
+				border-radius: 15px;
+			}
+		}
+	}
+`;
 
 export {
+	ContentRow,
+	ContentContainer,
 	Masthead,
 	SectionCopy,
 	MastheadImage,
 	InfoRow,
-	InfoRowContent
+	InfoRowContent,
+	CabinetToCloud,
+	ContactOptions,
+	OptionsContent,
 };
