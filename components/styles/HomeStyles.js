@@ -26,7 +26,7 @@ const Masthead = styled.section`
   background-repeat: no-repeat;
 	display: flex;
 	padding: 0;
-	margin: 0 auto;
+	margin: 90px auto 0;
 	width: 100%;
 	max-height: 660px;
 	height: auto;
