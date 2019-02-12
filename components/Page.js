@@ -26,6 +26,7 @@ const Inner = styled.div`
 	margin: 0;
   padding: 0;
   overflow: hidden;
+  margin-top: 75px;
 `;
 
 const GlobalStyle = createGlobalStyle`

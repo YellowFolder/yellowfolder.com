@@ -54,7 +54,7 @@ const SectionCopy = styled.div`
 	p {
     font-size: 26px;
     line-height: 120%;
-    color: #5B6670;
+    color: ${props => props.theme.grey};
     font-family: 'Clear Sans';
     letter-spacing: -0.5px;
     padding: 0;

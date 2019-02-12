@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
 	align-items: center;
 	justify-content: space-evenly;
 	margin: 0;
-	padding: 20px;
+	height: 45px;
 	background: #fff;
 	flex-shrink: 0;
 	color: ${props => props.theme.grey};
@@ -110,8 +110,8 @@ const Footer = () => {
 							</a>
 						</Link>
 						<span> • </span>
-						<Link href='/assets/pdf/service_procedures-v1.6-2019.pdf' target="_blank">
-							<a>
+						<Link href='/assets/pdf/service_procedures-v1.6-2019.pdf'>
+							<a target="_blank">
 								Service Procedures
 							</a>
 						</Link>
