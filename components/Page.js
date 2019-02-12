@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import Footer from './Footer';
 import Header from './Header';
 import Meta from './Meta';
 
 export const theme = {
-	red: '#FF0000',
-	black: '#393939',
+  black: '#393939',
+  white: '#fff',
 	grey: '#5B6670',
 	gray: '#5B6670',
 	lightgrey: '#E1E1E1',
 	lightgray: '#E1E1E1',
   yellow: '#FFC629',
-	offWhite: '#EDEDED',
 	maxWidth: '1200px',
   bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
@@ -19,12 +19,13 @@ export const theme = {
 const StyledPage = styled.div`
 	background: white;
 	color: ${props => props.theme.black};
+  flex: 1 0 auto;
 `;
 
 const Inner = styled.div`
-	max-width: ${props => props.theme.maxWidth};
-	margin: 0 auto;
-	padding: 2rem;
+	margin: 0;
+  padding: 0;
+  overflow: hidden;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -32,6 +33,12 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Clear Sans';
     src: url('/static/fonts/ClearSans-Regular.woff2') format('woff2');
     font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Clear Sans Bold';
+    src: url('/static/fonts/ClearSans-Bold.woff2') format('woff2');
+    font-weight: bold;
     font-style: normal;
   }
   html {
@@ -44,6 +51,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
     font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
     line-height: 17px;
     font-family: 'Clear Sans', 'Helvetica Neue', Helvetica;
@@ -71,6 +80,7 @@ class Page extends Component {
 					<Inner>
             { this.props.children }
           </Inner>
+          <Footer />
 				</StyledPage>
 			</ThemeProvider>
 		);

@@ -1,9 +1,13 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-// import Nav from './Nav';
+import Nav from './Nav';
 
 const StyledHeader = styled.header`
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
 	.bar {
 		display: grid;
 		background-color: ${props => props.theme.gray};
@@ -37,21 +41,20 @@ const Logo = styled.div`
 	}
 `;
 
-export default class Header extends Component {
-	render() {
-		return (
-			<StyledHeader>
-				<div className="bar">
-					<Logo>
-						<Link href="/">
-						<a>
-							<img src='/static/images/header-logo.svg' alt='YellowFolder' />
-						</a>
-						</Link>
-					</Logo>
-				</div>
-				<div className="sub-bar"></div>
-			</StyledHeader>
-		)
-	}
-}
+const Header = () => (
+	<StyledHeader>
+		<div className="bar">
+			<Logo>
+				<Link href="/">
+					<a>
+						<img src='/static/images/header-logo.svg' alt='YellowFolder' />
+					</a>
+				</Link>
+			</Logo>
+			<Nav />
+		</div>
+		<div className="sub-bar"></div>
+	</StyledHeader>
+);
+
+export default Header;
