@@ -178,14 +178,14 @@ const OptionsContent = styled(ContentRow)`
 	background: ${props => props.theme.grey} url(/static/images/pattern-bg-2.svg) no-repeat center;
 	background-size: cover;
 	z-index: 15;
-	margin-top: 200px;
+	margin-top: 180px;
 `;
 
 const ContactOptions = styled.div`
 	display: grid;
 	grid-gap: 0px;
 	grid-template-columns: repeat(12, [col] 100px);
-	grid-template-rows: repeat(3, [row] 300px);
+	grid-template-rows: repeat(3, [row] 240px);
 	background-color: white;
 	position: relative;
 	align-items: center;
@@ -214,13 +214,15 @@ const ContactOptions = styled.div`
 
 	.options {
 		grid-column: col / span 12;
-		grid-row: row / span 2;
+		grid-row: row 2;
+		max-width: ${props => props.theme.maxWidth};
+		margin: 0 auto;
 
 		.cards {
 			margin-top: 200px;
 			display: grid;
-			grid-gap: 20px;
-			grid-template-columns: repeat(4, minmax(220px, 280px));
+			grid-gap: 80px;
+			grid-template-columns: repeat(4, minmax(220px, 1fr));
 
 			.card {
 				width: 220px;
@@ -228,6 +230,36 @@ const ContactOptions = styled.div`
 				background-color: ${props => props.theme.yellow};
 				height: 392px;
 				border-radius: 15px;
+				.card-content {
+					display: flex;
+					align-items: center;
+					justify-content: space-evenly;
+					flex-flow: column nowrap;
+					color: ${props => props.theme.grey};
+					margin-top: 2rem;
+					img {
+						padding: 0;
+						height: 100px;
+						width: auto;
+						object-fit: scale-down;
+					}
+					.card-text {
+						margin-top: 2rem;
+					}
+					h2 {
+						text-align: center;
+						width: 100%;
+						padding: 0;
+						text-transform: capitalize;
+						line-height: 120%;
+					}
+					p {
+						padding: 0;
+						margin: 0;
+						font-size: 1.2rem;
+						line-height: 14px;
+					}
+				}
 			}
 		}
 	}

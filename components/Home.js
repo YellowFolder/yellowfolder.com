@@ -9,7 +9,8 @@ import {
 	ContentContainer,
 	CabinetToCloud,
 	ContactOptions,
-	OptionsContent } from './styles/HomeStyles';
+	OptionsContent
+} from './styles/HomeStyles';
 
 export class Home extends Component {
 	render() {
@@ -24,6 +25,7 @@ export class Home extends Component {
 						<img src='/static/images/header-splash-woman.png' alt="Claudia Mullins, Director of Student Services" />
 					</MastheadImage>
 				</Masthead>
+
 				<InfoRow>
 					<InfoRowContent>
 						<img className="row-image" src='/static/images/young-girl.png' alt="Young girl" />
@@ -60,16 +62,56 @@ export class Home extends Component {
 						</div>
 						<div className="options">
 							<div className="cards">
-								<div className="card"></div>
-								<div className="card"></div>
-								<div className="card"></div>
-								<div className="card"></div>
+								<div className="card">
+									<div className='card-content'>
+										<img src='/static/images/banner-icon__demo.svg' alt="Watch Demo" />
+										<div className='card-text'>
+											<h2>Watch the Demo</h2>
+											<p>
+												This video will give you a basic overview of our system. We’ll show you how easy uploading your records is and how you benefit. Click the icon to see how much simpler managing your records should be.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div className="card">
+									<div className='card-content'>
+										<img src='/static/images/banner-icon__pricing.png' alt="Pricing" />
+										<div className='card-text'>
+											<h2>Pricing</h2>
+											<p>
+												By switching to electronic storage, districts can save significant amounts of money currently spent on printing, file cabinets, and physical storage. YellowFolder offers transparent, all-in-one pricing making it easy and affordable to go paperless.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div className="card">
+									<div className='card-content'>
+										<img src='/static/images/banner-icon__training.png' alt="Participate in a Live Training" />
+										<div className='card-text'>
+											<h2>Participate in a Live Training</h2>
+											<p>
+												Find a date and time that fits your schedule and be a part of a training session. You can ask questions, see the software, and get a feel for how everything works. Click the icon to sign up for a time that works best for you.
+											</p>
+										</div>
+									</div>
+								</div>
+								<div className="card">
+									<div className='card-content'>
+										<img src='/static/images/banner-icon__cabinet.svg' alt="Paperless in a Week" />
+										<div className='card-text'>
+											<h2>Paperless in a Week</h2>
+											<p>
+												Our system enables you to take your district completely cloud-based in less than a week. We will show you how to scan, upload and categorize your records and provide ongoing training and support to assure your success.
+											</p>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</ContactOptions>
 				</OptionsContent>
 			</main>
-		)
+		);
 	}
 }
 
