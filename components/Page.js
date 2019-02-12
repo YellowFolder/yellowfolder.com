@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import Footer from './Footer';
 import Header from './Header';
 import Meta from './Meta';
 
@@ -18,6 +19,7 @@ export const theme = {
 const StyledPage = styled.div`
 	background: white;
 	color: ${props => props.theme.black};
+  flex: 1 0 auto;
 `;
 
 const Inner = styled.div`
@@ -49,6 +51,8 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
     font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
     line-height: 17px;
     font-family: 'Clear Sans', 'Helvetica Neue', Helvetica;
@@ -76,6 +80,7 @@ class Page extends Component {
 					<Inner>
             { this.props.children }
           </Inner>
+          <Footer />
 				</StyledPage>
 			</ThemeProvider>
 		);

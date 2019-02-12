@@ -12,7 +12,7 @@ const Meta = () => (
 		<link rel="shortcut icon" href="/static/favicon/favicon.ico?v=kP3eE9yM02" />
 		<meta name="msapplication-TileColor" content="#2d89ef" />
 		<meta name="theme-color" content="#ffffff"></meta>
-		<title> YellowFolder </title>{' '}
+		<title> YellowFolder - Services for K-12 Record Management</title>{' '}
 	</Head>
 );
 

@@ -175,7 +175,7 @@ const CabinetToCloud = styled(ContentContainer)`
 `;
 
 const OptionsContent = styled(ContentRow)`
-	background: ${props => props.theme.grey} url(/static/images/pattern-bg-2.svg) no-repeat center;
+	background: ${props => props.theme.grey} url(/static/images/pattern-bg-2.svg) no-repeat top left;
 	background-size: cover;
 	z-index: 15;
 	margin-top: 180px;

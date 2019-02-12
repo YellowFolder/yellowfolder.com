@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Nav from './Nav';
@@ -42,24 +41,20 @@ const Logo = styled.div`
 	}
 `;
 
-class Header extends Component {
-	render() {
-		return (
-			<StyledHeader>
-				<div className="bar">
-					<Logo>
-						<Link href="/">
-						<a>
-							<img src='/static/images/header-logo.svg' alt='YellowFolder' />
-						</a>
-						</Link>
-					</Logo>
-					<Nav />
-				</div>
-				<div className="sub-bar"></div>
-			</StyledHeader>
-		)
-	}
-}
+const Header = () => (
+	<StyledHeader>
+		<div className="bar">
+			<Logo>
+				<Link href="/">
+					<a>
+						<img src='/static/images/header-logo.svg' alt='YellowFolder' />
+					</a>
+				</Link>
+			</Logo>
+			<Nav />
+		</div>
+		<div className="sub-bar"></div>
+	</StyledHeader>
+);
 
 export default Header;
