@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Masthead, SectionCopy, MastheadImage, InfoRow, RowContent } from './styles/HomeStyles';
+import { Masthead, SectionCopy, MastheadImage, InfoRow, InfoRowContent } from './styles/HomeStyles';
 
 export class Home extends Component {
 	render() {
@@ -15,7 +15,7 @@ export class Home extends Component {
 					</MastheadImage>
 				</Masthead>
 				<InfoRow>
-					<RowContent>
+					<InfoRowContent>
 						<img className="row-image" src='/static/images/young-girl.png' alt="Young girl" />
 						<div className="row-text">
 							<div className="row-left">
@@ -31,7 +31,7 @@ export class Home extends Component {
 								</ul>
 							</div>
 						</div>
-					</RowContent>
+					</InfoRowContent>
 				</InfoRow>
 			</main>
 		)

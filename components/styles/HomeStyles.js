@@ -1,5 +1,21 @@
 import styled from 'styled-components';
 
+const ContentRow = styled.div`
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+	background: ${props => props.background || "white"};
+`;
+
+const ContentContainer = styled.div`
+	max-width: ${props => props.theme.maxWidth};
+	margin: 0 auto;
+	display: flex;
+`;
+
 const Masthead = styled.section`
 	background: white;
 	background-image: url(static/images/pattern-bg.svg);
@@ -55,88 +71,84 @@ const MastheadImage = styled.div`
 	}
 `;
 
-const InfoRow = styled.div`
-	width: 100vw;
+const InfoRow = styled(ContentRow)`
 	height: calc(100vh / 2);
 	max-height: 350px;
 	background: ${props => props.theme.yellow} url('/static/images/papers-bg.svg') no-repeat center center;
 	background-size: 1920px 1080px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin: 0;
-	padding: 0;
 `;
 
-const RowContent = styled.div`
-		max-width: 1200px;
-		margin: 0 auto;
+const InfoRowContent = styled(ContentContainer)`
+	flex-flow: row nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	height: 100%;
+	width: 100%;
+	padding: 0 1rem;
+	z-index: 0;
+	position: relative;
+
+	.row-image {
+		align-self: flex-start;
+		height: 100%;
+	}
+
+	.row-text {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 		display: flex;
 		flex-flow: row nowrap;
+		justify-content: space-around;
 		align-items: center;
-		justify-content: flex-start;
-		height: 100%;
 		width: 100%;
-		padding: 0 1rem;
-		z-index: 0;
-		position: relative;
+		height: 100%;
 
-		.row-image {
-			align-self: flex-start;
-			height: 100%;
+		.row-left,
+		.row-right {
+			font-family: 'Clear Sans Bold';
+			font-size: 2.7rem;
+			font-weight: 700;
+			color: ${props => props.theme.white};
+			text-shadow: 0px 0px 12px rgba(0,0,0,0.2), 0px 0px 12px rgba(0,0,0,0.2);
+			line-height: 120%;
 		}
 
-		.row-text {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			display: flex;
-			flex-flow: row nowrap;
-			justify-content: space-around;
-			align-items: center;
-			width: 100%;
-			height: 100%;
-
-			.row-left,
-			.row-right {
-				font-family: 'Clear Sans Bold';
-				font-size: 2.7rem;
-				font-weight: 700;
-				color: ${props => props.theme.white};
-				text-shadow: 0px 0px 12px rgba(0,0,0,0.2), 0px 0px 12px rgba(0,0,0,0.2);
-				line-height: 120%;
-			}
-
-			.row-left {
-				width: 45%;
-				order: 1;
-				margin: 0 2.5% 0 0;
-			}
-
-			.row-right {
-				width: 45%;
-				order: 2;
-				margin: 0 0 0 2.5%;
-
-				ul,
-				p {
-					margin: 0;
-				}
-
-				ul li {
-					font-family: 'Clear Sans';
-					font-weight: 400;
-					font-size: 2.2rem;
-					line-height: 100%;
-					padding: 3px 0;
-					margin-left: -1rem;
-				}
-			}
+		.row-left {
+			width: 45%;
+			order: 1;
+			margin: 0 2.5% 0 0;
 		}
 
+		.row-right {
+			width: 45%;
+			order: 2;
+			margin: 0 0 0 2.5%;
+
+			ul,
+			p {
+				margin: 0;
+			}
+
+			ul li {
+				font-family: 'Clear Sans';
+				font-weight: 400;
+				font-size: 2.2rem;
+				line-height: 100%;
+				padding: 3px 0;
+				margin-left: -1rem;
+			}
+		}
+	}
 `;
 
 
-export { Masthead, SectionCopy, MastheadImage, InfoRow, RowContent };
+export {
+	Masthead,
+	SectionCopy,
+	MastheadImage,
+	InfoRow,
+	InfoRowContent
+};
