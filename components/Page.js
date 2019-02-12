@@ -21,9 +21,9 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.div`
-	max-width: ${props => props.theme.maxWidth};
-	margin: 0 auto;
+	margin: 0;
   padding: 0;
+  overflow: hidden;
 `;
 
 const GlobalStyle = createGlobalStyle`
