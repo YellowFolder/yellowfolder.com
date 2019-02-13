@@ -60,7 +60,6 @@ const StyledFooter = styled.footer`
 			}
 		}
 	}
-
 `;
 
 const RequestButton = styled.button`
@@ -85,53 +84,43 @@ const RequestButton = styled.button`
 	}
 `;
 
-const Footer = () => {
-	return (
-		<StyledFooter>
-			<div className='footer-content'>
-				<div className='content-left'>
-					<img src='/static/images/gray-lock.svg' alt="YellowFolder" />
-					<p>
-						&copy;2019 YellowFolder
-						<br/>
-						All Rights Reserved
-					</p>
-				</div>
-				<div className='content-right'>
-					<RequestButton>
-						<Link href='/record-request'>
-							<a>Record Request</a>
-						</Link>
-					</RequestButton>
-					<div className='links'>
-						<Link href='/privacy-policy'>
-							<a>
-								Privacy Policy
-							</a>
-						</Link>
-						<span> • </span>
-						<Link href='/assets/pdf/service_procedures-v1.6-2019.pdf'>
-							<a target="_blank">
-								Service Procedures
-							</a>
-						</Link>
-						<span> • </span>
-						<Link href='/careers'>
-							<a>
-								Careers
-							</a>
-						</Link>
-						<span> • </span>
-						<Link href='/blog'>
-							<a>
-								Blog
-							</a>
-						</Link>
-					</div>
+const Footer = () => (
+	<StyledFooter>
+		<div className="footer-content">
+			<div className="content-left">
+				<img src="/static/images/gray-lock.svg" alt="YellowFolder" />
+				<p>
+					&copy;2019 YellowFolder
+					<br />
+					All Rights Reserved
+				</p>
+			</div>
+			<div className="content-right">
+				<RequestButton>
+					<Link href="/record-request">
+						<a>Record Request</a>
+					</Link>
+				</RequestButton>
+				<div className="links">
+					<Link href="/privacy-policy">
+						<a>Privacy Policy</a>
+					</Link>
+					<span> • </span>
+					<Link href="/assets/pdf/service_procedures-v1.6-2019.pdf">
+						<a target="_blank">Service Procedures</a>
+					</Link>
+					<span> • </span>
+					<Link href="/careers">
+						<a>Careers</a>
+					</Link>
+					<span> • </span>
+					<Link href="/blog">
+						<a>Blog</a>
+					</Link>
 				</div>
 			</div>
-		</StyledFooter>
-	)
-}
+		</div>
+	</StyledFooter>
+);
 
-export default Footer
+export default Footer;

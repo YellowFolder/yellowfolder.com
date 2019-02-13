@@ -5,28 +5,28 @@ import Header from './Header';
 import Meta from './Meta';
 
 export const theme = {
-  black: '#393939',
-  white: '#fff',
+	black: '#393939',
+	white: '#fff',
 	grey: '#5B6670',
 	gray: '#5B6670',
 	lightgrey: '#E1E1E1',
 	lightgray: '#E1E1E1',
-  yellow: '#FFC629',
+	yellow: '#FFC629',
 	maxWidth: '1200px',
-  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+	bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 };
 
 const StyledPage = styled.div`
 	background: white;
 	color: ${props => props.theme.black};
-  flex: 1 0 auto;
+	flex: 1 0 auto;
 `;
 
 const Inner = styled.div`
 	margin: 0;
-  padding: 0;
-  overflow: hidden;
-  margin-top: 75px;
+	padding: 0;
+	overflow: hidden;
+	margin-top: 75px;
 `;
 
 const GlobalStyle = createGlobalStyle`
@@ -75,13 +75,11 @@ class Page extends Component {
 		return (
 			<ThemeProvider theme={theme}>
 				<StyledPage>
-          <GlobalStyle />
+					<GlobalStyle />
 					<Meta />
-          <Header />
-					<Inner>
-            { this.props.children }
-          </Inner>
-          <Footer />
+					<Header />
+					<Inner>{this.props.children}</Inner>
+					<Footer />
 				</StyledPage>
 			</ThemeProvider>
 		);

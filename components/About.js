@@ -67,17 +67,17 @@ export class About extends Component {
 			<AboutPage>
 				<PageCopy>
 					<div>
-						<h1>
-							Educators, serving educators.
-						</h1>
+						<h1>Educators, serving educators.</h1>
 						<p>
-							As former educators ourselves, we know how complicated filing can be. With a little help from our developers and a lot of help from our years in the field, we've perfected record storage for the K-12 market.
+							As former educators ourselves, we know how complicated filing can be. With a little
+							help from our developers and a lot of help from our years in the field, we've
+							perfected record storage for the K-12 market.
 						</p>
 					</div>
 					<h3>Come meet the team.</h3>
 				</PageCopy>
 			</AboutPage>
-		)
+		);
 	}
 }
 

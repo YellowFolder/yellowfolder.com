@@ -7,7 +7,7 @@ const ContentRow = styled.div`
 	justify-content: center;
 	margin: 0;
 	padding: 0;
-	background: ${props => props.background || "white"};
+	background: ${props => props.background || 'white'};
 `;
 
 const ContentContainer = styled.div`
@@ -22,8 +22,8 @@ const Masthead = styled.section`
 	background: white;
 	background-image: url(static/images/pattern-bg.svg);
 	background-position: left top;
-  background-size: contain;
-  background-repeat: no-repeat;
+	background-size: contain;
+	background-repeat: no-repeat;
 	display: flex;
 	padding: 0;
 	margin: 90px auto 0;
@@ -52,13 +52,13 @@ const SectionCopy = styled.div`
 		letter-spacing: 1px;
 	}
 	p {
-    font-size: 26px;
-    line-height: 120%;
-    color: ${props => props.theme.grey};
-    font-family: 'Clear Sans';
-    letter-spacing: -0.5px;
-    padding: 0;
-    margin: 17px 0 0 0;
+		font-size: 26px;
+		line-height: 120%;
+		color: ${props => props.theme.grey};
+		font-family: 'Clear Sans';
+		letter-spacing: -0.5px;
+		padding: 0;
+		margin: 17px 0 0 0;
 	}
 `;
 
@@ -76,7 +76,8 @@ const MastheadImage = styled.div`
 const InfoRow = styled(ContentRow)`
 	height: calc(100vh / 2);
 	max-height: 350px;
-	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center center;
+	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center
+		center;
 	background-size: 1920px 1080px;
 `;
 
@@ -114,7 +115,7 @@ const InfoRowContent = styled(ContentContainer)`
 			font-size: 2.7rem;
 			font-weight: 700;
 			color: ${props => props.theme.white};
-			text-shadow: 0px 0px 12px rgba(0,0,0,0.2), 0px 0px 12px rgba(0,0,0,0.2);
+			text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2), 0px 0px 12px rgba(0, 0, 0, 0.2);
 			line-height: 120%;
 		}
 
