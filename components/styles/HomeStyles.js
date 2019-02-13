@@ -108,7 +108,6 @@ const InfoRowContent = styled(ContentContainer)`
 		.row-right {
 			font-family: ${props => props.theme.boldFont};
 			font-size: 2.7rem;
-			font-weight: 700;
 			color: ${props => props.theme.white};
 			text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2), 0px 0px 12px rgba(0, 0, 0, 0.2);
 			line-height: 120%;
@@ -132,7 +131,6 @@ const InfoRowContent = styled(ContentContainer)`
 
 			ul li {
 				font-family: ${props => props.theme.defaultFont};
-				font-weight: 400;
 				font-size: 2.2rem;
 				line-height: 100%;
 				padding: 3px 0;
@@ -162,7 +160,6 @@ const CabinetToCloud = styled(ContentContainer)`
 	}
 
 	p {
-		font-weight: 400;
 		color: ${props => props.theme.grey};
 		line-height: 21px;
 		text-align: center;

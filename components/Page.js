@@ -17,6 +17,7 @@ export const theme = {
 	defaultFont: 'Clear Sans Medium',
 	boldFont: 'Clear Sans Bold',
 	thinFont: 'Clear Sans',
+	marginLeft: '4.5rem',
 };
 
 const StyledPage = styled.div`

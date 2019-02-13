@@ -11,7 +11,6 @@ const StyledFooter = styled.footer`
 	background: #fff;
 	flex-shrink: 0;
 	color: ${props => props.theme.grey};
-	font-weight: 400;
 	font-size: 1rem;
 	line-height: 12px;
 

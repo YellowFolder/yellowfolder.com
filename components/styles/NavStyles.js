@@ -18,7 +18,6 @@ const NavStyles = styled.nav`
 		border: 0;
 		cursor: pointer;
 		color: ${props => props.theme.white};
-		font-weight: 700;
 		font-family: ${props => props.theme.boldFont};
 		text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2), 0px 0px 8px rgba(0, 0, 0, 0.2);
 		&:last-child {
