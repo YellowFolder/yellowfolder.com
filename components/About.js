@@ -36,7 +36,7 @@ const PageCopy = styled.div`
 			font-size: 5rem;
 			line-height: 120%;
 			color: ${props => props.theme.grey};
-			font-family: 'Clear Sans Bold';
+			font-family: ${props => props.theme.boldFont};
 			font-weight: bold;
 			padding: 0;
 			margin: 0;
@@ -45,7 +45,6 @@ const PageCopy = styled.div`
 			font-size: 26px;
 			line-height: 100%;
 			color: ${props => props.theme.grey};
-			font-family: 'Clear Sans';
 			letter-spacing: -0.5px;
 			padding: 0;
 			margin: 0;
@@ -57,7 +56,7 @@ const PageCopy = styled.div`
 		font-size: 40px;
 		margin: 0;
 		padding: 0;
-		font-family: 'Clear Sans Bold';
+		font-family: ${props => props.theme.boldFont};
 	}
 `;
 

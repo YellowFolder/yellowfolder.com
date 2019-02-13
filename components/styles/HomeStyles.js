@@ -45,8 +45,7 @@ const SectionCopy = styled.div`
 		font-size: 7rem;
 		line-height: 120%;
 		color: ${props => props.theme.grey};
-		font-family: 'Clear Sans Bold';
-		font-weight: bold;
+		font-family: ${props => props.theme.boldFont};
 		padding: 0;
 		margin: 0;
 		letter-spacing: 1px;
@@ -55,7 +54,6 @@ const SectionCopy = styled.div`
 		font-size: 26px;
 		line-height: 120%;
 		color: ${props => props.theme.grey};
-		font-family: 'Clear Sans';
 		letter-spacing: -0.5px;
 		padding: 0;
 		margin: 17px 0 0 0;
@@ -76,8 +74,7 @@ const MastheadImage = styled.div`
 const InfoRow = styled(ContentRow)`
 	height: calc(100vh / 2);
 	max-height: 350px;
-	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center
-		center;
+	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center;
 	background-size: 1920px 1080px;
 `;
 
@@ -111,7 +108,7 @@ const InfoRowContent = styled(ContentContainer)`
 
 		.row-left,
 		.row-right {
-			font-family: 'Clear Sans Bold';
+			font-family: ${props => props.theme.boldFont};
 			font-size: 2.7rem;
 			font-weight: 700;
 			color: ${props => props.theme.white};
@@ -136,7 +133,7 @@ const InfoRowContent = styled(ContentContainer)`
 			}
 
 			ul li {
-				font-family: 'Clear Sans';
+				font-family: ${props => props.theme.defaultFont};
 				font-weight: 400;
 				font-size: 2.2rem;
 				line-height: 100%;
@@ -154,7 +151,7 @@ const CabinetToCloud = styled(ContentContainer)`
 	flex-flow: column nowrap;
 	width: 60%;
 	h1 {
-		font-family: 'Clear Sans Bold';
+		font-family: ${props => props.theme.boldFont};
 		font-size: 6.4rem;
 		line-height: 58px;
 		color: ${props => props.theme.yellow};

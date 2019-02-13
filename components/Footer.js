@@ -35,7 +35,7 @@ const StyledFooter = styled.footer`
 			}
 
 			p {
-				font-family: 'Clear Sans Bold';
+				font-family: ${props => props.theme.boldFont};
 			}
 		}
 
@@ -68,7 +68,7 @@ const RequestButton = styled.button`
 	border-radius: 5px;
 	background: ${props => props.theme.yellow};
 	color: ${props => props.theme.grey};
-	font-family: 'Clear Sans Bold';
+	font-family: ${props => props.theme.boldFont};
 	font-size: 1.2rem;
 	padding: 0.5rem 1rem;
 	display: flex;
@@ -108,10 +108,6 @@ const Footer = () => (
 					<span> • </span>
 					<Link href="/assets/pdf/service_procedures-v1.6-2019.pdf">
 						<a target="_blank">Service Procedures</a>
-					</Link>
-					<span> • </span>
-					<Link href="/careers">
-						<a>Careers</a>
 					</Link>
 					<span> • </span>
 					<Link href="/blog">
