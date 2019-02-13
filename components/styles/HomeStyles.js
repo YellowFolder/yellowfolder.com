@@ -22,39 +22,37 @@ const Masthead = styled.section`
 	background: white;
 	background-image: url(static/images/pattern-bg.svg);
 	background-position: left top;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 	display: flex;
 	padding: 0;
 	margin: 90px auto 0;
+	padding: 0;
 	width: 100%;
-	max-height: 660px;
-	height: auto;
 	max-width: ${props => props.theme.maxWidth};
+	height: auto;
 `;
 
 const SectionCopy = styled.div`
 	order: 1;
-	flex: 1 1 auto;
-	padding-left: 5.8rem;
 	justify-self: flex-start;
 	align-self: center;
-	width: 50%;
-	margin-top: -8rem;
+	width: 55%;
+	margin: 0 0 0 4.5rem;
 	h1 {
+		/* font-size: calc([minimum font size]px + ([maximum font size] - [minimum font size]) * ((100vw - [minimum viewport width]px) / ([maximum viewport width] - [minimum viewport width]))); */
+		font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
 		font-size: 7rem;
-		line-height: 120%;
+		line-height: 100%;
 		color: ${props => props.theme.grey};
 		font-family: ${props => props.theme.boldFont};
 		padding: 0;
 		margin: 0;
-		letter-spacing: 1px;
 	}
 	p {
 		font-size: 26px;
-		line-height: 120%;
+		line-height: 100%;
 		color: ${props => props.theme.grey};
-		letter-spacing: -0.5px;
 		padding: 0;
 		margin: 17px 0 0 0;
 	}
@@ -63,11 +61,11 @@ const SectionCopy = styled.div`
 const MastheadImage = styled.div`
 	display: flex;
 	order: 2;
-	flex: 1 1 auto;
-	width: 50%;
 	height: auto;
-	padding-top: 2.4rem;
+	width: 55%;
 	img {
+		width: auto;
+		height: auto;
 	}
 `;
 

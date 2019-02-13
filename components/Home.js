@@ -18,7 +18,7 @@ export class Home extends Component {
 			<main role="main">
 				<Masthead>
 					<SectionCopy>
-						<h1>Files at your fingertips</h1>
+						<h1>Files at your fingertips.</h1>
 						<p>We specialize in securely managing education records online.</p>
 					</SectionCopy>
 					<MastheadImage>
