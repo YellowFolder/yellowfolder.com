@@ -35,8 +35,8 @@
 					{
 						"preset-env": {
 							"modules": "commonjs"
-						}
-					}
+						},
+					},
 				]
 			],
 			"plugins": [

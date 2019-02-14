@@ -27,12 +27,6 @@
 			"error",
 			"except-parens"
 		],
-		"no-extra-parens": [
-			1,
-			{
-				"ignoreJSX": "all"
-			}
-		],
 		"no-restricted-syntax": [
 			2,
 			"ForInStatement",

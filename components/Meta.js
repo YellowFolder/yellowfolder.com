@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Head from 'next/head';
 
 const Meta = () => (
@@ -11,8 +12,8 @@ const Meta = () => (
 		<link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg?v=kP3eE9yM02" color="#ffb520" />
 		<link rel="shortcut icon" href="/static/favicon/favicon.ico?v=kP3eE9yM02" />
 		<meta name="msapplication-TileColor" content="#2d89ef" />
-		<meta name="theme-color" content="#ffffff"></meta>
-		<title> YellowFolder - Services for K-12 Record Management</title>{' '}
+		<meta name="theme-color" content="#ffffff" />
+		<title> YellowFolder - [DEV]</title>{' '}
 	</Head>
 );
 

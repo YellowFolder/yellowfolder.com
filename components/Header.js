@@ -47,13 +47,13 @@ const Header = () => (
 			<Logo>
 				<Link href="/">
 					<a>
-						<img src='/static/images/header-logo.svg' alt='YellowFolder' />
+						<img src="/static/images/header-logo.svg" alt="YellowFolder" />
 					</a>
 				</Link>
 			</Logo>
 			<Nav />
 		</div>
-		<div className="sub-bar"></div>
+		<div className="sub-bar" />
 	</StyledHeader>
 );
 

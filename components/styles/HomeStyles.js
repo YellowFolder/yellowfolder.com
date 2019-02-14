@@ -7,7 +7,7 @@ const ContentRow = styled.div`
 	justify-content: center;
 	margin: 0;
 	padding: 0;
-	background: ${props => props.background || "white"};
+	background: ${props => props.background || 'white'};
 `;
 
 const ContentContainer = styled.div`
@@ -22,61 +22,57 @@ const Masthead = styled.section`
 	background: white;
 	background-image: url(static/images/pattern-bg.svg);
 	background-position: left top;
-  background-size: contain;
-  background-repeat: no-repeat;
+	background-size: cover;
+	background-repeat: no-repeat;
 	display: flex;
 	padding: 0;
 	margin: 90px auto 0;
+	padding: 0;
 	width: 100%;
-	max-height: 660px;
-	height: auto;
 	max-width: ${props => props.theme.maxWidth};
+	height: auto;
 `;
 
 const SectionCopy = styled.div`
 	order: 1;
-	flex: 1 1 auto;
-	padding-left: 5.8rem;
 	justify-self: flex-start;
 	align-self: center;
-	width: 50%;
-	margin-top: -8rem;
+	width: 55%;
+	margin: 0 0 0 4.5rem;
 	h1 {
+		/* font-size: calc([minimum font size]px + ([maximum font size] - [minimum font size]) * ((100vw - [minimum viewport width]px) / ([maximum viewport width] - [minimum viewport width]))); */
+		font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
 		font-size: 7rem;
-		line-height: 120%;
+		line-height: 100%;
 		color: ${props => props.theme.grey};
-		font-family: 'Clear Sans Bold';
-		font-weight: bold;
+		font-family: ${props => props.theme.boldFont};
 		padding: 0;
 		margin: 0;
-		letter-spacing: 1px;
 	}
 	p {
-    font-size: 26px;
-    line-height: 120%;
-    color: #5B6670;
-    font-family: 'Clear Sans';
-    letter-spacing: -0.5px;
-    padding: 0;
-    margin: 17px 0 0 0;
+		font-size: 26px;
+		line-height: 100%;
+		color: ${props => props.theme.grey};
+		padding: 0;
+		margin: 17px 0 0 0;
 	}
 `;
 
 const MastheadImage = styled.div`
 	display: flex;
 	order: 2;
-	flex: 1 1 auto;
-	width: 50%;
 	height: auto;
-	padding-top: 2.4rem;
+	width: 55%;
 	img {
+		width: auto;
+		height: auto;
 	}
 `;
 
 const InfoRow = styled(ContentRow)`
 	height: calc(100vh / 2);
 	max-height: 350px;
-	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center center;
+	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center;
 	background-size: 1920px 1080px;
 `;
 
@@ -110,11 +106,10 @@ const InfoRowContent = styled(ContentContainer)`
 
 		.row-left,
 		.row-right {
-			font-family: 'Clear Sans Bold';
+			font-family: ${props => props.theme.boldFont};
 			font-size: 2.7rem;
-			font-weight: 700;
 			color: ${props => props.theme.white};
-			text-shadow: 0px 0px 12px rgba(0,0,0,0.2), 0px 0px 12px rgba(0,0,0,0.2);
+			text-shadow: 0px 0px 12px rgba(0, 0, 0, 0.2), 0px 0px 12px rgba(0, 0, 0, 0.2);
 			line-height: 120%;
 		}
 
@@ -135,8 +130,7 @@ const InfoRowContent = styled(ContentContainer)`
 			}
 
 			ul li {
-				font-family: 'Clear Sans';
-				font-weight: 400;
+				font-family: ${props => props.theme.defaultFont};
 				font-size: 2.2rem;
 				line-height: 100%;
 				padding: 3px 0;
@@ -153,7 +147,7 @@ const CabinetToCloud = styled(ContentContainer)`
 	flex-flow: column nowrap;
 	width: 60%;
 	h1 {
-		font-family: 'Clear Sans Bold';
+		font-family: ${props => props.theme.boldFont};
 		font-size: 6.4rem;
 		line-height: 58px;
 		color: ${props => props.theme.yellow};
@@ -166,7 +160,6 @@ const CabinetToCloud = styled(ContentContainer)`
 	}
 
 	p {
-		font-weight: 400;
 		color: ${props => props.theme.grey};
 		line-height: 21px;
 		text-align: center;

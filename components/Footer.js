@@ -7,11 +7,10 @@ const StyledFooter = styled.footer`
 	align-items: center;
 	justify-content: space-evenly;
 	margin: 0;
-	padding: 20px;
+	height: 45px;
 	background: #fff;
 	flex-shrink: 0;
 	color: ${props => props.theme.grey};
-	font-weight: 400;
 	font-size: 1rem;
 	line-height: 12px;
 
@@ -35,7 +34,7 @@ const StyledFooter = styled.footer`
 			}
 
 			p {
-				font-family: 'Clear Sans Bold';
+				font-family: ${props => props.theme.boldFont};
 			}
 		}
 
@@ -60,7 +59,6 @@ const StyledFooter = styled.footer`
 			}
 		}
 	}
-
 `;
 
 const RequestButton = styled.button`
@@ -69,7 +67,7 @@ const RequestButton = styled.button`
 	border-radius: 5px;
 	background: ${props => props.theme.yellow};
 	color: ${props => props.theme.grey};
-	font-family: 'Clear Sans Bold';
+	font-family: ${props => props.theme.boldFont};
 	font-size: 1.2rem;
 	padding: 0.5rem 1rem;
 	display: flex;
@@ -85,53 +83,39 @@ const RequestButton = styled.button`
 	}
 `;
 
-const Footer = () => {
-	return (
-		<StyledFooter>
-			<div className='footer-content'>
-				<div className='content-left'>
-					<img src='/static/images/gray-lock.svg' alt="YellowFolder" />
-					<p>
-						&copy;2019 YellowFolder
-						<br/>
-						All Rights Reserved
-					</p>
-				</div>
-				<div className='content-right'>
-					<RequestButton>
-						<Link href='/record-request'>
-							<a>Record Request</a>
-						</Link>
-					</RequestButton>
-					<div className='links'>
-						<Link href='/privacy-policy'>
-							<a>
-								Privacy Policy
-							</a>
-						</Link>
-						<span> • </span>
-						<Link href='/assets/pdf/service_procedures-v1.6-2019.pdf' target="_blank">
-							<a>
-								Service Procedures
-							</a>
-						</Link>
-						<span> • </span>
-						<Link href='/careers'>
-							<a>
-								Careers
-							</a>
-						</Link>
-						<span> • </span>
-						<Link href='/blog'>
-							<a>
-								Blog
-							</a>
-						</Link>
-					</div>
+const Footer = () => (
+	<StyledFooter>
+		<div className="footer-content">
+			<div className="content-left">
+				<img src="/static/images/gray-lock.svg" alt="YellowFolder" />
+				<p>
+					&copy;2019 YellowFolder
+					<br />
+					All Rights Reserved
+				</p>
+			</div>
+			<div className="content-right">
+				<RequestButton>
+					<Link href="/record-request">
+						<a>Record Request</a>
+					</Link>
+				</RequestButton>
+				<div className="links">
+					<Link href="/privacy-policy">
+						<a>Privacy Policy</a>
+					</Link>
+					<span> • </span>
+					<Link href="/assets/pdf/service_procedures-v1.6-2019.pdf">
+						<a target="_blank">Service Procedures</a>
+					</Link>
+					<span> • </span>
+					<Link href="/blog">
+						<a>Blog</a>
+					</Link>
 				</div>
 			</div>
-		</StyledFooter>
-	)
-}
+		</div>
+	</StyledFooter>
+);
 
-export default Footer
+export default Footer;

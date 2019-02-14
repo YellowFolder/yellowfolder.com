@@ -1,5 +1,3 @@
-const Training = () => (
-	<div>This is the Training page!</div>
-);
+const Training = () => <div>This is the Training page!</div>;
 
 export default Training;
