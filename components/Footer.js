@@ -6,7 +6,7 @@ const StyledFooter = styled.footer`
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	margin: 0;
+	margin: 0; /* keep margin 0 so that page does not overflow on x-axis.*/
 	height: 45px;
 	background: #fff;
 	flex-shrink: 0;
@@ -20,6 +20,7 @@ const StyledFooter = styled.footer`
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		margin: 0.5rem 1rem;
 
 		.content-left {
 			display: flex;

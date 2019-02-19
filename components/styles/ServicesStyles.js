@@ -68,7 +68,7 @@ const PageBodyContainer = styled.div`
 	background: white;
 	display: grid;
 	grid-template-columns: repeat(6, minmax(auto, 1fr));
-	grid-template-rows: repeat(12, minmax(auto, 1fr));
+	grid-template-rows: repeat(10, minmax(auto, 1fr)) 50px 181px;
 	z-index: 1000;
 `;
 
@@ -257,20 +257,20 @@ const ServicesPostscript = styled.div`
 
 const ServicesVideo = styled.div`
 	margin-top: -150px;
-	grid-row: 8 / 12;
+	grid-row: span 3;
 	grid-column: span 6;
 	background: white;
 	z-index: 1000;
 
 	display: grid;
-	grid-template-columns: repeat(12, minmax(auto, 1fr));
-	grid-template-rows: 150px 1fr 1fr 150px;
-	justify-items: center;
+	grid-template-columns: repeat(12, auto);
+	grid-template-rows: 150px 1fr;
 	justify-self: center;
+	align-self: flex-start;
 
 	.video-container {
 		grid-column: span 12;
-		grid-row: span 3;
+		grid-row: span 2;
 		#services-video {
 			width: 100% !important;
 			height: auto !important;
@@ -279,6 +279,49 @@ const ServicesVideo = styled.div`
 				cursor: pointer;
 			}
 		}
+	}
+`;
+
+const ActionWrapper = styled.div`
+	grid-row: span 2;
+	grid-column: span 6;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: auto;
+
+	.cta {
+		background: ${props => props.theme.yellow};
+		width: 490px;
+		height: 94px;
+		border-radius: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 1000;
+		&:hover {
+			cursor: pointer;
+		}
+		a {
+			padding: 29px 0;
+			margin-top: -4px;
+			font-family: ${props => props.theme.boldFont};
+			font-size: 2.5rem;
+			line-height: 30px;
+			color: ${props => props.theme.white};
+			text-align: center;
+		}
+	}
+	.cta-backdrop {
+		background: ${props => props.theme.grey} url(/static/images/pattern-bg.svg) no-repeat left
+			center;
+		background-size: 1165px 758px;
+		margin-top: -48px;
+		width: 100%;
+		height: 100%;
+		z-index: 100;
 	}
 `;
 
@@ -291,4 +334,5 @@ export {
 	Card,
 	ServicesPostscript,
 	ServicesVideo,
+	ActionWrapper,
 };

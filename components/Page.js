@@ -13,8 +13,8 @@ export const theme = {
 	lightgray: '#E1E1E1',
 	yellow: '#FFC629',
 	maxWidth: '1200px',
-  bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
-  textShadow: '0px 0px 8px rgba(0,0,0,0.2), 0px 0px 8px rgba(0,0,0,0.2)',
+	bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+	textShadow: '0px 0px 8px rgba(0,0,0,0.2), 0px 0px 8px rgba(0,0,0,0.2)',
 	defaultFont: 'Clear Sans Medium',
 	boldFont: 'Clear Sans Bold',
 	thinFont: 'Clear Sans',
@@ -92,6 +92,12 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${theme.black};
+    &:hover {
+      cursor: pointer;
+    }
+    &:visited {
+      text-decoration: none;
+    }
   }
 `;
 

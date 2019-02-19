@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 import {
 	ServicesPage,
 	PageHeaderContainer,
@@ -8,6 +9,7 @@ import {
 	Card,
 	ServicesPostscript,
 	ServicesVideo,
+	ActionWrapper,
 } from './styles/ServicesStyles';
 
 export class Services extends Component {
@@ -130,6 +132,14 @@ export class Services extends Component {
 							</video>
 						</div>
 					</ServicesVideo>
+					<ActionWrapper>
+						<div className="cta">
+							<Link href="https://info.yellowfolder.com/schedule-a-yellow-folder-demo">
+								<a>See YellowFolder in Action</a>
+							</Link>
+						</div>
+						<div className="cta-backdrop" />
+					</ActionWrapper>
 				</PageBodyContainer>
 			</ServicesPage>
 		);
