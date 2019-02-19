@@ -14,6 +14,7 @@ export const theme = {
 	yellow: '#FFC629',
 	maxWidth: '1200px',
 	bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
+	textShadow: '0px 0px 8px rgba(0,0,0,0.2), 0px 0px 8px rgba(0,0,0,0.2)',
 	defaultFont: 'Clear Sans Medium',
 	boldFont: 'Clear Sans Bold',
 	thinFont: 'Clear Sans',
@@ -72,10 +73,18 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
     line-height: 17px;
-    font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica;
+    font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
     font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: auto;
+    @media
+    (-webkit-min-device-pixel-ratio: 2),
+    (   min--moz-device-pixel-ratio: 2),
+    (     -o-min-device-pixel-ratio: 2/1),
+    (        min-device-pixel-ratio: 2),
+    (                min-resolution: 192dpi),
+    (                min-resolution: 2ddpx) {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
   }
   svg {
     shape-rendering: geometricPrecision;
@@ -83,6 +92,12 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     color: ${theme.black};
+    &:hover {
+      cursor: pointer;
+    }
+    &:visited {
+      text-decoration: none;
+    }
   }
 `;
 
