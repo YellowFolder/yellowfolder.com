@@ -72,10 +72,18 @@ const GlobalStyle = createGlobalStyle`
     flex-direction: column;
     font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
     line-height: 17px;
-    font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica;
+    font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
     font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: auto;
+    @media
+    (-webkit-min-device-pixel-ratio: 2),
+    (   min--moz-device-pixel-ratio: 2),
+    (     -o-min-device-pixel-ratio: 2/1),
+    (        min-device-pixel-ratio: 2),
+    (                min-resolution: 192dpi),
+    (                min-resolution: 2ddpx) {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
   }
   svg {
     shape-rendering: geometricPrecision;

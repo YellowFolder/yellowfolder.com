@@ -105,7 +105,7 @@ const CardRow = styled.div`
 	grid-row: 1 / 3;
 	display: grid;
 	justify-self: center;
-	grid-template-columns: repeat(12, auto);
+	grid-template-columns: repeat(4, auto);
 	grid-template-rows: repeat(3, auto);
 `;
 
@@ -118,11 +118,11 @@ const Card = styled.div`
 	margin: 0px 14px 0;
 	padding: 0;
 	grid-area: card;
-	grid-column: span 3;
+	grid-column: span 1;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
-	justify-content: end;
+	justify-content: flex-start;
 	h2 {
 		color: ${props => props.theme.white};
 		font-size: 4.2rem;
@@ -185,6 +185,7 @@ const ServicesPostscript = styled.div`
 			width: 200px;
 			margin: 0 14px;
 			padding: 0;
+			text-transform: capitalize;
 			display: flex;
 			align-items: center;
 			justify-content: center;

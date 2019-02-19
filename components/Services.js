@@ -90,10 +90,18 @@ export class Services extends Component {
 					</ServiceOptions>
 					<ServicesPostscript>
 						<div className="service-figures">
-							<div className="figure">FIGURE</div>
-							<div className="figure">FIGURE</div>
-							<div className="figure">FIGURE</div>
-							<div className="figure">FIGURE</div>
+							<div className="figure">
+								Students
+							</div>
+							<div className="figure">
+								Special Education
+							</div>
+							<div className="figure">
+								Faculty
+							</div>
+							<div className="figure">
+								Administrative
+							</div>
 						</div>
 						<div className="postscript-backdrop">
 							<div className="postscript-copy">
