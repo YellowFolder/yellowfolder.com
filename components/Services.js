@@ -7,6 +7,7 @@ import {
 	CardRow,
 	Card,
 	ServicesPostscript,
+	ServicesVideo,
 } from './styles/ServicesStyles';
 
 export class Services extends Component {
@@ -89,26 +90,46 @@ export class Services extends Component {
 						</div>
 					</ServiceOptions>
 					<ServicesPostscript>
+						<div className="postscript-backdrop" />
 						<div className="service-figures">
 							<div className="figure">
-								Students
+								<img src="/static/images/services-icon__student.png" alt="" />
+								<p>Student</p>
 							</div>
 							<div className="figure">
-								Special Education
+								<img src="/static/images/services-icon__sped.png" alt="" />
+								<p>Special Education</p>
 							</div>
 							<div className="figure">
-								Faculty
+								<img src="/static/images/services-icon__hr.png" alt="" />
+								<p>Faculty</p>
 							</div>
 							<div className="figure">
-								Administrative
+								<img src="/static/images/services-icon__admin.png" alt="" />
+								<p>Administrative</p>
 							</div>
 						</div>
-						<div className="postscript-backdrop">
-							<div className="postscript-copy">
-								<h2>COPY COPY COPY</h2>
-							</div>
+						<div className="postscript-copy">
+							<h2>All of your files, for all of your needs.</h2>
+							<p>
+								We understand how unique each area of of your records are so we provide full
+								functionality down to the individual file level.
+							</p>
 						</div>
 					</ServicesPostscript>
+					<ServicesVideo>
+						<div className="video-container">
+							<video id="services-video" poster="/static/images/video-wallpaper.png" controls>
+								<source type="video/mp4" src="/static/video/yf-intro.mp4" />
+								<source type="video/ogg" src="/static/video/yf-intro.ogg" />
+								<source type="video/ogv" src="/static/video/yf-intro.ogv" />
+								<source type="video/webm" src="/static/video/yf-intro.webm" />
+								<p>
+									Sorry, your browser doesn't support HTML5 video so this video cannot be displayed.
+								</p>
+							</video>
+						</div>
+					</ServicesVideo>
 				</PageBodyContainer>
 			</ServicesPage>
 		);

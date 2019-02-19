@@ -16,3 +16,4 @@ node_modules/
 .env
 bundles/
 assets/
+static/video

@@ -33,7 +33,7 @@ const PageHeaderContainer = styled.div`
 		flex-flow: column nowrap;
 		align-items: flex-start;
 		justify-content: flex-start;
-		width: 70%;
+		width: 80%;
 		max-width: ${props => props.theme.maxWidth};
 		margin: 7.5% 0 12.5% 4.5rem;
 
@@ -68,7 +68,7 @@ const PageBodyContainer = styled.div`
 	background: white;
 	display: grid;
 	grid-template-columns: repeat(6, minmax(auto, 1fr));
-	grid-template-rows: repeat(12, 1fr);
+	grid-template-rows: repeat(12, minmax(auto, 1fr));
 	z-index: 1000;
 `;
 
@@ -161,41 +161,58 @@ const ServicesPostscript = styled.div`
 	grid-column: span 6;
 	grid-row: 5 / 8;
 	padding: 0;
-	margin: 0;
+	margin: -45px 0 0 0;
 	background: transparent;
 	display: grid;
-	grid-template-columns: auto 1fr 1fr 1fr 1fr auto;
-	grid-template-rows: auto 100px 1fr 100px 1fr auto;
+	grid-template-columns: repeat(12, auto);
+	grid-template-rows: 90px 135px 50px 1fr 1fr minmax(auto, 90px);
 
 	.service-figures {
-		grid-column: 1 / 6;
-		grid-row: 2 / 4;
+		grid-column: 1 / 12;
+		grid-row: 1 / 3;
 		max-width: 1200px;
 		justify-self: center;
 		z-index: 1000;
+		margin: -25px 0 0 0;
 
 		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		grid-gap: 20px;
+		grid-template-columns: repeat(12, auto);
+		grid-gap: 0 40px;
+		align-items: baseline;
 
 		.figure {
-			grid-column: span 1;
-			border: 1px solid black;
-			height: 200px;
-			width: 200px;
+			grid-column: span 3;
+			height: 100%;
+			width: 100%;
 			margin: 0 14px;
 			padding: 0;
 			text-transform: capitalize;
 			display: flex;
+			flex-flow: column nowrap;
 			align-items: center;
 			justify-content: center;
 			justify-self: center;
+			img {
+				max-height: 200px;
+				max-width: 225px;
+				width: 100%;
+				height: auto;
+			}
+			p {
+				font-size: 2.3rem;
+				font-family: ${props => props.theme.boldFont};
+				line-height: 28px;
+				color: ${props => props.theme.grey};
+				text-align: center;
+				margin: 0;
+				padding: 0;
+			}
 		}
 	}
 
 	.postscript-backdrop {
-		grid-column: 1 / 6;
-		grid-row: 3 / 6;
+		grid-column: 1 / 12;
+		grid-row: 2 / 6;
 		background-image: url(/static/images/papers-bg.svg);
 		background-color: ${props => props.theme.yellow};
 		background-size: cover;
@@ -203,26 +220,63 @@ const ServicesPostscript = styled.div`
 		background-position: center;
 		margin: 0;
 		padding: 0;
-		width: 100%;
-		height: auto;
-		z-index: 0;
+		width: 100vw;
+	}
 
+	.postscript-copy {
+		grid-column: 3 / 10;
+		grid-row: 4 / 5;
+		max-width: 1200px;
 		display: flex;
+		flex-flow: column nowrap;
 		align-items: center;
 		justify-content: center;
+		text-align: center;
+		color: ${props => props.theme.white};
+		background: transparent;
+		z-index: 500;
+		h2,
+		p {
+			text-shadow: ${props => props.theme.textShadow};
+			margin: 0;
+			padding: 0.25rem 0;
+		}
+		h2 {
+			font-size: 4.2rem;
+			line-height: 50px;
+			font-family: ${props => props.theme.boldFont};
+		}
+		p {
+			font-size: 2rem;
+			line-height: 24px;
+			font-weight: 400;
+			width: 90%;
+		}
+	}
+`;
 
-		.postscript-copy {
-			border: 10px solid white;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			text-align: center;
-			color: white;
-			background: transparent;
+const ServicesVideo = styled.div`
+	margin-top: -150px;
+	grid-row: 8 / 12;
+	grid-column: span 6;
+	background: white;
+	z-index: 1000;
 
-			h2 {
-				padding: 0 5rem;
-				font-size: 10rem;
+	display: grid;
+	grid-template-columns: repeat(12, minmax(auto, 1fr));
+	grid-template-rows: 150px 1fr 1fr 150px;
+	justify-items: center;
+	justify-self: center;
+
+	.video-container {
+		grid-column: span 12;
+		grid-row: span 3;
+		#services-video {
+			width: 100% !important;
+			height: auto !important;
+
+			&:hover {
+				cursor: pointer;
 			}
 		}
 	}
@@ -236,4 +290,5 @@ export {
 	CardRow,
 	Card,
 	ServicesPostscript,
+	ServicesVideo,
 };
