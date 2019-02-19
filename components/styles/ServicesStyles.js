@@ -45,7 +45,7 @@ const PageHeaderContainer = styled.div`
 		h1 {
 			color: ${props => props.theme.grey};
 			line-height: calc(66px + (78 - 66) * ((100vw - 1000px) / (1800 - 1000)));
-			font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
+			font-size: calc(66px + (82 - 66) * ((100vw - 1000px) / (1800 - 1000)));
 			font-family: ${props => props.theme.boldFont};
 			margin: 0;
 		}
@@ -54,7 +54,7 @@ const PageHeaderContainer = styled.div`
 			line-height: calc(21px + (20 - 21) * ((100vw - 1000px) / (1800 - 1000)));
 			font-size: calc(18px + (20 - 18) * ((100vw - 1000px) / (1800 - 1000)));
 			margin: 0;
-			width: 80%;
+			width: 95%;
 			align-self: flex-start;
 		}
 	}
@@ -100,16 +100,13 @@ const ServiceOptions = styled.div`
 `;
 
 const CardRow = styled.div`
+	max-width: 1200px;
 	grid-column: 1 / 3;
 	grid-row: 1 / 3;
 	display: grid;
 	justify-self: center;
-	grid-template-columns: auto 1fr 1fr 1fr 1fr auto;
+	grid-template-columns: repeat(12, auto);
 	grid-template-rows: repeat(3, auto);
-	grid-template-areas:
-		'. card card card card .'
-		'. card card card card .'
-		'. card card card card .';
 `;
 
 const Card = styled.div`
@@ -121,14 +118,42 @@ const Card = styled.div`
 	margin: 0px 14px 0;
 	padding: 0;
 	grid-area: card;
-	grid-column: span 2;
+	grid-column: span 3;
 	display: flex;
+	flex-flow: column nowrap;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: end;
 	h2 {
 		color: ${props => props.theme.white};
-		font-size: 48px;
+		font-size: 4.2rem;
 		line-height: 100%;
+		align-self: center;
+		margin: 5rem 0 1rem;
+		padding: 0;
+	}
+	.option-list {
+		display: flex;
+		align-items: flex-start;
+		justify-content: center;
+		flex-flow: column nowrap;
+		list-style: none;
+		margin: 0;
+		padding: 2rem 1rem 0;
+		li {
+			font-weight: 400;
+			color: ${props => props.theme.grey};
+			font-size: 1.6rem;
+			width: 100%;
+			padding: 10px 0 0 16px;
+			text-indent: -16px;
+			&::before {
+				content: url(/static/images/checkmark.svg);
+				padding: 0;
+				margin: 0 4px 0 -4px;
+				color: white;
+				vertical-align: middle;
+			}
+		}
 	}
 `;
 
@@ -141,7 +166,6 @@ const ServicesPostscript = styled.div`
 	display: grid;
 	grid-template-columns: auto 1fr 1fr 1fr 1fr auto;
 	grid-template-rows: auto 100px 1fr 100px 1fr auto;
-	/* grid-template-rows: 222px 200px 404px; */
 
 	.service-figures {
 		grid-column: 1 / 6;
@@ -181,6 +205,25 @@ const ServicesPostscript = styled.div`
 		width: 100%;
 		height: auto;
 		z-index: 0;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.postscript-copy {
+			border: 10px solid white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			color: white;
+			background: transparent;
+
+			h2 {
+				padding: 0 5rem;
+				font-size: 10rem;
+			}
+		}
 	}
 `;
 
