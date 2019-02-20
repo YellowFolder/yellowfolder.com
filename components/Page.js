@@ -71,10 +71,12 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
     line-height: 17px;
     font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
     font-feature-settings: 'liga';
+    overflow-y: auto;
     @media
     (-webkit-min-device-pixel-ratio: 2),
     (   min--moz-device-pixel-ratio: 2),

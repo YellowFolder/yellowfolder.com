@@ -6,7 +6,7 @@ const ServicesPage = styled.div`
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(12, auto);
 	padding: 0;
-	margin: 90px 0 0 0;
+	margin: 0 auto;
 	width: 100vw;
 	height: 100%;
 `;
@@ -272,8 +272,8 @@ const ServicesVideo = styled.div`
 		grid-column: span 12;
 		grid-row: span 2;
 		#services-video {
-			width: 100% !important;
-			height: auto !important;
+			width: 100%;
+			height: auto;
 
 			&:hover {
 				cursor: pointer;
@@ -283,7 +283,7 @@ const ServicesVideo = styled.div`
 `;
 
 const ActionWrapper = styled.div`
-	grid-row: span 2;
+	grid-row: span 2 / -1;
 	grid-column: span 6;
 	display: flex;
 	flex-flow: column nowrap;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Nav from './Nav';
 
 const StyledHeader = styled.header`
-	position: fixed;
+	position: sticky;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -15,12 +15,6 @@ const StyledHeader = styled.header`
 		justify-content: space-between;
 		align-items: stretch;
 		height: 80px;
-	}
-	.sub-bar {
-		display: grid;
-		grid-template-columns: 1fr auto;
-		height: 10px;
-		background-color: ${props => props.theme.yellow};
 	}
 `;
 
@@ -41,20 +35,30 @@ const Logo = styled.div`
 	}
 `;
 
+const SubBar = styled.div`
+	height: 10px;
+	background-color: ${props => props.theme.yellow};
+	z-index: 0;
+	width: 100vw !important;
+	position: relative;
+`;
+
 const Header = () => (
-	<StyledHeader>
-		<div className="bar">
-			<Logo>
-				<Link href="/">
-					<a>
-						<img src="/static/images/header-logo.svg" alt="YellowFolder" />
-					</a>
-				</Link>
-			</Logo>
-			<Nav />
-		</div>
-		<div className="sub-bar" />
-	</StyledHeader>
+	<>
+		<StyledHeader>
+			<div className="bar">
+				<Logo>
+					<Link href="/">
+						<a>
+							<img src="/static/images/header-logo.svg" alt="YellowFolder" />
+						</a>
+					</Link>
+				</Logo>
+				<Nav />
+			</div>
+		</StyledHeader>
+		<SubBar />
+	</>
 );
 
 export default Header;

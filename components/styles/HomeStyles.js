@@ -26,11 +26,12 @@ const Masthead = styled.section`
 	background-repeat: no-repeat;
 	display: flex;
 	padding: 0;
-	margin: 90px auto 0;
+	margin: 0 auto 0;
 	padding: 0;
 	width: 100%;
-	max-width: ${props => props.theme.maxWidth};
 	height: auto;
+	max-width: ${props => props.theme.maxWidth};
+	z-index: 1000;
 `;
 
 const SectionCopy = styled.div`
