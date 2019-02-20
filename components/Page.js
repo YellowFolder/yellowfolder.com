@@ -23,7 +23,7 @@ export const theme = {
 
 const StyledPage = styled.div`
 	background: white;
-	color: ${props => props.theme.black};
+	color: ${props => props.theme.grey};
 	flex: 1 0 auto;
 `;
 
@@ -76,7 +76,6 @@ const GlobalStyle = createGlobalStyle`
     line-height: 17px;
     font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
     font-feature-settings: 'liga';
-    overflow-y: auto;
     @media
     (-webkit-min-device-pixel-ratio: 2),
     (   min--moz-device-pixel-ratio: 2),

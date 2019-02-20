@@ -29,6 +29,7 @@ const Logo = styled.div`
 		padding: 0;
 		img {
 			width: 100%;
+			max-width: 100%;
 			height: auto;
 			max-height: 51px;
 		}

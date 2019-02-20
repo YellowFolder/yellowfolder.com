@@ -25,8 +25,7 @@ const Masthead = styled.section`
 	background-size: cover;
 	background-repeat: no-repeat;
 	display: flex;
-	padding: 0;
-	margin: 0 auto 0;
+	margin: 0 auto;
 	padding: 0;
 	width: 100%;
 	height: auto;
@@ -42,10 +41,9 @@ const SectionCopy = styled.div`
 	margin: 0 0 0 4.5rem;
 	h1 {
 		/* font-size: calc([minimum font size]px + ([maximum font size] - [minimum font size]) * ((100vw - [minimum viewport width]px) / ([maximum viewport width] - [minimum viewport width]))); */
-		font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
 		font-size: 7rem;
+		font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
 		line-height: 100%;
-		color: ${props => props.theme.grey};
 		font-family: ${props => props.theme.boldFont};
 		padding: 0;
 		margin: 0;
@@ -53,7 +51,6 @@ const SectionCopy = styled.div`
 	p {
 		font-size: 26px;
 		line-height: 100%;
-		color: ${props => props.theme.grey};
 		padding: 0;
 		margin: 17px 0 0 0;
 	}
@@ -161,7 +158,6 @@ const CabinetToCloud = styled(ContentContainer)`
 	}
 
 	p {
-		color: ${props => props.theme.grey};
 		line-height: 21px;
 		text-align: center;
 		width: 100%;
@@ -235,6 +231,7 @@ const ContactOptions = styled.div`
 						padding: 0;
 						height: 100px;
 						width: auto;
+						max-width: 100%;
 						object-fit: scale-down;
 					}
 					.card-text {

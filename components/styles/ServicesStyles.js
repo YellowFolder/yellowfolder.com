@@ -5,6 +5,7 @@ const ServicesPage = styled.div`
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
 	grid-template-rows: repeat(12, auto);
+	grid-auto-rows: auto;
 	padding: 0;
 	margin: 0 auto;
 	width: 100vw;
@@ -68,12 +69,14 @@ const PageBodyContainer = styled.div`
 	background: white;
 	display: grid;
 	grid-template-columns: repeat(6, minmax(auto, 1fr));
-	grid-template-rows: repeat(10, minmax(auto, 1fr)) 50px 181px;
+	/* grid-template-rows: repeat(10, minmax(auto, 1fr)); */
 	z-index: 1000;
+	justify-items: center;
 `;
 
 const ServiceOptions = styled.div`
-	grid-column: span 6;
+	grid-column: 1 / -1;
+	width: 100%;
 	grid-row: 1 / 4;
 	max-height: 550px;
 	margin: 0;
@@ -88,6 +91,7 @@ const ServiceOptions = styled.div`
 		background: ${props => props.theme.grey};
 		margin: 0;
 		padding: 0;
+		width: 100%;
 	}
 	.postscript-transition {
 		width: 100%;
@@ -158,27 +162,41 @@ const Card = styled.div`
 `;
 
 const ServicesPostscript = styled.div`
-	grid-column: span 6;
-	grid-row: 5 / 8;
+	grid-column: 1 / 12;
+	/* grid-row: 4 / 7; */
 	padding: 0;
-	margin: -45px 0 0 0;
+	margin: 45px 0 0 0;
 	background: transparent;
 	display: grid;
 	grid-template-columns: repeat(12, auto);
-	grid-template-rows: 90px 135px 50px 1fr 1fr minmax(auto, 90px);
+	grid-template-rows: 45px 90px 180px 180px 150px;
+	grid-auto-flow: row;
+	grid-auto-rows: auto;
+	justify-items: center;
+
+	.postscript-backdrop {
+		grid-column: 1 / 12;
+		grid-row: 3 / 6;
+		background-image: url(/static/images/papers-bg.svg);
+		background-color: ${props => props.theme.yellow};
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		margin: 0;
+		padding: 0;
+		width: 100vw;
+	}
 
 	.service-figures {
 		grid-column: 1 / 12;
-		grid-row: 1 / 3;
+		grid-row: 2 / 4;
 		max-width: 1200px;
-		justify-self: center;
 		z-index: 1000;
 		margin: -25px 0 0 0;
 
 		display: grid;
 		grid-template-columns: repeat(12, auto);
 		grid-gap: 0 40px;
-		align-items: baseline;
 
 		.figure {
 			grid-column: span 3;
@@ -190,13 +208,13 @@ const ServicesPostscript = styled.div`
 			display: flex;
 			flex-flow: column nowrap;
 			align-items: center;
-			justify-content: center;
 			justify-self: center;
 			img {
 				max-height: 200px;
 				max-width: 225px;
-				width: 100%;
+				/* width: 100%; */
 				height: auto;
+				object-fit: fill;
 			}
 			p {
 				font-size: 2.3rem;
@@ -210,27 +228,14 @@ const ServicesPostscript = styled.div`
 		}
 	}
 
-	.postscript-backdrop {
-		grid-column: 1 / 12;
-		grid-row: 2 / 6;
-		background-image: url(/static/images/papers-bg.svg);
-		background-color: ${props => props.theme.yellow};
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		margin: 0;
-		padding: 0;
-		width: 100vw;
-	}
-
 	.postscript-copy {
 		grid-column: 3 / 10;
-		grid-row: 4 / 5;
+		grid-row: 4;
 		max-width: 1200px;
 		display: flex;
 		flex-flow: column nowrap;
 		align-items: center;
-		justify-content: center;
+		justify-content: flex-start;
 		text-align: center;
 		color: ${props => props.theme.white};
 		background: transparent;
@@ -256,25 +261,20 @@ const ServicesPostscript = styled.div`
 `;
 
 const ServicesVideo = styled.div`
-	margin-top: -150px;
-	grid-row: span 3;
-	grid-column: span 6;
+	/* grid-row: 7/10; */
+	grid-row: 7/9;
+	grid-column: 1/12;
 	background: white;
 	z-index: 1000;
-
-	display: grid;
-	grid-template-columns: repeat(12, auto);
-	grid-template-rows: 150px 1fr;
-	justify-self: center;
-	align-self: flex-start;
+	max-width: 1200px;
+	/* margin: -150px 0 0 0; */
+	margin: -150px 0 50px 0;
+	padding: 0;
 
 	.video-container {
-		grid-column: span 12;
-		grid-row: span 2;
 		#services-video {
 			width: 100%;
 			height: auto;
-
 			&:hover {
 				cursor: pointer;
 			}
@@ -283,14 +283,15 @@ const ServicesVideo = styled.div`
 `;
 
 const ActionWrapper = styled.div`
-	grid-row: span 2 / -1;
-	grid-column: span 6;
+	/* grid-row: 10/10; */
+	grid-row: 9/9;
+	grid-column: 1/12;
 	display: flex;
 	flex-flow: column nowrap;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	height: auto;
+	height: 190px;
 
 	.cta {
 		background: ${props => props.theme.yellow};
