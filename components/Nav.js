@@ -19,7 +19,7 @@ class Nav extends Component {
 					<a>training</a>
 				</Link>
 				<Link href="https://erm.yellowfolder.com/login">
-					<a target="_blank">log in</a>
+					<a target="_blank" rel="noopener noreferrer">log in</a>
 				</Link>
 			</NavStyles>
 		);

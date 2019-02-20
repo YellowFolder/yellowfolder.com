@@ -12,7 +12,7 @@ import {
 	OptionsContent,
 } from './styles/HomeStyles';
 
-export class Home extends Component {
+class Home extends Component {
 	render() {
 		return (
 			<main role="main">

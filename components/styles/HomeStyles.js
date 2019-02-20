@@ -22,11 +22,11 @@ const Masthead = styled.section`
 	background: white;
 	background-image: url(static/images/pattern-bg.svg);
 	background-position: left top;
-	background-size: cover;
+	background-size: contain;
 	background-repeat: no-repeat;
 	display: flex;
 	margin: 0 auto;
-	padding: 0;
+	padding: 3rem 0 0;
 	width: 100%;
 	height: auto;
 	max-width: ${props => props.theme.maxWidth};
@@ -64,6 +64,7 @@ const MastheadImage = styled.div`
 	img {
 		width: auto;
 		height: auto;
+		object-fit: fill;
 	}
 `;
 

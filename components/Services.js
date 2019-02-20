@@ -12,7 +12,7 @@ import {
 	ActionWrapper,
 } from './styles/ServicesStyles';
 
-export class Services extends Component {
+class Services extends Component {
 	render() {
 		return (
 			<ServicesPage>

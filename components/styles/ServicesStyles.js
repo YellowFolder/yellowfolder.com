@@ -69,7 +69,6 @@ const PageBodyContainer = styled.div`
 	background: white;
 	display: grid;
 	grid-template-columns: repeat(6, minmax(auto, 1fr));
-	/* grid-template-rows: repeat(10, minmax(auto, 1fr)); */
 	z-index: 1000;
 	justify-items: center;
 `;
@@ -163,7 +162,6 @@ const Card = styled.div`
 
 const ServicesPostscript = styled.div`
 	grid-column: 1 / 12;
-	/* grid-row: 4 / 7; */
 	padding: 0;
 	margin: 45px 0 0 0;
 	background: transparent;
@@ -261,13 +259,11 @@ const ServicesPostscript = styled.div`
 `;
 
 const ServicesVideo = styled.div`
-	/* grid-row: 7/10; */
 	grid-row: 7/9;
 	grid-column: 1/12;
 	background: white;
 	z-index: 1000;
-	max-width: 1200px;
-	/* margin: -150px 0 0 0; */
+	max-width: 1080px;
 	margin: -150px 0 50px 0;
 	padding: 0;
 
@@ -283,7 +279,6 @@ const ServicesVideo = styled.div`
 `;
 
 const ActionWrapper = styled.div`
-	/* grid-row: 10/10; */
 	grid-row: 9/9;
 	grid-column: 1/12;
 	display: flex;
