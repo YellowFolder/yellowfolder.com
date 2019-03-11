@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Nav from './Nav';
 
 const StyledHeader = styled.header`
-	position: sticky;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -38,9 +38,10 @@ const Logo = styled.div`
 
 const SubBar = styled.div`
 	height: 10px;
+	margin-top: 80px;
 	background-color: ${props => props.theme.yellow};
 	z-index: 0;
-	width: 100vw !important;
+	width: 100% !important;
 	position: relative;
 `;
 

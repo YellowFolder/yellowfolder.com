@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ContentRow = styled.div`
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -28,8 +28,8 @@ const Masthead = styled.section`
 	margin: 0 auto;
 	padding: 3rem 0 0;
 	width: 100%;
-	height: auto;
 	max-width: ${props => props.theme.maxWidth};
+	height: auto;
 	z-index: 1000;
 `;
 
@@ -37,16 +37,19 @@ const SectionCopy = styled.div`
 	order: 1;
 	justify-self: flex-start;
 	align-self: center;
-	width: 55%;
-	margin: 0 0 0 4.5rem;
+	width: auto;
+	padding: 0 0 0 4.5rem;
 	h1 {
-		/* font-size: calc([minimum font size]px + ([maximum font size] - [minimum font size]) * ((100vw - [minimum viewport width]px) / ([maximum viewport width] - [minimum viewport width]))); */
-		font-size: 7rem;
-		font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
+		font-size: 7.5rem;
 		line-height: 100%;
 		font-family: ${props => props.theme.boldFont};
 		padding: 0;
 		margin: 0;
+
+		@media screen and (max-width: 1200px) {
+			/* font-size: calc([minimum font size]px + ([maximum font size] - [minimum font size]) * ((100vw - [minimum viewport width]px) / ([maximum viewport width] - [minimum viewport width]))); */
+			font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
+		}
 	}
 	p {
 		font-size: 26px;
@@ -60,17 +63,20 @@ const MastheadImage = styled.div`
 	display: flex;
 	order: 2;
 	height: auto;
-	width: 55%;
+	width: 70%;
+	position: relative;
+	display: inline-flex;
 	img {
+		display: inline-flex;
 		width: auto;
 		height: auto;
-		object-fit: fill;
+		object-fit: cover;
 	}
 `;
 
 const InfoRow = styled(ContentRow)`
 	height: calc(100vh / 2);
-	max-height: 350px;
+	max-height: 270px;
 	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center;
 	background-size: 1920px 1080px;
 `;
@@ -147,7 +153,7 @@ const CabinetToCloud = styled(ContentContainer)`
 	width: 60%;
 	h1 {
 		font-family: ${props => props.theme.boldFont};
-		font-size: 6.4rem;
+		font-size: 4.8rem;
 		line-height: 58px;
 		color: ${props => props.theme.yellow};
 
@@ -161,7 +167,8 @@ const CabinetToCloud = styled(ContentContainer)`
 	p {
 		line-height: 21px;
 		text-align: center;
-		width: 100%;
+		width: 85%;
+		margin: 0;
 	}
 `;
 

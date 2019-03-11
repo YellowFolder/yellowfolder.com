@@ -53,7 +53,7 @@ class Home extends Component {
 					<ContentContainer>
 						<CabinetToCloud>
 							<h1>
-								Cabinet to Cloud <span className="superscript">&trade;</span>
+								Cabinet to Cloud<span className="superscript">&trade;</span>
 							</h1>
 							<p>
 								At YellowFolder we believe your records need to be quickly and easily accessed. Our
