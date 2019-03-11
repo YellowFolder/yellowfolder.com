@@ -5,13 +5,13 @@ const StyledContact = styled.div`
 	width: 100%;
 	height: auto;
 	margin: 0 auto;
-	padding: 0;
+	padding: 60px 6.25% 30px 3.125%;
 	max-width: ${props => props.theme.maxWidth};
 	background: ${props => props.theme.white};
 	display: grid;
 	grid-template-columns: 1fr 3fr;
 	grid-template-rows: 1fr auto;
-	grid-gap: 60px;
+	grid-gap: 40px;
 	grid-template-areas:
 		'header header header'
 		'sidebar form form'
@@ -30,7 +30,6 @@ const StyledContact = styled.div`
 
 	.contact-form--sidebar {
 		grid-area: sidebar;
-		border-right: 10px solid black;
 		display: flex;
 		align-items: flex-start;
 		justify-content: flex-start;
@@ -52,9 +51,8 @@ const StyledContact = styled.div`
 			}
 			p {
 				font-size: 1.2rem;
-				word-wrap: break-word;
-				width: 50%;
-				margin: 1rem 0 0;
+				line-height: 14px;
+				margin: 0.25rem 0 0;
 				padding: 0;
 			}
 		}
@@ -112,6 +110,28 @@ const StyledContact = styled.div`
 				font-size: 14px;
 				line-height: 24px;
 			}
+			.form--submit-wrapper {
+				.form--submit-btn {
+					background-color: ${props => props.theme.yellow};
+					border-color: ${props => props.theme.yellow};
+					font-family: ${props => props.theme.boldFont};
+					font-weight: 700;
+					color: #fff;
+					text-align: center;
+					line-height: 12px;
+					font-size: 1.4rem;
+					padding: 12px 24px;
+					margin: 0;
+					border-radius: 3px;
+					border-style: solid;
+					border-width: 1px;
+					cursor: pointer;
+					outline: none;
+					&:active {
+						outline: none;
+					}
+				}
+			}
 		}
 	}
 `;
@@ -121,20 +141,29 @@ class Contact extends Component {
 		return (
 			<StyledContact>
 				<div className="contact-form--header">
-					<h1>Got a question? Ask us.</h1>
+					<h1>Got a question? Get in touch.</h1>
 				</div>
 				<aside className="contact-form--sidebar">
 					<div className="sidebar-contact-info">
 						<h3>YellowFolder</h3>
-						<p>AddressAddressAddressAddressAddressAddress</p>
+						<p>
+							1617 W Crosby Rd., Ste 100 <br />
+							Carrollton, TX 75006
+						</p>
 					</div>
 					<div className="sidebar-contact-info">
-						<h3>YellowFolder</h3>
-						<p>AddressAddressAddressAddressAddressAddress</p>
+						<h3>Sales</h3>
+						<p>
+							(844) 935-5684 <br />
+							sales@yellowfolder.com
+						</p>
 					</div>
 					<div className="sidebar-contact-info">
-						<h3>YellowFolder</h3>
-						<p>AddressAddressAddressAddressAddressAddress</p>
+						<h3>Support</h3>
+						<p>
+							(844) 935-5699 <br />
+							support@yellowfolder.com
+						</p>
 					</div>
 				</aside>
 				<div className="contact-form--form">
@@ -156,19 +185,94 @@ class Contact extends Component {
 						</div>
 						<div className="form--field-wrapper">
 							<label htmlFor="state">
-								State
-								<span>*</span>
+								State<span>*</span>
 							</label>
 							<select required id="state" name="state">
 								<option value disabled selected>
 									Please Select
 								</option>
-								<option value="Texas">Texas</option>
+								<option value="AL">Alabama</option>
+								<option value="AK">Alaska</option>
+								<option value="AZ">Arizona</option>
+								<option value="AR">Arkansas</option>
+								<option value="CA">California</option>
+								<option value="CO">Colorado</option>
+								<option value="CT">Connecticut</option>
+								<option value="DE">Delaware</option>
+								<option value="DC">District Of Columbia</option>
+								<option value="FL">Florida</option>
+								<option value="GA">Georgia</option>
+								<option value="HI">Hawaii</option>
+								<option value="ID">Idaho</option>
+								<option value="IL">Illinois</option>
+								<option value="IN">Indiana</option>
+								<option value="IA">Iowa</option>
+								<option value="KS">Kansas</option>
+								<option value="KY">Kentucky</option>
+								<option value="LA">Louisiana</option>
+								<option value="ME">Maine</option>
+								<option value="MD">Maryland</option>
+								<option value="MA">Massachusetts</option>
+								<option value="MI">Michigan</option>
+								<option value="MN">Minnesota</option>
+								<option value="MS">Mississippi</option>
+								<option value="MO">Missouri</option>
+								<option value="MT">Montana</option>
+								<option value="NE">Nebraska</option>
+								<option value="NV">Nevada</option>
+								<option value="NH">New Hampshire</option>
+								<option value="NJ">New Jersey</option>
+								<option value="NM">New Mexico</option>
+								<option value="NY">New York</option>
+								<option value="NC">North Carolina</option>
+								<option value="ND">North Dakota</option>
+								<option value="OH">Ohio</option>
+								<option value="OK">Oklahoma</option>
+								<option value="OR">Oregon</option>
+								<option value="PA">Pennsylvania</option>
+								<option value="RI">Rhode Island</option>
+								<option value="SC">South Carolina</option>
+								<option value="SD">South Dakota</option>
+								<option value="TN">Tennessee</option>
+								<option value="TX">Texas</option>
+								<option value="UT">Utah</option>
+								<option value="VT">Vermont</option>
+								<option value="VA">Virginia</option>
+								<option value="WA">Washington</option>
+								<option value="WV">West Virginia</option>
+								<option value="WI">Wisconsin</option>
+								<option value="WY">Wyoming</option>
+							</select>
+						</div>
+						<div className="form--field-wrapper">
+							<label htmlFor="purpose">
+								How can we help?<span>*</span>
+							</label>
+							<select required id="purpose" name="purpose">
+								<option value disabled selected>
+									Please Select
+								</option>
+								<option value="I am interested in using YellowFolder at my school">
+									I am interested in using YellowFolder at my school
+								</option>
+								<option value="I recieved an email or call and am interested to learn more">
+									I recieved an email or call and am interested to learn more
+								</option>
+								<option value="I am a current customer and need assistance">
+									I am a current customer and need assistance
+								</option>
+								<option value="I am interested in working for YellowFolder">
+									I am interested in working for YellowFolder
+								</option>
+								<option value="I would like to partner with YellowFolder">
+									I would like to partner with YellowFolder
+								</option>
+								<option value="Something else">Something else</option>
 							</select>
 						</div>
 						<div className="form--field-wrapper">
 							<label htmlFor="message">Message</label>
-							<textarea id="message" />
+							<textarea id="message" name="message" />
 						</div>
 						<div className="form--disclaimer">
 							<p>
