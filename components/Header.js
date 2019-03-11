@@ -7,7 +7,7 @@ const StyledHeader = styled.header`
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 1000;
+	z-index: 9000;
 	.bar {
 		display: grid;
 		background-color: ${props => props.theme.gray};

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const ContentRow = styled.div`
-	width: 100%;
+	width: 100vw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -25,20 +25,24 @@ const Masthead = styled.section`
 	background-size: contain;
 	background-repeat: no-repeat;
 	display: flex;
+	flex-flow: row nowrap;
 	margin: 0 auto;
 	padding: 3rem 0 0;
 	width: 100%;
 	max-width: ${props => props.theme.maxWidth};
 	height: auto;
 	z-index: 1000;
+	max-height: 650px;
 `;
 
 const SectionCopy = styled.div`
 	order: 1;
+	flex: 1 1 auto;
 	justify-self: flex-start;
 	align-self: center;
 	width: auto;
 	padding: 0 0 0 4.5rem;
+	z-index: 100;
 	h1 {
 		font-size: 7.5rem;
 		line-height: 100%;
@@ -62,15 +66,17 @@ const SectionCopy = styled.div`
 const MastheadImage = styled.div`
 	display: flex;
 	order: 2;
+	flex: 1 1 auto;
 	height: auto;
-	width: 70%;
+	width: 100%;
 	position: relative;
-	display: inline-flex;
 	img {
-		display: inline-flex;
-		width: auto;
 		height: auto;
+		display: block;
+		max-width: 100%;
 		object-fit: cover;
+		z-index: 2000;
+		overflow: visible;
 	}
 `;
 
@@ -104,7 +110,7 @@ const InfoRowContent = styled(ContentContainer)`
 		right: 0;
 		display: flex;
 		flex-flow: row nowrap;
-		justify-content: space-around;
+		justify-content: space-evenly;
 		align-items: center;
 		width: 100%;
 		height: 100%;
@@ -219,8 +225,10 @@ const ContactOptions = styled.div`
 		.cards {
 			margin-top: 200px;
 			display: grid;
-			grid-gap: 80px;
+			grid-gap: 2vmin;
 			grid-template-columns: repeat(4, minmax(220px, 1fr));
+			max-width: ${props => props.theme.maxWidth};
+			justify-items: center;
 
 			.card {
 				width: 220px;
@@ -258,6 +266,25 @@ const ContactOptions = styled.div`
 						font-size: 1.2rem;
 						line-height: 14px;
 					}
+				}
+			}
+		}
+	}
+	@media screen and (max-width: 1000px) {
+		grid-template-rows: repeat(9, [row] 120px);
+		.cabinet-to-cloud {
+			top: -121px;
+			grid-column: 3 / 11;
+		}
+		.options {
+			grid-row: row 5 / 7;
+			.cards {
+				margin-top: 0;
+				grid-template-columns: repeat(2, minmax(220px, 1fr));
+				width: 100%;
+
+				.card {
+					width: 260px;
 				}
 			}
 		}

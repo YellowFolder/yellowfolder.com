@@ -86,6 +86,10 @@ const GlobalStyle = createGlobalStyle`
       -moz-osx-font-smoothing: grayscale;
     }
   }
+  main {
+    display: flex;
+    flex-flow: column nowrap;
+  }
   svg {
     shape-rendering: geometricPrecision;
   }
