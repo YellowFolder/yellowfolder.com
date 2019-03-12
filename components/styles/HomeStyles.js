@@ -37,11 +37,11 @@ const Masthead = styled.section`
 
 const SectionCopy = styled.div`
 	order: 1;
-	flex: 1 1 auto;
+	flex: 1 2 auto;
 	justify-self: flex-start;
 	align-self: center;
 	width: auto;
-	padding: 0 0 0 4.5rem;
+	margin: 0 0 10rem 4.5rem;
 	z-index: 100;
 	h1 {
 		font-size: 7.5rem;
@@ -64,19 +64,16 @@ const SectionCopy = styled.div`
 `;
 
 const MastheadImage = styled.div`
-	display: flex;
 	order: 2;
-	flex: 1 1 auto;
+	flex: 1 2 auto;
 	height: auto;
 	width: 100%;
 	position: relative;
+	z-index: 2000;
+	margin-bottom: -3px;
 	img {
 		height: auto;
-		display: block;
-		max-width: 100%;
-		object-fit: cover;
-		z-index: 2000;
-		overflow: visible;
+		width: 100%;
 	}
 `;
 
