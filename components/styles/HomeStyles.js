@@ -41,7 +41,7 @@ const SectionCopy = styled.div`
 	justify-self: flex-start;
 	align-self: center;
 	width: auto;
-	margin: 0 0 10rem 4.5rem;
+	margin: 0 0 5vmin 4.5rem;
 	z-index: 100;
 	h1 {
 		font-size: 7.5rem;
@@ -52,7 +52,11 @@ const SectionCopy = styled.div`
 
 		@media screen and (max-width: 1200px) {
 			/* font-size: calc([minimum font size]px + ([maximum font size] - [minimum font size]) * ((100vw - [minimum viewport width]px) / ([maximum viewport width] - [minimum viewport width]))); */
-			font-size: calc(70px + (88 - 70) * ((100vw - 1000px) / (1800 - 1000)));
+			font-size: calc(75px + (92 - 75) * ((100vw - 1000px) / (1800 - 1000)));
+			word-spacing: calc(2px + (8 - 2) * ((100vw - 1000px) / (1800 - 1000)));
+		}
+		@media screen and (max-width: 650px) {
+			font-size: calc(50px + (68 - 50) * ((100vw - 1000px) / (1800 - 1000)));
 		}
 	}
 	p {
@@ -60,6 +64,19 @@ const SectionCopy = styled.div`
 		line-height: 100%;
 		padding: 0;
 		margin: 17px 0 0 0;
+	}
+	@media screen and (max-width: 1000px) {
+		margin: 0 0 4.5rem 4.5rem;
+		flex: 1 3 auto;
+		width: 100%;
+		h1 {
+			font-size: calc(60px + (78 - 60) * ((100vw - 1000px) / (1800 - 1000)));
+		}
+		p {
+			margin-top: 2rem;
+			line-height: 120%;
+			font-size: 1.9rem;
+		}
 	}
 `;
 
@@ -74,6 +91,10 @@ const MastheadImage = styled.div`
 	img {
 		height: auto;
 		width: 100%;
+	}
+	@media screen and (max-width: 1000px) {
+		margin-left: -6.5rem;
+		margin-right: -2.5rem;
 	}
 `;
 
