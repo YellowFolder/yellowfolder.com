@@ -24,6 +24,9 @@ const NavStyles = styled.nav`
 		&:last-child {
 			color: ${props => props.theme.yellow};
 		}
+		@media (max-width: 1000px) {
+			padding: 1rem 2rem;
+		}
 		@media (max-width: 700px) {
 			font-size: 10px;
 			padding: 0 10px;
