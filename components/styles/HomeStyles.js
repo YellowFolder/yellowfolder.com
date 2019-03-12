@@ -194,13 +194,52 @@ const CabinetToCloud = styled(ContentContainer)`
 		width: 85%;
 		margin: 0;
 	}
+	@media screen and (max-width: 1000px) {
+		width: 80%;
+		p {
+			width: 80%;
+		}
+	}
+	@media screen and (max-width: 540px) {
+		width: 80%;
+		p {
+			line-height: 24px;
+			width: 100%;
+		}
+	}
+	@media screen and (max-width: 500px) {
+		width: 100%;
+		h1 {
+			font-size: 4rem;
+		}
+		p {
+			line-height: 24px;
+			width: 80%;
+		}
+	}
 `;
 
 const OptionsContent = styled(ContentRow)`
-	background: ${props => props.theme.grey} url(/static/images/pattern-bg-2.svg) no-repeat top left;
+	background: ${props => props.theme.grey} url(/static/images/pattern-bg-2.svg) no-repeat;
+	background-position: right;
 	background-size: cover;
 	z-index: 15;
 	margin-top: 180px;
+	@media screen and (min-width: 1000px) {
+		background-position: right top;
+	}
+	@media screen and (max-width: 1000px) {
+		background-position: right;
+		background-position-y: 50px;
+	}
+	@media screen and (max-width: 540px) {
+		margin-top: 100px;
+		background-position: right;
+		background-position-y: -100px;
+	}
+	@media screen and (max-width: 480px) {
+		margin-top: 90px;
+	}
 `;
 
 const ContactOptions = styled.div`
@@ -305,6 +344,52 @@ const ContactOptions = styled.div`
 					width: 260px;
 				}
 			}
+		}
+	}
+	@media screen and (max-width: 800px) {
+		.cabinet-to-cloud {
+			top: -90px;
+			grid-column: 4 / 10;
+		}
+	}
+	@media screen and (max-width: 620px) {
+		.cabinet-to-cloud {
+			top: -81px;
+			width: 90%;
+		}
+	}
+	@media screen and (max-width: 540px) {
+		grid-template-rows: repeat(15, [row] 120px);
+		.cabinet-to-cloud {
+			width: 80%;
+			top: -72px;
+		}
+		.options {
+			grid-row: row 7 / 10;
+			.cards {
+				grid-template-columns: repeat(1, minmax(220px, 1fr));
+				.card {
+					width: 230px;
+				}
+			}
+		}
+	}
+	@media screen and (max-width: 480px) {
+		.cabinet-to-cloud {
+			width: 75%;
+			top: -68px;
+		}
+	}
+	@media screen and (max-width: 450px) {
+		.cabinet-to-cloud {
+			width: 70%;
+			top: -63px;
+		}
+	}
+	@media screen and (max-width: 420px) {
+		.cabinet-to-cloud {
+			width: 65%;
+			top: -59px;
 		}
 	}
 `;
