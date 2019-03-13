@@ -167,7 +167,7 @@ class Contact extends Component {
 					</div>
 				</aside>
 				<div className="contact-form--form">
-					<form>
+					<form role="form">
 						<div className="form--field-wrapper">
 							<label htmlFor="email">
 								Email

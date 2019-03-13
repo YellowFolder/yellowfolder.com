@@ -47,7 +47,7 @@ const SubBar = styled.div`
 
 const Header = () => (
 	<>
-		<StyledHeader>
+		<StyledHeader role="banner">
 			<div className="bar">
 				<Logo>
 					<Link href="/">

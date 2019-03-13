@@ -5,7 +5,7 @@ import NavStyles from './styles/NavStyles';
 class Nav extends Component {
 	render() {
 		return (
-			<NavStyles>
+			<NavStyles role="navigation">
 				<Link prefetch href="/about" as="about-us">
 					<a>about us</a>
 				</Link>
@@ -19,7 +19,9 @@ class Nav extends Component {
 					<a>training</a>
 				</Link>
 				<Link href="https://erm.yellowfolder.com/login">
-					<a target="_blank" rel="noopener noreferrer">log in</a>
+					<a target="_blank" rel="noopener noreferrer">
+						log in
+					</a>
 				</Link>
 			</NavStyles>
 		);

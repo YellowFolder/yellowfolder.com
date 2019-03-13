@@ -85,7 +85,7 @@ const RequestButton = styled.button`
 `;
 
 const Footer = () => (
-	<StyledFooter>
+	<StyledFooter role="contentinfo">
 		<div className="footer-content">
 			<div className="content-left">
 				<img src="/static/images/gray-lock.svg" alt="YellowFolder" />

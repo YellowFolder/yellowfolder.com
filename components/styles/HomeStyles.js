@@ -78,6 +78,15 @@ const SectionCopy = styled.div`
 			font-size: 1.9rem;
 		}
 	}
+	@media screen and (max-width: 680px) {
+		h1 {
+			word-spacing: -2px;
+			font-size: calc(52px + (72 - 52) * ((100vw - 1000px) / (1800 - 1000)));
+		}
+		p {
+			margin: 1.5rem 0 0;
+		}
+	}
 `;
 
 const MastheadImage = styled.div`
