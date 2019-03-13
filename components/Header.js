@@ -13,8 +13,14 @@ const StyledHeader = styled.header`
 		background-color: ${props => props.theme.gray};
 		grid-template-columns: auto 1fr;
 		justify-content: space-between;
-		align-items: stretch;
+		align-items: center;
+		align-content: center;
 		height: 80px;
+
+		@media (max-width: 759px) {
+			grid-template-columns: none;
+			grid-auto-columns: auto;
+		}
 	}
 `;
 
