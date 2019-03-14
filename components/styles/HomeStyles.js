@@ -111,7 +111,7 @@ const InfoRow = styled(ContentRow)`
 	height: calc(100vh / 2);
 	max-height: 270px;
 	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center;
-	background-size: 1920px 1080px;
+	background-size: 1720px;
 `;
 
 const InfoRowContent = styled(ContentContainer)`
@@ -173,6 +173,72 @@ const InfoRowContent = styled(ContentContainer)`
 				line-height: 100%;
 				padding: 3px 0;
 				margin-left: -1rem;
+			}
+		}
+	}
+
+	@media (max-width: 760px) {
+		padding: 0;
+
+		.row-text {
+			flex-flow: column nowrap;
+			align-items: flex-end;
+
+			.row-left,
+			.row-right {
+				margin: 0 2.5% 0 0;
+				width: 57.5%;
+			}
+			.row-left {
+				p {
+					font-size: 2.4rem;
+					margin: 0;
+					padding: 0;
+				}
+			}
+			.row-right {
+				p {
+					font-size: 2.48rem;
+				}
+				ul {
+					li {
+						font-size: 2rem;
+						padding: 3px 0;
+					}
+				}
+			}
+		}
+	}
+
+	@media (max-width: 620px) {
+		.row-image {
+			align-self: center;
+			width: 100%;
+			height: 100%;
+			width: 100%;
+			object-fit: contain;
+		}
+		.row-text {
+			align-items: center;
+			justify-content: space-around;
+			width: 60%;
+			margin: 0 auto;
+
+			.row-left,
+			.row-right {
+				margin: 0;
+				width: 100%;
+				padding: 0;
+				p {
+					font-size: 2.2rem;
+				}
+			}
+			.row-right {
+				ul {
+					li {
+						font-size: 2rem;
+					}
+				}
 			}
 		}
 	}

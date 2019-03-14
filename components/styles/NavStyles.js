@@ -140,6 +140,7 @@ const ItemStyles = styled.nav`
 
 	.nav {
 		&__items {
+			padding-right: 2.5rem;
 			max-height: 0px;
 			overflow: hidden;
 			list-style: none;
@@ -154,12 +155,13 @@ const ItemStyles = styled.nav`
 			@media (min-width: 760px) {
 				max-height: none;
 				text-align: center;
+				padding-right: 2.5rem;
 			}
 		}
 
 		&__item {
 			a {
-				padding: 1rem 3rem 0;
+				padding: 1rem 2.5rem 0;
 				display: flex;
 				align-items: center;
 				justify-content: center;
