@@ -58,6 +58,14 @@ const PageHeaderContainer = styled.div`
 			width: 95%;
 			align-self: flex-start;
 		}
+
+		@media (max-width: 1024px) {
+			width: 60%;
+			margin: 7.5% 0 7.5% 4.5rem;
+			p {
+				width: 102%;
+			}
+		}
 	}
 `;
 
@@ -84,6 +92,12 @@ const ServiceOptions = styled.div`
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	grid-template-rows: 36px 432px 94px minmax(100px, 1fr);
+
+	@media (max-width: 1024px) {
+		max-height: none;
+		grid-template-rows: 36px 1064px 82px;
+	}
+
 	.options-backdrop {
 		grid-column: 1 / 3;
 		grid-row: 2 / 4;
@@ -91,6 +105,9 @@ const ServiceOptions = styled.div`
 		margin: 0;
 		padding: 0;
 		width: 100%;
+		@media (max-width: 1024px) {
+			grid-row: 2 / 3;
+		}
 	}
 	.postscript-transition {
 		width: 100%;
@@ -99,6 +116,10 @@ const ServiceOptions = styled.div`
 		max-width: 1200px;
 		align-self: flex-end;
 		justify-self: center;
+		@media (max-width: 1024px) {
+			grid-row: 3 / -1;
+			max-width: 920px;
+		}
 	}
 `;
 
@@ -107,18 +128,25 @@ const CardRow = styled.div`
 	grid-column: 1 / 3;
 	grid-row: 1 / 3;
 	display: grid;
+	grid-gap: 0 28px;
 	justify-self: center;
-	grid-template-columns: repeat(4, auto);
+	/* grid-template-columns: repeat(4, auto); */
 	grid-template-rows: repeat(3, auto);
+	grid-template-columns: repeat(auto-fit, minmax(240px, 260px));
+	justify-content: center;
+	@media (max-width: 1024px) {
+		grid-row: 1 / 3;
+		grid-gap: 0 28px;
+		grid-template-columns: repeat(2, minmax(260px, 300px));
+	}
 `;
 
 const Card = styled.div`
-	width: 260px;
 	height: 480px;
 	background-color: ${props => props.theme.yellow};
 	border-radius: 20px;
 	z-index: 1000;
-	margin: 0px 14px 0;
+	margin: 0px;
 	padding: 0;
 	grid-area: card;
 	grid-column: span 1;
@@ -157,6 +185,9 @@ const Card = styled.div`
 				vertical-align: middle;
 			}
 		}
+	}
+	@media (max-width: 1024px) {
+		grid-row: span 1;
 	}
 `;
 
@@ -224,6 +255,11 @@ const ServicesPostscript = styled.div`
 				padding: 0;
 			}
 		}
+
+		@media (max-width: 1024px) {
+			margin: 0;
+			grid-gap: 0 20px;
+		}
 	}
 
 	.postscript-copy {
@@ -255,6 +291,10 @@ const ServicesPostscript = styled.div`
 			font-weight: 400;
 			width: 90%;
 		}
+	}
+
+	@media (max-width: 1024px) {
+		margin: 0;
 	}
 `;
 
