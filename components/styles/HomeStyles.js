@@ -85,6 +85,16 @@ const SectionCopy = styled.div`
 		}
 		p {
 			margin: 1.5rem 0 0;
+			padding-right: 2rem;
+		}
+	}
+	@media (max-width: 508px) {
+		margin: 0 0 2.5rem 1.5rem;
+		flex: 1 2 auto;
+		p {
+			padding-right: 2.5rem;
+			line-height: 100%;
+			font-size: 1.75rem;
 		}
 	}
 `;
@@ -240,6 +250,12 @@ const InfoRowContent = styled(ContentContainer)`
 					}
 				}
 			}
+		}
+	}
+	@media (max-width: 540px) {
+		.row-text {
+			justify-content: space-evenly;
+			width: 80%;
 		}
 	}
 `;
