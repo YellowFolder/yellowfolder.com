@@ -133,6 +133,10 @@ const ServiceOptions = styled.div`
 		max-width: 1200px;
 		align-self: flex-end;
 		justify-self: center;
+
+		@media (max-width: 850px) and (min-width: ${size.tablet}) {
+			margin-bottom: 25px;
+		}
 	}
 
 	@media (max-width: ${size.laptop}) {
