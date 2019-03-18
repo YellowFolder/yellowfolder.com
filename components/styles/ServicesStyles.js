@@ -60,8 +60,12 @@ const PageHeaderContainer = styled.div`
 		}
 
 		@media (max-width: 1024px) {
-			width: 60%;
+			width: 85%;
 			margin: 7.5% 0 7.5% 4.5rem;
+			h1 {
+				line-height: calc(72px + (78 - 72) * ((100vw - 1000px) / (1800 - 1000)));
+				font-size: calc(72px + (82 - 72) * ((100vw - 1000px) / (1800 - 1000)));
+			}
 			p {
 				width: 102%;
 			}
@@ -119,6 +123,7 @@ const ServiceOptions = styled.div`
 		@media (max-width: 1024px) {
 			grid-row: 3 / -1;
 			max-width: 920px;
+			min-width: none;
 		}
 	}
 `;
@@ -132,12 +137,12 @@ const CardRow = styled.div`
 	justify-self: center;
 	/* grid-template-columns: repeat(4, auto); */
 	grid-template-rows: repeat(3, auto);
-	grid-template-columns: repeat(auto-fit, minmax(240px, 260px));
+	grid-template-columns: repeat(auto-fill, minmax(240px, 260px));
 	justify-content: center;
 	@media (max-width: 1024px) {
 		grid-row: 1 / 3;
-		grid-gap: 0 28px;
-		grid-template-columns: repeat(2, minmax(260px, 300px));
+		grid-gap: 28px;
+		grid-template-columns: repeat(2, minmax(240px, 320px));
 	}
 `;
 
@@ -168,7 +173,7 @@ const Card = styled.div`
 		justify-content: center;
 		flex-flow: column nowrap;
 		list-style: none;
-		margin: 0;
+		margin: 0 auto;
 		padding: 2rem 1rem 0;
 		li {
 			font-weight: 400;
@@ -188,6 +193,11 @@ const Card = styled.div`
 	}
 	@media (max-width: 1024px) {
 		grid-row: span 1;
+		padding: 2rem 0 0 0rem;
+		.option-list {
+			width: 90%;
+			padding: 2rem 0;
+		}
 	}
 `;
 
@@ -259,6 +269,17 @@ const ServicesPostscript = styled.div`
 		@media (max-width: 1024px) {
 			margin: 0;
 			grid-gap: 0 20px;
+			max-width: none;
+			width: 100%;
+			.figure {
+				img {
+					max-height: 150px;
+					max-width: 150px;
+				}
+				p {
+					font-size: 2.1rem;
+				}
+			}
 		}
 	}
 
@@ -295,26 +316,35 @@ const ServicesPostscript = styled.div`
 
 	@media (max-width: 1024px) {
 		margin: 0;
+		grid-template-rows: 0px 90px 120px 200px 75px;
+		.postscript-copy {
+			p {
+				width: 100%;
+			}
+		}
 	}
 `;
 
 const ServicesVideo = styled.div`
 	grid-row: 7/9;
 	grid-column: 1/12;
-	background: white;
-	z-index: 1000;
-	max-width: 1080px;
+	background: transparent;
+	max-width: 1200px;
 	margin: -150px 0 50px 0;
-	padding: 0;
+	padding: 0 2rem;
 
 	.video-container {
 		#services-video {
 			width: 100%;
 			height: auto;
+			z-index: 1000;
 			&:hover {
 				cursor: pointer;
 			}
 		}
+	}
+	@media (max-width: 1024px) {
+		margin: -75px 0 25px;
 	}
 `;
 
