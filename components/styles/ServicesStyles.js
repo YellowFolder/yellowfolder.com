@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { size, query } from './device';
 
 const ServicesPage = styled.div`
 	background: white;
@@ -59,7 +60,7 @@ const PageHeaderContainer = styled.div`
 			align-self: flex-start;
 		}
 
-		@media (max-width: 1024px) {
+		@media (max-width: ${size.laptop}) {
 			width: 85%;
 			margin: 7.5% 0 7.5% 4.5rem;
 			h1 {
@@ -97,11 +98,6 @@ const ServiceOptions = styled.div`
 	grid-template-columns: auto 1fr auto;
 	grid-template-rows: 36px 432px 94px minmax(100px, 1fr);
 
-	@media (max-width: 1024px) {
-		max-height: none;
-		grid-template-rows: 36px 1064px 82px;
-	}
-
 	.options-backdrop {
 		grid-column: 1 / 3;
 		grid-row: 2 / 4;
@@ -109,10 +105,8 @@ const ServiceOptions = styled.div`
 		margin: 0;
 		padding: 0;
 		width: 100%;
-		@media (max-width: 1024px) {
-			grid-row: 2 / 3;
-		}
 	}
+
 	.postscript-transition {
 		width: 100%;
 		grid-column: span 12;
@@ -120,29 +114,56 @@ const ServiceOptions = styled.div`
 		max-width: 1200px;
 		align-self: flex-end;
 		justify-self: center;
-		@media (max-width: 1024px) {
-			grid-row: 3 / -1;
+	}
+
+	@media (max-width: ${size.laptop}) {
+		max-height: none;
+		grid-template-rows: 36px 1000px 94px;
+		.options-backdrop {
+			grid-row: 2 / 3;
+		}
+		.postscript-transition {
+			grid-row: 3;
 			max-width: 920px;
-			min-width: none;
+			padding: 0 28px;
+		}
+	}
+
+	@media (max-width: ${size.tablet}) {
+		max-height: none;
+		grid-template-rows: 36px 1fr 36px;
+		grid-template-columns: 1fr;
+		.options-backdrop {
+			grid-auto-rows: auto;
+			grid-row: 2 / 4;
+		}
+		.postscript-transition {
+			display: none;
 		}
 	}
 `;
 
 const CardRow = styled.div`
-	max-width: 1200px;
 	grid-column: 1 / 3;
 	grid-row: 1 / 3;
 	display: grid;
 	grid-gap: 0 28px;
 	justify-self: center;
-	/* grid-template-columns: repeat(4, auto); */
 	grid-template-rows: repeat(3, auto);
 	grid-template-columns: repeat(auto-fill, minmax(240px, 260px));
 	justify-content: center;
-	@media (max-width: 1024px) {
+	@media ${query.laptop} {
+		max-width: ${props => props.theme.maxWidth};
+		grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+		grid-gap: 0 28px;
+	}
+	@media (max-width: ${size.laptop}) {
 		grid-row: 1 / 3;
 		grid-gap: 28px;
 		grid-template-columns: repeat(2, minmax(240px, 320px));
+	}
+	@media (max-width: ${size.tablet}) {
+		grid-template-columns: 1fr;
 	}
 `;
 
@@ -151,7 +172,7 @@ const Card = styled.div`
 	background-color: ${props => props.theme.yellow};
 	border-radius: 20px;
 	z-index: 1000;
-	margin: 0px;
+	margin: 0;
 	padding: 0;
 	grid-area: card;
 	grid-column: span 1;
@@ -191,7 +212,7 @@ const Card = styled.div`
 			}
 		}
 	}
-	@media (max-width: 1024px) {
+	@media (max-width: ${size.laptop}) {
 		grid-row: span 1;
 		padding: 2rem 0 0 0rem;
 		.option-list {
@@ -266,7 +287,7 @@ const ServicesPostscript = styled.div`
 			}
 		}
 
-		@media (max-width: 1024px) {
+		@media (max-width: ${size.laptop}) {
 			margin: 0;
 			grid-gap: 0 20px;
 			max-width: none;
@@ -314,12 +335,52 @@ const ServicesPostscript = styled.div`
 		}
 	}
 
-	@media (max-width: 1024px) {
+	@media (max-width: ${size.laptop}) {
 		margin: 0;
 		grid-template-rows: 0px 90px 120px 200px 75px;
 		.postscript-copy {
 			p {
 				width: 100%;
+			}
+		}
+	}
+	@media (max-width: ${size.tablet}) {
+		background: ${props => props.theme.yellow};
+		grid-template-rows: initial;
+		.postscript-backdrop {
+			grid-row: 1 / 8;
+		}
+		.service-figures {
+			grid-gap: 28px;
+			width: initial;
+			max-width: initial;
+			grid-template-rows: 1fr 1fr;
+			padding: 2rem 0;
+			.figure {
+				grid-column: span 6;
+				margin: 0;
+				img {
+					max-height: initial;
+					max-width: 225px;
+					object-fit: cover;
+				}
+			}
+		}
+		.postscript-copy {
+			padding: 21px 0.5rem 42px;
+			grid-column: 2 / 11;
+			h2,
+			p {
+				padding: 0.5rem 0;
+			}
+			h2 {
+				font-size: 5.2rem;
+				line-height: 100%;
+			}
+			p {
+				font-size: 2.1rem;
+				line-height: 100%;
+				width: 90%;
 			}
 		}
 	}
@@ -343,8 +404,11 @@ const ServicesVideo = styled.div`
 			}
 		}
 	}
-	@media (max-width: 1024px) {
+	@media (max-width: ${size.laptop}) {
 		margin: -75px 0 25px;
+	}
+	@media (max-width: ${size.tablet}) {
+		margin: -25px 0 25px 0;
 	}
 `;
 
