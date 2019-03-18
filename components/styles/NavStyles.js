@@ -153,7 +153,8 @@ const ItemStyles = styled.nav`
 			justify-content: center;
 			flex-flow: row nowrap;
 
-			@media ${query.laptop} {
+			/* display the items at 1px greater than the width at which the nav items collapse. */
+			@media (min-width: calc(${size.tablet} + 1px)) {
 				max-height: none;
 				text-align: center;
 				padding-right: 2.5rem;
