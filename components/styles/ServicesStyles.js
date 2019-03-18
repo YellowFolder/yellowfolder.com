@@ -173,12 +173,12 @@ const CardRow = styled.div`
 	display: grid;
 	grid-gap: 0 28px;
 	justify-self: center;
+	grid-template-columns: repeat(4, minmax(220px, 250px));
 	grid-template-rows: repeat(3, auto);
-	grid-template-columns: repeat(auto-fill, minmax(240px, 260px));
 	justify-content: center;
 	@media ${query.laptop} {
-		max-width: ${props => props.theme.maxWidth};
-		grid-template-columns: repeat(auto-fit, minmax(220px, 260px));
+		max-width: 1024px;
+		grid-template-columns: repeat(4, minmax(220px, 250px));
 		grid-gap: 0 28px;
 	}
 	@media (max-width: ${size.laptop}) {
@@ -238,7 +238,7 @@ const Card = styled.div`
 	}
 	@media (max-width: ${size.laptop}) {
 		grid-row: span 1;
-		padding: 2rem 0 0 0rem;
+		padding: 0;
 		.option-list {
 			width: 90%;
 			padding: 2rem 0;
