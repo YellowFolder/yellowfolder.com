@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { query, size } from './device';
 
 const NavBar = styled.div`
 	.nav {
 		&__bar {
-			@media (min-width: 760px) {
+			@media ${query.navMenu} {
 				padding-top: 0;
 			}
 		}
@@ -28,7 +29,7 @@ const NavBar = styled.div`
 			&:focus {
 				outline: none;
 			}
-			@media (min-width: 760px) {
+			@media ${query.navMenu} {
 				display: none;
 			}
 		}
@@ -63,7 +64,7 @@ const NavBar = styled.div`
 		display: none;
 		visibility: hidden;
 
-		@media (max-width: 760px) {
+		@media (max-width: ${size.navMenu}) {
 			&:checked {
 				~ .nav {
 					position: absolute;
@@ -152,7 +153,8 @@ const ItemStyles = styled.nav`
 			justify-content: center;
 			flex-flow: row nowrap;
 
-			@media (min-width: 760px) {
+			/* display the items at 1px greater than the width at which the nav items collapse. */
+			@media (min-width: calc(${size.navMenu} + 1px)) {
 				max-height: none;
 				text-align: center;
 				padding-right: 2.5rem;
@@ -174,8 +176,7 @@ const ItemStyles = styled.nav`
 				color: ${props => props.theme.white};
 				font-family: ${props => props.theme.boldFont};
 				text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2), 0px 0px 8px rgba(0, 0, 0, 0.2);
-
-				@media (max-width: 759px) {
+				@media (max-width: ${size.navMenu}) {
 					padding: 1rem 3rem;
 				}
 			}

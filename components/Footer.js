@@ -1,18 +1,20 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import { size } from './styles/device';
 
 const StyledFooter = styled.footer`
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
-	margin: 0; /* keep margin 0 so that page does not overflow on x-axis.*/
 	height: 45px;
 	background: #fff;
 	flex-shrink: 0;
 	color: ${props => props.theme.grey};
 	font-size: 1rem;
 	line-height: 12px;
+	margin: 1rem 0;
+	z-index: 2000;
 
 	.footer-content {
 		width: 100%;
@@ -22,11 +24,15 @@ const StyledFooter = styled.footer`
 		justify-content: space-between;
 		margin: 0.5rem 1rem;
 
-		.content-left {
+		.content-left,
+		.content-right {
 			display: flex;
-			align-items: center;
-			justify-content: center;
 			flex-flow: row nowrap;
+			align-items: center;
+		}
+
+		.content-left {
+			justify-content: center;
 
 			img {
 				width: 30px;
@@ -40,11 +46,7 @@ const StyledFooter = styled.footer`
 		}
 
 		.content-right {
-			display: flex;
-			align-items: center;
 			justify-content: space-evenly;
-			flex-flow: row nowrap;
-
 			.links {
 				margin: 0 0rem 0 1rem;
 
@@ -56,6 +58,41 @@ const StyledFooter = styled.footer`
 				a:hover {
 					cursor: pointer;
 					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	@media (max-width: ${size.mobileL}) {
+		padding: 90px 0 72px;
+		font-size: 1.2rem;
+		.footer-content {
+			flex-flow: column-reverse nowrap;
+			margin: 0.5rem 1rem 0;
+			.content-left,
+			.content-right {
+				align-items: center;
+				justify-content: center;
+			}
+			.content-left {
+				padding: 1rem 0 0;
+				p {
+					margin: 7px 4px;
+				}
+			}
+			.content-right {
+				flex-flow: column nowrap;
+				.links {
+					display: flex;
+					flex-flow: column nowrap;
+					align-items: center;
+					justify-content: center;
+					a {
+						margin: 0.5rem 0;
+					}
+					span {
+						display: none;
+					}
 				}
 			}
 		}

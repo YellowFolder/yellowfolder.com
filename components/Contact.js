@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { size, query } from './styles/device';
 
 const StyledContact = styled.div`
 	width: 100%;
 	height: auto;
 	margin: 0 auto;
-	padding: 60px 6.25% 30px 3.125%;
+	padding: 60px 6.25% 0px 3.125%;
 	max-width: ${props => props.theme.maxWidth};
 	background: ${props => props.theme.white};
 	display: grid;
@@ -27,7 +28,6 @@ const StyledContact = styled.div`
 			margin: 2rem 0 0 0;
 		}
 	}
-
 	.contact-form--sidebar {
 		grid-area: sidebar;
 		display: flex;
@@ -134,6 +134,111 @@ const StyledContact = styled.div`
 			}
 		}
 	}
+	@media (max-width: ${size.navMenu}) {
+		grid-template-areas: 'header header header' 'form form form' 'sidebar sidebar sidebar';
+		grid-gap: 10px 0;
+		.contact-form {
+			&--header {
+				h1 {
+					/* line-height: calc(64px + (64 - 58) * ((100vw - 800px) / (1000 - 400))); */
+					line-height: 120%;
+					font-size: calc(58px + (72 - 58) * ((100vw - 800px) / (1000 - 400)));
+					margin: 0 0 2rem 0;
+				}
+			}
+			&--form {
+				form {
+					width: 100%;
+					margin: 0 auto;
+					align-items: center;
+					.form {
+						&--field-item {
+							align-items: flex-start;
+							align-self: flex-start;
+						}
+						&--field-wrapper {
+							width: 80%;
+							margin: 0 auto;
+							/* align-items: flex-start; */
+						}
+						&--disclaimer {
+							align-self: center;
+							max-width: none;
+							width: 80%;
+						}
+						&--submit-wrapper {
+							display: flex;
+							align-items: center;
+							width: 100%;
+							justify-content: center;
+							padding: 4rem 0 0 0;
+							.form--submit-btn {
+								width: 80%;
+								font-size: 2.2rem;
+								padding: 16px 24px;
+								margin: 0 auto;
+								border-radius: 6px;
+							}
+						}
+					}
+				}
+			}
+			&--sidebar {
+				flex-flow: column nowrap;
+				align-items: center;
+				flex-flow: column nowrap;
+				.sidebar-contact-info {
+					align-items: center;
+					text-align: center;
+					:nth-child(3) {
+						padding-bottom: 4rem;
+					}
+				}
+			}
+		}
+	}
+	@media (max-width: ${size.mobileL}) {
+		.contact-form {
+			&--header {
+				h1 {
+					font-size: calc(42px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
+					line-height: 120%;
+					margin: 0;
+				}
+			}
+			&--form {
+				form {
+					.form {
+						&--field-item {
+							width: 96%;
+							align-items: flex-start;
+							align-self: flex-start;
+						}
+						&--field-wrapper {
+						}
+						&--disclaimer {
+							margin: 0 2% 3px;
+						}
+						&--submit-wrapper {
+						}
+					}
+					.form-field--wrapper {
+						width: 96%;
+					}
+				}
+			}
+			&--sidebar {
+				border-bottom: 5px solid ${props => props.theme.grey};
+				.sidebar-contact-info {
+					flex-flow: column nowrap;
+					h3,
+					p {
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
 `;
 
 class Contact extends Component {
@@ -168,22 +273,23 @@ class Contact extends Component {
 				</aside>
 				<div className="contact-form--form">
 					<form role="form">
-						<div className="form--field-wrapper">
+						{' '}
+						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="email">
 								Email
 								<span>*</span>
 							</label>
 							<input required id="email" type="email" />
 						</div>
-						<div className="form--field-wrapper">
+						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="first-name">First Name</label>
 							<input required id="first-name" type="text" />
 						</div>
-						<div className="form--field-wrapper">
+						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="last-name">Last Name</label>
 							<input required id="last-name" type="text" />
 						</div>
-						<div className="form--field-wrapper">
+						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="state">
 								State<span>*</span>
 							</label>
@@ -244,7 +350,7 @@ class Contact extends Component {
 								<option value="WY">Wyoming</option>
 							</select>
 						</div>
-						<div className="form--field-wrapper">
+						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="purpose">
 								How can we help?<span>*</span>
 							</label>
@@ -270,11 +376,11 @@ class Contact extends Component {
 								<option value="Something else">Something else</option>
 							</select>
 						</div>
-						<div className="form--field-wrapper">
+						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="message">Message</label>
 							<textarea id="message" name="message" />
 						</div>
-						<div className="form--disclaimer">
+						<div className="form--disclaimer form--field-item">
 							<p>
 								YellowFolder needs the contact information you provide to contact you about our
 								products and services. You may unsubscribe from these communications at any time.
