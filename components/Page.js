@@ -12,6 +12,7 @@ export const theme = {
 	lightgrey: '#E1E1E1',
 	lightgray: '#E1E1E1',
 	yellow: '#FFC629',
+	red: 'rgb(237, 28, 36)',
 	maxWidth: '1200px',
 	bs: '0 12px 24px 0 rgba(0, 0, 0, 0.09)',
 	textShadow: '0px 0px 8px rgba(0,0,0,0.2), 0px 0px 8px rgba(0,0,0,0.2)',

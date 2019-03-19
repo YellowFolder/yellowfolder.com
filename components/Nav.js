@@ -32,7 +32,7 @@ class Nav extends Component {
 							</Link>
 						</li>
 						<li className="nav__item">
-							<Link prefetch href="/training" as="weekly-training">
+							<Link prefetch href="/weekly-training">
 								<a>training</a>
 							</Link>
 						</li>
