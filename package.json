@@ -27,7 +27,6 @@
 	},
 	"dependencies": {
 		"@babel/core": "^7.0.0",
-		"@hint/configuration-development": "^6.1.1",
 		"@zeit/next-bundle-analyzer": "^0.1.2",
 		"@zeit/next-source-maps": "0.0.3",
 		"acorn": "^6.1.0",

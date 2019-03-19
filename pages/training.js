@@ -1,3 +1,5 @@
-const Training = () => <div>This is the Training page!</div>;
+import Training from '../components/Training';
 
-export default Training;
+const TrainingPage = () => <Training />;
+
+export default TrainingPage;
