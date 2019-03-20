@@ -7,7 +7,7 @@ const AboutPage = styled.main`
 	justify-content: center;
 	flex-flow: column nowrap;
 	padding: 0;
-	margin: 80px auto;
+	margin: 80px auto 0;
 	width: 100%;
 	height: 100%;
 `;
@@ -25,12 +25,13 @@ const PageHeader = styled.div`
 	margin: 0 0 0 ${props => props.theme.marginLeft};
 	position: relative;
 	max-height: 450px;
-	padding-top: 8rem;
-	padding-bottom: 4rem;
+	height: auto;
+	width: 100%;
 
 	.page-intro,
 	.team-greeting {
 		max-width: ${props => props.theme.maxWidth};
+		margin: 0 auto;
 	}
 
 	.page-intro {
@@ -59,10 +60,11 @@ const PageHeader = styled.div`
 	}
 
 	.team-greeting {
+		width: 100%;
 		color: ${props => props.theme.yellow};
 		font-size: calc(42px + (68 - 42) * ((100vw - 1000px) / (1800 - 1000)));
-		margin: 50px 0 0;
-		padding: 50px 0;
+		margin-top: 25px;
+		padding: 0;
 		font-family: ${props => props.theme.boldFont};
 		line-height: 100%;
 	}
@@ -71,109 +73,51 @@ const PageHeader = styled.div`
 const TeamContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(10, minmax(50px, 1fr));
-	grid-template-rows: 50px repeat(23, minmax(auto, 100px));
+	grid-template-rows: repeat(24, minmax(auto, 100px));
 	position: relative;
 	height: 100%;
 	width: 100%;
-	margin-top: 50px;
+	margin-bottom: -45px;
 
 	.member-row {
-		display: grid;
-		grid-template-rows: 50px repeat(6, minmax(150px, 1fr));
-		grid-template-columns: repeat(24, minmax(auto, 1fr));
 		grid-column: 1 / 24;
-		grid-row: 2 / 9;
-		grid-auto-flow: dense;
-		grid-auto-rows: 50px;
-		grid-auto-columns: 50px;
+		grid-row: 1 / 9;
 		width: 100%;
-		justify-items: center;
+		/* max-width: ${props => props.theme.maxWidth}; */
+		margin: 0 auto;
+		margin-top: 100px;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: flex-start;
+		justify-content: center;
 
-		&#top {
-			.member {
-				display: grid;
-				grid: repeat(12, 50px) / repeat(12, 50px);
-				grid-row: 2 / 7;
-				grid-auto-flow: dense;
-				grid-auto-rows: 50px;
-				grid-auto-columns: 50px;
+		.member {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: space-evenly;
+			margin: 0 auto;
+			max-width: 610px;
+
+			&#first {
+				margin: 0 1.25% 0 2.5%;
+			}
+			&#second {
+				margin: 0 2.5% 0 1.25%;
+			}
+
+			.person {
 				width: 100%;
-				max-width: 600px;
-				justify-items: center;
+				z-index: 5000;
+				width: fit-content;
+				margin: 0 2.5%;
+				padding: 0 0%;
 
-				div > img {
+				img {
 					height: auto;
 					width: 100%;
-					object-fit: contain;
-				}
-
-				.folder,
-				.person,
-				.bio {
-					width: 100%;
-				}
-
-				&#first {
-					grid-column: 1 / 13;
-					margin-top: 33px;
-					.folder {
-						z-index: 1000;
-						grid-row: 1 / 13;
-						grid-column: 2 / 13;
-						img {
-							max-width: 500px;
-						}
-					}
-					.person {
-						z-index: 5000;
-						grid-row: 1 / 6;
-						grid-column: 3 / 9;
-						transform: matrix(0.9781, -0.2079, 0.2079, 0.9781, -26, 35);
-						img {
-							max-width: 300px;
-						}
-					}
-					.bio {
-						z-index: 3000;
-						grid-row: 7 / 14;
-						grid-column: 6 / 11;
-						transform: matrix(0.9781, 0.2079, -0.2079, 0.9781, 37, -21);
-						img {
-							max-width: 285px;
-						}
-					}
-				}
-
-				&#second {
-					margin-top: -33px;
-					grid-column: 12 / 24;
-
-					.folder {
-						grid-row: 1 / 13;
-						grid-column: 2 / 13;
-						z-index: 1000;
-						img {
-							max-width: 500px;
-						}
-					}
-					.person {
-						transform: matrix(0.9903, 0.1392, -0.1392, 0.9903, 20, -19);
-						z-index: 3000;
-						grid-row: 3 / 5;
-						grid-column: 6 / 12;
-						img {
-							max-width: 350px;
-						}
-					}
-					.bio {
-						z-index: 5000;
-						transform: matrix(0.9903, -0.1392, 0.1392, 0.9903, -20, 18);
-						grid-row: 7 / 14;
-						grid-column: 5 / 10;
-						img {
-							max-width: 285px;
-						}
-					}
+					object-fit: cover;
+					max-width: 700px;
 				}
 			}
 		}
@@ -181,13 +125,14 @@ const TeamContainer = styled.div`
 
 	#grey-bg {
 		grid-column: 1 / -1;
-		grid-row: 3 / 10;
+		grid-row: 4 / 10;
 		background-color: ${props => props.theme.grey};
 	}
 
 	#file-cabinet {
 		grid-column: 4 / 8;
-		grid-row: 7 / 14;
+		grid-row: 5 / 14;
+		margin-top: 25px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -202,48 +147,119 @@ const TeamContainer = styled.div`
 
 	#monitor {
 		grid-column: 1 / span 5;
-		grid-row: 11 / span 5;
+		grid-row: 10 / span 5;
 		display: flex;
-		align-items: baseline;
-		justify-content: center;
+		align-items: center;
+		justify-content: flex-end;
 		z-index: 1000;
 		img {
 			height: auto;
-			width: 100%;
 			max-width: 600px;
 		}
 	}
 
 	#printer {
-		grid-column: 7 / 11;
-		grid-row: 12 / span 6;
+		grid-column: 6 / 10;
+		grid-row: 12 / span 7;
 		display: flex;
 		align-items: baseline;
-		justify-content: center;
+		justify-content: flex-start;
 		z-index: 1000;
 		img {
 			height: auto;
-			width: 100%;
-			max-width: 600px;
 		}
 	}
 
-	#folder-bottom,
-	#text-bottom {
-		display: none;
+	#folder-bottom {
+		grid-column: 2 / span 4;
+		grid-row: 16 / span 7;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		z-index: 5000;
+		max-width: 600px;
+		img {
+			height: auto;
+		}
 	}
 
-	#bottom-break {
+	#text-bottom {
+		grid-column: 6 / 10;
+		padding: 25px;
+		grid-row: 19 / span 5;
+		display: flex;
+		flex-flow: column nowrap;
+		align-items: flex-start;
+		justify-content: space-evenly;
+		max-width: 600px;
+
+		span {
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: center;
+			justify-content: center;
+			height: auto;
+			h3,
+			p {
+				margin: 1rem 0;
+			}
+			h3 {
+				font-size: 4.4rem;
+				line-height: 100%;
+				padding: 0;
+				font-family: ${props => props.theme.boldFont};
+				color: ${props => props.theme.grey};
+			}
+			p {
+				font-size: 2rem;
+				line-height: 120%;
+				color: ${props => props.theme.grey};
+				padding: 0;
+				margin: 0;
+				font-weight: 400;
+			}
+		}
+
+		p {
+			font-size: 1.6rem;
+			line-height: 120%;
+			padding: 0;
+			margin: 0;
+		}
+	}
+
+	#mid-break {
 		grid-column: 1 / -1;
-		grid-row: 14 / 18;
-		margin: 0px 0 15px 0;
+		grid-row: 13 / 19;
 		background-color: ${props => props.theme.yellow};
 		background-image: url(/static/images/about-row-background.svg);
-		background-size: 50%;
+		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
 		display: flex;
 		width: 100% !important;
+	}
+
+	#btm-break {
+		grid-column: 1 / -1;
+		grid-row: 24 / -1;
+		background-color: ${props => props.theme.grey};
+		margin: 0;
+		padding: 0;
+		width: 100% !important;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+
+		#btm-bg {
+			width: 60%;
+			height: 100%;
+			background-image: url(/static/images/pattern-bg.svg);
+			background-size: 1180px;
+			background-position-x: left;
+			background-position-y: center;
+			background-repeat: no-repeat;
+		}
 	}
 `;
 
