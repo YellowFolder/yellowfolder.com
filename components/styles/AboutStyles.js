@@ -78,14 +78,13 @@ const TeamContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	margin-bottom: -45px;
+	margin-top: 100px;
 
 	.member-row {
-		grid-column: 1 / 24;
-		grid-row: 1 / 9;
-		width: 100%;
-		/* max-width: ${props => props.theme.maxWidth}; */
+		grid-column: 1 / -1;
+		grid-row: 1 / 8;
+		max-width: ${props => props.theme.maxWidth};
 		margin: 0 auto;
-		margin-top: 100px;
 		display: flex;
 		flex-flow: row nowrap;
 		align-items: flex-start;
@@ -125,13 +124,13 @@ const TeamContainer = styled.div`
 
 	#grey-bg {
 		grid-column: 1 / -1;
-		grid-row: 4 / 10;
+		grid-row: 3 / 9;
 		background-color: ${props => props.theme.grey};
 	}
 
 	#file-cabinet {
 		grid-column: 4 / 8;
-		grid-row: 5 / 14;
+		grid-row: 4 / 13;
 		margin-top: 25px;
 		display: flex;
 		align-items: center;
@@ -141,13 +140,13 @@ const TeamContainer = styled.div`
 		img {
 			height: auto;
 			width: 100%;
-			max-width: 375px;
+			max-width: 325px;
 		}
 	}
 
 	#monitor {
 		grid-column: 1 / span 5;
-		grid-row: 10 / span 5;
+		grid-row: 9 / span 5;
 		display: flex;
 		align-items: center;
 		justify-content: flex-end;
@@ -159,37 +158,40 @@ const TeamContainer = styled.div`
 	}
 
 	#printer {
-		grid-column: 6 / 10;
-		grid-row: 12 / span 7;
+		grid-column: 6 / 11;
+		grid-row: 10 / span 7;
 		display: flex;
 		align-items: baseline;
 		justify-content: flex-start;
 		z-index: 1000;
 		img {
 			height: auto;
+			max-width: 600px;
+			margin: 0 auto;
 		}
 	}
 
 	#folder-bottom {
-		grid-column: 2 / span 4;
-		grid-row: 16 / span 7;
+		grid-column: 1 / span 5;
+		grid-row: 14 / span 8;
 		display: flex;
-		align-items: center;
-		justify-content: flex-end;
+		align-items: flex-end;
+		justify-content: center;
 		z-index: 5000;
-		max-width: 600px;
+		/* max-width: 600px; */
 		img {
 			height: auto;
+			object-fit: contain;
 		}
 	}
 
 	#text-bottom {
 		grid-column: 6 / 10;
-		padding: 25px;
-		grid-row: 19 / span 5;
+		padding: 0 25px;
+		grid-row: 17 / span 5;
 		display: flex;
 		flex-flow: column nowrap;
-		align-items: flex-start;
+		/* align-items: flex-start; */
 		justify-content: space-evenly;
 		max-width: 600px;
 
@@ -230,7 +232,7 @@ const TeamContainer = styled.div`
 
 	#mid-break {
 		grid-column: 1 / -1;
-		grid-row: 13 / 19;
+		grid-row: 12 / 16;
 		background-color: ${props => props.theme.yellow};
 		background-image: url(/static/images/about-row-background.svg);
 		background-size: cover;
@@ -238,13 +240,14 @@ const TeamContainer = styled.div`
 		background-repeat: no-repeat;
 		display: flex;
 		width: 100% !important;
+		margin-top: -50px;
 	}
 
 	#btm-break {
 		grid-column: 1 / -1;
-		grid-row: 24 / -1;
+		grid-row: 23 / -1;
 		background-color: ${props => props.theme.grey};
-		margin: 0;
+		margin: -50px 0 0 0;
 		padding: 0;
 		width: 100% !important;
 		display: flex;
