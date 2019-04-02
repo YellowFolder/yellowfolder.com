@@ -76,6 +76,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 17px;
     font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
     font-feature-settings: 'liga';
+    text-rendering: optimizeLegibility;
     @media
     (-webkit-min-device-pixel-ratio: 2),
     (   min--moz-device-pixel-ratio: 2),
