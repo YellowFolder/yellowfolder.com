@@ -17,7 +17,7 @@ class Nav extends Component {
 				<ItemStyles role="navigation" className="nav">
 					<ul className="nav__items">
 						<li className="nav__item">
-							<Link prefetch href="/about" as="about-us">
+							<Link prefetch href="/about-us">
 								<a>about us</a>
 							</Link>
 						</li>

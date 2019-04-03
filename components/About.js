@@ -29,7 +29,7 @@ export class About extends Component {
 						<div className="member" id="second">
 							<div className="person">
 								<img
-									src="/static/images/about-folder-member-2-min.svg"
+									src="/static/images/about-folder-member-2.svg"
 									alt="YellowFolder team member Gina Lunsford"
 								/>
 							</div>
