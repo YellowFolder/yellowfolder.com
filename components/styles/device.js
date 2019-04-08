@@ -5,6 +5,7 @@ const size = {
 	navMenu: '769px',
 	tablet: '750px', // iPad dimensions: 768w x 1024h
 	laptop: '1024px',
+	laptopL: '1200px',
 	desktop: '1440px',
 };
 
