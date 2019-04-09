@@ -74,9 +74,9 @@ const GlobalStyle = createGlobalStyle`
     flex-wrap: wrap;
     font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
     line-height: 17px;
-    font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
-    font-feature-settings: 'liga';
+    font-family: -apple-system, 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
     text-rendering: optimizeLegibility;
+    font-feature-settings: 'liga';
     @media
     (-webkit-min-device-pixel-ratio: 2),
     (   min--moz-device-pixel-ratio: 2),
