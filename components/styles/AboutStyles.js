@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { size, query } from './device';
+import { size } from './device';
 
 const AboutPage = styled.main`
 	background: white;
@@ -74,6 +74,11 @@ const PageHeader = styled.div`
 
 	@media (max-width: ${size.laptopL}) {
 		background-size: 150vw;
+	}
+
+	@media (max-width: ${size.mobileL}) {
+		margin: 0 auto;
+		width: 95%;
 	}
 `;
 

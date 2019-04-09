@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import Link from 'next/link';
 import { NavBar, ItemStyles } from './styles/NavStyles';
 

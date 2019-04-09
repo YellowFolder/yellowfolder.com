@@ -5,6 +5,7 @@ export class About extends Component {
 	render() {
 		return (
 			<AboutPage>
+				{/* fix background header image */}
 				<PageHeader>
 					<div className="page-intro">
 						<h1>Educators, serving educators.</h1>
@@ -16,6 +17,7 @@ export class About extends Component {
 					</div>
 					<h3 className="team-greeting">Come meet the team.</h3>
 				</PageHeader>
+
 				<TeamContainer>
 					<div className="member-row">
 						<div className="member" id="first">
