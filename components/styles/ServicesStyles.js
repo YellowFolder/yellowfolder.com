@@ -72,6 +72,9 @@ const PageHeaderContainer = styled.div`
 			}
 		}
 	}
+	@media ${query.laptop} {
+		background-position: center;
+	}
 	@media (max-width: ${size.mobileL}) {
 		background-position-x: 33%;
 		background-position-y: 33%;

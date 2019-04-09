@@ -95,6 +95,11 @@ const GlobalStyle = createGlobalStyle`
   svg {
     shape-rendering: geometricPrecision;
   }
+  h1,
+  h2,
+  h3 {
+    font-weight: bold;
+  }
   a {
     text-decoration: none;
     color: ${theme.black};
