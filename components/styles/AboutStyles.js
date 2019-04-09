@@ -18,23 +18,44 @@ const PageHeader = styled.div`
 	align-items: flex-start;
 	justify-content: center;
 	flex-flow: column nowrap;
-	background: transparent url(static/images/about-pattern-background.svg);
+	background: transparent;
+	/* background: transparent url(static/images/about-pattern-background.svg);
 	background-position-x: left;
 	background-position-y: center;
-	background-size: 1920px;
-	background-repeat: no-repeat;
-	margin: 0 0 0 ${props => props.theme.marginLeft};
-	padding-top: 80px;
-	background-position-y: -80px;
+	background-size: 100vw;
+	background-repeat: no-repeat; */
+	margin: 0 auto;
+	/* padding-top: 80px; */
 	position: relative;
 	height: auto;
 	width: 100%;
 	overflow: visible;
+	z-index: 7000;
+
+	#header-bg {
+		background: transparent url(static/images/about-pattern-background.svg);
+		background-position-x: left;
+		background-position-y: center;
+		background-size: 100vw;
+		background-repeat: no-repeat;
+		background-position-y: -80px;
+		margin: 0;
+		z-index: 7000;
+		width: 100% !important;
+		height: 100%;
+		padding-bottom: 250px;
+	}
+
+	.header-text {
+		margin-top: 80px;
+	}
 
 	.page-intro,
 	.team-greeting {
+		margin: 0 0 0 ${props => props.theme.marginLeft};
 		max-width: ${props => props.theme.maxWidth};
 		margin: 0 auto;
+		width: 80%;
 	}
 
 	.page-intro {
@@ -63,7 +84,7 @@ const PageHeader = styled.div`
 	}
 
 	.team-greeting {
-		width: 100%;
+		/* width: 100%; */
 		color: ${props => props.theme.yellow};
 		font-size: calc(42px + (68 - 42) * ((100vw - 1000px) / (1800 - 1000)));
 		margin-top: 25px;
@@ -90,7 +111,8 @@ const TeamContainer = styled.div`
 	height: 100%;
 	width: 100%;
 	margin-bottom: -45px;
-	margin-top: 100px;
+	z-index: 7000;
+	margin-top: -200px;
 
 	.member-row {
 		grid-column: 1 / -1;
