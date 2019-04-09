@@ -38,7 +38,6 @@ const PageHeader = styled.div`
 		background-position-y: center;
 		background-size: 100vw;
 		background-repeat: no-repeat;
-		background-position-y: -80px;
 		margin: 0;
 		z-index: 7000;
 		width: 100% !important;
@@ -94,12 +93,65 @@ const PageHeader = styled.div`
 	}
 
 	@media (max-width: ${size.laptopL}) {
-		background-size: 150vw;
+		#header-bg {
+			background-size: 150vw;
+			background-position-x: 25%;
+		}
+	}
+
+	@media (max-width: ${size.tablet}) {
+		#header-bg {
+			.header-text {
+				.page-intro {
+					margin: 0 auto;
+					width: 90%;
+				}
+				.team-greeting {
+					width: 90%;
+				}
+			}
+		}
 	}
 
 	@media (max-width: ${size.mobileL}) {
-		margin: 0 auto;
-		width: 95%;
+		#header-bg {
+			padding-bottom: 130px;
+		}
+		.header-text {
+			margin: 40px auto 0;
+			width: 90%;
+			.page-intro,
+			.team-greeting {
+				width: 100%;
+			}
+			.page-intro {
+				h1 {
+					font-size: ;
+				}
+			}
+		}
+	}
+
+	@media (max-width: ${size.mobileM}) {
+		#header-bg {
+			background-position-x: right;
+			padding-bottom: 50px;
+			.header-text {
+				margin: 40px auto;
+				.page-intro {
+					h1 {
+						font-size: calc(66px + (92 - 66) * ((100vw - 1000px) / (1800 - 1000)));
+					}
+					p {
+						width: 100%;
+						padding-top: 2rem;
+					}
+				}
+				.team-greeting {
+					font-size: calc(44px + (68 - 42) * ((100vw - 1000px) / (1800 - 1000)));
+				}
+			}
+		}
 	}
 `;
 
@@ -108,11 +160,11 @@ const TeamContainer = styled.div`
 	grid-template-columns: repeat(10, minmax(50px, 1fr));
 	grid-template-rows: repeat(24, minmax(auto, 100px));
 	position: relative;
-	height: 100%;
+	height: auto;
 	width: 100%;
 	margin-bottom: -45px;
 	z-index: 7000;
-	margin-top: -200px;
+	margin-top: -220px;
 
 	.member-row {
 		grid-column: 1 / -1;
@@ -303,13 +355,11 @@ const TeamContainer = styled.div`
 	@media (max-width: ${size.laptopL}) {
 		grid-template-columns: auto 1fr auto;
 		grid-auto-rows: 100px;
-		justify-items: center;
-		margin-top: 25px;
 		margin-bottom: 0;
-		z-index: 4000;
+		padding: 0;
 		.member-row {
 			flex-flow: column nowrap;
-			grid-column: 2 / 3;
+			grid-column: 1 / -1;
 			grid-row: 1 / 15;
 
 			.member {
@@ -400,6 +450,123 @@ const TeamContainer = styled.div`
 				font-size: 2rem;
 				line-height: 120%;
 			}
+		}
+	}
+
+	@media (max-width: ${size.tablet}) {
+		margin-top: -200px;
+	}
+
+	@media (max-width: ${size.mobileL}) {
+		margin-top: -100px;
+		max-width: 100vw;
+		> div {
+			width: 100vw;
+		}
+		.member-row {
+			margin: 0;
+			width: 100vw;
+			justify-content: baseline;
+			grid-row: 1 / 12;
+		}
+		.member-row {
+			grid-row: 1 / 11;
+		}
+		#grey-bg {
+			grid-row: 2 / 9;
+		}
+		#mid-break {
+			grid-row: 13 / 18;
+		}
+		#monitor {
+			grid-row: 11 / 15;
+			justify-content: initial;
+			img {
+				max-width: 100%;
+			}
+		}
+		#printer {
+			z-index: 5000;
+			align-items: initial;
+			justify-content: initial;
+			grid-row: 15 / 20;
+			img {
+				max-width: 100%;
+			}
+		}
+		#folder-bottom {
+			align-items: initial;
+			justify-content: initial;
+			grid-row: 20 / 26;
+			img {
+				max-width: 100%;
+			}
+		}
+		#btm-break {
+			grid-row: 21 / 26;
+			#btm-bg {
+				background-position: bottom;
+			}
+		}
+		#text-bottom {
+			grid-row: 26 / 33;
+			padding: 0 16px;
+			margin-top: 0;
+			align-items: center;
+			justify-content: space-evenly;
+			span p {
+				padding-top: 2rem;
+			}
+			p {
+				padding-top: 1rem;
+			}
+		}
+	}
+
+	@media (max-width: ${size.mobileM}) {
+		margin-top: -125px;
+		.member-row {
+			grid-row: 1 / 11;
+		}
+		#grey-bg {
+			grid-row: 2 / 10;
+		}
+		#mid-break {
+			grid-row: 11 / 14;
+		}
+		#monitor {
+			grid-row: 10 / 13;
+			justify-content: initial;
+			img {
+				max-width: 100%;
+			}
+		}
+		#printer {
+			z-index: 5000;
+			align-items: initial;
+			justify-content: initial;
+			grid-row: 13 / 17;
+			img {
+				max-width: 100%;
+			}
+		}
+		#folder-bottom {
+			align-items: initial;
+			justify-content: initial;
+			grid-row: 17 / 22;
+			img {
+				max-width: 100%;
+			}
+		}
+		#btm-break {
+			grid-row: 19 / 22;
+		}
+		#text-bottom {
+			grid-row: 22 / 31;
+			padding: 0 16px;
+			margin-top: 0;
+			align-items: center;
+			justify-content: space-evenly;
 		}
 	}
 `;
