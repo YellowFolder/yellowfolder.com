@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { size } from './device';
 
 const ContentRow = styled.div`
 	width: 100vw;
@@ -32,7 +33,7 @@ const Masthead = styled.section`
 	max-width: ${props => props.theme.maxWidth};
 	height: auto;
 	z-index: 1000;
-	max-height: 650px;
+	max-height: 585px;
 `;
 
 const SectionCopy = styled.div`
@@ -100,6 +101,18 @@ const SectionCopy = styled.div`
 			font-size: 1.75rem;
 		}
 	}
+	@media (max-width: ${size.mobileL}) {
+		margin: 0 1.5rem 1.5rem 1.5rem;
+	}
+	@media (max-width: ${size.mobileM}) {
+		margin: -2rem 0.8rem 0 0.5rem;
+	}
+	@media (max-width: 325px) {
+		margin: -3rem 0 0 0;
+		h1 {
+			font-size: 3rem;
+		}
+	}
 `;
 
 const MastheadImage = styled.div`
@@ -113,10 +126,28 @@ const MastheadImage = styled.div`
 	img {
 		height: auto;
 		width: 100%;
+		max-width: 585px;
 	}
 	@media screen and (max-width: 1000px) {
 		margin-left: -6.5rem;
 		margin-right: -2.5rem;
+	}
+	@media (max-width: ${size.mobileL}) {
+		margin-left: -3rem;
+		display: flex;
+		align-items: baseline;
+		justify-content: initial;
+		margin-bottom: 0;
+		img {
+			max-width: 200px;
+		}
+	}
+	@media (max-width: ${size.mobileM}) {
+		margin-left: -5rem;
+	}
+	@media (max-width: 325px) {
+		margin-left: -2rem;
+		margin-right: -3.5rem;
 	}
 `;
 
@@ -261,6 +292,11 @@ const InfoRowContent = styled(ContentContainer)`
 			width: 80%;
 		}
 	}
+	@media (max-width: ${size.mobileM}) {
+		.row-image {
+			object-fit: cover;
+		}
+	}
 `;
 
 const CabinetToCloud = styled(ContentContainer)`
@@ -319,12 +355,16 @@ const OptionsContent = styled(ContentRow)`
 	background-size: cover;
 	z-index: 15;
 	margin-top: 180px;
+
 	@media screen and (min-width: 1000px) {
 		background-position: right top;
 	}
 	@media screen and (max-width: 1000px) {
 		background-position: right;
 		background-position-y: 50px;
+	}
+	@media (max-width: ${size.navMenu}) {
+		margin-top: 120px;
 	}
 	@media screen and (max-width: 540px) {
 		margin-top: 100px;
