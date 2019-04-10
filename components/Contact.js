@@ -43,6 +43,12 @@ const StyledContact = styled.div`
 			width: 100%;
 			margin: 0;
 			padding: 1.5rem 0;
+			a {
+				color: ${props => props.theme.gray};
+				&[href^='mailto:']:hover {
+					text-decoration: underline;
+				}
+			}
 			h3 {
 				font-family: ${props => props.theme.boldFont};
 				font-size: 1.4rem;
@@ -96,10 +102,22 @@ const StyledContact = styled.div`
 					&:focus {
 						outline: none;
 						border-color: rgba(82, 168, 236, 0.8);
+						background-color: #fff;
+					}
+				}
+				textarea,
+				input {
+					&:not(:empty):valid,
+					&:not(:empty):optional {
+						/* border: 1px solid #7ce882; */
+						/* background-color: #fff; */
 					}
 				}
 				select {
 					height: 4rem;
+				}
+				textarea {
+					height: 100px;
 				}
 			}
 			.form--disclaimer {
@@ -136,13 +154,15 @@ const StyledContact = styled.div`
 	}
 	@media (max-width: ${size.navMenu}) {
 		grid-template-areas: 'header header header' 'form form form' 'sidebar sidebar sidebar';
-		grid-gap: 10px 0;
+		grid-gap: 15px 0;
 		.contact-form {
 			&--header {
+				width: 80%;
+				margin: 0 auto;
 				h1 {
 					/* line-height: calc(64px + (64 - 58) * ((100vw - 800px) / (1000 - 400))); */
 					line-height: 120%;
-					font-size: calc(58px + (72 - 58) * ((100vw - 800px) / (1000 - 400)));
+					font-size: calc(60px + (72 - 60) * ((100vw - 800px) / (1000 - 400)));
 					margin: 0 0 2rem 0;
 				}
 			}
@@ -159,7 +179,6 @@ const StyledContact = styled.div`
 						&--field-wrapper {
 							width: 80%;
 							margin: 0 auto;
-							/* align-items: flex-start; */
 						}
 						&--disclaimer {
 							align-self: center;
@@ -197,11 +216,21 @@ const StyledContact = styled.div`
 			}
 		}
 	}
-	@media (max-width: ${size.mobileL}) {
+	@media (max-width: 550px) {
 		.contact-form {
 			&--header {
 				h1 {
-					font-size: calc(42px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
+					font-size: calc(56px + (72 - 56) * ((100vw - 800px) / (1000 - 400)));
+				}
+			}
+		}
+	}
+	@media (max-width: ${size.mobileL}) {
+		.contact-form {
+			&--header {
+				width: 96%;
+				h1 {
+					font-size: calc(46px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
 					line-height: 120%;
 					margin: 0;
 				}
@@ -228,6 +257,7 @@ const StyledContact = styled.div`
 				}
 			}
 			&--sidebar {
+				padding-top: 4rem;
 				border-bottom: 5px solid ${props => props.theme.grey};
 				.sidebar-contact-info {
 					flex-flow: column nowrap;
@@ -239,10 +269,43 @@ const StyledContact = styled.div`
 			}
 		}
 	}
+	@media (max-width: ${size.mobileM}) {
+		padding-top: 30px;
+		.contact-form {
+			&--header {
+				h1 {
+					font-size: calc(42px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
+				}
+			}
+		}
+	}
 `;
 
 class Contact extends Component {
+	state = {
+		email: '',
+		firstName: '',
+		lastName: '',
+		state: 'select',
+		purpose: 'select',
+		message: '',
+	};
+
+	onFormFieldChange = e => {
+		console.log(e.target);
+		this.setState({
+			[e.target.id]: e.target.value,
+		});
+	};
+
+	onSubmit = e => {
+		e.preventDefault();
+		console.log(this.state);
+	};
+
 	render() {
+		const { email, firstName, lastName, state, purpose, message } = this.state;
+
 		return (
 			<StyledContact>
 				<div className="contact-form--header">
@@ -259,42 +322,77 @@ class Contact extends Component {
 					<div className="sidebar-contact-info">
 						<h3>Sales</h3>
 						<p>
-							(844) 935-5684 <br />
-							sales@yellowfolder.com
+							<span itemProp="telephone">
+								<a href="tel:+1-844-935-5684">(844) 935-5684</a>
+							</span>
+							<br />
+							<a href="mailto:sales@yellowfolder.com" itemProp="email">
+								sales@yellowfolder.com
+							</a>
 						</p>
 					</div>
 					<div className="sidebar-contact-info">
 						<h3>Support</h3>
 						<p>
-							(844) 935-5699 <br />
-							support@yellowfolder.com
+							<span itemProp="telephone">
+								<a href="tel:+1-844-935-5699">(844) 935-5699</a>
+							</span>
+							<br />
+							<a href="mailto:support@yellowfolder.com" itemProp="email">
+								support@yellowfolder.com
+							</a>
 						</p>
 					</div>
 				</aside>
 				<div className="contact-form--form">
-					<form role="form">
+					<form>
 						{' '}
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="email">
 								Email
 								<span>*</span>
 							</label>
-							<input required id="email" type="email" />
+							<input
+								required
+								id="email"
+								type="email"
+								autoComplete="email"
+								value={email}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="first-name">First Name</label>
-							<input required id="first-name" type="text" />
+							<label htmlFor="firstName">First Name</label>
+							<input
+								id="firstName"
+								type="text"
+								autoComplete="given-name"
+								value={firstName}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="last-name">Last Name</label>
-							<input required id="last-name" type="text" />
+							<label htmlFor="lastName">Last Name</label>
+							<input
+								id="lastName"
+								type="text"
+								autoComplete="family-name"
+								value={lastName}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="state">
 								State<span>*</span>
 							</label>
-							<select required id="state" name="state">
-								<option value disabled selected>
+							<select
+								required
+								id="state"
+								name="state"
+								value={state}
+								onChange={this.onFormFieldChange}
+							>
+								<option value="select" disabled>
 									Please Select
 								</option>
 								<option value="AL">Alabama</option>
@@ -354,8 +452,14 @@ class Contact extends Component {
 							<label htmlFor="purpose">
 								How can we help?<span>*</span>
 							</label>
-							<select required id="purpose" name="purpose">
-								<option value disabled selected>
+							<select
+								required
+								id="purpose"
+								name="purpose"
+								value={purpose}
+								onChange={this.onFormFieldChange}
+							>
+								<option value="select" disabled>
 									Please Select
 								</option>
 								<option value="I am interested in using YellowFolder at my school">
@@ -378,7 +482,12 @@ class Contact extends Component {
 						</div>
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="message">Message</label>
-							<textarea id="message" name="message" />
+							<textarea
+								id="message"
+								name="message"
+								value={message}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--disclaimer form--field-item">
 							<p>
@@ -389,7 +498,7 @@ class Contact extends Component {
 							</p>
 						</div>
 						<div className="form--submit-wrapper">
-							<button className="form--submit-btn" type="submit">
+							<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
 								Submit
 							</button>
 						</div>

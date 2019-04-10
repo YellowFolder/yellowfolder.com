@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { size } from './device';
 
 const ContentRow = styled.div`
 	width: 100vw;
@@ -32,7 +33,7 @@ const Masthead = styled.section`
 	max-width: ${props => props.theme.maxWidth};
 	height: auto;
 	z-index: 1000;
-	max-height: 650px;
+	max-height: 585px;
 `;
 
 const SectionCopy = styled.div`
@@ -100,6 +101,18 @@ const SectionCopy = styled.div`
 			font-size: 1.75rem;
 		}
 	}
+	@media (max-width: ${size.mobileL}) {
+		margin: 0 1.5rem 1.5rem 1.5rem;
+	}
+	@media (max-width: ${size.mobileM}) {
+		margin: -2rem 0.8rem 0 0.5rem;
+	}
+	@media (max-width: 325px) {
+		margin: -3rem 0 0 0;
+		h1 {
+			font-size: 3rem;
+		}
+	}
 `;
 
 const MastheadImage = styled.div`
@@ -109,14 +122,99 @@ const MastheadImage = styled.div`
 	width: 100%;
 	position: relative;
 	z-index: 2000;
-	margin-bottom: -3px;
 	img {
+		margin-bottom: -3px;
 		height: auto;
 		width: 100%;
+		max-width: 585px;
 	}
 	@media screen and (max-width: 1000px) {
 		margin-left: -6.5rem;
 		margin-right: -2.5rem;
+	}
+	@media (max-width: ${size.mobileL}) {
+		margin-left: -4.5rem;
+		margin-right: -6.5rem;
+		display: flex;
+		align-items: baseline;
+		justify-content: initial;
+		margin-bottom: 0;
+		img {
+			max-width: 200px;
+		}
+	}
+	@media (max-width: ${size.mobileM}) {
+		margin-left: -5rem;
+	}
+	@media (max-width: 325px) {
+		margin-left: -2rem;
+		margin-right: -3.5rem;
+	}
+
+	.quote {
+		display: flex;
+		background: white;
+		width: 225px;
+		height: auto;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: space-evenly;
+		padding: 6px;
+		order: 2;
+		position: absolute;
+		bottom: 80px;
+		right: 4vmin;
+		border-radius: 5px;
+		z-index: 9000;
+		margin-top: 486px;
+
+		#top {
+			width: 100%;
+			height: auto;
+			margin: 0;
+			padding: 0;
+			p {
+				font-size: 1.2rem;
+				font-style: italic;
+				font-weight: 400;
+				margin: 0;
+				padding: 0;
+				line-height: 13px;
+			}
+		}
+		#btm {
+			width: 100%;
+			height: auto;
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: flex-start;
+			justify-content: space-evenly;
+			h5 {
+				color: ${props => props.theme.yellow};
+				font-weight: bold;
+				font-family: ${props => props.theme.boldFont};
+				font-size: 1.4rem;
+				line-height: 17px;
+				padding: 5px 0 2.5px;
+				margin: 0;
+			}
+			p {
+				font-size: 1rem;
+				line-height: 12px;
+				color: ${props => props.theme.grey};
+				font-weight: 400;
+				font-style: italic;
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		@media (max-width: 1100px) {
+			bottom: 20px;
+		}
+		@media (max-width: 768px) {
+			display: none;
+		}
 	}
 `;
 
@@ -261,6 +359,11 @@ const InfoRowContent = styled(ContentContainer)`
 			width: 80%;
 		}
 	}
+	@media (max-width: ${size.mobileM}) {
+		.row-image {
+			object-fit: cover;
+		}
+	}
 `;
 
 const CabinetToCloud = styled(ContentContainer)`
@@ -319,12 +422,16 @@ const OptionsContent = styled(ContentRow)`
 	background-size: cover;
 	z-index: 15;
 	margin-top: 180px;
+
 	@media screen and (min-width: 1000px) {
 		background-position: right top;
 	}
 	@media screen and (max-width: 1000px) {
 		background-position: right;
 		background-position-y: 50px;
+	}
+	@media (max-width: ${size.navMenu}) {
+		margin-top: 120px;
 	}
 	@media screen and (max-width: 540px) {
 		margin-top: 100px;

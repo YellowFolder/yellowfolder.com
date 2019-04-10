@@ -1,24 +1,24 @@
 import App, { Container } from 'next/app';
+import { Router } from 'next/router';
 import Page from '../components/Page';
 
 class _App extends App {
-	static async getInitialProps({ Component, ctx }) {
+	static async getInitialProps({ Component, router, ctx }) {
 		let pageProps = {};
 		if (Component.getInitialProps) {
 			pageProps = await Component.getInitialProps(ctx);
 		}
-		// this exposes the query to the user.
-		// pageProps.query = ctx.query;
+
 		// anything returned in getInitialProps is exposed via this.props
 		return { pageProps };
 	}
 
 	render() {
-		const { Component, pageProps } = this.props;
+		const { Component, pageProps, router } = this.props;
 
 		return (
 			<Container>
-				<Page>
+				<Page activeRoute={router.pathname}>
 					<Component {...pageProps} />
 				</Page>
 			</Container>

@@ -119,7 +119,7 @@ class Page extends Component {
 				<StyledPage>
 					<GlobalStyle />
 					<Meta />
-					<Header />
+					<Header activeRoute={this.props.activeRoute} />
 					<Inner>{this.props.children}</Inner>
 					<Footer />
 				</StyledPage>

@@ -144,11 +144,13 @@ const Footer = () => (
 					</Link>
 					<span> • </span>
 					<Link href="/assets/pdf/service_procedures-v1.6-2019.pdf">
-						<a target="_blank">Service Procedures</a>
+						<a target="_blank" rel="noopener noreferrer">
+							Service Procedures
+						</a>
 					</Link>
 					<span> • </span>
-					<Link href="/blog">
-						<a>Blog</a>
+					<Link href="https://blog.yellowfolder.com/">
+						<a rel="noopener noreferrer">Blog</a>
 					</Link>
 				</div>
 			</div>

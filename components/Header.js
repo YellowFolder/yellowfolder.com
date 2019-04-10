@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Nav from './Nav';
@@ -51,22 +52,57 @@ const SubBar = styled.div`
 	position: relative;
 `;
 
-const Header = () => (
-	<>
-		<StyledHeader role="banner">
-			<div className="bar">
-				<Logo>
-					<Link href="/">
-						<a>
-							<img src="/static/images/header-logo.svg" alt="YellowFolder" />
-						</a>
-					</Link>
-				</Logo>
-				<Nav />
-			</div>
-		</StyledHeader>
-		<SubBar />
-	</>
-);
+const Banner = styled.div`
+	position: fixed;
+	width: 127px;
+	background: transparent;
+	top: 80px;
+	right: 11px;
+	z-index: 9000;
+
+	img {
+		display: block;
+		margin-top: -20px;
+		z-index: 9999;
+	}
+
+	@media (max-width: 700px) {
+		display: none;
+	}
+`;
+
+export class Header extends Component {
+	render() {
+		return (
+			<>
+				<StyledHeader role="banner">
+					<div className="bar">
+						<Logo>
+							<Link href="/">
+								<a>
+									<img src="/static/images/header-logo.svg" alt="YellowFolder" itemProp="logo" />
+								</a>
+							</Link>
+						</Logo>
+						<Nav />
+					</div>
+				</StyledHeader>
+				{this.props.activeRoute === '/' && (
+					<Banner>
+						<Link href="https://studentprivacypledge.org/">
+							<a target="_blank" rel="noopener noreferrer">
+								<img
+									src="/static/images/privacy-banner.svg"
+									alt="Student Privacy Pledge Official Signatory"
+								/>
+							</a>
+						</Link>
+					</Banner>
+				)}
+				<SubBar />
+			</>
+		);
+	}
+}
 
 export default Header;
