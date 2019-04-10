@@ -43,6 +43,9 @@ const StyledContact = styled.div`
 			width: 100%;
 			margin: 0;
 			padding: 1.5rem 0;
+			a {
+				color: ${props => props.theme.gray};
+			}
 			h3 {
 				font-family: ${props => props.theme.boldFont};
 				font-size: 1.4rem;
@@ -228,6 +231,7 @@ const StyledContact = styled.div`
 				}
 			}
 			&--sidebar {
+				padding-top: 4rem;
 				border-bottom: 5px solid ${props => props.theme.grey};
 				.sidebar-contact-info {
 					flex-flow: column nowrap;
@@ -259,15 +263,21 @@ class Contact extends Component {
 					<div className="sidebar-contact-info">
 						<h3>Sales</h3>
 						<p>
-							(844) 935-5684 <br />
-							sales@yellowfolder.com
+							<span itemProp="telephone">
+								<a href="tel:+1-844-935-5684">(844) 935-5684</a>
+							</span>
+							<br />
+							<a href="mailto:sales@yellowfolder.com">sales@yellowfolder.com</a>
 						</p>
 					</div>
 					<div className="sidebar-contact-info">
 						<h3>Support</h3>
 						<p>
-							(844) 935-5699 <br />
-							support@yellowfolder.com
+							<span itemProp="telephone">
+								<a href="tel:+1-844-935-5699">(844) 935-5699</a>
+							</span>
+							<br />
+							<a href="mailto:support@yellowfolder.com">support@yellowfolder.com</a>
 						</p>
 					</div>
 				</aside>
