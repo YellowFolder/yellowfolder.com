@@ -476,6 +476,28 @@ const TeamContainer = styled.div`
 		margin-top: -200px;
 	}
 
+	@media (max-width: 600px) and (min-width: ${size.mobileL}) {
+		> div {
+			margin: 0 !important;
+			max-width: 600px !important;
+			img {
+				max-width: 100% !important;
+			}
+		}
+		.member-row {
+			margin-top: -60px;
+		}
+		#text-bottom {
+			grid-row: 33 / 41;
+		}
+	}
+
+	@media (max-width: ${size.mobileL}) and (min-width: 414px) {
+		.member-row {
+			margin-top: -100px;
+		}
+	}
+
 	@media (max-width: ${size.mobileL}) {
 		margin-top: -100px;
 		max-width: 100vw;
