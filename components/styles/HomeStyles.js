@@ -58,6 +58,9 @@ const SectionCopy = styled.div`
 		@media screen and (max-width: 650px) {
 			font-size: calc(50px + (68 - 50) * ((100vw - 1000px) / (1800 - 1000)));
 		}
+		@media (max-width: 500px) {
+			font-size: calc(48px + (68 - 48) * ((100vw - 1000px) / (1800 - 1000)));
+		}
 	}
 	p {
 		font-size: 26px;
