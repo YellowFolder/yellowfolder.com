@@ -179,6 +179,7 @@ const MastheadImage = styled.div`
 				font-weight: 400;
 				margin: 0;
 				padding: 0;
+				line-height: 13px;
 			}
 		}
 		#btm {
@@ -210,9 +211,6 @@ const MastheadImage = styled.div`
 
 		@media (max-width: 1100px) {
 			bottom: 20px;
-		}
-		@media (max-width: 800px) {
-			bottom: 6px;
 		}
 		@media (max-width: 768px) {
 			display: none;
