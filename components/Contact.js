@@ -267,7 +267,9 @@ class Contact extends Component {
 								<a href="tel:+1-844-935-5684">(844) 935-5684</a>
 							</span>
 							<br />
-							<a href="mailto:sales@yellowfolder.com">sales@yellowfolder.com</a>
+							<a href="mailto:sales@yellowfolder.com" itemProp="email">
+								sales@yellowfolder.com
+							</a>
 						</p>
 					</div>
 					<div className="sidebar-contact-info">
@@ -277,7 +279,9 @@ class Contact extends Component {
 								<a href="tel:+1-844-935-5699">(844) 935-5699</a>
 							</span>
 							<br />
-							<a href="mailto:support@yellowfolder.com">support@yellowfolder.com</a>
+							<a href="mailto:support@yellowfolder.com" itemProp="email">
+								support@yellowfolder.com
+							</a>
 						</p>
 					</div>
 				</aside>

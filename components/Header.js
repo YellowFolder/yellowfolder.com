@@ -80,7 +80,7 @@ export class Header extends Component {
 						<Logo>
 							<Link href="/">
 								<a>
-									<img src="/static/images/header-logo.svg" alt="YellowFolder" />
+									<img src="/static/images/header-logo.svg" alt="YellowFolder" itemProp="logo" />
 								</a>
 							</Link>
 						</Logo>
