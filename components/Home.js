@@ -26,6 +26,19 @@ class Home extends Component {
 							src="/static/images/header-splash-woman.png"
 							alt="Claudia Mullins, Director of Student Services"
 						/>
+						<div className="quote">
+							<div id="top">
+								<p>
+									"As an educator, I understand issues unique to education and am happy to support
+									you."
+								</p>
+							</div>
+							<div id="btm">
+								<h5 id="name">Claudia Mullins</h5>
+								<p id="title">Director of Student Services</p>
+								<p id="time">23 years</p>
+							</div>
+						</div>
 					</MastheadImage>
 				</Masthead>
 

@@ -122,8 +122,8 @@ const MastheadImage = styled.div`
 	width: 100%;
 	position: relative;
 	z-index: 2000;
-	margin-bottom: -3px;
 	img {
+		margin-bottom: -3px;
 		height: auto;
 		width: 100%;
 		max-width: 585px;
@@ -149,6 +149,74 @@ const MastheadImage = styled.div`
 	@media (max-width: 325px) {
 		margin-left: -2rem;
 		margin-right: -3.5rem;
+	}
+
+	.quote {
+		display: flex;
+		background: white;
+		width: 225px;
+		height: auto;
+		flex-flow: column nowrap;
+		align-items: center;
+		justify-content: space-evenly;
+		padding: 6px;
+		order: 2;
+		position: absolute;
+		bottom: 80px;
+		right: 4vmin;
+		border-radius: 5px;
+		z-index: 9000;
+		margin-top: 486px;
+
+		#top {
+			width: 100%;
+			height: auto;
+			margin: 0;
+			padding: 0;
+			p {
+				font-size: 1.2rem;
+				font-style: italic;
+				font-weight: 400;
+				margin: 0;
+				padding: 0;
+			}
+		}
+		#btm {
+			width: 100%;
+			height: auto;
+			display: flex;
+			flex-flow: column nowrap;
+			align-items: flex-start;
+			justify-content: space-evenly;
+			h5 {
+				color: ${props => props.theme.yellow};
+				font-weight: bold;
+				font-family: ${props => props.theme.boldFont};
+				font-size: 1.4rem;
+				line-height: 17px;
+				padding: 5px 0 2.5px;
+				margin: 0;
+			}
+			p {
+				font-size: 1rem;
+				line-height: 12px;
+				color: ${props => props.theme.grey};
+				font-weight: 400;
+				font-style: italic;
+				margin: 0;
+				padding: 0;
+			}
+		}
+
+		@media (max-width: 1100px) {
+			bottom: 20px;
+		}
+		@media (max-width: 800px) {
+			bottom: 6px;
+		}
+		@media (max-width: 768px) {
+			display: none;
+		}
 	}
 `;
 

@@ -165,7 +165,6 @@ const StyledContact = styled.div`
 						&--field-wrapper {
 							width: 80%;
 							margin: 0 auto;
-							/* align-items: flex-start; */
 						}
 						&--disclaimer {
 							align-self: center;
@@ -289,7 +288,7 @@ class Contact extends Component {
 					</div>
 				</aside>
 				<div className="contact-form--form">
-					<form role="form">
+					<form>
 						{' '}
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="email">
