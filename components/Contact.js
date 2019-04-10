@@ -45,6 +45,9 @@ const StyledContact = styled.div`
 			padding: 1.5rem 0;
 			a {
 				color: ${props => props.theme.gray};
+				&[href^='mailto:']:hover {
+					text-decoration: underline;
+				}
 			}
 			h3 {
 				font-family: ${props => props.theme.boldFont};
