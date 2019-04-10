@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Nav from './Nav';
@@ -70,32 +71,38 @@ const Banner = styled.div`
 	}
 `;
 
-const Header = () => (
-	<>
-		<StyledHeader role="banner">
-			<div className="bar">
-				<Logo>
-					<Link href="/">
-						<a>
-							<img src="/static/images/header-logo.svg" alt="YellowFolder" />
-						</a>
-					</Link>
-				</Logo>
-				<Nav />
-			</div>
-		</StyledHeader>
-		<Banner>
-			<Link href="https://studentprivacypledge.org/">
-				<a target="_blank" rel="noopener noreferrer">
-					<img
-						src="/static/images/privacy-banner.svg"
-						alt="Student Privacy Pledge Official Signatory"
-					/>
-				</a>
-			</Link>
-		</Banner>
-		<SubBar />
-	</>
-);
+export class Header extends Component {
+	render() {
+		return (
+			<>
+				<StyledHeader role="banner">
+					<div className="bar">
+						<Logo>
+							<Link href="/">
+								<a>
+									<img src="/static/images/header-logo.svg" alt="YellowFolder" />
+								</a>
+							</Link>
+						</Logo>
+						<Nav />
+					</div>
+				</StyledHeader>
+				{this.props.activeRoute === '/' && (
+					<Banner>
+						<Link href="https://studentprivacypledge.org/">
+							<a target="_blank" rel="noopener noreferrer">
+								<img
+									src="/static/images/privacy-banner.svg"
+									alt="Student Privacy Pledge Official Signatory"
+								/>
+							</a>
+						</Link>
+					</Banner>
+				)}
+				<SubBar />
+			</>
+		);
+	}
+}
 
 export default Header;
