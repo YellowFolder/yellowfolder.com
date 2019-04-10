@@ -133,7 +133,8 @@ const MastheadImage = styled.div`
 		margin-right: -2.5rem;
 	}
 	@media (max-width: ${size.mobileL}) {
-		margin-left: -3rem;
+		margin-left: -4.5rem;
+		margin-right: -6.5rem;
 		display: flex;
 		align-items: baseline;
 		justify-content: initial;
