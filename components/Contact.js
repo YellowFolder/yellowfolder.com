@@ -102,10 +102,22 @@ const StyledContact = styled.div`
 					&:focus {
 						outline: none;
 						border-color: rgba(82, 168, 236, 0.8);
+						background-color: #fff;
+					}
+				}
+				textarea,
+				input {
+					&:not(:empty):valid,
+					&:not(:empty):optional {
+						/* border: 1px solid #7ce882; */
+						/* background-color: #fff; */
 					}
 				}
 				select {
 					height: 4rem;
+				}
+				textarea {
+					height: 100px;
 				}
 			}
 			.form--disclaimer {
@@ -270,7 +282,30 @@ const StyledContact = styled.div`
 `;
 
 class Contact extends Component {
+	state = {
+		email: '',
+		firstName: '',
+		lastName: '',
+		state: 'select',
+		purpose: 'select',
+		message: '',
+	};
+
+	onFormFieldChange = e => {
+		console.log(e.target);
+		this.setState({
+			[e.target.id]: e.target.value,
+		});
+	};
+
+	onSubmit = e => {
+		e.preventDefault();
+		console.log(this.state);
+	};
+
 	render() {
+		const { email, firstName, lastName, state, purpose, message } = this.state;
+
 		return (
 			<StyledContact>
 				<div className="contact-form--header">
@@ -317,22 +352,47 @@ class Contact extends Component {
 								Email
 								<span>*</span>
 							</label>
-							<input required id="email" type="email" />
+							<input
+								required
+								id="email"
+								type="email"
+								autoComplete="email"
+								value={email}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="first-name">First Name</label>
-							<input required id="first-name" type="text" />
+							<label htmlFor="firstName">First Name</label>
+							<input
+								id="firstName"
+								type="text"
+								autoComplete="given-name"
+								value={firstName}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="last-name">Last Name</label>
-							<input required id="last-name" type="text" />
+							<label htmlFor="lastName">Last Name</label>
+							<input
+								id="lastName"
+								type="text"
+								autoComplete="family-name"
+								value={lastName}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="state">
 								State<span>*</span>
 							</label>
-							<select required id="state" name="state">
-								<option value disabled selected>
+							<select
+								required
+								id="state"
+								name="state"
+								value={state}
+								onChange={this.onFormFieldChange}
+							>
+								<option value="select" disabled>
 									Please Select
 								</option>
 								<option value="AL">Alabama</option>
@@ -392,8 +452,14 @@ class Contact extends Component {
 							<label htmlFor="purpose">
 								How can we help?<span>*</span>
 							</label>
-							<select required id="purpose" name="purpose">
-								<option value disabled selected>
+							<select
+								required
+								id="purpose"
+								name="purpose"
+								value={purpose}
+								onChange={this.onFormFieldChange}
+							>
+								<option value="select" disabled>
 									Please Select
 								</option>
 								<option value="I am interested in using YellowFolder at my school">
@@ -416,7 +482,12 @@ class Contact extends Component {
 						</div>
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="message">Message</label>
-							<textarea id="message" name="message" />
+							<textarea
+								id="message"
+								name="message"
+								value={message}
+								onChange={this.onFormFieldChange}
+							/>
 						</div>
 						<div className="form--disclaimer form--field-item">
 							<p>
@@ -427,7 +498,7 @@ class Contact extends Component {
 							</p>
 						</div>
 						<div className="form--submit-wrapper">
-							<button className="form--submit-btn" type="submit">
+							<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
 								Submit
 							</button>
 						</div>
