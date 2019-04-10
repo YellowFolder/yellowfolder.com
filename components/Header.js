@@ -51,6 +51,25 @@ const SubBar = styled.div`
 	position: relative;
 `;
 
+const Banner = styled.div`
+	position: fixed;
+	width: 127px;
+	background: transparent;
+	top: 80px;
+	right: 11px;
+	z-index: 9000;
+
+	img {
+		display: block;
+		margin-top: -20px;
+		z-index: 9999;
+	}
+
+	@media (max-width: 700px) {
+		display: none;
+	}
+`;
+
 const Header = () => (
 	<>
 		<StyledHeader role="banner">
@@ -65,6 +84,16 @@ const Header = () => (
 				<Nav />
 			</div>
 		</StyledHeader>
+		<Banner>
+			<Link href="https://studentprivacypledge.org/">
+				<a target="_blank" rel="noopener noreferrer">
+					<img
+						src="/static/images/privacy-banner.svg"
+						alt="Student Privacy Pledge Official Signatory"
+					/>
+				</a>
+			</Link>
+		</Banner>
 		<SubBar />
 	</>
 );
