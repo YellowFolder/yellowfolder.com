@@ -478,7 +478,7 @@ const TeamContainer = styled.div`
 
 	@media (max-width: 600px) and (min-width: ${size.mobileL}) {
 		> div {
-			margin: 0 !important;
+			margin: 0;
 			max-width: 600px !important;
 			img {
 				max-width: 100% !important;
