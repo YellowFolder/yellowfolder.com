@@ -75,6 +75,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 1.4rem; /* 1.4rem = 14px. 1.4 * 10 (base font-size) = 14 */
     line-height: 17px;
     font-family: 'Clear Sans Medium', 'Clear Sans', 'Helvetica Neue', Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
     font-feature-settings: 'liga';
     @media
     (-webkit-min-device-pixel-ratio: 2),
@@ -93,6 +94,11 @@ const GlobalStyle = createGlobalStyle`
   }
   svg {
     shape-rendering: geometricPrecision;
+  }
+  h1,
+  h2,
+  h3 {
+    font-weight: bold;
   }
   a {
     text-decoration: none;
