@@ -19,13 +19,7 @@ const PageHeader = styled.div`
 	justify-content: center;
 	flex-flow: column nowrap;
 	background: transparent;
-	/* background: transparent url(static/images/about-pattern-background.svg);
-	background-position-x: left;
-	background-position-y: center;
-	background-size: 100vw;
-	background-repeat: no-repeat; */
 	margin: 0 auto;
-	/* padding-top: 80px; */
 	position: relative;
 	height: auto;
 	width: 100%;
@@ -314,6 +308,13 @@ const TeamContainer = styled.div`
 			line-height: 120%;
 			padding: 0;
 			margin: 0;
+			a {
+				font-weight: 600;
+				color: ${props => props.theme.grey};
+				&:hover {
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 
@@ -437,18 +438,36 @@ const TeamContainer = styled.div`
 		}
 
 		#text-bottom {
-			grid-column: 1 / -1;
+			grid-column: 2 / 3;
 			grid-row: 33 / 39;
 			margin-top: 25px;
 			padding: 0 50px 50px;
-			max-width: 650px;
+			max-width: initial;
 			align-items: center;
 			justify-content: space-evenly;
+
+			span,
+			span ~ p {
+				width: 50%;
+			}
+
+			span p {
+				padding-top: 1rem;
+			}
 
 			span p,
 			p {
 				font-size: 2rem;
 				line-height: 120%;
+			}
+		}
+	}
+
+	@media (max-width: 900px) {
+		#text-bottom {
+			span,
+			span ~ p {
+				width: 80%;
 			}
 		}
 	}
@@ -481,26 +500,17 @@ const TeamContainer = styled.div`
 		#monitor {
 			grid-row: 11 / 15;
 			justify-content: initial;
-			img {
-				max-width: 100%;
-			}
 		}
 		#printer {
 			z-index: 5000;
 			align-items: initial;
 			justify-content: initial;
 			grid-row: 15 / 20;
-			img {
-				max-width: 100%;
-			}
 		}
 		#folder-bottom {
 			align-items: initial;
 			justify-content: initial;
 			grid-row: 20 / 26;
-			img {
-				max-width: 100%;
-			}
 		}
 		#btm-break {
 			grid-row: 21 / 26;
@@ -520,6 +530,9 @@ const TeamContainer = styled.div`
 			p {
 				padding-top: 1rem;
 			}
+		}
+		> div img {
+			max-width: 100% !important;
 		}
 	}
 
