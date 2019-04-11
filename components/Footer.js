@@ -134,7 +134,7 @@ const Footer = () => (
 			</div>
 			<div className="content-right">
 				<RequestButton>
-					<Link href="/record-request">
+					<Link prefetch href="/record-request">
 						<a>Record Request</a>
 					</Link>
 				</RequestButton>
