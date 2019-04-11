@@ -492,9 +492,9 @@ const TeamContainer = styled.div`
 		}
 	}
 
-	@media (max-width: ${size.mobileL}) and (min-width: 414px) {
+	@media (max-width: ${size.mobileL}) and (min-width: 420px) {
 		.member-row {
-			margin-top: -100px;
+			margin-top: 100px !important;
 		}
 	}
 
