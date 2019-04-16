@@ -37,6 +37,7 @@ const Inner = styled.div`
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Clear Sans';
+    font-display: auto;
     src:
       local('Clear Sans'),
       url('/static/fonts/ClearSans-Regular.woff2') format('woff2');
@@ -45,6 +46,7 @@ const GlobalStyle = createGlobalStyle`
   }
   @font-face {
     font-family: 'Clear Sans Bold';
+    font-display: auto;
     src:
       local('Clear Sans Bold'),
       url('/static/fonts/ClearSans-Bold.woff2') format('woff2');
@@ -53,6 +55,7 @@ const GlobalStyle = createGlobalStyle`
   }
   @font-face {
     font-family: 'Clear Sans Medium';
+    font-display: auto;
     src:
       local('Clear Sans Medium'),
       url('/static/fonts/ClearSans-Medium.woff2') format('woff2');
