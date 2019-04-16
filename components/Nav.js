@@ -8,6 +8,7 @@ class Nav extends Component {
 	};
 
 	handleToggle = () => {
+		console.log('handle toggle!');
 		this.setState(prevState => ({
 			isChecked: !prevState.isChecked,
 		}));
