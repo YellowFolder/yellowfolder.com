@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import Nav from './Nav';
+import { size } from './styles/device';
 
 const StyledHeader = styled.header`
 	position: fixed;
@@ -66,7 +67,7 @@ const Banner = styled.div`
 		z-index: 9999;
 	}
 
-	@media (max-width: 700px) {
+	@media (max-width: ${size.navMenu}) {
 		display: none;
 	}
 `;
