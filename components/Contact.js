@@ -108,6 +108,15 @@ const StyledContact = styled.div`
 		align-items: center;
 		justify-content: center;
 		flex-flow: column nowrap;
+
+		#embedded-form {
+			.hbspt-form {
+				width: 100%;
+				iframe.hs-form-iframe {
+					width: 100% !important;
+				}
+			}
+		}
 	}
 
 	@media (max-width: ${size.navMenu}) {
@@ -142,7 +151,6 @@ const StyledContact = styled.div`
 						width: 100%;
 
 						iframe.hs-form-iframe {
-							width: 100%;
 							position: relative;
 							display: flex;
 							width: 100% !important;
