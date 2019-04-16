@@ -303,11 +303,26 @@ class Contact extends Component {
 		console.log(this.state);
 	};
 
+	componentDidMount() {
+		const script = document.createElement('script');
+		script.src = 'https://js.hsforms.net/forms/v2.js';
+		// script.async = true;
+		script.innerHTML = `
+		console.log(hbspt.forms);
+		hbspt.forms.create({
+			portalId: "5071454",
+			formId: "a7743506-a532-40ff-9d76-93c023f3bd65"
+		});`;
+
+		document.getElementById('embedded-form').appendChild(script);
+	}
+
 	render() {
 		const { email, firstName, lastName, state, purpose, message } = this.state;
 
 		return (
 			<StyledContact>
+				<div id="embedded-form" />
 				<div className="contact-form--header">
 					<h1>Got a question? Get in touch.</h1>
 				</div>
