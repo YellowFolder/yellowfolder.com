@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import qs from 'qs';
 import StyledForm from './styles/FormStyles';
+
+const baseURL = 'https://webto.salesforce.com';
+const formRoute = '/servlet/servlet.WebToCase';
 
 const mappedFields = {
 	district: '00N2I00000DLpvY',
@@ -24,6 +29,7 @@ const defaultFormValues = {
 	recordType: '012F0000000yHfU',
 	subject: 'Record Request Web Form',
 	priority: 'P2 - Normal',
+	submit: 'Submit',
 };
 
 class RecordRequest extends Component {
@@ -50,9 +56,7 @@ class RecordRequest extends Component {
 		document.getElementById('recaptcha-container').appendChild(s);
 
 		const resp = document.createElement('script');
-		resp.innerHTML = `
-		function timestamp() {var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500);
-		`;
+		resp.innerHTML = `function timestamp() {var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500);`;
 
 		// document.getElementById('recaptcha-response').appendChild(resp);
 	}
@@ -65,12 +69,31 @@ class RecordRequest extends Component {
 
 	onSubmit = e => {
 		e.preventDefault();
-
 		const mappedState = { ...defaultFormValues };
 		for (const s in this.state) {
 			mappedState[mappedFields[s]] = this.state[s];
 		}
 		console.log(mappedState);
+
+		const headers = {
+			'Content-Type': 'application/x-www-form-urlencoded',
+		};
+
+		const config = {
+			method: 'post',
+			baseURL,
+			url: formRoute,
+			headers,
+			data: qs.stringify(mappedState),
+			params: {
+				encoding: 'UTF-8',
+			},
+		};
+
+		return axios(config).then(resp => {
+			console.log('got response!');
+			console.log(resp);
+		});
 	};
 
 	render() {
