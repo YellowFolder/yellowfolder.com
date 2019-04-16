@@ -114,6 +114,7 @@ const GlobalStyle = createGlobalStyle`
 
 class Page extends Component {
 	componentDidMount() {
+		// add purechat widget.
 		const s = document.createElement('script');
 		s.type = 'text/javascript';
 		s.innerHTML = `
