@@ -233,7 +233,6 @@ class Contact extends Component {
 		// create script element to create hbspt form.
 		preloadScript.onload = () => {
 			const script = document.createElement('script');
-			console.log('preloadScript loaded!');
 			script.innerHTML = `
 				hbspt.forms.create({
 					portalId: "5071454",
@@ -257,6 +256,15 @@ class Contact extends Component {
 				});
 			});
 		};
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('message', event => {
+			if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
+				// hide <Loader /> once form has been rendered to DOM.
+				this.setState({ formHasRendered: true });
+			}
+		});
 	}
 
 	render() {
