@@ -291,6 +291,24 @@ class Contact extends Component {
 		message: '',
 	};
 
+	componentDidMount() {
+		const preloadScript = document.createElement('script');
+		preloadScript.src = '//js.hsforms.net/forms/v2.js';
+		document.getElementById('embedded-form').appendChild(preloadScript);
+
+		preloadScript.onload = () => {
+			const script = document.createElement('script');
+			console.log('preloadScript loaded!');
+			script.innerHTML = `
+					hbspt.forms.create({
+						portalId: "5071454",
+						formId: "a7743506-a532-40ff-9d76-93c023f3bd65"
+					});
+			`;
+			document.getElementById('embedded-form').appendChild(script);
+		};
+	}
+
 	onFormFieldChange = e => {
 		console.log(e.target);
 		this.setState({
@@ -303,223 +321,213 @@ class Contact extends Component {
 		console.log(this.state);
 	};
 
-	componentDidMount() {
-		const script = document.createElement('script');
-		script.src = 'https://js.hsforms.net/forms/v2.js';
-		// script.async = true;
-		script.innerHTML = `
-		console.log(hbspt.forms);
-		hbspt.forms.create({
-			portalId: "5071454",
-			formId: "a7743506-a532-40ff-9d76-93c023f3bd65"
-		});`;
-
-		document.getElementById('embedded-form').appendChild(script);
-	}
-
 	render() {
 		const { email, firstName, lastName, state, purpose, message } = this.state;
 
 		return (
-			<StyledContact>
-				<div id="embedded-form" />
-				<div className="contact-form--header">
-					<h1>Got a question? Get in touch.</h1>
-				</div>
-				<aside className="contact-form--sidebar">
-					<div className="sidebar-contact-info">
-						<h3>YellowFolder</h3>
-						<p>
-							1617 W Crosby Rd., Ste 100 <br />
-							Carrollton, TX 75006
-						</p>
+			<>
+				<StyledContact>
+					<div className="contact-form--header">
+						<h1>Got a question? Get in touch.</h1>
 					</div>
-					<div className="sidebar-contact-info">
-						<h3>Sales</h3>
-						<p>
-							<span itemProp="telephone">
-								<a href="tel:+1-844-935-5684">(844) 935-5684</a>
-							</span>
-							<br />
-							<a href="mailto:sales@yellowfolder.com" itemProp="email">
-								sales@yellowfolder.com
-							</a>
-						</p>
-					</div>
-					<div className="sidebar-contact-info">
-						<h3>Support</h3>
-						<p>
-							<span itemProp="telephone">
-								<a href="tel:+1-844-935-5699">(844) 935-5699</a>
-							</span>
-							<br />
-							<a href="mailto:support@yellowfolder.com" itemProp="email">
-								support@yellowfolder.com
-							</a>
-						</p>
-					</div>
-				</aside>
-				<div className="contact-form--form">
-					<form>
-						{' '}
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="email">
-								Email
-								<span>*</span>
-							</label>
-							<input
-								required
-								id="email"
-								type="email"
-								autoComplete="email"
-								value={email}
-								onChange={this.onFormFieldChange}
-							/>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="firstName">First Name</label>
-							<input
-								id="firstName"
-								type="text"
-								autoComplete="given-name"
-								value={firstName}
-								onChange={this.onFormFieldChange}
-							/>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="lastName">Last Name</label>
-							<input
-								id="lastName"
-								type="text"
-								autoComplete="family-name"
-								value={lastName}
-								onChange={this.onFormFieldChange}
-							/>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="state">
-								State<span>*</span>
-							</label>
-							<select
-								required
-								id="state"
-								name="state"
-								value={state}
-								onChange={this.onFormFieldChange}
-							>
-								<option value="select" disabled>
-									Please Select
-								</option>
-								<option value="AL">Alabama</option>
-								<option value="AK">Alaska</option>
-								<option value="AZ">Arizona</option>
-								<option value="AR">Arkansas</option>
-								<option value="CA">California</option>
-								<option value="CO">Colorado</option>
-								<option value="CT">Connecticut</option>
-								<option value="DE">Delaware</option>
-								<option value="DC">District Of Columbia</option>
-								<option value="FL">Florida</option>
-								<option value="GA">Georgia</option>
-								<option value="HI">Hawaii</option>
-								<option value="ID">Idaho</option>
-								<option value="IL">Illinois</option>
-								<option value="IN">Indiana</option>
-								<option value="IA">Iowa</option>
-								<option value="KS">Kansas</option>
-								<option value="KY">Kentucky</option>
-								<option value="LA">Louisiana</option>
-								<option value="ME">Maine</option>
-								<option value="MD">Maryland</option>
-								<option value="MA">Massachusetts</option>
-								<option value="MI">Michigan</option>
-								<option value="MN">Minnesota</option>
-								<option value="MS">Mississippi</option>
-								<option value="MO">Missouri</option>
-								<option value="MT">Montana</option>
-								<option value="NE">Nebraska</option>
-								<option value="NV">Nevada</option>
-								<option value="NH">New Hampshire</option>
-								<option value="NJ">New Jersey</option>
-								<option value="NM">New Mexico</option>
-								<option value="NY">New York</option>
-								<option value="NC">North Carolina</option>
-								<option value="ND">North Dakota</option>
-								<option value="OH">Ohio</option>
-								<option value="OK">Oklahoma</option>
-								<option value="OR">Oregon</option>
-								<option value="PA">Pennsylvania</option>
-								<option value="RI">Rhode Island</option>
-								<option value="SC">South Carolina</option>
-								<option value="SD">South Dakota</option>
-								<option value="TN">Tennessee</option>
-								<option value="TX">Texas</option>
-								<option value="UT">Utah</option>
-								<option value="VT">Vermont</option>
-								<option value="VA">Virginia</option>
-								<option value="WA">Washington</option>
-								<option value="WV">West Virginia</option>
-								<option value="WI">Wisconsin</option>
-								<option value="WY">Wyoming</option>
-							</select>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="purpose">
-								How can we help?<span>*</span>
-							</label>
-							<select
-								required
-								id="purpose"
-								name="purpose"
-								value={purpose}
-								onChange={this.onFormFieldChange}
-							>
-								<option value="select" disabled>
-									Please Select
-								</option>
-								<option value="I am interested in using YellowFolder at my school">
-									I am interested in using YellowFolder at my school
-								</option>
-								<option value="I recieved an email or call and am interested to learn more">
-									I recieved an email or call and am interested to learn more
-								</option>
-								<option value="I am a current customer and need assistance">
-									I am a current customer and need assistance
-								</option>
-								<option value="I am interested in working for YellowFolder">
-									I am interested in working for YellowFolder
-								</option>
-								<option value="I would like to partner with YellowFolder">
-									I would like to partner with YellowFolder
-								</option>
-								<option value="Something else">Something else</option>
-							</select>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="message">Message</label>
-							<textarea
-								id="message"
-								name="message"
-								value={message}
-								onChange={this.onFormFieldChange}
-							/>
-						</div>
-						<div className="form--disclaimer form--field-item">
+					<aside className="contact-form--sidebar">
+						<div className="sidebar-contact-info">
+							<h3>YellowFolder</h3>
 							<p>
-								YellowFolder needs the contact information you provide to contact you about our
-								products and services. You may unsubscribe from these communications at any time.
-								For information on how to unsubscribe, as well as our privacy practices and
-								commitment to protecting your privacy, please review our Privacy Policy.
+								1617 W Crosby Rd., Ste 100 <br />
+								Carrollton, TX 75006
 							</p>
 						</div>
-						<div className="form--submit-wrapper">
-							<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
-								Submit
-							</button>
+						<div className="sidebar-contact-info">
+							<h3>Sales</h3>
+							<p>
+								<span itemProp="telephone">
+									<a href="tel:+1-844-935-5684">(844) 935-5684</a>
+								</span>
+								<br />
+								<a href="mailto:sales@yellowfolder.com" itemProp="email">
+									sales@yellowfolder.com
+								</a>
+							</p>
 						</div>
-					</form>
-				</div>
-			</StyledContact>
+						<div className="sidebar-contact-info">
+							<h3>Support</h3>
+							<p>
+								<span itemProp="telephone">
+									<a href="tel:+1-844-935-5699">(844) 935-5699</a>
+								</span>
+								<br />
+								<a href="mailto:support@yellowfolder.com" itemProp="email">
+									support@yellowfolder.com
+								</a>
+							</p>
+						</div>
+					</aside>
+					<div className="contact-form--form">
+						<form>
+							{' '}
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="email">
+									Email
+									<span>*</span>
+								</label>
+								<input
+									required
+									id="email"
+									type="email"
+									autoComplete="email"
+									value={email}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="firstName">First Name</label>
+								<input
+									id="firstName"
+									type="text"
+									autoComplete="given-name"
+									value={firstName}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="lastName">Last Name</label>
+								<input
+									id="lastName"
+									type="text"
+									autoComplete="family-name"
+									value={lastName}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="state">
+									State<span>*</span>
+								</label>
+								<select
+									required
+									id="state"
+									name="state"
+									value={state}
+									onChange={this.onFormFieldChange}
+								>
+									<option value="select" disabled>
+										Please Select
+									</option>
+									<option value="AL">Alabama</option>
+									<option value="AK">Alaska</option>
+									<option value="AZ">Arizona</option>
+									<option value="AR">Arkansas</option>
+									<option value="CA">California</option>
+									<option value="CO">Colorado</option>
+									<option value="CT">Connecticut</option>
+									<option value="DE">Delaware</option>
+									<option value="DC">District Of Columbia</option>
+									<option value="FL">Florida</option>
+									<option value="GA">Georgia</option>
+									<option value="HI">Hawaii</option>
+									<option value="ID">Idaho</option>
+									<option value="IL">Illinois</option>
+									<option value="IN">Indiana</option>
+									<option value="IA">Iowa</option>
+									<option value="KS">Kansas</option>
+									<option value="KY">Kentucky</option>
+									<option value="LA">Louisiana</option>
+									<option value="ME">Maine</option>
+									<option value="MD">Maryland</option>
+									<option value="MA">Massachusetts</option>
+									<option value="MI">Michigan</option>
+									<option value="MN">Minnesota</option>
+									<option value="MS">Mississippi</option>
+									<option value="MO">Missouri</option>
+									<option value="MT">Montana</option>
+									<option value="NE">Nebraska</option>
+									<option value="NV">Nevada</option>
+									<option value="NH">New Hampshire</option>
+									<option value="NJ">New Jersey</option>
+									<option value="NM">New Mexico</option>
+									<option value="NY">New York</option>
+									<option value="NC">North Carolina</option>
+									<option value="ND">North Dakota</option>
+									<option value="OH">Ohio</option>
+									<option value="OK">Oklahoma</option>
+									<option value="OR">Oregon</option>
+									<option value="PA">Pennsylvania</option>
+									<option value="RI">Rhode Island</option>
+									<option value="SC">South Carolina</option>
+									<option value="SD">South Dakota</option>
+									<option value="TN">Tennessee</option>
+									<option value="TX">Texas</option>
+									<option value="UT">Utah</option>
+									<option value="VT">Vermont</option>
+									<option value="VA">Virginia</option>
+									<option value="WA">Washington</option>
+									<option value="WV">West Virginia</option>
+									<option value="WI">Wisconsin</option>
+									<option value="WY">Wyoming</option>
+								</select>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="purpose">
+									How can we help?<span>*</span>
+								</label>
+								<select
+									required
+									id="purpose"
+									name="purpose"
+									value={purpose}
+									onChange={this.onFormFieldChange}
+								>
+									<option value="select" disabled>
+										Please Select
+									</option>
+									<option value="I am interested in using YellowFolder at my school">
+										I am interested in using YellowFolder at my school
+									</option>
+									<option value="I recieved an email or call and am interested to learn more">
+										I recieved an email or call and am interested to learn more
+									</option>
+									<option value="I am a current customer and need assistance">
+										I am a current customer and need assistance
+									</option>
+									<option value="I am interested in working for YellowFolder">
+										I am interested in working for YellowFolder
+									</option>
+									<option value="I would like to partner with YellowFolder">
+										I would like to partner with YellowFolder
+									</option>
+									<option value="Something else">Something else</option>
+								</select>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="message">Message</label>
+								<textarea
+									id="message"
+									name="message"
+									value={message}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--disclaimer form--field-item">
+								<p>
+									YellowFolder needs the contact information you provide to contact you about our
+									products and services. You may unsubscribe from these communications at any time.
+									For information on how to unsubscribe, as well as our privacy practices and
+									commitment to protecting your privacy, please review our Privacy Policy.
+								</p>
+							</div>
+							<div className="form--submit-wrapper">
+								<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
+									Submit
+								</button>
+							</div>
+						</form>
+					</div>
+				</StyledContact>
+				<StyledContact>
+					<div id="embedded-form" />
+				</StyledContact>
+			</>
 		);
 	}
 }
