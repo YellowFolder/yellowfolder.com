@@ -1,18 +1,63 @@
 import React, { Component } from 'react';
 import StyledForm from './styles/FormStyles';
 
+const mappedFields = {
+	district: '00N2I00000DLpvY',
+	name: '00N2I00000DLpvT',
+	email: '00N2I00000DWnY3',
+	phone: '00N2I00000DWnY8',
+	recordSeries: '00NF0000008rQ8F',
+	targetName: '00N2I00000DLpgJ',
+	targetAlias: '00N2I00000DLpgO',
+	targetDOB: '00N2I00000DLpgT',
+	targetCampus: '00N2I00000DLpgY',
+	targetLeaveDate: '00N2I00000DLpgd',
+	targetStatus: '00N2I00000DLpgi',
+	targetID: '00N2I00000DLpgn',
+	targetTerminationDate: '00N2I00000DLpgs',
+	extraInfo: '00N2I00000DLpgx',
+};
+
+const defaultFormValues = {
+	orgid: '00DF0000000507Z',
+	retURL: 'http://www.yellowfolder.com/record-request-success.html',
+	recordType: '012F0000000yHfU',
+	subject: 'Record Request Web Form',
+	priority: 'P2 - Normal',
+};
+
 class RecordRequest extends Component {
 	state = {
+		district: '',
+		name: '',
 		email: '',
-		firstName: '',
-		lastName: '',
-		state: 'select',
-		purpose: 'select',
-		message: '',
+		phone: '',
+		recordSeries: '',
+		targetName: '',
+		targetAlias: '',
+		targetDOB: '',
+		targetCampus: '',
+		targetLeaveDate: '',
+		targetStatus: '',
+		targetID: '',
+		targetTerminationDate: '',
+		extraInfo: '',
 	};
 
+	componentDidMount() {
+		const s = document.createElement('script');
+		s.src = 'https://www.google.com/recaptcha/api.js';
+		document.getElementById('recaptcha-container').appendChild(s);
+
+		const resp = document.createElement('script');
+		resp.innerHTML = `
+		function timestamp() {var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500);
+		`;
+
+		// document.getElementById('recaptcha-response').appendChild(resp);
+	}
+
 	onFormFieldChange = e => {
-		console.log(e.target);
 		this.setState({
 			[e.target.id]: e.target.value,
 		});
@@ -20,11 +65,31 @@ class RecordRequest extends Component {
 
 	onSubmit = e => {
 		e.preventDefault();
-		console.log(this.state);
+
+		const mappedState = { ...defaultFormValues };
+		for (const s in this.state) {
+			mappedState[mappedFields[s]] = this.state[s];
+		}
+		console.log(mappedState);
 	};
 
 	render() {
-		const { email, firstName, lastName, state, purpose, message } = this.state;
+		const {
+			district,
+			name,
+			email,
+			phone,
+			recordSeries,
+			targetName,
+			targetAlias,
+			targetDOB,
+			targetCampus,
+			targetLeaveDate,
+			targetStatus,
+			targetID,
+			targetTerminationDate,
+			extraInfo,
+		} = this.state;
 
 		return (
 			<StyledForm>
@@ -32,193 +97,249 @@ class RecordRequest extends Component {
 					<h1>Record Request Form</h1>
 					<p>Please complete the form below and our team will begin searching for your records.</p>
 				</div>
-				<aside className="form--sidebar">
-					<div className="sidebar-contact-info">
-						<h3>YellowFolder</h3>
-						<p>
-							1617 W Crosby Rd., Ste 100 <br />
-							Carrollton, TX 75006
-						</p>
-					</div>
-					<div className="sidebar-contact-info">
-						<h3>Sales</h3>
-						<p>
-							<span itemProp="telephone">
-								<a href="tel:+1-844-935-5684">(844) 935-5684</a>
-							</span>
-							<br />
-							<a href="mailto:sales@yellowfolder.com" itemProp="email">
-								sales@yellowfolder.com
-							</a>
-						</p>
-					</div>
-					<div className="sidebar-contact-info">
-						<h3>Support</h3>
-						<p>
-							<span itemProp="telephone">
-								<a href="tel:+1-844-935-5699">(844) 935-5699</a>
-							</span>
-							<br />
-							<a href="mailto:support@yellowfolder.com" itemProp="email">
-								support@yellowfolder.com
-							</a>
-						</p>
-					</div>
-				</aside>
 				<div className="form--body">
-					<form>
+					<form onSubmit={this.onSubmit}>
 						{' '}
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="email">
-								Email
+							<label htmlFor="district">
+								District
 								<span>*</span>
 							</label>
 							<input
 								required
-								id="email"
+								type="text"
+								aria-label="District"
+								aria-required="true"
+								id="district"
+								name="district"
+								autoComplete="organization"
+								value={district}
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="name">Your Name</label>
+							<input
+								required
+								aria-required="true"
+								type="text"
+								aria-label="Name"
+								id="name"
+								name="name"
+								autoComplete="name"
+								value={name}
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="email">
+								Your Email<span>*</span>
+							</label>
+							<input
+								required
 								type="email"
+								aria-label="Your Email"
+								aria-required="true"
+								id="email"
+								name="email"
 								autoComplete="email"
 								value={email}
+								onBlur={this.onFormFieldChange}
 								onChange={this.onFormFieldChange}
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="firstName">First Name</label>
-							<input
-								id="firstName"
-								type="text"
-								autoComplete="given-name"
-								value={firstName}
-								onChange={this.onFormFieldChange}
-							/>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="lastName">Last Name</label>
-							<input
-								id="lastName"
-								type="text"
-								autoComplete="family-name"
-								value={lastName}
-								onChange={this.onFormFieldChange}
-							/>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="state">
-								State<span>*</span>
+							<label htmlFor="phone">
+								Your Phone<span>*</span>
 							</label>
+							<input
+								required
+								type="tel"
+								aria-label="Your Phone"
+								aria-required="true"
+								autoComplete="tel"
+								id="phone"
+								name="phone"
+								value={phone}
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="recordSeries">Record Series</label>
 							<select
 								required
-								id="state"
-								name="state"
-								value={state}
+								id="recordSeries"
+								name="recordSeries"
+								aria-label="Record Series"
+								aria-required="true"
+								title="Record Series"
+								value={recordSeries}
+								onBlur={this.onFormFieldChange}
 								onChange={this.onFormFieldChange}
 							>
-								<option value="select" disabled>
+								<option value="" disabled>
 									Please Select
 								</option>
-								<option value="AL">Alabama</option>
-								<option value="AK">Alaska</option>
-								<option value="AZ">Arizona</option>
-								<option value="AR">Arkansas</option>
-								<option value="CA">California</option>
-								<option value="CO">Colorado</option>
-								<option value="CT">Connecticut</option>
-								<option value="DE">Delaware</option>
-								<option value="DC">District Of Columbia</option>
-								<option value="FL">Florida</option>
-								<option value="GA">Georgia</option>
-								<option value="HI">Hawaii</option>
-								<option value="ID">Idaho</option>
-								<option value="IL">Illinois</option>
-								<option value="IN">Indiana</option>
-								<option value="IA">Iowa</option>
-								<option value="KS">Kansas</option>
-								<option value="KY">Kentucky</option>
-								<option value="LA">Louisiana</option>
-								<option value="ME">Maine</option>
-								<option value="MD">Maryland</option>
-								<option value="MA">Massachusetts</option>
-								<option value="MI">Michigan</option>
-								<option value="MN">Minnesota</option>
-								<option value="MS">Mississippi</option>
-								<option value="MO">Missouri</option>
-								<option value="MT">Montana</option>
-								<option value="NE">Nebraska</option>
-								<option value="NV">Nevada</option>
-								<option value="NH">New Hampshire</option>
-								<option value="NJ">New Jersey</option>
-								<option value="NM">New Mexico</option>
-								<option value="NY">New York</option>
-								<option value="NC">North Carolina</option>
-								<option value="ND">North Dakota</option>
-								<option value="OH">Ohio</option>
-								<option value="OK">Oklahoma</option>
-								<option value="OR">Oregon</option>
-								<option value="PA">Pennsylvania</option>
-								<option value="RI">Rhode Island</option>
-								<option value="SC">South Carolina</option>
-								<option value="SD">South Dakota</option>
-								<option value="TN">Tennessee</option>
-								<option value="TX">Texas</option>
-								<option value="UT">Utah</option>
-								<option value="VT">Vermont</option>
-								<option value="VA">Virginia</option>
-								<option value="WA">Washington</option>
-								<option value="WV">West Virginia</option>
-								<option value="WI">Wisconsin</option>
-								<option value="WY">Wyoming</option>
+								<option value="Student Records">Student Records</option>
+								<option value="Special Education Records">Special Education Records</option>
+								<option value="Human Resource Records">Human Resource Records</option>
+								<option value="Administrative Records">Administrative Records</option>
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="purpose">
-								How can we help?<span>*</span>
-							</label>
+							<label htmlFor="targetName">Target Name</label>
+							<input
+								required
+								id="targetName"
+								name="targetName"
+								aria-required="true"
+								title="Target Name"
+								aria-label="Target Name"
+								value={targetName}
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="targetAlias">Target Alias or Maiden Name</label>
+							<input
+								id="targetAlias"
+								name="targetAlias"
+								aria-label="Target Alias or Maiden Name"
+								title="Target Alias or Maiden Name"
+								value={targetAlias}
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="targetDOB">Target Date of Birth</label>
+							<input
+								required
+								type="date"
+								pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+								id="targetDOB"
+								name="targetDOB"
+								value={targetDOB}
+								title="Target Date of Birth"
+								aria-label="Target Date of Birth"
+								aria-required="true"
+								maxLength="10"
+								size="20"
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="targetCampus">Target Campus</label>
+							<input
+								required
+								type="text"
+								id="targetCampus"
+								name="targetCampus"
+								value={targetCampus}
+								title="Target Campus"
+								aria-label="Target Campus"
+								aria-required="true"
+								maxLength="255"
+								size="20"
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="targetLeaveDate">Target Withdrawal/Graduation Date</label>
+							<input
+								required
+								type="date"
+								pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+								id="targetLeaveDate"
+								name="targetLeaveDate"
+								value={targetLeaveDate}
+								title="Target Withdrawal/Graduation Date"
+								aria-label="Target Withdrawal/Graduation Date"
+								aria-required="true"
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+								maxLength="10"
+								size="20"
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="targetStatus">Target Active or Archive</label>
 							<select
 								required
-								id="purpose"
-								name="purpose"
-								value={purpose}
+								id="targetStatus"
+								name="targetStatus"
+								title="Target Active or Archive"
+								aria-label="Target Active or Archive"
+								aria-required="true"
+								value={targetStatus}
+								onBlur={this.onFormFieldChange}
 								onChange={this.onFormFieldChange}
 							>
-								<option value="select" disabled>
+								<option value="" disabled>
 									Please Select
 								</option>
-								<option value="I am interested in using YellowFolder at my school">
-									I am interested in using YellowFolder at my school
-								</option>
-								<option value="I recieved an email or call and am interested to learn more">
-									I recieved an email or call and am interested to learn more
-								</option>
-								<option value="I am a current customer and need assistance">
-									I am a current customer and need assistance
-								</option>
-								<option value="I am interested in working for YellowFolder">
-									I am interested in working for YellowFolder
-								</option>
-								<option value="I would like to partner with YellowFolder">
-									I would like to partner with YellowFolder
-								</option>
-								<option value="Something else">Something else</option>
+								<option value="active">Active</option>
+								<option value="archive">Archive</option>
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="message">Message</label>
+							<label htmlFor="targetID">Target ID Number</label>
+							<input
+								required
+								id="targetID"
+								name="targetID"
+								value={targetID}
+								title="Target ID Number"
+								aria-label="Target ID Number"
+								aria-required="true"
+								maxLength="20"
+								size="20"
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="targetTerminationDate">Target Date of Termination</label>
+							<input
+								required
+								type="date"
+								pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
+								id="targetTerminationDate"
+								name="targetTerminationDate"
+								value={targetTerminationDate}
+								title="Target Date of Termination"
+								aria-label="Target Date of Termination"
+								aria-required="true"
+								maxLength="10"
+								size="20"
+								onBlur={this.onFormFieldChange}
+								onChange={this.onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="extraInfo">Additional Information</label>
 							<textarea
-								id="message"
-								name="message"
-								value={message}
+								type="text"
+								wrap="soft"
+								rows="4"
+								id="extraInfo"
+								name="extraInfo"
+								value={extraInfo}
+								title="Additional Information"
+								aria-label="Additional Information"
+								onBlur={this.onFormFieldChange}
 								onChange={this.onFormFieldChange}
 							/>
-						</div>
-						<div className="form--disclaimer form--field-item">
-							<p>
-								YellowFolder needs the contact information you provide to contact you about our
-								products and services. You may unsubscribe from these communications at any time.
-								For information on how to unsubscribe, as well as our privacy practices and
-								commitment to protecting your privacy, please review our Privacy Policy.
-							</p>
 						</div>
 						<div className="form--submit-wrapper">
+							<div id="recaptcha-container" />
+							<div id="recaptcha-response" />
 							<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
 								Submit
 							</button>
