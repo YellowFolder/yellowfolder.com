@@ -248,24 +248,20 @@ class Contact extends Component {
 				// listen for 'onFormReady' event emitted by hbspt form object.
 				// onFormReady is fired once form has been inserted into DOM.
 				// https://developers.hubspot.com/global-form-events
-				window.addEventListener('message', event => {
-					if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
-						// hide <Loader /> once form has been rendered to DOM.
-						this.setState({ formHasRendered: true });
-					}
-				});
+				window.addEventListener('message', this.hideLoader);
 			});
 		};
 	}
 
 	componentWillUnmount() {
-		window.removeEventListener('message', event => {
-			if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
-				// hide <Loader /> once form has been rendered to DOM.
-				this.setState({ formHasRendered: true });
-			}
-		});
+		window.removeEventListener('message', this.hideLoader);
 	}
+
+	hideLoader = event => {
+		if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
+			this.setState({ formHasRendered: true });
+		}
+	};
 
 	render() {
 		return (
