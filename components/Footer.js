@@ -149,7 +149,7 @@ const Footer = () => (
 						</a>
 					</Link>
 					<span> • </span>
-					<Link href="https://blog.yellowfolder.com/">
+					<Link href="https://blog.yellowfolder.com/#">
 						<a rel="noopener noreferrer">Blog</a>
 					</Link>
 				</div>
