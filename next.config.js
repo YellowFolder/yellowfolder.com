@@ -6,35 +6,46 @@ const withMDX = require('@next/mdx')({
 
 const fs = require('fs');
 const { join } = require('path');
-const { promisify } = require('util');
+// const generateJsonFeed = require('./posts/generate-json-feed');
+// const { promisify } = require('util');
 
-const copyFile = promisify(fs.copyFile);
-const staticFilesToCopy = ['static/favicon/favicon.ico'];
+// const copyFile = promisify(fs.copyFile);
+// const staticFilesToCopy = ['static/favicon/favicon.ico'];
 
 module.exports = withMDX({
-	pageExtensions: ['js', 'jsx', 'md', 'mdx'],
-	async exportPathMap(defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
-		if (dev) return defaultPathMap;
-		// generateJsonFeed(outDir);
-		await Promise.all(staticFilesToCopy.map(file => copyFile(join(dir, file), join(outDir, file))));
-		return defaultPathMap;
+	target: 'serverless',
+	env: {
+		DOMAIN: process.env.DOMAIN,
 	},
-	webpack(config, options) {
-		config.module.rules.push({
-			test: /.svg$/,
-			use: [
-				{
-					loader: '@svgr/webpack',
-					options: {
-						icon: true,
+	pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+	webpack(config, { defaultLoaders, isServer, dev }) {
+		(config.node = {
+			fs: 'empty',
+			module: 'empty',
+		}),
+			config.module.rules.push({
+				test: /\.svg$/,
+				use: [
+					{
+						loader: '@svgr/webpack',
+						options: {
+							icon: true,
+						},
 					},
-				},
-			],
-		});
+				],
+			});
 		config.module.rules.push({
-			test: /.css$/,
+			test: /\.css$/,
 			use: 'raw-loader',
 		});
+		if (isServer && !dev) {
+			const originalEntry = config.entry;
+			config.entry = async () => {
+				const entries = { ...(await originalEntry()) };
+				entries['./posts/rss-feed.js'] = './posts/rss-feed.js';
+				return entries;
+			};
+		}
 		return config;
 	},
 });

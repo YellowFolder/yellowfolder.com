@@ -5,7 +5,7 @@ module.exports = {
 		image: '/static/images/yellowfolder.png',
 		description:
 			'YellowFolder provides a cloud-based, digital file cabinet where your school system can safely store, retrieve and manage all of their Administrative, Employee, Special Education, and Student Records.',
-		siteUrl: 'https://www.yellowfolder.com',
+		siteUrl: 'https://site.brockthebear.now.sh',
 		social: {
 			twitter: 'yellow_folder',
 			linkedin: 'https://www.linkedin.com/company/yellowfolder',

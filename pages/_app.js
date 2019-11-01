@@ -1,4 +1,4 @@
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import Page from '../components/Page';
 
 class _App extends App {
@@ -16,11 +16,9 @@ class _App extends App {
 		const { Component, pageProps, router } = this.props;
 
 		return (
-			<Container>
-				<Page activeRoute={router.pathname}>
-					<Component {...pageProps} />
-				</Page>
-			</Container>
+			<Page activeRoute={router.pathname}>
+				<Component {...pageProps} />
+			</Page>
 		);
 	}
 }
