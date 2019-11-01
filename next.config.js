@@ -19,19 +19,37 @@ module.exports = withMDX({
 		await Promise.all(staticFilesToCopy.map(file => copyFile(join(dir, file), join(outDir, file))));
 		return defaultPathMap;
 	},
-});
-
-module.exports = withBundleAnalyzer({
-	analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
-	analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
-	bundleAnalyzerConfig: {
-		server: {
-			analyzerMode: 'static',
-			reportFilename: '../bundles/server.html',
-		},
-		browser: {
-			analyzerMode: 'static',
-			reportFilename: '../bundles/client.html',
-		},
+	webpack(config, options) {
+		config.module.rules.push({
+			test: /.svg$/,
+			use: [
+				{
+					loader: '@svgr/webpack',
+					options: {
+						icon: true,
+					},
+				},
+			],
+		});
+		config.module.rules.push({
+			test: /.css$/,
+			use: 'raw-loader',
+		});
+		return config;
 	},
 });
+
+// module.exports = withBundleAnalyzer({
+// 	analyzeServer: ['server', 'both'].includes(process.env.BUNDLE_ANALYZE),
+// 	analyzeBrowser: ['browser', 'both'].includes(process.env.BUNDLE_ANALYZE),
+// 	bundleAnalyzerConfig: {
+// 		server: {
+// 			analyzerMode: 'static',
+// 			reportFilename: '../bundles/server.html',
+// 		},
+// 		browser: {
+// 			analyzerMode: 'static',
+// 			reportFilename: '../bundles/client.html',
+// 		},
+// 	},
+// });

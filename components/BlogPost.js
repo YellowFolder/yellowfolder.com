@@ -1,7 +1,8 @@
-import React from 'react';
+import { format, parse } from 'date-fns';
 import { withRouter } from 'next/router';
-import Head from './Head';
+import React from 'react';
 import blogposts from '../data/blog-posts';
+import Head from './Head';
 
 export default withRouter(props => {
 	const { meta, children, router } = props;
@@ -15,7 +16,7 @@ export default withRouter(props => {
 			<Head title={meta.title} description={meta.summary} image={meta.image}>
 				{meta.published !== true && <meta name="robots" content="noindex" />}
 			</Head>
-			{meta.published !== 'true' && <strong>THIS IS A DRAFT. PLEASE DO NOT SHARE.</strong>}
+			{meta.published !== true && <strong>THIS IS A DRAFT. PLEASE DO NOT SHARE.</strong>}
 			<h2>{meta.title}</h2>
 			{children}
 		</>

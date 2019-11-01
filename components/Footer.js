@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Link from 'next/link';
+import styled from 'styled-components';
 import { size } from './styles/device';
 
 const StyledFooter = styled.footer`
@@ -149,8 +149,8 @@ const Footer = () => (
 						</a>
 					</Link>
 					<span> • </span>
-					<Link href="https://blog.yellowfolder.com/#">
-						<a rel="noopener noreferrer">Blog</a>
+					<Link prefetch href="/blog">
+						<a>Blog</a>
 					</Link>
 				</div>
 			</div>

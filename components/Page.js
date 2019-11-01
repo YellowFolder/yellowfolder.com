@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import reset from 'styled-reset';
 import Footer from './Footer';
 import Header from './Header';
 import Meta from './Meta';
@@ -35,6 +36,8 @@ const Inner = styled.div`
 `;
 
 const GlobalStyle = createGlobalStyle`
+  ${reset}
+
   @font-face {
     font-family: 'Clear Sans';
     font-display: auto;
