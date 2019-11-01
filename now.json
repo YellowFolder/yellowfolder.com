@@ -1,6 +1,6 @@
 {
 	"version": 2,
-	"name": "site.brockthebear",
+	"name": "site",
 	"build": {
 		"env": {
 			"DOMAIN": "site.brockthebear.now.sh"

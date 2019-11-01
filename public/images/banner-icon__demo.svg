@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="89.8" height="93.7">
+  <style>
+    .st1{fill:#fff;stroke:#5b6670;stroke-width:.5;stroke-linejoin:round;stroke-miterlimit:10}
+  </style>
+  <path fill="#afafae" stroke="#5b6670" stroke-width=".5" stroke-linejoin="round" stroke-miterlimit="10" d="M.3 93.4l89.3-46.6L.3.3z"/>
+  <path class="st1" d="M32.7 43.3v-5c0-.8-.7-1.6-1.6-1.6H6.4c-.9 0-1.6.8-1.6 1.6V45c1.2-1 2.8-1.7 4.5-1.7h23.4z"/>
+  <path class="st1" d="M72 43.2H61V29.9c0-6.7-5.5-12.2-12.2-12.2h-9.3c-6.7 0-12.2 5.5-12.2 12.2v4.9h-11v-5A23.3 23.3 0 0 1 39.3 6.7h9.3A23.3 23.3 0 0 1 72 29.9v13.3zM39.6 72.9a6.5 6.5 0 1 1 11-5.8l31.7-16.5V50c0-2.5-2-4.5-4.5-4.5H9.3c-2.5 0-4.5 2-4.5 4.5v41L39.6 73z"/>
+</svg>
