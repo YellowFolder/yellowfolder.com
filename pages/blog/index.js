@@ -1,9 +1,16 @@
-import React from 'react';
-import fetch from 'isomorphic-unfetch';
-import { parse, format } from 'date-fns';
+import React, { Component } from 'react';
+import posts from '../../posts/blog-posts';
 
-class BlogIndex extends React.Component {
-	static async getInitialProps() {
-		const data = await fetch('https://yellowfolder');
+class BlogIndex extends Component {
+	render() {
+		return (
+			<main>
+				{posts.map(post => (
+					<h1>{post.title}</h1>
+				))}
+			</main>
+		);
 	}
 }
+
+export default BlogIndex;
