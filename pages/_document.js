@@ -16,44 +16,16 @@ export default class MyDocument extends Document {
 		return (
 			<html lang="en">
 				<Head>
+					<meta charSet="UTF-8" />
+					<meta name="viewport" content="width=device-width, minimum-scale=1.0" />
 					{this.props.styleTags}
-					{/* <!-- Start of HubSpot Embed Code --> */}
-					<script
-						src="https://js.hscollectedforms.net/collectedforms.js"
-						type="text/javascript"
-						id="CollectedForms-5071454"
-						crossOrigin="anonymous"
-						data-leadin-portal-id="5071454"
-						data-leadin-env="prod"
-						data-loader="hs-scriptloader"
-						data-hsjs-portal="5071454"
-						data-hsjs-env="prod"
-					/>
-					<script
-						src="https://js.hsadspixel.net/fb.js"
-						type="text/javascript"
-						id="hs-ads-pixel-5071454"
-						data-ads-portal-id="5071454"
-						data-ads-env="prod"
-						data-loader="hs-scriptloader"
-						data-hsjs-portal="5071454"
-						data-hsjs-env="prod"
-					/>
-					<script
-						src="//js.hs-analytics.net/analytics/1555018500000/5071454.js"
-						type="text/javascript"
-						id="hs-analytics"
-					/>
-					<script
-						type="text/javascript"
-						id="hs-script-loader"
-						async
-						defer
-						src="//js.hs-scripts.com/5071454.js"
-					/>
-					{/* <!-- End of HubSpot Embed Code --> */}
 				</Head>
-				<body>
+				<body className="no-js">
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `document.body.classList.remove('no-js');`,
+						}}
+					/>
 					<Main />
 					<NextScript />
 				</body>

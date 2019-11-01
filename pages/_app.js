@@ -1,5 +1,4 @@
 import App, { Container } from 'next/app';
-import { Router } from 'next/router';
 import Page from '../components/Page';
 
 class _App extends App {

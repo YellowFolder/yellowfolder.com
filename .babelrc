@@ -3,11 +3,14 @@
 		"development": {
 			"presets": ["next/babel"],
 			"plugins": [
+				"macros",
+				"preval",
 				[
 					"styled-components",
 					{
 						"ssr": true,
-						"displayName": true
+						"displayName": true,
+						"preprocess": "false"
 					}
 				]
 			]
@@ -15,11 +18,14 @@
 		"production": {
 			"presets": ["next/babel"],
 			"plugins": [
+				"macros",
+				"preval",
 				[
 					"styled-components",
 					{
 						"ssr": true,
-						"displayName": true
+						"displayName": true,
+						"preprocess": "false"
 					}
 				]
 			]
@@ -42,7 +48,8 @@
 					"styled-components",
 					{
 						"ssr": true,
-						"displayName": true
+						"displayName": true,
+						"preprocess": "false"
 					}
 				]
 			]
