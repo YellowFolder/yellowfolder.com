@@ -19,6 +19,11 @@ module.exports = files
 
 		const meta = eval('(' + match[1] + ')');
 
+		console.log(
+			`path is `,
+			DIR.replace(process.cwd() + '/pages', '') + file.replace(/\.mdx?$/, '')
+		);
+
 		return {
 			...meta,
 			path: DIR.replace(process.cwd() + '/pages', '') + file.replace(/\.mdx?$/, ''),

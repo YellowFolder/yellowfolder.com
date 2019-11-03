@@ -23,6 +23,24 @@ import Head from './Head';
 // 	);
 // });
 
+// export class BlogPost extends React.Component {
+// 	render() {
+// 		const { path, meta, children } = this.props;
+// 		return (
+// 			<>
+// 				<Head title={meta.title} description={meta.summary} image={meta.image}>
+// 					{meta.published !== true && <meta name="robots" content="noindex" />}
+// 				</Head>
+// 				{meta.published !== true && <strong>THIS IS A DRAFT. PLEASE DO NOT SHARE.</strong>}
+// 				<h2>{meta.title}</h2>
+// 				{children}
+// 			</>
+// 		);
+// 	}
+// }
+
+// export default BlogPost;
+
 function BlogPost({ path, meta, children }) {
 	return (
 		<>
