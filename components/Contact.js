@@ -456,7 +456,13 @@ const ContactForm = () => {
 						<label htmlFor="state">
 							State<span>*</span>
 						</label>
-						<select required id="state" name="$State" onChange={onFormFieldChange}>
+						<select
+							required
+							id="state"
+							defaultValue={contact['$State'] || 'select'}
+							name="$State"
+							onChange={onFormFieldChange}
+						>
 							<option value="select" disabled>
 								Please Select
 							</option>
@@ -517,7 +523,13 @@ const ContactForm = () => {
 						<label htmlFor="purpose">
 							How can we help?<span>*</span>
 						</label>
-						<select required id="purpose" name="$How can we help?" onChange={onFormFieldChange}>
+						<select
+							required
+							id="purpose"
+							defaultValue={contact['$How can we help?'] || 'select'}
+							name="$How can we help?"
+							onChange={onFormFieldChange}
+						>
 							<option value="select" disabled>
 								Please Select
 							</option>
