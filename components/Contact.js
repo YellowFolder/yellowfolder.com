@@ -1,43 +1,6 @@
 import React, { Component } from 'react';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { size } from './styles/device';
-
-const spin = keyframes`
-	0% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(360deg);
-	}
-`;
-
-const Loader = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	height: 100%;
-	@media (min-width: ${size.navMenu}) {
-		height: 625px;
-		align-items: flex-start;
-	}
-	@media (max-width: ${size.tablet}) {
-		height: 325px;
-	}
-
-	#loader {
-		border-radius: 50%;
-		width: 48px;
-		height: 48px;
-		border: 0.25rem solid ${props => props.theme.grey};
-		border-top-color: #fff;
-		animation: ${spin} 750ms infinite linear;
-		background-color: rgba(255, 255, 255, 0.2);
-		@media (min-width: ${size.navMenu}) {
-			margin-top: 100px;
-		}
-	}
-`;
 
 const StyledContact = styled.div`
 	width: 100%;
@@ -103,31 +66,99 @@ const StyledContact = styled.div`
 	.contact-form--form {
 		grid-area: form;
 		width: 100%;
-		height: 100%;
-		display: ${props => (props.formHasLoaded ? 'block' : 'flex')};
-		align-items: center;
-		justify-content: center;
-		flex-flow: column nowrap;
-
-		#embedded-form {
-			.hbspt-form {
+		form {
+			display: flex;
+			flex-flow: column wrap;
+			flex: 1 0 auto;
+			align-items: flex-start;
+			justify-content: center;
+			.form--field-wrapper {
+				display: flex;
+				flex: 1 0 auto;
+				flex-flow: column nowrap;
 				width: 100%;
-				iframe.hs-form-iframe {
-					width: 100% !important;
+				padding: 10px 0;
+				label {
+					text-align: left;
+					text-transform: capitalize;
+					span {
+						color: red;
+						vertical-align: super;
+					}
+				}
+				select,
+				input,
+				textarea {
+					width: 100%;
+					max-width: 500px;
+					margin: 6px 0 0 0;
+					padding: 9px 10px;
+					font-size: 1.6rem;
+					line-height: 22px;
+					color: #33475b;
+					background-color: #f5f8fa;
+					border: 1px solid #cbd6e2;
+					border-radius: 3px;
+					&:focus {
+						outline: none;
+						border-color: rgba(82, 168, 236, 0.8);
+						background-color: #fff;
+					}
+				}
+				textarea,
+				input {
+					&:not(:empty):valid,
+					&:not(:empty):optional {
+						/* border: 1px solid #7ce882; */
+						/* background-color: #fff; */
+					}
+				}
+				select {
+					height: 4rem;
+				}
+				textarea {
+					height: 100px;
+				}
+			}
+			.form--disclaimer {
+				width: 100%;
+				max-width: 500px;
+				color: #33475b;
+				margin-bottom: 3px;
+				font-size: 14px;
+				line-height: 24px;
+			}
+			.form--submit-wrapper {
+				.form--submit-btn {
+					background-color: ${props => props.theme.yellow};
+					border-color: ${props => props.theme.yellow};
+					font-family: ${props => props.theme.boldFont};
+					font-weight: 700;
+					color: #fff;
+					text-align: center;
+					line-height: 12px;
+					font-size: 1.4rem;
+					padding: 12px 24px;
+					margin: 0;
+					border-radius: 3px;
+					border-style: solid;
+					border-width: 1px;
+					cursor: pointer;
+					outline: none;
+					&:active {
+						outline: none;
+					}
 				}
 			}
 		}
 	}
-
 	@media (max-width: ${size.navMenu}) {
-		grid-template-areas:
-			'header header header'
-			'form form form'
-			'sidebar sidebar sidebar';
+		grid-template-areas: 'header header header' 'form form form' 'sidebar sidebar sidebar';
 		grid-gap: 15px 0;
 		.contact-form {
 			&--header {
 				width: 80%;
+				margin: 0 auto;
 				h1 {
 					/* line-height: calc(64px + (64 - 58) * ((100vw - 800px) / (1000 - 400))); */
 					line-height: 120%;
@@ -136,24 +167,37 @@ const StyledContact = styled.div`
 				}
 			}
 			&--form {
-				display: flex;
-				right: 0;
-				transform: translate(0);
-
-				#embedded-form {
-					display: flex;
-					flex-flow: column nowrap;
+				form {
+					width: 100%;
+					margin: 0 auto;
 					align-items: center;
-					justify-content: center;
-					width: 100% !important;
-
-					.hbspt-form {
-						width: 100%;
-
-						iframe.hs-form-iframe {
-							position: relative;
+					.form {
+						&--field-item {
+							align-items: flex-start;
+							align-self: flex-start;
+						}
+						&--field-wrapper {
+							width: 80%;
+							margin: 0 auto;
+						}
+						&--disclaimer {
+							align-self: center;
+							max-width: none;
+							width: 80%;
+						}
+						&--submit-wrapper {
 							display: flex;
-							width: 100% !important;
+							align-items: center;
+							width: 100%;
+							justify-content: center;
+							padding: 4rem 0 0 0;
+							.form--submit-btn {
+								width: 80%;
+								font-size: 2.2rem;
+								padding: 16px 24px;
+								margin: 0 auto;
+								border-radius: 6px;
+							}
 						}
 					}
 				}
@@ -191,6 +235,27 @@ const StyledContact = styled.div`
 					margin: 0;
 				}
 			}
+			&--form {
+				form {
+					.form {
+						&--field-item {
+							width: 96%;
+							align-items: flex-start;
+							align-self: flex-start;
+						}
+						&--field-wrapper {
+						}
+						&--disclaimer {
+							margin: 0 2% 3px;
+						}
+						&--submit-wrapper {
+						}
+					}
+					.form-field--wrapper {
+						width: 96%;
+					}
+				}
+			}
 			&--sidebar {
 				padding-top: 4rem;
 				border-bottom: 5px solid ${props => props.theme.grey};
@@ -218,99 +283,230 @@ const StyledContact = styled.div`
 
 class Contact extends Component {
 	state = {
-		formHasLoaded: false,
-		formHasRendered: false,
+		email: '',
+		firstName: '',
+		lastName: '',
+		state: 'select',
+		purpose: 'select',
+		message: '',
 	};
 
-	componentDidMount() {
-		// create a `<script />` element that will inject the prerequisite code necessary to create a hubspot form.
-		// this code must be added before the form is actually created.
-		const preloadScript = document.createElement('script');
-		preloadScript.src = '//js.hsforms.net/forms/v2.js';
-		document.getElementById('embedded-form').appendChild(preloadScript);
+	onFormFieldChange = e => {
+		console.log(e.target);
+		this.setState({
+			[e.target.id]: e.target.value,
+		});
+	};
 
-		// once preloadScript has been loaded by the DOM,
-		// create script element to create hbspt form.
-		preloadScript.onload = () => {
-			const script = document.createElement('script');
-			script.innerHTML = `
-				hbspt.forms.create({
-					portalId: "5071454",
-					formId: "a7743506-a532-40ff-9d76-93c023f3bd65"
-				});
-			`;
-
-			// insert script to create form.
-			document.getElementById('embedded-form').appendChild(script);
-
-			// set formHasLoaded state to true once script has been inserted.
-			this.setState({ formHasLoaded: true }, () => {
-				// listen for 'onFormReady' event emitted by hbspt form object.
-				// onFormReady is fired once form has been inserted into DOM.
-				// https://developers.hubspot.com/global-form-events
-				window.addEventListener('message', this.hideLoader);
-			});
-		};
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener('message', this.hideLoader);
-	}
-
-	hideLoader = event => {
-		if (event.data.type === 'hsFormCallback' && event.data.eventName === 'onFormReady') {
-			this.setState({ formHasRendered: true });
-		}
+	onSubmit = e => {
+		e.preventDefault();
+		console.log(this.state);
 	};
 
 	render() {
+		const { email, firstName, lastName, state, purpose, message } = this.state;
+
 		return (
-			<StyledContact formHasLoaded={this.state.formHasLoaded}>
-				<div className="contact-form--header">
-					<h1>Got a question? Get in touch.</h1>
-				</div>
-				<aside className="contact-form--sidebar">
-					<div className="sidebar-contact-info">
-						<h3>YellowFolder</h3>
-						<p>
-							1617 W Crosby Rd., Ste 100 <br />
-							Carrollton, TX 75006
-						</p>
+			<>
+				<StyledContact>
+					<div className="contact-form--header">
+						<h1>Got a question? Get in touch.</h1>
 					</div>
-					<div className="sidebar-contact-info">
-						<h3>Sales</h3>
-						<p>
-							<span itemProp="telephone">
-								<a href="tel:+1-844-935-5684">(844) 935-5684</a>
-							</span>
-							<br />
-							<a href="mailto:sales@yellowfolder.com" itemProp="email">
-								sales@yellowfolder.com
-							</a>
-						</p>
+					<aside className="contact-form--sidebar">
+						<div className="sidebar-contact-info">
+							<h3>YellowFolder</h3>
+							<p>
+								1617 W Crosby Rd., Ste 100 <br />
+								Carrollton, TX 75006
+							</p>
+						</div>
+						<div className="sidebar-contact-info">
+							<h3>Sales</h3>
+							<p>
+								<span itemProp="telephone">
+									<a href="tel:+1-844-935-5684">(844) 935-5684</a>
+								</span>
+								<br />
+								<a href="mailto:sales@yellowfolder.com" itemProp="email">
+									sales@yellowfolder.com
+								</a>
+							</p>
+						</div>
+						<div className="sidebar-contact-info">
+							<h3>Support</h3>
+							<p>
+								<span itemProp="telephone">
+									<a href="tel:+1-844-935-5699">(844) 935-5699</a>
+								</span>
+								<br />
+								<a href="mailto:support@yellowfolder.com" itemProp="email">
+									support@yellowfolder.com
+								</a>
+							</p>
+						</div>
+					</aside>
+					<div className="contact-form--form">
+						<form>
+							{' '}
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="email">
+									Email
+									<span>*</span>
+								</label>
+								<input
+									required
+									id="email"
+									type="email"
+									autoComplete="email"
+									value={email}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="firstName">First Name</label>
+								<input
+									id="firstName"
+									type="text"
+									autoComplete="given-name"
+									value={firstName}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="lastName">Last Name</label>
+								<input
+									id="lastName"
+									type="text"
+									autoComplete="family-name"
+									value={lastName}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="state">
+									State<span>*</span>
+								</label>
+								<select
+									required
+									id="state"
+									name="state"
+									value={state}
+									onChange={this.onFormFieldChange}
+								>
+									<option value="select" disabled>
+										Please Select
+									</option>
+									<option value="AL">Alabama</option>
+									<option value="AK">Alaska</option>
+									<option value="AZ">Arizona</option>
+									<option value="AR">Arkansas</option>
+									<option value="CA">California</option>
+									<option value="CO">Colorado</option>
+									<option value="CT">Connecticut</option>
+									<option value="DE">Delaware</option>
+									<option value="DC">District Of Columbia</option>
+									<option value="FL">Florida</option>
+									<option value="GA">Georgia</option>
+									<option value="HI">Hawaii</option>
+									<option value="ID">Idaho</option>
+									<option value="IL">Illinois</option>
+									<option value="IN">Indiana</option>
+									<option value="IA">Iowa</option>
+									<option value="KS">Kansas</option>
+									<option value="KY">Kentucky</option>
+									<option value="LA">Louisiana</option>
+									<option value="ME">Maine</option>
+									<option value="MD">Maryland</option>
+									<option value="MA">Massachusetts</option>
+									<option value="MI">Michigan</option>
+									<option value="MN">Minnesota</option>
+									<option value="MS">Mississippi</option>
+									<option value="MO">Missouri</option>
+									<option value="MT">Montana</option>
+									<option value="NE">Nebraska</option>
+									<option value="NV">Nevada</option>
+									<option value="NH">New Hampshire</option>
+									<option value="NJ">New Jersey</option>
+									<option value="NM">New Mexico</option>
+									<option value="NY">New York</option>
+									<option value="NC">North Carolina</option>
+									<option value="ND">North Dakota</option>
+									<option value="OH">Ohio</option>
+									<option value="OK">Oklahoma</option>
+									<option value="OR">Oregon</option>
+									<option value="PA">Pennsylvania</option>
+									<option value="RI">Rhode Island</option>
+									<option value="SC">South Carolina</option>
+									<option value="SD">South Dakota</option>
+									<option value="TN">Tennessee</option>
+									<option value="TX">Texas</option>
+									<option value="UT">Utah</option>
+									<option value="VT">Vermont</option>
+									<option value="VA">Virginia</option>
+									<option value="WA">Washington</option>
+									<option value="WV">West Virginia</option>
+									<option value="WI">Wisconsin</option>
+									<option value="WY">Wyoming</option>
+								</select>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="purpose">
+									How can we help?<span>*</span>
+								</label>
+								<select
+									required
+									id="purpose"
+									name="purpose"
+									value={purpose}
+									onChange={this.onFormFieldChange}
+								>
+									<option value="select" disabled>
+										Please Select
+									</option>
+									<option value="I am interested in using YellowFolder at my school">
+										I am interested in using YellowFolder at my school
+									</option>
+									<option value="I recieved an email or call and am interested to learn more">
+										I recieved an email or call and am interested to learn more
+									</option>
+									<option value="I am a current customer and need assistance">
+										I am a current customer and need assistance
+									</option>
+									<option value="I am interested in working for YellowFolder">
+										I am interested in working for YellowFolder
+									</option>
+									<option value="I would like to partner with YellowFolder">
+										I would like to partner with YellowFolder
+									</option>
+									<option value="Something else">Something else</option>
+								</select>
+							</div>
+							<div className="form--field-wrapper form--field-item">
+								<label htmlFor="message">Message</label>
+								<textarea
+									id="message"
+									name="message"
+									value={message}
+									onChange={this.onFormFieldChange}
+								/>
+							</div>
+							<div className="form--disclaimer form--field-item">
+								<p>
+									YellowFolder needs the contact information you provide to contact you about our
+									products and services. You may unsubscribe from these communications at any time.
+									For information on how to unsubscribe, as well as our privacy practices and
+									commitment to protecting your privacy, please review our Privacy Policy.
+								</p>
+							</div>
+							<div className="form--submit-wrapper">
+								<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
+									Submit
+								</button>
+							</div>
+						</form>
 					</div>
-					<div className="sidebar-contact-info">
-						<h3>Support</h3>
-						<p>
-							<span itemProp="telephone">
-								<a href="tel:+1-844-935-5699">(844) 935-5699</a>
-							</span>
-							<br />
-							<a href="mailto:support@yellowfolder.com" itemProp="email">
-								support@yellowfolder.com
-							</a>
-						</p>
-					</div>
-				</aside>
-				<div className="contact-form--form">
-					{this.state.formHasRendered ? null : (
-						<Loader>
-							<div id="loader" />
-						</Loader>
-					)}
-					<div id="embedded-form" />
-				</div>
-			</StyledContact>
+				</StyledContact>
+			</>
 		);
 	}
 }
