@@ -152,7 +152,7 @@ const PageHeader = styled.div`
 const TeamContainer = styled.div`
 	display: grid;
 	grid-template-columns: repeat(10, minmax(50px, 1fr));
-	grid-template-rows: repeat(24, minmax(auto, 100px));
+	grid-template-rows: repeat(20, minmax(auto, 100px));
 	position: relative;
 	height: auto;
 	width: 100%;
@@ -267,14 +267,16 @@ const TeamContainer = styled.div`
 	}
 
 	#text-bottom {
-		grid-column: 6 / 10;
-		padding: 0 25px;
-		grid-row: 17 / span 5;
+		grid-column: 1 / -1;
+		padding: 2rem 25px;
+		grid-row: 14 / 18;
 		display: flex;
 		flex-flow: column nowrap;
-		/* align-items: flex-start; */
+		align-items: flex-start;
 		justify-content: space-evenly;
-		max-width: 600px;
+		max-width: 50%;
+		margin: 0 auto;
+		z-index: 9000;
 
 		span {
 			display: flex;
@@ -284,7 +286,7 @@ const TeamContainer = styled.div`
 			height: auto;
 			h3,
 			p {
-				margin: 1rem 0;
+				margin: 2rem 0;
 			}
 			h3 {
 				font-size: 4.4rem;
@@ -300,6 +302,9 @@ const TeamContainer = styled.div`
 				padding: 0;
 				margin: 0;
 				font-weight: 400;
+				a {
+					text-decoration: underline;
+				}
 			}
 		}
 
@@ -320,7 +325,7 @@ const TeamContainer = styled.div`
 
 	#mid-break {
 		grid-column: 1 / -1;
-		grid-row: 12 / 16;
+		grid-row: 12 / 14;
 		background-color: ${props => props.theme.yellow};
 		background-image: url(/static/images/about-row-background.svg);
 		background-size: cover;
@@ -333,9 +338,9 @@ const TeamContainer = styled.div`
 
 	#btm-break {
 		grid-column: 1 / -1;
-		grid-row: 23 / -1;
+		grid-row: 18 / 21;
 		background-color: ${props => props.theme.grey};
-		margin: -50px 0 0 0;
+		margin: 0;
 		padding: 0;
 		width: 100% !important;
 		display: flex;
@@ -425,6 +430,7 @@ const TeamContainer = styled.div`
 		}
 
 		#btm-break {
+			display: none;
 			grid-column: 1 / -1;
 			grid-row: 24 / 30;
 			margin: 0;
@@ -439,7 +445,7 @@ const TeamContainer = styled.div`
 
 		#text-bottom {
 			grid-column: 2 / 3;
-			grid-row: 33 / 39;
+			grid-row: 19 / 25;
 			margin-top: 25px;
 			padding: 0 50px 50px;
 			max-width: initial;
@@ -488,7 +494,7 @@ const TeamContainer = styled.div`
 			margin-top: -60px;
 		}
 		#text-bottom {
-			grid-row: 33 / 41;
+			/* grid-row: 33 / 41; */
 		}
 	}
 
@@ -570,40 +576,49 @@ const TeamContainer = styled.div`
 			grid-row: 11 / 14;
 		}
 		#monitor {
-			grid-row: 10 / 13;
+			grid-row: 10 / 14;
 			justify-content: initial;
+			align-items: center;
 			img {
 				max-width: 100%;
 			}
-		}
-		#printer {
-			z-index: 5000;
-			align-items: initial;
-			justify-content: initial;
-			grid-row: 13 / 17;
-			img {
-				max-width: 100%;
-			}
-		}
-		#folder-bottom {
-			align-items: initial;
-			justify-content: initial;
-			grid-row: 17 / 22;
-			img {
-				max-width: 100%;
-			}
-		}
-		#btm-break {
-			grid-row: 19 / 22;
 		}
 		#text-bottom {
-			grid-row: 22 / 31;
+			grid-row: 14 / 24;
 			padding: 0 16px;
 			margin-top: 0;
 			align-items: center;
 			justify-content: space-evenly;
 		}
 	}
+
+	@media (max-width: ${size.mobileS}) {
+		.member-row {
+			grid-row: 1 / 10;
+		}
+		#grey-bg {
+			grid-row: 2 / 9;
+		}
+		#monitor {
+			grid-row: 9 / 12;
+		}
+		#mid-break {
+			grid-row: 10 / 12;
+		}
+		#text-bottom {
+				grid-row: 12 / 20;
+				justify-content: space-around;
+				span,
+				span ~ p {
+					width: 95%;
+				}
+				
+		}
+		#btm-break {
+			display: initial;
+			grid-row: 21 / 21;
+		}
+	})
 `;
 
 export { AboutPage, PageHeader, TeamContainer };

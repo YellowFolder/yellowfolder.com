@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
+import React, { Component } from 'react';
 import { AboutPage, PageHeader, TeamContainer } from './styles/AboutStyles';
 
 export class About extends Component {
@@ -51,12 +51,6 @@ export class About extends Component {
 							src="/static/images/monitor-min.svg"
 							alt="YellowFolder team member Candice Earnest"
 						/>
-					</div>
-					<div id="printer">
-						<img src="/static/images/printer-min.svg" alt="YellowFolder team member Jason Addams" />
-					</div>
-					<div id="folder-bottom">
-						<img src="/static/images/folder-min.svg" alt="YellowFolder team member Kelly Oglesby" />
 					</div>
 					<div id="text-bottom">
 						<span>
