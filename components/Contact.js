@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { size } from './styles/device';
 
 const ACCESS_KEY_PROD = 'e20b50ff-c9c2-4198-b148-b2ebd61763f3';
+const ACCESS_KEY_DEV = '427e0763-715a-488d-b159-140d5a32ca6f';
 
 const StyledContact = styled.div`
 	width: 100%;
@@ -329,7 +330,7 @@ const ContactForm = () => {
 		message: '',
 		honeypot: '',
 		subject: 'Contact Form Submission',
-		accessKey: '427e0763-715a-488d-b159-140d5a32ca6f',
+		accessKey: ACCESS_KEY_PROD,
 	});
 
 	const [response, setResponse] = useState({
