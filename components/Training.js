@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from 'next/link';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
@@ -61,6 +60,42 @@ const StyledTraining = styled.main`
 					font-size: 20px;
 					line-height: 120%;
 					color: ${props => props.theme.grey};
+				}
+			}
+
+			.courses {
+				display: flex;
+				flex-flow: column nowrap;
+				width: 100%;
+				align-items: flex-start;
+				justify-content: flex-start;
+
+				.section {
+					width: 100%;
+					h3 {
+						font-size: 2.4rem;
+						font-family: ${props => props.theme.boldFont};
+						line-height: 2.4rem;
+						padding: 15px 0 0;
+					}
+					.description {
+						font-size: 2rem;
+						padding: 0;
+						margin: 0 0 10px;
+						line-height: 1.42;
+					}
+					table {
+						tr {
+							td {
+								:nth-child(1) {
+									width: 75%;
+								}
+								:nth-child(2) {
+									width: 25%;
+								}
+							}
+						}
+					}
 				}
 			}
 
@@ -126,6 +161,10 @@ const StyledTraining = styled.main`
 						border: none;
 						font-size: 1.7rem;
 						text-align: right;
+						&:nth-child(1),
+						&:nth-child(2) {
+							width: initial;
+						}
 
 						&:before {
 							position: absolute;
@@ -133,7 +172,7 @@ const StyledTraining = styled.main`
 							display: block;
 							text-transform: capitalize;
 							font-family: ${props => props.theme.boldFont};
-							content: attr(aria-label) ": ";
+							content: attr(aria-label) ': ';
 						}
 						&#registrationLink {
 							a {
@@ -180,51 +219,46 @@ export class Training extends Component {
 	render() {
 		return (
 			<StyledTraining>
-				<div className='training-list--header'>
+				<div className="training-list--header">
 					<h2>Weekly Training Session Offerings</h2>
-					<p>Signing up for our training webinars is easy! Just pick the subject, day and time. Click the register button, and you'll be taken to our registration form.</p>
+					<p>
+						Signing up for our weekly training webinars just got easier and more convenient for you.
+						Simply determine which topic you need additional training on and click the link to
+						provide us with the most convenient times for us to schedule a session with you. Most
+						webinar trainings only last around 15 minutes, however the OVERALL section can take up
+						to 45 minutes.
+					</p>
 				</div>
-				<div className='training-list--body'>
-					<div className='list-intro'>
-						<p>Not a YellowFolder customer yet, but considering joining the Paperless Revolution? Register for this session and learn why YellowFolder is Education's Online File Cabinet.</p>
-					</div>
-					<table className='list'>
-						<tbody>
-						<tr id='intro-course'>
-							<td aria-label="Course">Why YellowFolder?</td>
-							<td aria-label="Day">Tuesday</td>
-							<td aria-label="Time">12:30 - 1:00 pm</td>
-							<td id="registrationLink" aria-label="Register">
-								<Link href='https://register.gotowebinar.com/rt/3879402874948216322'>
-									<a target="_blank" rel="noopener noreferrer">
-										<button>Register</button>
-									</a>
-								</Link>
-							</td>
-						</tr>
-						<tr id='rowgap'><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
-						{ trainingSessions.map(s => {
+				<div className="training-list--body">
+					<div className="courses">
+						{trainingSessions.map(section => {
+							console.log(section);
 							return (
-								<tr key={s.registrationLink}>
-									<td aria-label="Course">{s.title}</td>
-									<td aria-label="Day">{s.day}</td>
-									<td aria-label="Time">{s.time}</td>
-									<td id='registrationLink' aria-label="Register">
-										<Link href={s.registrationLink}>
-											<a target="_blank" rel="noopener noreferrer">
-												<button>Register</button>
-											</a>
-										</Link>
-									</td>
-								</tr>
+								<div key={section.section} className="section">
+									<h3>{section.section}</h3>
+									{section.description && <p className="description">{section.description}</p>}
+									<table className="list">
+										<tbody>
+											{section.classes.map(i => {
+												return (
+													<tr key={i.title}>
+														<td aria-label="Course">{i.title}</td>
+														<td id="registrationLink" aria-label="Register">
+															<button value={i.title}>Register</button>
+														</td>
+													</tr>
+												);
+											})}
+										</tbody>
+									</table>
+								</div>
 							);
 						})}
-						</tbody>
-					</table>
+					</div>
 				</div>
 			</StyledTraining>
-		)
+		);
 	}
 }
 
-export default Training
+export default Training;
