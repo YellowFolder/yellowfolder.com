@@ -52,9 +52,15 @@ const StyledDemo = styled.div`
 			height: 100%;
 			width: 100%;
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			flex-flow: column nowrap;
 			margin: 0 auto;
+
+			.demo-image {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 
 			img {
 				padding: 50px 0 25px;
@@ -70,11 +76,25 @@ const StyledDemo = styled.div`
 				padding: 25px 0;
 
 				iframe {
-					/* position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%; */
+				}
+			}
+
+			.body-copy-btm {
+				display: flex;
+				flex-flow: column nowrap;
+				align-items: flex-start;
+				justify-content: center;
+				padding-bottom: 2rem;
+
+				ul {
+					padding-left: 20px;
+					li {
+						font-size: 1.6rem;
+						line-height: 2rem;
+					}
+				}
+				.conclusion {
+					font-size: 1.6rem;
 				}
 			}
 		}
@@ -83,9 +103,10 @@ const StyledDemo = styled.div`
 			height: 100%;
 			flex: 1 0 auto;
 			display: flex;
-			flex-flow: row nowrap;
+			flex-flow: column nowrap;
 			align-items: flex-start;
 			justify-content: center;
+			margin-bottom: 2rem;
 			form {
 				display: flex;
 				flex-flow: column wrap;
@@ -219,7 +240,7 @@ const StyledDemo = styled.div`
 				display: flex;
 				align-items: center;
 				justify-content: flex-start;
-				margin: 2rem auto;
+				margin: 2rem 0;
 			}
 			&.is-danger {
 				background-color: #ff3860;
@@ -395,6 +416,30 @@ const Demo = () => {
 							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 							allowFullScreen
 						></iframe>
+					</div>
+					<div className="body-copy-btm">
+						<h3>As part of our discussion, we will show you:</h3>
+						<ul>
+							<li>The simplicity of uploading documents digitally</li>
+							<li>The process of organizing, retrieving, and sharing records</li>
+							<li>The effortlessness of managing and changing permissions</li>
+							<li>How to organize your folder system for HR, student records, admin, special ed</li>
+							<li>
+								How AI assists in meeting retention guidelines, so you only keep the records you
+								need
+							</li>
+						</ul>
+						<div className="conclusion">
+							<p>
+								We will also be happy to answer any questions you have along the way. We welcome
+								them!
+							</p>
+							<p>
+								Want to learn how YellowFolder can work for your school? Submit the form to schedule
+								your live demo!
+							</p>
+							<p>We look forward to connecting.</p>
+						</div>
 					</div>
 				</div>
 				<div className="demo-form--form">
