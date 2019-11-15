@@ -330,7 +330,7 @@ const Demo = () => {
 		subject: 'Demo Request Form Submission',
 		'$Document Storage Issue': '',
 		'$Document Storage Budget': '',
-		accessKey: ACCESS_KEY_DEV,
+		accessKey: ACCESS_KEY_PROD,
 	});
 
 	const [response, setResponse] = useState({

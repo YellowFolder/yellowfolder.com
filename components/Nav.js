@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
-import { NavBar, ItemStyles } from './styles/NavStyles';
+import React, { Component } from 'react';
+import { ItemStyles, NavBar } from './styles/NavStyles';
 
 class Nav extends Component {
 	state = {
@@ -34,22 +34,22 @@ class Nav extends Component {
 				<ItemStyles role="navigation" className="nav">
 					<ul className="nav__items">
 						<li className="nav__item" onClick={this.handleToggle}>
-							<Link prefetch href="/about-us">
+							<Link href="/about-us">
 								<a>about us</a>
 							</Link>
 						</li>
 						<li className="nav__item" onClick={this.handleToggle}>
-							<Link prefetch href="/services">
+							<Link href="/services">
 								<a>services</a>
 							</Link>
 						</li>
 						<li className="nav__item" onClick={this.handleToggle}>
-							<Link prefetch href="/contact">
+							<Link href="/contact">
 								<a>contact</a>
 							</Link>
 						</li>
 						<li className="nav__item" onClick={this.handleToggle}>
-							<Link prefetch href="/weekly-training">
+							<Link href="/weekly-training">
 								<a>training</a>
 							</Link>
 						</li>

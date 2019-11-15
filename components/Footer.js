@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import Link from 'next/link';
+import styled from 'styled-components';
 import { size } from './styles/device';
 
 const StyledFooter = styled.footer`
@@ -134,7 +134,7 @@ const Footer = () => (
 			</div>
 			<div className="content-right">
 				<RequestButton>
-					<Link prefetch href="/record-request">
+					<Link href="/record-request">
 						<a>Record Request</a>
 					</Link>
 				</RequestButton>
