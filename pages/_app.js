@@ -1,5 +1,5 @@
 import App, { Container } from 'next/app';
-import { Router } from 'next/router';
+import 'react-datepicker/dist/react-datepicker.css';
 import Page from '../components/Page';
 
 class _App extends App {
