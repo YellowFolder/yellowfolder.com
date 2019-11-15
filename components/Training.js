@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
@@ -237,6 +238,8 @@ const Training = () => {
 		subject: 'Training Form Submission',
 	});
 
+	const [startDate, setStartDate] = useState(new Date());
+
 	const onFormFieldChange = e => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	};
@@ -397,6 +400,18 @@ const Training = () => {
 								<option value="Human Resource Records">Human Resource Records</option>
 								<option value="Administrative Records">Administrative Records</option>
 							</select>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="trainingSession1">Training Date/Time 1</label>
+							<DatePicker
+								selected={startDate}
+								onChange={date => setStartDate(date)}
+								showTimeSelect
+								timeCaption="time"
+								timeIntervals={15}
+								locale="en-US"
+								dateFormat="MMMM d, yyyy h:mm a"
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="recordSeries">Training Session</label>
