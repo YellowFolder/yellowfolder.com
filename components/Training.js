@@ -291,7 +291,6 @@ const Training = () => {
 			<div className="training-list--body">
 				<div className="courses">
 					{trainingSessions.map(section => {
-						console.log(section);
 						return (
 							<div key={section.section} className="section">
 								<h3>{section.section}</h3>
@@ -322,7 +321,7 @@ const Training = () => {
 					<h3>Register for Training</h3>
 				</div>
 				<div className="form--body">
-					<form onSubmit={handleSubmit} enctype="multipart/form-data">
+					<form onSubmit={handleSubmit} encType="multipart/form-data">
 						{' '}
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="fullName">
