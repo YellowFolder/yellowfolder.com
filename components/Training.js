@@ -477,6 +477,11 @@ const Training = () => {
 								})}
 							</select>
 						</div>
+						<div className="form--submit-wrapper">
+							<button className="form--submit-btn" type="submit" onClick={handleSubmit}>
+								Submit
+							</button>
+						</div>
 					</form>
 				</div>
 			</StyledForm>
