@@ -220,9 +220,24 @@ const StyledTraining = styled.main`
 const baseURL = 'https://sfapi.formstack.io';
 const formRoute = '/FormEngine/EngineFrame/UploadFile';
 
-const mappedFields = {};
+const mappedFields = {
+	fullName: 'Case.Requestor_Name__c',
+	email: 'Case.Requestor_Email__c',
+	district: 'Case.Requestor_District__c',
+	recordSeries: 'Case.Record_Series__c',
+	trainingDate1: 'Case.Training_Date_Time_1__c',
+	trainingDate2: 'Case.Training_Date_Time_2__c',
+	trainingDate3: 'Case.Training_Date_Time_3__c',
+	trainingSession: 'Case.Training_Session__c',
+};
 
-const defaultFormValues = {};
+const defaultFormValues = {
+	'Case.Origin': 'Web',
+	'Case.RecordTypeId': '012F0000000yHfAIAU',
+	'inputCase.RecordTypeId': 'Training',
+	'Case.Subject': 'Training Session Requested',
+	formName: 'Training',
+};
 
 const Training = () => {
 	const [contact, setContact] = useState({
@@ -238,7 +253,9 @@ const Training = () => {
 		subject: 'Training Form Submission',
 	});
 
-	const [startDate, setStartDate] = useState(new Date());
+	const [startDate1, setStartDate1] = useState(new Date());
+	const [startDate2, setStartDate2] = useState(new Date());
+	const [startDate3, setStartDate3] = useState(new Date());
 
 	const onFormFieldChange = e => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
@@ -404,8 +421,32 @@ const Training = () => {
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="trainingSession1">Training Date/Time 1</label>
 							<DatePicker
-								selected={startDate}
-								onChange={date => setStartDate(date)}
+								selected={startDate1}
+								onChange={date => setStartDate1(date)}
+								showTimeSelect
+								timeCaption="time"
+								timeIntervals={15}
+								locale="en-US"
+								dateFormat="MMMM d, yyyy h:mm a"
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="trainingSession2">Training Date/Time 2</label>
+							<DatePicker
+								selected={startDate2}
+								onChange={date => setStartDate2(date)}
+								showTimeSelect
+								timeCaption="time"
+								timeIntervals={15}
+								locale="en-GB"
+								dateFormat="MMMM d, yyyy h:mm a"
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="trainingSession3">Training Date/Time 3</label>
+							<DatePicker
+								selected={startDate3}
+								onChange={date => setStartDate3(date)}
 								showTimeSelect
 								timeCaption="time"
 								timeIntervals={15}
