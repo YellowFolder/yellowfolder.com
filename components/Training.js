@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
+import StyledForm from './styles/FormStyles';
 
 const StyledTraining = styled.main`
 	width: 100%;
@@ -215,50 +216,217 @@ const StyledTraining = styled.main`
 	}
 `;
 
-export class Training extends Component {
-	render() {
-		return (
-			<StyledTraining>
-				<div className="training-list--header">
-					<h2>Weekly Training Session Offerings</h2>
-					<p>
-						Signing up for our weekly training webinars just got easier and more convenient for you.
-						Simply determine which topic you need additional training on and click the link to
-						provide us with the most convenient times for us to schedule a session with you. Most
-						webinar trainings only last around 15 minutes, however the OVERALL section can take up
-						to 45 minutes.
-					</p>
+const baseURL = 'https://sfapi.formstack.io';
+const formRoute = '/FormEngine/EngineFrame/UploadFile';
+
+const mappedFields = {};
+
+const defaultFormValues = {};
+
+const Training = () => {
+	const [contact, setContact] = useState({
+		fullName: '',
+		email: '',
+		district: '',
+		recordSeries: '',
+		trainingDate1: '',
+		trainingDate2: '',
+		trainingDate3: '',
+		trainingSession: '',
+		honeypot: '',
+		subject: 'Training Form Submission',
+	});
+
+	const onFormFieldChange = e => {
+		setContact({ ...contact, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		const mappedState = { ...defaultFormValues };
+		// for (const c in contact) {
+
+		// }
+
+		const headers = {
+			'Content-Type': 'application/x-www-form-urlencoded',
+			Accept:
+				'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+		};
+
+		const config = {
+			method: 'post',
+			baseURL,
+			url: formRoute,
+			headers,
+			data: qs.stringify(mappedState),
+			params: {
+				encoding: 'UTF-8',
+			},
+		};
+
+		return axios(config).then(resp => {
+			console.log('got response!');
+			console.log(resp);
+		});
+	};
+
+	const handleClick = e => {
+		e.preventDefault();
+		setContact({ ...contact, [e.target.name]: e.target.value });
+	};
+
+	return (
+		<StyledTraining>
+			<div className="training-list--header">
+				<h2>Weekly Training Session Offerings</h2>
+				<p>
+					Signing up for our weekly training webinars just got easier and more convenient for you.
+					Simply determine which topic you need additional training on and click the link to provide
+					us with the most convenient times for us to schedule a session with you. Most webinar
+					trainings only last around 15 minutes, however the OVERALL section can take up to 45
+					minutes.
+				</p>
+			</div>
+			<div className="training-list--body">
+				<div className="courses">
+					{trainingSessions.map(section => {
+						console.log(section);
+						return (
+							<div key={section.section} className="section">
+								<h3>{section.section}</h3>
+								{section.description && <p className="description">{section.description}</p>}
+								<table className="list">
+									<tbody>
+										{section.classes.map(i => {
+											return (
+												<tr key={i.title}>
+													<td aria-label="Course">{i.title}</td>
+													<td id="registrationLink" aria-label="Register">
+														<button name="trainingSession" value={i.title} onClick={handleClick}>
+															Register
+														</button>
+													</td>
+												</tr>
+											);
+										})}
+									</tbody>
+								</table>
+							</div>
+						);
+					})}
 				</div>
-				<div className="training-list--body">
-					<div className="courses">
-						{trainingSessions.map(section => {
-							console.log(section);
-							return (
-								<div key={section.section} className="section">
-									<h3>{section.section}</h3>
-									{section.description && <p className="description">{section.description}</p>}
-									<table className="list">
-										<tbody>
-											{section.classes.map(i => {
-												return (
-													<tr key={i.title}>
-														<td aria-label="Course">{i.title}</td>
-														<td id="registrationLink" aria-label="Register">
-															<button value={i.title}>Register</button>
-														</td>
-													</tr>
-												);
-											})}
-										</tbody>
-									</table>
-								</div>
-							);
-						})}
-					</div>
+			</div>
+			<StyledForm>
+				<div className="form--header">
+					<h3>Register for Training</h3>
 				</div>
-			</StyledTraining>
-		);
-	}
-}
+				<div className="form--body">
+					<form onSubmit={handleSubmit} enctype="multipart/form-data">
+						{' '}
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="fullName">
+								Full Name
+								<span>*</span>
+							</label>
+							<input
+								required
+								aria-required="true"
+								type="text"
+								aria-label="Full Name"
+								id="fullName"
+								name="fullName"
+								autoComplete="name"
+								value={contact.fullName}
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="email">
+								Email
+								<span>*</span>
+							</label>
+							<input
+								required
+								aria-required="true"
+								type="email"
+								aria-label="Email"
+								id="email"
+								name="email"
+								autoComplete="email"
+								value={contact.email}
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="district">
+								District
+								<span>*</span>
+							</label>
+							<input
+								required
+								aria-required="true"
+								type="text"
+								aria-label="Full Name"
+								id="district"
+								name="district"
+								value={contact.district}
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="recordSeries">Record Series</label>
+							<select
+								required
+								id="recordSeries"
+								name="recordSeries"
+								aria-label="Record Series"
+								aria-required="true"
+								title="Record Series"
+								value={contact.recordSeries}
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
+							>
+								<option value="" disabled>
+									Please Select
+								</option>
+								<option value="Student Records">Student Records</option>
+								<option value="Special Education Records">Special Education Records</option>
+								<option value="Human Resource Records">Human Resource Records</option>
+								<option value="Administrative Records">Administrative Records</option>
+							</select>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="recordSeries">Training Session</label>
+							<select
+								required
+								id="trainingSession"
+								name="trainingSession"
+								aria-label="Training Session"
+								aria-required="true"
+								title="Training Session"
+								value={contact.trainingSession}
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
+							>
+								<option value="" disabled>
+									Please Select
+								</option>
+								{trainingSessions.map(section => {
+									return section.classes.map(item => {
+										return <option value={item.title}>{item.title}</option>;
+									});
+								})}
+							</select>
+						</div>
+					</form>
+				</div>
+			</StyledForm>
+		</StyledTraining>
+	);
+};
 
 export default Training;

@@ -56,10 +56,8 @@ export class About extends Component {
 						<span>
 							<h3>We'd love to meet you face to face.</h3>
 							<p>
-								<Link href="https://info.yellowfolder.com/schedule-a-yellow-folder-demo">
-									<a target="_blank" rel="noopener noreferrer">
-										Click here
-									</a>
+								<Link href="/schedule-a-yellow-folder-demo">
+									<a>Click here</a>
 								</Link>{' '}
 								to sign up for a complimentary live demonstration of our innovative,
 								industry-leading software.
