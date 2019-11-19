@@ -84,7 +84,7 @@ class RecordRequest extends Component {
 		};
 
 		const config = {
-			method: 'post',
+			method: 'POST',
 			baseURL,
 			url: formRoute,
 			headers,
