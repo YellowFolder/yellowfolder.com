@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Router from 'next/router';
 import qs from 'qs';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -529,6 +530,7 @@ const Training = () => {
 		return axios(config).then(resp => {
 			console.log('got response!');
 			console.log(resp);
+			Router.push('/request-success');
 		});
 	};
 

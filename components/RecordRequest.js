@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
 import axios from 'axios';
 import qs from 'qs';
+import React, { Component } from 'react';
 import StyledForm from './styles/FormStyles';
 
 const baseURL = 'https://webto.salesforce.com';
@@ -25,7 +25,7 @@ const mappedFields = {
 
 const defaultFormValues = {
 	orgid: '00DF0000000507Z',
-	retURL: 'http://www.yellowfolder.com/record-request-success.html',
+	retURL: 'http://www.yellowfolder.com/request-success.html',
 	recordType: '012F0000000yHfU',
 	subject: 'Record Request Web Form',
 	priority: 'P2 - Normal',
