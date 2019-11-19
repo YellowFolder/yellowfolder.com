@@ -89,6 +89,7 @@ class RecordRequest extends Component {
 			url: formRoute,
 			headers,
 			data: qs.stringify(mappedState),
+			withCredentials: true,
 			params: {
 				encoding: 'UTF-8',
 			},
