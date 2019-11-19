@@ -1,7 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
@@ -490,10 +489,6 @@ const Training = () => {
 		subject: 'Training Form Submission',
 	});
 
-	const [startDate1, setStartDate1] = useState(new Date());
-	const [startDate2, setStartDate2] = useState(new Date());
-	const [startDate3, setStartDate3] = useState(new Date());
-
 	const onFormFieldChange = e => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	};
@@ -504,10 +499,6 @@ const Training = () => {
 		for (const c in contact) {
 			mappedState[mappedFields[c]] = contact[c];
 		}
-		mappedState['Case.Training_Date_Time_1__c'] = startDate1;
-		mappedState['Case.Training_Date_Time_2__c'] = startDate2;
-		mappedState['Case.Training_Date_Time_3__c'] = startDate3;
-		console.log(`mappedState `, mappedState);
 
 		const headers = {
 			'Content-Type': 'application/x-www-form-urlencoded',
@@ -662,39 +653,48 @@ const Training = () => {
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="trainingSession1">Training Date/Time 1</label>
-							<DatePicker
-								selected={startDate1}
-								onChange={date => setStartDate1(date)}
-								showTimeSelect
-								timeCaption="time"
-								timeIntervals={15}
-								// locale='en-US'
-								dateFormat="MMMM d, yyyy h:mm a"
+							<label htmlFor="trainingDate1">Training Date/Time 1</label>
+							<input
+								required
+								type="datetime-local"
+								id="trainingDate1"
+								name="trainingDate1"
+								value={contact.trainingDate1}
+								title="Training Date/Time 1"
+								aria-label="Training Date/Time 1"
+								aria-required="true"
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="trainingSession2">Training Date/Time 2</label>
-							<DatePicker
-								selected={startDate2}
-								onChange={date => setStartDate2(date)}
-								showTimeSelect
-								timeCaption="time"
-								timeIntervals={15}
-								// locale='en-US'
-								dateFormat="MMMM d, yyyy h:mm a"
+							<label htmlFor="trainingDate2">Training Date/Time 2</label>
+							<input
+								required
+								type="datetime-local"
+								id="trainingDate2"
+								name="trainingDate2"
+								value={contact.trainingDate2}
+								title="Training Date/Time 2"
+								aria-label="Training Date/Time 2"
+								aria-required="true"
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="trainingSession3">Training Date/Time 3</label>
-							<DatePicker
-								selected={startDate3}
-								onChange={date => setStartDate3(date)}
-								showTimeSelect
-								timeCaption="time"
-								timeIntervals={15}
-								// locale='en-US'
-								dateFormat="MMMM d, yyyy h:mm a"
+							<label htmlFor="trainingDate3">Training Date/Time 3</label>
+							<input
+								required
+								type="datetime-local"
+								id="trainingDate3"
+								name="trainingDate3"
+								value={contact.trainingDate3}
+								title="Training Date/Time 3"
+								aria-label="Training Date/Time 3"
+								aria-required="true"
+								onBlur={onFormFieldChange}
+								onChange={onFormFieldChange}
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
