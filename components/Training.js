@@ -1,3 +1,5 @@
+import axios from 'axios';
+import qs from 'qs';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
@@ -502,6 +504,9 @@ const Training = () => {
 		for (const c in contact) {
 			mappedState[mappedFields[c]] = contact[c];
 		}
+		mappedState['Case.Training_Date_Time_1__c'] = startDate1;
+		mappedState['Case.Training_Date_Time_2__c'] = startDate2;
+		mappedState['Case.Training_Date_Time_3__c'] = startDate3;
 		console.log(`mappedState `, mappedState);
 
 		const headers = {
@@ -520,6 +525,8 @@ const Training = () => {
 				encoding: 'UTF-8',
 			},
 		};
+
+		console.log(`config `, config);
 
 		return axios(config).then(resp => {
 			console.log('got response!');
@@ -662,7 +669,7 @@ const Training = () => {
 								showTimeSelect
 								timeCaption="time"
 								timeIntervals={15}
-								locale="en-US"
+								// locale='en-US'
 								dateFormat="MMMM d, yyyy h:mm a"
 							/>
 						</div>
@@ -674,7 +681,7 @@ const Training = () => {
 								showTimeSelect
 								timeCaption="time"
 								timeIntervals={15}
-								locale="en-GB"
+								// locale='en-US'
 								dateFormat="MMMM d, yyyy h:mm a"
 							/>
 						</div>
@@ -686,7 +693,7 @@ const Training = () => {
 								showTimeSelect
 								timeCaption="time"
 								timeIntervals={15}
-								locale="en-US"
+								// locale='en-US'
 								dateFormat="MMMM d, yyyy h:mm a"
 							/>
 						</div>
@@ -707,8 +714,12 @@ const Training = () => {
 									Please Select
 								</option>
 								{trainingSessions.map(section => {
-									return section.classes.map(item => {
-										return <option value={item.title}>{item.title}</option>;
+									return section.classes.map((item, i) => {
+										return (
+											<option key={i} value={item.title}>
+												{item.title}
+											</option>
+										);
 									});
 								})}
 							</select>
