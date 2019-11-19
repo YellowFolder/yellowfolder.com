@@ -1,6 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
@@ -98,6 +98,7 @@ const StyledForm = styled.div`
 				}
 				select {
 					height: 4rem;
+					text-transform: capitalize;
 				}
 				textarea {
 					height: 100px;
@@ -476,6 +477,12 @@ const defaultFormValues = {
 };
 
 const Training = () => {
+	const formRef = useRef(null);
+
+	const scrollToBottom = () => {
+		formRef.current.scrollIntoView({ behavior: 'smooth' });
+	};
+
 	const [contact, setContact] = useState({
 		fullName: '',
 		email: '',
@@ -528,6 +535,7 @@ const Training = () => {
 	const handleClick = e => {
 		e.preventDefault();
 		setContact({ ...contact, [e.target.name]: e.target.value });
+		scrollToBottom();
 	};
 
 	return (
@@ -575,7 +583,7 @@ const Training = () => {
 					<h3>Register for Training</h3>
 				</div>
 				<div className="form--body">
-					<form onSubmit={handleSubmit} encType="multipart/form-data">
+					<form onSubmit={handleSubmit} encType="multipart/form-data" ref={formRef}>
 						{' '}
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="fullName">
