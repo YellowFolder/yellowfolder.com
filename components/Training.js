@@ -3,7 +3,242 @@ import DatePicker from 'react-datepicker';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
-import StyledForm from './styles/FormStyles';
+
+const StyledForm = styled.div`
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	padding: 60px 6.25% 0px 3.125%;
+	max-width: ${props => props.theme.maxWidth};
+	background: ${props => props.theme.white};
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	grid-template-rows: 1fr auto;
+	grid-gap: 40px;
+	grid-template-areas:
+		'header header header'
+		'form form form'
+		'form form form';
+
+	.form--header {
+		grid-area: header;
+		h3 {
+			font-size: 3.4rem;
+			line-height: 34px;
+			font-family: ${props => props.theme.boldFont};
+			font-weight: 700;
+			margin: 1rem 0 0 0;
+		}
+		p {
+			font-size: 2rem;
+			line-height: 24px;
+			color: ${props => props.theme.grey};
+			font-weight: 400;
+			padding: 0;
+			margin: 0;
+			@media (min-width: ${size.navMenu}) {
+				padding-top: 1rem;
+			}
+		}
+	}
+	.form--body {
+		grid-area: form;
+		width: 100%;
+
+		form {
+			display: flex;
+			flex-flow: column wrap;
+			flex: 1 0 auto;
+			align-items: flex-start;
+			justify-content: center;
+			.form--field-wrapper {
+				display: flex;
+				flex: 1 0 auto;
+				flex-flow: column nowrap;
+				width: 100%;
+				padding: 10px 0;
+				label {
+					text-align: left;
+					text-transform: capitalize;
+					span {
+						color: red;
+						vertical-align: super;
+					}
+				}
+				select,
+				input,
+				textarea {
+					width: 100%;
+					max-width: 640px;
+					margin: 6px 0 0 0;
+					padding: 9px 10px;
+					font-size: 1.6rem;
+					line-height: 22px;
+					color: #33475b;
+					background-color: #f5f8fa;
+					border: 1px solid #cbd6e2;
+					border-radius: 3px;
+					&:focus {
+						outline: none;
+						border-color: rgba(82, 168, 236, 0.8);
+						background-color: #fff;
+					}
+				}
+				textarea,
+				input {
+					&:not(:empty):valid,
+					&:not(:empty):optional {
+						/* border: 1px solid #7ce882; */
+						/* background-color: #fff; */
+					}
+				}
+				select {
+					height: 4rem;
+				}
+				textarea {
+					height: 100px;
+				}
+			}
+			.form--disclaimer {
+				width: 100%;
+				max-width: 500px;
+				color: #33475b;
+				margin-bottom: 3px;
+				font-size: 14px;
+				line-height: 24px;
+			}
+			.form--submit-wrapper {
+				.form--submit-btn {
+					background-color: ${props => props.theme.yellow};
+					border-color: ${props => props.theme.yellow};
+					font-family: ${props => props.theme.boldFont};
+					font-weight: 700;
+					color: #fff;
+					text-align: center;
+					line-height: 12px;
+					font-size: 1.4rem;
+					padding: 12px 24px;
+					margin: 0;
+					border-radius: 3px;
+					border-style: solid;
+					border-width: 1px;
+					cursor: pointer;
+					outline: none;
+					&:active {
+						outline: none;
+					}
+				}
+			}
+		}
+	}
+	@media (max-width: ${size.navMenu}) {
+		grid-template-areas: 'header header header' 'form form form' 'form form form';
+		grid-gap: 15px 0;
+		.form {
+			&--header {
+				width: 80%;
+				margin: 0 auto;
+				h1 {
+					/* line-height: calc(64px + (64 - 58) * ((100vw - 800px) / (1000 - 400))); */
+					line-height: 120%;
+					font-size: calc(60px + (72 - 60) * ((100vw - 800px) / (1000 - 400)));
+					margin: 0 0 2rem 0;
+				}
+			}
+			&--body {
+				form {
+					width: 100%;
+					margin: 0 auto;
+					align-items: center;
+					.form {
+						&--field-item {
+							align-items: flex-start;
+							align-self: flex-start;
+						}
+						&--field-wrapper {
+							width: 80%;
+							margin: 0 auto;
+						}
+						&--disclaimer {
+							align-self: center;
+							max-width: none;
+							width: 80%;
+						}
+						&--submit-wrapper {
+							display: flex;
+							align-items: center;
+							width: 100%;
+							justify-content: center;
+							padding: 4rem 0 0 0;
+							.form--submit-btn {
+								width: 80%;
+								font-size: 2.2rem;
+								padding: 16px 24px;
+								margin: 0 auto;
+								border-radius: 6px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	@media (max-width: 550px) {
+		.form {
+			&--header {
+				h1 {
+					font-size: calc(56px + (72 - 56) * ((100vw - 800px) / (1000 - 400)));
+				}
+			}
+		}
+	}
+	@media (max-width: ${size.mobileL}) {
+		.form {
+			&--header {
+				width: 96%;
+				h1 {
+					font-size: calc(46px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
+					line-height: 120%;
+					margin: 0;
+				}
+			}
+			&--body {
+				form {
+					.form {
+						&--field-item {
+							width: 96%;
+							align-items: flex-start;
+							align-self: flex-start;
+						}
+						&--field-wrapper {
+						}
+						&--disclaimer {
+							margin: 0 2% 3px;
+						}
+						&--submit-wrapper {
+						}
+					}
+					.form-field--wrapper {
+						width: 96%;
+					}
+				}
+			}
+		}
+	}
+	@media (max-width: ${size.mobileM}) {
+		padding-top: 30px;
+		.form {
+			&--header {
+				h1 {
+					font-size: calc(42px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
+				}
+			}
+		}
+	}
+`;
 
 const StyledTraining = styled.main`
 	width: 100%;
@@ -264,9 +499,10 @@ const Training = () => {
 	const handleSubmit = e => {
 		e.preventDefault();
 		const mappedState = { ...defaultFormValues };
-		// for (const c in contact) {
-
-		// }
+		for (const c in contact) {
+			mappedState[mappedFields[c]] = contact[c];
+		}
+		console.log(`mappedState `, mappedState);
 
 		const headers = {
 			'Content-Type': 'application/x-www-form-urlencoded',
