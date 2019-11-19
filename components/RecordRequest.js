@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Router from 'next/router';
 import qs from 'qs';
 import React, { Component } from 'react';
 import StyledForm from './styles/FormStyles';
@@ -58,7 +59,7 @@ class RecordRequest extends Component {
 		const resp = document.createElement('script');
 		resp.innerHTML = `function timestamp() {var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500);`;
 
-		// document.getElementById('recaptcha-response').appendChild(resp);
+		document.getElementById('recaptcha-response').appendChild(resp);
 	}
 
 	onFormFieldChange = e => {
@@ -77,6 +78,7 @@ class RecordRequest extends Component {
 
 		const headers = {
 			'Content-Type': 'application/x-www-form-urlencoded',
+			'Access-Control-Allow-Origin': '*',
 			Accept:
 				'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
 		};
@@ -95,6 +97,7 @@ class RecordRequest extends Component {
 		return axios(config).then(resp => {
 			console.log('got response!');
 			console.log(resp);
+			Router.push('/request-success');
 		});
 	};
 
@@ -364,7 +367,16 @@ class RecordRequest extends Component {
 						</div>
 						<div className="form--submit-wrapper">
 							<div id="recaptcha-container" />
+							<div
+								className="g-recaptcha"
+								data-sitekey="6LeUcI0UAAAAAGygzbJtp3JUVb_CeshJvINKIdpP"
+							></div>
 							<div id="recaptcha-response" />
+							<input
+								type="hidden"
+								name="captcha_settings"
+								value='{"keyname":"reCaptchaKeyPair","fallback":"true","orgId":"00DF0000000507Z","ts":""}'
+							></input>
 							<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
 								Submit
 							</button>

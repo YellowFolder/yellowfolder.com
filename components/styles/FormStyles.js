@@ -149,7 +149,7 @@ const StyledForm = styled.div`
 					line-height: 12px;
 					font-size: 1.4rem;
 					padding: 12px 24px;
-					margin: 0;
+					margin: 1rem 0;
 					border-radius: 3px;
 					border-style: solid;
 					border-width: 1px;
