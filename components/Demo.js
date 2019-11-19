@@ -18,7 +18,7 @@ const StyledDemo = styled.div`
 
 	.demo--header {
 		width: 100% !important;
-		margin: 60px auto 0;
+		margin: 60px auto 30px;
 		padding: 25px;
 		background-color: ${props => props.theme.lightgrey};
 		color: ${props => props.theme.grey};
@@ -383,9 +383,6 @@ const Demo = () => {
 
 			<div className="demo--container">
 				<div className="body">
-					<div className="demo-image">
-						<img src="/static/images/demo.webp" />
-					</div>
 					<div className="body-copy">
 						<h3>Learn how to easily store and manage files without the hassle of paper</h3>
 						<div>
