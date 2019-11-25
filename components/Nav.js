@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { ItemStyles, NavBar } from './styles/NavStyles';
 
 const Nav = () => {
-	const router = useRouter();
 	const [isOpen, toggleNav] = useState(false);
 
 	return (
@@ -27,22 +25,22 @@ const Nav = () => {
 				<ul className="nav__items">
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/about-us">
-							<a onMouseEnter={() => router.prefetch('/about-us')}>about us</a>
+							<a>about us</a>
 						</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/services">
-							<a onMouseEnter={() => router.prefetch('/services')}>services</a>
+							<a>services</a>
 						</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/contact">
-							<a onMouseEnter={() => router.prefetch('/contact')}>contact</a>
+							<a>contact</a>
 						</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/weekly-training">
-							<a onMouseEnter={() => router.prefetch('/weekly-training')}>training</a>
+							<a>training</a>
 						</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>

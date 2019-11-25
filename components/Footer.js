@@ -149,9 +149,9 @@ const Footer = () => (
 						</a>
 					</Link>
 					<span> • </span>
-					<Link href="https://blog.yellowfolder.com/#">
-						<a rel="noopener noreferrer">Blog</a>
-					</Link>
+					<a href="https://blog.yellowfolder.com/#" rel="noopener noreferrer">
+						Blog
+					</a>
 				</div>
 			</div>
 		</div>
