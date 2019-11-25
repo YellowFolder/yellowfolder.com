@@ -1,13 +1,19 @@
 {
 	"name": "yellowfolder.com",
 	"target": "serverless",
+	"alias": ["https://www.yellowfolder.com"],
+	"build": {
+		"env": {
+			"DOMAIN": "https://yellowfolder.com"
+		}
+	},
 	"version": 2,
 	"public": true,
 	"routes": [
 		{
 			"src": "/(.*)",
 			"status": 301,
-			"headers": { "Location": "https://yellowfoldercom.yellowfolder.now.sh/$1" }
+			"headers": { "Location": "https://yellowfolder.com/$1" }
 		},
 		{
 			"src": "/robots.txt",
