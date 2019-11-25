@@ -1,5 +1,6 @@
 {
 	"name": "yellowfolder.com",
+	"target": "serverless",
 	"version": 2,
 	"public": true,
 	"routes": [
