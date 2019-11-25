@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "now dev",
+		"dev": "./node_modules/.bin/now dev",
 		"build": "next build",
 		"start": "next start",
 		"test": "NODE_ENV=test jest --watch",
@@ -22,6 +22,7 @@
 		"eslint-plugin-jsx-a11y": "^6.1.2",
 		"eslint-plugin-prettier": "^3.0.1",
 		"eslint-plugin-react": "^7.12.4",
+		"now": "^16.6.0",
 		"prettier": "^1.18.2",
 		"webpack": "^4.28.4",
 		"yaml-front-matter": "^4.0.0"

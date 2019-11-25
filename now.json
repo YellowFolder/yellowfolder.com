@@ -10,44 +10,13 @@
 	"builds": [{ "src": "package.json", "use": "@now/next" }],
 	"routes": [
 		{
-			"src": "/index.html",
-			"dest": "/index"
+			"src": "/(.*)/",
+			"status": 301,
+			"headers": { "Location": "/$1" }
 		},
 		{
-			"src": "/api",
-			"dest": "/index"
-		},
-		{
-			"src": "/about-us.html",
-			"dest": "/about-us"
-		},
-		{
-			"src": "/contact.html",
-			"dest": "/contact"
-		},
-		{
-			"src": "/privacy-policy.html",
-			"dest": "/privacy-policy"
-		},
-		{
-			"src": "/record-request.html",
-			"dest": "/record-request"
-		},
-		{
-			"src": "/request-success.html",
-			"dest": "/request-success"
-		},
-		{
-			"src": "/schedule-a-yellow-folder-demo.html",
-			"dest": "/schedule-a-yellow-folder-demo"
-		},
-		{
-			"src": "/services.html",
-			"dest": "/services"
-		},
-		{
-			"src": "/weekly-training.html",
-			"dest": "/weekly-training"
+			"src": "^(/static/.*)",
+			"dest": "$1"
 		},
 		{
 			"src": "/robots.txt",
