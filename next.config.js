@@ -1,9 +1,14 @@
-// const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
-const withCSS = require('@zeit/next-css');
+const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 
-module.exports = {
+module.exports = withBundleAnalyzer({
+	enabled: process.env.ANALYZE === 'true',
 	target: 'serverless',
-};
-// module.exports = withBundleAnalyzer({
-// 	enabled: process.env.ANALYZE === 'true',
-// });
+	webpack: config => {
+		// Fixes npm packages that depend on `fs` module
+		config.node = {
+			fs: 'empty',
+		};
+
+		return config;
+	},
+});

@@ -1,0 +1,21 @@
+{
+	"name": "yellowfolder.com",
+	"version": 2,
+	"public": true,
+	"build": {
+		"env": {
+			"DOMAIN": "yellowfolder.com"
+		}
+	},
+	"builds": [{ "src": "package.json", "use": "@now/next" }],
+	"routes": [
+		{
+			"src": "/index.html",
+			"dest": "/index"
+		},
+		{
+			"src": "/robots.txt",
+			"dest": "/static/robots.txt"
+		}
+	]
+}
