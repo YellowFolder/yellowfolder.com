@@ -1,6 +1,9 @@
 /* eslint-disable prettier/prettier */
 import Head from 'next/head';
 
+const title =
+	process.env.NODE_ENV === 'development' || !!process.env.STAGING ? 'YF [DEV]' : 'YellowFolder';
+
 const Meta = () => (
 	<Head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,7 +39,7 @@ const Meta = () => (
 			name="description"
 			content="YellowFolder provides a cloud-based, digital file cabinet where your school system can safely store, retrieve and manage all of their Administrative, Employee, Special Education, and Student Records."
 		/>
-		<title> YellowFolder</title>{' '}
+		<title>{title}</title>{' '}
 	</Head>
 );
 
