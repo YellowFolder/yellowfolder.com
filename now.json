@@ -9,10 +9,15 @@
 	},
 	"routes": [
 		{
-			"src": "(.*)",
+			"src": "/(.*)/",
 			"dest": "$1.html",
 			"status": 301,
-			"headers": { "Location": "/$1" }
+			"headers": { "Location": "https://yellowfolder.com/$1" }
+		},
+		{
+			"src": "/(.*)",
+			"status": 301,
+			"headers": { "Location": "https://yellowfolder.com/$1" }
 		},
 		{
 			"src": "^(/static/.*)",

@@ -17,3 +17,4 @@ node_modules
 bundles/
 assets/
 static/video
+out/
