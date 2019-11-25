@@ -14,6 +14,38 @@
 			"dest": "/index"
 		},
 		{
+			"src": "/about-us.html",
+			"dest": "/about-us"
+		},
+		{
+			"src": "/contact.html",
+			"dest": "/contact"
+		},
+		{
+			"src": "/privacy-policy.html",
+			"dest": "/privacy-policy"
+		},
+		{
+			"src": "/record-request.html",
+			"dest": "/record-request"
+		},
+		{
+			"src": "/request-success.html",
+			"dest": "/request-success"
+		},
+		{
+			"src": "/schedule-a-yellow-folder-demo.html",
+			"dest": "/schedule-a-yellow-folder-demo"
+		},
+		{
+			"src": "/services.html",
+			"dest": "/services"
+		},
+		{
+			"src": "/weekly-training.html",
+			"dest": "/weekly-training"
+		},
+		{
 			"src": "/robots.txt",
 			"dest": "/static/robots.txt"
 		}
