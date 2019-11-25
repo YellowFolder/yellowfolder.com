@@ -1,19 +1,19 @@
 {
-    "name": "YellowFolder",
-    "short_name": "YellowFolder",
-    "icons": [
-        {
-            "src": "/android-chrome-192x192.png?v=kPvAPQRbj8",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-chrome-512x512.png?v=kPvAPQRbj8",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#29abe2",
-    "background_color": "#29abe2",
-    "display": "standalone"
+	"name": "YellowFolder",
+	"short_name": "YellowFolder",
+	"icons": [
+		{
+			"src": "/static/favicon/android-chrome-192x192.png?v=kPvAPQRbj8",
+			"sizes": "192x192",
+			"type": "image/png"
+		},
+		{
+			"src": "/static/favicon/android-chrome-512x512.png?v=kPvAPQRbj8",
+			"sizes": "512x512",
+			"type": "image/png"
+		}
+	],
+	"theme_color": "#29abe2",
+	"background_color": "#29abe2",
+	"display": "standalone"
 }
