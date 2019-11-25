@@ -14,6 +14,10 @@
 			"dest": "/index"
 		},
 		{
+			"src": "/api",
+			"dest": "/index"
+		},
+		{
 			"src": "/about-us.html",
 			"dest": "/about-us"
 		},
