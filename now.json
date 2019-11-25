@@ -1,7 +1,7 @@
 {
 	"name": "yellowfolder.com",
 	"version": 2,
-	"public": true,
+	"public": false,
 	"build": {
 		"env": {
 			"DOMAIN": "yellowfolder.com"
