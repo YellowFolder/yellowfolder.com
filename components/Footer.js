@@ -143,7 +143,7 @@ const Footer = () => (
 						<a>Privacy Policy</a>
 					</Link>
 					<span> • </span>
-					<Link href="/static/pdf/service_procedures-v1.6-2019.pdf">
+					<Link prefetch={false} href="/static/pdf/service_procedures-v1.6-2019.pdf">
 						<a target="_blank" rel="noopener noreferrer">
 							Service Procedures
 						</a>
