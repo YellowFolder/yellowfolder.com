@@ -7,10 +7,20 @@
 			"DOMAIN": "yellowfolder.com"
 		}
 	},
-	"builds": [{ "src": "package.json", "use": "@now/next" }],
+	"builds": [
+		{
+			"src": "package.json",
+			"use": "@now/next"
+		},
+		{
+			"src": "index.html",
+			"use": "@now/static"
+		}
+	],
 	"routes": [
 		{
-			"src": "/(.*)/",
+			"src": "(.*)",
+			"dest": "$1.html",
 			"status": 301,
 			"headers": { "Location": "/$1" }
 		},
