@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
 import Link from 'next/link';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import Nav from './Nav';
 import { size } from './styles/device';
@@ -90,14 +90,12 @@ export class Header extends Component {
 				</StyledHeader>
 				{this.props.activeRoute === '/' && (
 					<Banner>
-						<Link href="https://studentprivacypledge.org/">
-							<a target="_blank" rel="noopener noreferrer">
-								<img
-									src="/static/images/privacy-banner.svg"
-									alt="Student Privacy Pledge Official Signatory"
-								/>
-							</a>
-						</Link>
+						<a href="https://studentprivacypledge.org/" target="_blank" rel="noopener noreferrer">
+							<img
+								src="/static/images/privacy-banner.svg"
+								alt="Student Privacy Pledge Official Signatory"
+							/>
+						</a>
 					</Banner>
 				)}
 				<SubBar />

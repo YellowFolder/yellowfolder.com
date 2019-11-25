@@ -54,11 +54,13 @@ class Nav extends Component {
 							</Link>
 						</li>
 						<li className="nav__item" onClick={this.handleToggle}>
-							<Link href="https://erm.yellowfolder.com/login">
-								<a target="_blank" rel="noopener noreferrer">
-									log in
-								</a>
-							</Link>
+							<a
+								href="https://erm.yellowfolder.com/login/#"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								log in
+							</a>
 						</li>
 					</ul>
 				</ItemStyles>
