@@ -7,16 +7,6 @@
 			"DOMAIN": "yellowfolder.com"
 		}
 	},
-	"builds": [
-		{
-			"src": "package.json",
-			"use": "@now/next"
-		},
-		{
-			"src": "index.html",
-			"use": "@now/static"
-		}
-	],
 	"routes": [
 		{
 			"src": "(.*)",
