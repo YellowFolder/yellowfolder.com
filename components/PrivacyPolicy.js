@@ -25,21 +25,21 @@ const StyledPrivacy = styled.div`
 		background: ${props => props.background || 'white '};
 
 		.copy-header {
-			width: 100%;
+			width: 80%;
 			margin: 0 auto;
 			display: flex;
 			align-items: flex-start;
 			justify-content: flex-start;
 			flex-flow: column nowrap;
 			h1 {
-				text-align: center;
-				width: 100vw !important;
-				color: ${props => props.theme.white};
+				text-align: left;
+				width: 100%;
+				margin: 0 auto;
+				color: ${props => props.theme.grey};
 				font-size: 3.6rem;
 				line-height: 1.1;
-				padding: 10px;
-				margin-top: 75px;
-				background: ${props => props.theme.yellow};
+				padding: 10px 10px 10px 0;
+				margin-top: 45px;
 				font-family: ${props => props.theme.boldFont};
 			}
 		}
