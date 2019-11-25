@@ -21,6 +21,10 @@
 		{
 			"src": "/robots.txt",
 			"dest": "/static/robots.txt"
+		},
+		{
+			"src": "/logo@3x.png",
+			"dest": "/static/images/logo-horizontal@3x.png"
 		}
 	]
 }
