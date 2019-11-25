@@ -1,14 +1,13 @@
 {
 	"name": "yellowfolder.com",
-	"target": "serverless",
+	"version": 2,
+	"public": true,
 	"alias": ["https://www.yellowfolder.com"],
 	"build": {
 		"env": {
 			"DOMAIN": "https://yellowfolder.com"
 		}
 	},
-	"version": 2,
-	"public": true,
 	"routes": [
 		{
 			"src": "/(.*)",
