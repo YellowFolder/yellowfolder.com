@@ -382,8 +382,8 @@ const ContactForm = () => {
 				<div className="sidebar-contact-info">
 					<h3>YellowFolder</h3>
 					<p>
-						1617 W Crosby Rd., Ste 100 <br />
-						Carrollton, TX 75006
+						P.O. Box 3068 <br />
+						McKinney, TX 75070
 					</p>
 				</div>
 				<div className="sidebar-contact-info">
