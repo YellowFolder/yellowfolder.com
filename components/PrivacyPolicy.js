@@ -303,8 +303,8 @@ const PrivacyPolicy = () => {
 					<p>&nbsp;</p>
 					<div className="contact">
 						<p>YellowFolder LLC</p>
-						<p>1617 W Crosby Rd, Suite 100</p>
-						<p>Carrollton, TX 75006</p>
+						<p>P.O. Box 3068</p>
+						<p>McKinney, TX 75070</p>
 						<p>&nbsp;</p>
 
 						<p>
