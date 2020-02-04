@@ -1,6 +1,7 @@
 const size = {
 	mobileS: '320px',
 	mobileM: '375px',
+	mobileXR: '415px',
 	mobileL: '500px',
 	navMenu: '769px',
 	tablet: '750px', // iPad dimensions: 768w x 1024h

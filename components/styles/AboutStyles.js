@@ -107,7 +107,7 @@ const PageHeader = styled.div`
 		}
 	}
 
-	@media (max-width: ${size.mobileL}) {
+	@media (max-width: ${size.mobileXR}) {
 		#header-bg {
 			padding-bottom: 130px;
 		}
@@ -482,7 +482,7 @@ const TeamContainer = styled.div`
 		margin-top: -200px;
 	}
 
-	@media (max-width: 600px) and (min-width: ${size.mobileL}) {
+	@media (max-width: 600px) and (min-width: ${size.mobileXR}) {
 		> div {
 			margin: 0;
 			max-width: 600px !important;
@@ -498,13 +498,13 @@ const TeamContainer = styled.div`
 		}
 	}
 
-	@media (max-width: ${size.mobileL}) and (min-width: 420px) {
+	@media (max-width: ${size.mobileXR}) and (min-width: 420px) {
 		.member-row {
 			margin-top: 100px !important;
 		}
 	}
 
-	@media (max-width: ${size.mobileL}) {
+	@media (max-width: ${size.mobileXR}) {
 		margin-top: -100px;
 		max-width: 100vw;
 		> div {
@@ -523,7 +523,7 @@ const TeamContainer = styled.div`
 			grid-row: 2 / 9;
 		}
 		#mid-break {
-			grid-row: 13 / 18;
+			grid-row: 12 / 15;
 		}
 		#monitor {
 			grid-row: 11 / 15;
@@ -547,7 +547,7 @@ const TeamContainer = styled.div`
 			}
 		}
 		#text-bottom {
-			grid-row: 26 / 33;
+			grid-row: 15 / 24;
 			padding: 0 16px;
 			margin-top: 0;
 			align-items: center;

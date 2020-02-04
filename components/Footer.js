@@ -87,6 +87,7 @@ const StyledFooter = styled.footer`
 					flex-flow: column nowrap;
 					align-items: center;
 					justify-content: center;
+					margin: 0;
 					a {
 						margin: 0.5rem 0;
 					}
