@@ -16,8 +16,8 @@ const TrainingPage = () => {
 				<div>
 					<p>
 						Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.
-						If you need to you can always <a href="mailto:it-notify@yellowfolder.com">contact us</a>
-						, otherwise we&rsquo;ll be back online shortly!
+						If you need to you can always <a href="mailto:support@yellowfolder.com">contact us</a>,
+						otherwise we&rsquo;ll be back online shortly!
 					</p>
 					<p>&mdash; YellowFolder</p>
 				</div>
