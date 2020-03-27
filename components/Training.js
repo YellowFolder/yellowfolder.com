@@ -526,9 +526,9 @@ const Training = () => {
 		honeypot: '',
 		$District: '',
 		'$Record Series': 'select',
-		'$Training Date 1': now,
-		'$Training Date 2': now,
-		'$Training Date 3': now,
+		'$Training Date 1': '',
+		'$Training Date 2': '',
+		'$Training Date 3': '',
 		'$Training Session': '',
 		subject: 'Training Form Submission',
 		accessKey: ACCESS_KEY,
@@ -545,20 +545,22 @@ const Training = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		let contactData = Object.assign(
-			{},
-			{ ...contact },
-			{
-				'$Training Date 1': new Date(contact['$Training Date 1']).toLocaleString('en-US'),
-				'$Training Date 2': new Date(contact['$Training Date 2']).toLocaleString('en-US'),
-				'$Training Date 3': new Date(contact['$Training Date 3']).toLocaleString('en-US'),
-			}
-		);
+		// let contactData = Object.assign(
+		// 	{},
+		// 	{ ...contact },
+		// 	{
+		// 		'$Training Date 1': new Date(contact['$Training Date 1']).toLocaleString('en-US'),
+		// 		'$Training Date 2': new Date(contact['$Training Date 2']).toLocaleString('en-US'),
+		// 		'$Training Date 3': new Date(contact['$Training Date 3']).toLocaleString('en-US'),
+		// 	}
+		// );
+
+		console.log(contact);
 
 		try {
 			const res = await fetch('https://api.staticforms.xyz/submit', {
 				method: 'POST',
-				body: JSON.stringify(contactData),
+				body: JSON.stringify(contact),
 				headers: { 'Content-Type': 'application/json' },
 			});
 
@@ -716,7 +718,6 @@ const Training = () => {
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="trainingDate1">Training Date/Time 1</label>
 							<input
-								required
 								type="datetime-local"
 								id="trainingDate1"
 								name="$Training Date 1"
@@ -731,7 +732,6 @@ const Training = () => {
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="trainingDate2">Training Date/Time 2</label>
 							<input
-								required
 								type="datetime-local"
 								id="trainingDate2"
 								name="$Training Date 2"
@@ -746,7 +746,6 @@ const Training = () => {
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="trainingDate3">Training Date/Time 3</label>
 							<input
-								required
 								type="datetime-local"
 								id="trainingDate3"
 								name="$Training Date 3"
