@@ -531,7 +531,7 @@ const Training = () => {
 		'$Training Date 3': '',
 		'$Training Session': '',
 		subject: 'Training Form Submission',
-		accessKey: ACCESS_KEY,
+		accessKey: ACCESS_KEY_PROD,
 	});
 
 	const [response, setResponse] = useState({
@@ -567,11 +567,13 @@ const Training = () => {
 			const json = await res.json();
 
 			if (json.success) {
+				console.log(`success!`);
 				Router.push('/request-success');
 			} else {
+				console.error(json.message);
 				setResponse({
 					type: 'error',
-					message: json.message,
+					message: 'An error occured while submitting the form. Please try again.',
 				});
 			}
 		} catch (e) {
@@ -585,7 +587,7 @@ const Training = () => {
 
 	const handleClick = e => {
 		e.preventDefault();
-		setContact({ '$Training Session': e.target.value });
+		setContact({ ...contact, '$Training Session': e.target.value });
 		scrollToBottom();
 	};
 
@@ -757,7 +759,6 @@ const Training = () => {
 								onChange={onFormFieldChange}
 							/>
 						</div>
-						<input type="text" name="honeypot" style={{ display: 'none' }} />
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="recordSeries">Training Session</label>
 							<select
