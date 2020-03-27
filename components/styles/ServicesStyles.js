@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { size, query } from './device';
+import { query, size } from './device';
 
 const ServicesPage = styled.div`
 	background: white;

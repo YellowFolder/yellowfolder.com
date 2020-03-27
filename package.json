@@ -4,9 +4,9 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "./node_modules/.bin/now dev",
+		"dev": "./node_modules/.bin/now dev -p 7777",
 		"build": "next build",
-		"start": "next start",
+		"start": "next start -p 7777",
 		"test": "NODE_ENV=test jest --watch",
 		"test-win": "SET NODE_ENV=test && jest --watch",
 		"analyze:browser": "ANALYZE=true yarn build"
