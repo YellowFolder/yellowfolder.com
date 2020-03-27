@@ -526,12 +526,12 @@ const Training = () => {
 		honeypot: '',
 		$District: '',
 		'$Record Series': 'select',
-		'$Training Date 1': '',
-		'$Training Date 2': '',
-		'$Training Date 3': '',
+		'$Training Date 1': now,
+		'$Training Date 2': now,
+		'$Training Date 3': now,
 		'$Training Session': '',
 		subject: 'Training Form Submission',
-		accessKey: ACCESS_KEY_PROD,
+		accessKey: ACCESS_KEY,
 	});
 
 	const [response, setResponse] = useState({
@@ -545,17 +545,16 @@ const Training = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		// let contactData = Object.assign(
-		// 	{},
-		// 	{ ...contact },
-		// 	{
-		// 		'$Training Date 1': new Date(contact['$Training Date 1']).toLocaleString('en-US'),
-		// 		'$Training Date 2': new Date(contact['$Training Date 2']).toLocaleString('en-US'),
-		// 		'$Training Date 3': new Date(contact['$Training Date 3']).toLocaleString('en-US'),
-		// 	}
-		// );
-
-		console.log(contact);
+		let contactData = Object.assign(
+			{},
+			{ ...contact },
+			{
+				'$Training Date 1': new Date(contact['$Training Date 1']).toLocaleString('en-US'),
+				'$Training Date 2': new Date(contact['$Training Date 2']).toLocaleString('en-US'),
+				'$Training Date 3': new Date(contact['$Training Date 3']).toLocaleString('en-US'),
+				accessKey: ACCESS_KEY,
+			}
+		);
 
 		try {
 			const res = await fetch('https://api.staticforms.xyz/submit', {
