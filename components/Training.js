@@ -1,10 +1,16 @@
-import axios from 'axios';
 import Router from 'next/router';
-import qs from 'qs';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
+
+const ACCESS_KEY_PROD = 'e20b50ff-c9c2-4198-b148-b2ebd61763f3';
+const ACCESS_KEY_DEV = '427e0763-715a-488d-b159-140d5a32ca6f';
+
+const ACCESS_KEY =
+	process.env.NODE_ENV === 'development' || !!process.env.STAGING
+		? ACCESS_KEY_DEV
+		: ACCESS_KEY_PROD;
 
 const StyledForm = styled.div`
 	width: 100%;
@@ -135,6 +141,44 @@ const StyledForm = styled.div`
 					}
 				}
 			}
+		}
+	}
+	.is-hidden {
+		display: none !important;
+	}
+	.box {
+		background-color: #fff;
+		border-radius: 6px;
+		box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+		color: #4a4a4a;
+		display: block;
+		padding: 1.25rem;
+	}
+	.notification {
+		background-color: #f5f5f5;
+		border-radius: 4px;
+		padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+		position: relative;
+		padding: 1rem;
+		transform: translateY(-20%);
+		opacity: 0;
+		transition: all 0.5s;
+		&.title {
+			color: currentColor;
+		}
+		&.is-success {
+			background-color: #209cee;
+			color: #fff;
+			transform: translateY(0);
+			opacity: 1;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			margin: 2rem auto;
+		}
+		&.is-danger {
+			background-color: #ff3860;
+			color: #fff;
 		}
 	}
 	@media (max-width: ${size.navMenu}) {
@@ -455,26 +499,16 @@ const StyledTraining = styled.main`
 	}
 `;
 
-const baseURL = 'https://sfapi.formstack.io';
-const formRoute = '/FormEngine/EngineFrame/UploadFile';
-
-const mappedFields = {
-	fullName: 'Case.Requestor_Name__c',
-	email: 'Case.Requestor_Email__c',
-	district: 'Case.Requestor_District__c',
-	recordSeries: 'Case.Record_Series__c',
-	trainingDate1: 'Case.Training_Date_Time_1__c',
-	trainingDate2: 'Case.Training_Date_Time_2__c',
-	trainingDate3: 'Case.Training_Date_Time_3__c',
-	trainingSession: 'Case.Training_Session__c',
-};
-
-const defaultFormValues = {
-	'Case.Origin': 'Web',
-	'Case.RecordTypeId': '012F0000000yHfAIAU',
-	'inputCase.RecordTypeId': 'Training',
-	'Case.Subject': 'Training Session Requested',
-	formName: 'Training',
+const convertDate = date => {
+	let ten = i => {
+		return (i < 10 ? '0' : '') + i;
+	};
+	let year = date.getFullYear();
+	let month = ten(date.getMonth() + 1);
+	let day = ten(date.getDate());
+	let hour = ten(date.getHours());
+	let minute = ten(date.getMinutes());
+	return year + '-' + month + '-' + day + 'T' + hour + ':' + minute;
 };
 
 const Training = () => {
@@ -484,59 +518,72 @@ const Training = () => {
 		formRef.current.scrollIntoView({ behavior: 'smooth' });
 	};
 
+	let now = convertDate(new Date());
+
 	const [contact, setContact] = useState({
-		fullName: '',
 		email: '',
-		district: '',
-		recordSeries: '',
-		trainingDate1: '',
-		trainingDate2: '',
-		trainingDate3: '',
-		trainingSession: '',
+		name: '',
 		honeypot: '',
+		$District: '',
+		'$Record Series': 'select',
+		'$Training Date 1': now,
+		'$Training Date 2': now,
+		'$Training Date 3': now,
+		'$Training Session': '',
 		subject: 'Training Form Submission',
+		accessKey: ACCESS_KEY,
+	});
+
+	const [response, setResponse] = useState({
+		type: '',
+		message: '',
 	});
 
 	const onFormFieldChange = e => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
-		const mappedState = { ...defaultFormValues };
-		for (const c in contact) {
-			mappedState[mappedFields[c]] = contact[c];
+		let contactData = Object.assign(
+			{},
+			{ ...contact },
+			{
+				'$Training Date 1': new Date(contact['$Training Date 1']).toLocaleString('en-US'),
+				'$Training Date 2': new Date(contact['$Training Date 2']).toLocaleString('en-US'),
+				'$Training Date 3': new Date(contact['$Training Date 3']).toLocaleString('en-US'),
+			}
+		);
+
+		try {
+			const res = await fetch('https://api.staticforms.xyz/submit', {
+				method: 'POST',
+				body: JSON.stringify(contactData),
+				headers: { 'Content-Type': 'application/json' },
+			});
+
+			const json = await res.json();
+
+			if (json.success) {
+				Router.push('/request-success');
+			} else {
+				setResponse({
+					type: 'error',
+					message: json.message,
+				});
+			}
+		} catch (e) {
+			console.log('An error occurred ', e);
+			setResponse({
+				type: 'error',
+				message: 'An error occured while submitting the form. Please try again.',
+			});
 		}
-
-		const headers = {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			Accept:
-				'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
-		};
-
-		const config = {
-			method: 'post',
-			baseURL,
-			url: formRoute,
-			headers,
-			data: qs.stringify(mappedState),
-			params: {
-				encoding: 'UTF-8',
-			},
-		};
-
-		console.log(`config `, config);
-
-		return axios(config).then(resp => {
-			console.log('got response!');
-			console.log(resp);
-			Router.push('/request-success');
-		});
 	};
 
 	const handleClick = e => {
 		e.preventDefault();
-		setContact({ ...contact, [e.target.name]: e.target.value });
+		setContact({ '$Training Session': e.target.value });
 		scrollToBottom();
 	};
 
@@ -581,26 +628,26 @@ const Training = () => {
 				</div>
 			</div>
 			<StyledForm>
-				<div className="form--header">
+				<div className="form--header" ref={formRef}>
 					<h3>Register for Training</h3>
 				</div>
 				<div className="form--body">
-					<form onSubmit={handleSubmit} encType="multipart/form-data" ref={formRef}>
+					<form onSubmit={handleSubmit}>
 						{' '}
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="fullName">
-								Full Name
+							<label htmlFor="name">
+								Name
 								<span>*</span>
 							</label>
 							<input
 								required
 								aria-required="true"
 								type="text"
-								aria-label="Full Name"
-								id="fullName"
-								name="fullName"
+								aria-label="Name"
+								id="name"
+								name="name"
 								autoComplete="name"
-								value={contact.fullName}
+								value={contact.name}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							/>
@@ -634,26 +681,30 @@ const Training = () => {
 								type="text"
 								aria-label="Full Name"
 								id="district"
-								name="district"
-								value={contact.district}
+								name="$District"
+								value={contact['$District']}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="recordSeries">Record Series</label>
+							<label htmlFor="recordSeries">
+								Record Series
+								<span>*</span>
+							</label>
 							<select
 								required
 								id="recordSeries"
-								name="recordSeries"
+								name="$Record Series"
 								aria-label="Record Series"
 								aria-required="true"
 								title="Record Series"
-								value={contact.recordSeries}
+								defaultValue={contact['$Record Series'] || 'select'}
+								value={contact['$Record Series']}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							>
-								<option value="" disabled>
+								<option value="select" disabled>
 									Please Select
 								</option>
 								<option value="Student Records">Student Records</option>
@@ -668,8 +719,8 @@ const Training = () => {
 								required
 								type="datetime-local"
 								id="trainingDate1"
-								name="trainingDate1"
-								value={contact.trainingDate1}
+								name="$Training Date 1"
+								value={contact['$Training Date 1']}
 								title="Training Date/Time 1"
 								aria-label="Training Date/Time 1"
 								aria-required="true"
@@ -683,8 +734,8 @@ const Training = () => {
 								required
 								type="datetime-local"
 								id="trainingDate2"
-								name="trainingDate2"
-								value={contact.trainingDate2}
+								name="$Training Date 2"
+								value={contact['$Training Date 2']}
 								title="Training Date/Time 2"
 								aria-label="Training Date/Time 2"
 								aria-required="true"
@@ -698,8 +749,8 @@ const Training = () => {
 								required
 								type="datetime-local"
 								id="trainingDate3"
-								name="trainingDate3"
-								value={contact.trainingDate3}
+								name="$Training Date 3"
+								value={contact['$Training Date 3']}
 								title="Training Date/Time 3"
 								aria-label="Training Date/Time 3"
 								aria-required="true"
@@ -707,16 +758,18 @@ const Training = () => {
 								onChange={onFormFieldChange}
 							/>
 						</div>
+						<input type="text" name="honeypot" style={{ display: 'none' }} />
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="recordSeries">Training Session</label>
 							<select
 								required
 								id="trainingSession"
-								name="trainingSession"
+								name="$Training Session"
 								aria-label="Training Session"
 								aria-required="true"
 								title="Training Session"
-								value={contact.trainingSession}
+								defaultValue={contact['$Training Session'] || 'select'}
+								value={contact['$Training Session']}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							>
@@ -742,6 +795,9 @@ const Training = () => {
 					</form>
 				</div>
 			</StyledForm>
+			<div className={response.type === 'error' ? 'title box notification is-danger' : 'is-hidden'}>
+				<p>{response.message}</p>
+			</div>
 		</StyledTraining>
 	);
 };
