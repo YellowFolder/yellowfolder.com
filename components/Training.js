@@ -435,43 +435,46 @@ const StyledTraining = styled.main`
 					display: none;
 				}
 				table.list {
-					tr#rowgap {
-						display: none;
-					}
-					td {
-						position: relative;
+					display: block;
+					tbody {
 						display: block;
-						padding-left: 110px;
-						border: none;
-						font-size: 1.7rem;
-						text-align: right;
-						&:nth-child(1),
-						&:nth-child(2) {
-							width: initial;
-						}
-
-						&:before {
-							position: absolute;
-							left: 10px;
+						tr {
+							padding: 10px 0;
 							display: block;
-							text-transform: capitalize;
-							font-family: ${props => props.theme.boldFont};
-							content: attr(aria-label) ': ';
-						}
-						&#registrationLink {
-							a {
-								button {
-									margin-top: 6px;
-									padding: 0.7rem 2rem;
-									font-size: 1.7rem;
-									border-radius: 3px;
+							&#rowgap {
+								display: none;
+							}
+							td {
+								position: relative;
+								display: block;
+								padding-left: 110px;
+								border: none;
+								font-size: 1.7rem;
+								text-align: right;
+								:nth-child(1),
+								:nth-child(2) {
+									width: 100% !important;
+								}
+								&:before {
+									position: absolute;
+									left: 10px;
+									display: block;
+									text-transform: capitalize;
+									font-family: ${props => props.theme.boldFont};
+									content: attr(aria-label) ': ';
+								}
+								&#registrationLink {
+									a {
+										button {
+											margin-top: 6px;
+											padding: 0.7rem 2rem;
+											font-size: 1.7rem;
+											border-radius: 3px;
+										}
+									}
 								}
 							}
 						}
-					}
-					tr {
-						padding: 10px 0;
-						display: block;
 					}
 				}
 			}
