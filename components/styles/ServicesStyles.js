@@ -441,11 +441,20 @@ const ServicesPostscript = styled.div`
 
 const ServicesVideo = styled.div`
 	grid-row: 7/9;
-	grid-column: 1/12;
+	grid-column: 2/6;
 	background: transparent;
-	max-width: 1200px;
+	width: 100%;
 	margin: -150px 0 50px 0;
-	padding: 0 2rem;
+
+	.video-container {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		padding: 25px 0;
+
+		iframe {
+		}
+	}
 
 	.video-container {
 		#services-video {
@@ -464,7 +473,7 @@ const ServicesVideo = styled.div`
 		margin: -25px 0 25px;
 	}
 	@media (max-width: ${size.mobileL}) {
-		margin: -25px 0 40px;
+		margin: 0 0 40px;
 		padding: 0 1rem;
 	}
 `;
