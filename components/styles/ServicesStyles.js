@@ -469,12 +469,16 @@ const ServicesVideo = styled.div`
 	@media (max-width: ${size.laptop}) {
 		margin: -75px 0 25px;
 	}
+	@media (max-width: 850px) {
+		grid-column: 1/-1;
+		padding: 0 2rem;
+	}
 	@media (max-width: ${size.tablet}) {
 		margin: -25px 0 25px;
 	}
 	@media (max-width: ${size.mobileL}) {
 		margin: 0 0 40px;
-		padding: 0 1rem;
+		padding: 0 0.5rem;
 	}
 `;
 
