@@ -250,6 +250,18 @@ const StyledDemo = styled.div`
 	}
 
 	@media (max-width: ${size.navMenu}) {
+		.demo {
+			&--header {
+				margin: 0 auto;
+				width: 100%;
+				.header-copy {
+					width: 100%;
+				}
+			}
+			&--container {
+				width: 90%;
+			}
+		}
 		.contact-form {
 			&--form {
 				form {
@@ -290,6 +302,9 @@ const StyledDemo = styled.div`
 		}
 	}
 	@media (max-width: ${size.mobileL}) {
+		.header-copy {
+			width: 100%;
+		}
 		.demo-form {
 			&--form {
 				form {

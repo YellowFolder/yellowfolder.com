@@ -259,12 +259,19 @@ const StyledForm = styled.div`
 							margin: 0 2% 3px;
 						}
 						&--submit-wrapper {
+							flex-flow: column nowrap;
+							.form--submit-btn {
+								margin: 2rem auto;
+							}
+							#recaptcha-container {
 						}
 					}
 					.form-field--wrapper {
 						width: 96%;
 					}
 				}
+			}
+		}
 			}
 			&--sidebar {
 				padding-top: 4rem;
@@ -287,7 +294,6 @@ const StyledForm = styled.div`
 					font-size: calc(42px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
 				}
 			}
-		}
 	}
 `;
 
