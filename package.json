@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"dev": "./node_modules/.bin/now dev -p 7777",
+		"dev": "./node_modules/.bin/now dev --listen 7777",
 		"build": "next build",
 		"start": "next start -p 7777",
 		"test": "NODE_ENV=test jest --watch",
