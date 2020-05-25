@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "next",
 		"build": "next build",
-		"start": "next start -p 7777",
+		"start": "next start",
 		"test": "NODE_ENV=test jest --watch",
 		"test-win": "SET NODE_ENV=test && jest --watch",
 		"analyze:browser": "ANALYZE=true yarn build"
