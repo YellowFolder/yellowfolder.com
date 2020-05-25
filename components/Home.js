@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import {
-	Masthead,
-	SectionCopy,
-	MastheadImage,
-	InfoRow,
-	InfoRowContent,
-	ContentRow,
-	ContentContainer,
 	CabinetToCloud,
 	ContactOptions,
+	ContentContainer,
+	ContentRow,
+	InfoRow,
+	InfoRowContent,
+	Masthead,
+	MastheadImage,
 	OptionsContent,
+	SectionCopy,
 } from './styles/HomeStyles';
 
 class Home extends Component {

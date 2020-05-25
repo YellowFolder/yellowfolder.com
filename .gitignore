@@ -16,6 +16,8 @@ node_modules
 .vscode
 .next
 .env
+.env.*
+!.env.dist
 bundles/
 assets/
 static/video
