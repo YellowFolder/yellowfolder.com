@@ -63,7 +63,7 @@ class RecordRequest extends React.Component {
 				cf_billable: false,
 				cf_hours_spent: null,
 			},
-			description: qs.stringify(description, { encode: false }),
+			description: qs.stringify(description, { encode: false, delimiter: '\n' }),
 		};
 
 		const FRESHDESK_CREATE_TICKET = `/api/v2/tickets`;
