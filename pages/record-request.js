@@ -3,7 +3,7 @@ import RecordRequest from '../components/RecordRequest';
 
 class RecordRequestPage extends React.Component {
 	static async getInitialProps(ctx) {
-		const FRESHDESK_KEY = await process.env.FRESHDESK_KEY_TEST;
+		const FRESHDESK_KEY = await process.env.FRESHDESK_KEY_PROD;
 		const FRESHDESK_BASE_URL = await process.env.FRESHDESK_BASE_URL;
 
 		return {
