@@ -52,10 +52,10 @@ class RecordRequest extends React.Component {
 			type: 'Record Retrieval',
 			status: 2, // "open" (new)
 			priority: 2, // medium
-			responder_id: 48026865455, // brock
-			group_id: 48000582011, // api test
-			// responder_id: 48011471036, // christine roblez
-			// group_id: 48000495294, // customer support
+			// responder_id: 48026865455, // brock
+			// group_id: 48000582011, // api test
+			responder_id: 48011471036, // christine roblez
+			group_id: 48000495294, // customer support
 			source: 2, // web portal
 			custom_fields: {
 				cf_record_series1: this.state.recordSeries,
@@ -66,13 +66,11 @@ class RecordRequest extends React.Component {
 			description: qs.stringify(description, { encode: false, delimiter: '\n' }),
 		};
 
-		const FRESHDESK_CREATE_TICKET = `/api/v2/tickets`;
-
-		let url = `${this.props.props.FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let url = `https://yellowfolder.freshdesk.com/api/v2/tickets`;
 		let resp = await unirest
 			.post(url)
 			.auth({
-				user: this.props.props.FRESHDESK_TOKEN,
+				user: 'xG30zpPU7fUKhVvVyIe',
 				sendImmediately: true,
 			})
 			.type('json')
@@ -88,8 +86,6 @@ class RecordRequest extends React.Component {
 	};
 
 	render() {
-		console.log(`record request props `);
-		console.log(this.props);
 		const {
 			district,
 			name,
