@@ -1,5 +1,4 @@
 {
-	"name": "yellowfolder.com",
 	"version": 2,
 	"public": false,
 	"build": {
@@ -7,7 +6,6 @@
 			"DOMAIN": "yellowfolder.com"
 		}
 	},
-	"builds": [{ "src": "package.json", "use": "@now/next" }],
 	"routes": [
 		{
 			"src": "/(.*)/",

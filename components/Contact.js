@@ -2,14 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { size } from './styles/device';
 
-const ACCESS_KEY_PROD = 'e20b50ff-c9c2-4198-b148-b2ebd61763f3';
-const ACCESS_KEY_DEV = '427e0763-715a-488d-b159-140d5a32ca6f';
-
-const ACCESS_KEY =
-	process.env.NODE_ENV === 'development' || !!process.env.STAGING
-		? ACCESS_KEY_DEV
-		: ACCESS_KEY_PROD;
-
 const StyledContact = styled.div`
 	width: 100%;
 	height: auto;
@@ -204,7 +196,6 @@ const StyledContact = styled.div`
 				width: 80%;
 				margin: 0 auto;
 				h1 {
-					/* line-height: calc(64px + (64 - 58) * ((100vw - 800px) / (1000 - 400))); */
 					line-height: 120%;
 					font-size: calc(60px + (72 - 60) * ((100vw - 800px) / (1000 - 400)));
 					margin: 0 0 2rem 0;
@@ -325,7 +316,7 @@ const StyledContact = styled.div`
 	}
 `;
 
-const ContactForm = () => {
+const ContactForm = props => {
 	const [contact, setContact] = useState({
 		email: '',
 		'$First Name': '',
@@ -335,7 +326,7 @@ const ContactForm = () => {
 		message: '',
 		honeypot: '',
 		subject: 'Contact Form Submission',
-		accessKey: ACCESS_KEY,
+		accessKey: 'xxxxx',
 	});
 
 	const [response, setResponse] = useState({
@@ -349,33 +340,6 @@ const ContactForm = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		try {
-			const res = await fetch('https://api.staticforms.xyz/submit', {
-				method: 'POST',
-				body: JSON.stringify(contact),
-				headers: { 'Content-Type': 'application/json' },
-			});
-
-			const json = await res.json();
-
-			if (json.success) {
-				setResponse({
-					type: 'success',
-					message: 'Your email has been successfully delivered. Thank you for reaching out to us.',
-				});
-			} else {
-				setResponse({
-					type: 'error',
-					message: json.message,
-				});
-			}
-		} catch (e) {
-			console.log('An error occurred ', e);
-			setResponse({
-				type: 'error',
-				message: 'An error occured while submitting the form. Please try again.',
-			});
-		}
 	};
 
 	return (

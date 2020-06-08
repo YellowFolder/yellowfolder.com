@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 import { size } from '../components/styles/device';
@@ -28,19 +27,31 @@ const StyledPrivacy = styled.div`
 			width: 80%;
 			margin: 0 auto;
 			display: flex;
-			align-items: flex-start;
-			justify-content: flex-start;
-			flex-flow: column nowrap;
+			align-items: center;
+			justify-content: space-between;
+			flex-flow: row nowrap;
+			h1,
+			.privacy-pledge-banner {
+				display: flex;
+				margin: 0 auto;
+				padding: 10px 10px 10px 0;
+				margin-top: 45px;
+			}
 			h1 {
 				text-align: left;
-				width: 100%;
-				margin: 0 auto;
 				color: ${props => props.theme.grey};
 				font-size: 3.6rem;
 				line-height: 1.1;
-				padding: 10px 10px 10px 0;
-				margin-top: 45px;
 				font-family: ${props => props.theme.boldFont};
+				width: 75%;
+			}
+			.privacy-pledge-banner {
+				img {
+					width: 200px;
+				}
+				&:hover {
+					cursor: pointer;
+				}
 			}
 		}
 
@@ -133,9 +144,30 @@ const StyledPrivacy = styled.div`
 
 	@media (max-width: ${size.navMenu}) {
 		.privacy-container {
+			.copy-header {
+				width: 95%;
+			}
 			.copy {
 				width: 95%;
 				.subcopy {
+				}
+			}
+		}
+	}
+
+	@media (max-width: ${size.mobileL}) {
+		.privacy-container {
+			.copy-header {
+				flex-flow: column-reverse nowrap;
+				align-items: flex-start;
+				justify-content: center;
+				h1,
+				.privacy-pledge-banner {
+					margin: 0 auto;
+					padding: 10px 0;
+				}
+				h1 {
+					width: initial;
 				}
 			}
 		}
@@ -148,6 +180,11 @@ const PrivacyPolicy = () => {
 			<div className="privacy-container">
 				<div className="copy-header">
 					<h1>Privacy Policy</h1>
+					<div className="privacy-pledge-banner">
+						<a href="https://studentprivacypledge.org/" target="_blank" rel="noopener noreferrer">
+							<img src="/static/images/spp@2x.png" alt="Privacy Pledge Signatory Banner" />
+						</a>
+					</div>
 				</div>
 				<div className="copy">
 					<h3>Statement: </h3>
@@ -240,19 +277,23 @@ const PrivacyPolicy = () => {
 					<p>
 						YellowFolder uses web analytics services provided by Google (
 						<span>
-							<Link href="https://policies.google.com/privacy/#">
-								<a target="_blank" rel="noopener noreferrer">
-									Google Privacy Policy
-								</a>
-							</Link>
+							<a
+								href="https://policies.google.com/privacy/#"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Google Privacy Policy
+							</a>
 						</span>
 						) and Lead Forensics (
 						<span>
-							<Link href="https://www.leadforensics.com/privacy-policy/#">
-								<a target="_blank" rel="noopener noreferrer">
-									Lead Forensics Privacy Policy
-								</a>
-							</Link>
+							<a
+								href="https://www.leadforensics.com/privacy-policy/#"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Lead Forensics Privacy Policy
+							</a>
 						</span>
 						) that both use JavaScript and cookies to help us analyze how visitors use the Site.
 						These services may use cookies to collect information for analytics. Cookies are very

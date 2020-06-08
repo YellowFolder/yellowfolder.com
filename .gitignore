@@ -14,8 +14,13 @@ out
 
 node_modules
 .vscode
+.vercel
 .next
 .env
+.env.*local
 bundles/
 assets/
 static/video
+
+# Freshdesk
+freshdesk/

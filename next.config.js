@@ -23,7 +23,10 @@ module.exports = withCss({
 	webpack: config => {
 		// Fixes npm packages that depend on `fs` module
 		config.node = {
+			console: true,
 			fs: 'empty',
+			net: 'empty',
+			tls: 'empty',
 		};
 
 		return config;

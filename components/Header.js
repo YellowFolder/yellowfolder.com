@@ -90,12 +90,14 @@ export class Header extends Component {
 				</StyledHeader>
 				{this.props.activeRoute === '/' && (
 					<Banner>
-						<a href="https://studentprivacypledge.org/" target="_blank" rel="noopener noreferrer">
-							<img
-								src="/static/images/privacy-banner.svg"
-								alt="Student Privacy Pledge Official Signatory"
-							/>
-						</a>
+						<Link href="/privacy-policy">
+							<a>
+								<img
+									src="/static/images/privacy-banner.svg"
+									alt="Student Privacy Pledge Official Signatory"
+								/>
+							</a>
+						</Link>{' '}
 					</Banner>
 				)}
 				<SubBar />
