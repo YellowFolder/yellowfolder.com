@@ -63,7 +63,7 @@ class RecordRequest extends React.Component {
 				cf_billable: false,
 				cf_hours_spent: null,
 			},
-			description: qs.stringify(description, { encode: false, delimiter: '\n\n' }),
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
 		};
 
 		let url = `https://yellowfolder.freshdesk.com/api/v2/tickets`;
