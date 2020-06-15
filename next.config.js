@@ -20,6 +20,10 @@ module.exports = withCss({
 
 		return paths;
 	},
+	env: {
+		FRESHDESK_KEY: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+		FRESHDESK_BASE_URL: process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL,
+	},
 	webpack: config => {
 		// Fixes npm packages that depend on `fs` module
 		config.node = {

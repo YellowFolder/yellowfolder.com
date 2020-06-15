@@ -63,14 +63,14 @@ class RecordRequest extends React.Component {
 				cf_billable: false,
 				cf_hours_spent: null,
 			},
-			description: qs.stringify(description, { encode: false, delimiter: '\n' }),
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
 		};
 
 		let url = `https://yellowfolder.freshdesk.com/api/v2/tickets`;
 		let resp = await unirest
 			.post(url)
 			.auth({
-				user: 'xG30zpPU7fUKhVvVyIe',
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
 				sendImmediately: true,
 			})
 			.type('json')
