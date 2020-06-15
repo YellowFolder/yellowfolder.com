@@ -32,16 +32,6 @@ class RecordRequest extends React.Component {
 	// For more documentation, check here: https://developers.freshdesk.com/api/#create_ticket
 	onSubmit = async e => {
 		e.preventDefault();
-		console.log(`submit props`);
-		console.log(this.props);
-		console.log('submit secrets');
-		console.log(`process.env.FRESHDESK_KEY_PROD: ${process.env.FRESHDESK_KEY_PROD}`);
-		console.log(
-			`process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD: ${process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD}`
-		);
-		console.log(
-			`process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL: ${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}`
-		);
 		let description = {
 			'Target Alias or Maiden Name': this.state.alias,
 			'Target Name': this.state.targetName,
