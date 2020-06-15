@@ -2,8 +2,8 @@ const withCss = require('@zeit/next-css');
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 
 console.log({
-	FRESHDESK_KEY: process.env.FRESHDESK_KEY_PROD,
-	NEXT_PUBLIC_FRESHDESK_KEY: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+	FRESHDESK_KEY_PROD: process.env.FRESHDESK_KEY_PROD,
+	NEXT_PUBLIC_FRESHDESK_KEY_PROD: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
 	FRESHDESK_BASE_URL: process.env.FRESHDESK_BASE_URL,
 	NEXT_PUBLIC_FRESHDESK_BASE_URL: process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL,
 });

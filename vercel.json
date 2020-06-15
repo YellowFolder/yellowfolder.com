@@ -4,8 +4,9 @@
 	"build": {
 		"env": {
 			"DOMAIN": "yellowfolder.com",
-			"FRESHDESK_KEY": "@freshdesk-key-prod-production-wddg",
-			"NEXT_PUBLIC_FRESHDESK_KEY": "@next-public-freshdesk-key-prod-production-46mx"
+			"FRESHDESK_KEY_PROD": "@freshdesk-key-prod-production-wddg",
+			"NEXT_PUBLIC_FRESHDESK_KEY_PROD": "@next-public-freshdesk-key-prod-production-46mx",
+			"NEXT_PUBLIC_FRESHDESK_BASE_URL": "@next-public-freshdesk-base-url-preview-bd3j"
 		}
 	},
 	"routes": [
