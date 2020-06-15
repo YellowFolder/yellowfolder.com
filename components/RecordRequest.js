@@ -86,16 +86,6 @@ class RecordRequest extends React.Component {
 	};
 
 	render() {
-		console.log('render props');
-		console.log(this.props);
-		console.log('secrets');
-		console.log(`process.env.FRESHDESK_KEY_PROD: ${process.env.FRESHDESK_KEY_PROD}`);
-		console.log(
-			`process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD: ${process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD}`
-		);
-		console.log(
-			`process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL: ${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}`
-		);
 		const {
 			district,
 			name,
