@@ -3,7 +3,9 @@
 	"public": false,
 	"build": {
 		"env": {
-			"DOMAIN": "yellowfolder.com"
+			"DOMAIN": "yellowfolder.com",
+			"FRESHDESK_KEY": "@freshdesk-key-prod",
+			"NEXT_PUBLIC_FRESHDESK_KEY": "@next-public-freshdesk-key-prod"
 		}
 	},
 	"routes": [

@@ -32,6 +32,8 @@ class RecordRequest extends React.Component {
 	// For more documentation, check here: https://developers.freshdesk.com/api/#create_ticket
 	onSubmit = async e => {
 		e.preventDefault();
+		console.log(`submit props`);
+		console.log(this.props);
 		let description = {
 			'Target Alias or Maiden Name': this.state.alias,
 			'Target Name': this.state.targetName,
@@ -70,7 +72,7 @@ class RecordRequest extends React.Component {
 		let resp = await unirest
 			.post(url)
 			.auth({
-				user: 'xG30zpPU7fUKhVvVyIe',
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
 				sendImmediately: true,
 			})
 			.type('json')
@@ -86,6 +88,8 @@ class RecordRequest extends React.Component {
 	};
 
 	render() {
+		console.log('render props');
+		console.log(this.props);
 		const {
 			district,
 			name,
