@@ -52,8 +52,6 @@ class RecordRequest extends React.Component {
 			type: 'Record Retrieval',
 			status: 2, // "open" (new)
 			priority: 2, // medium
-			// responder_id: 48026865455, // brock
-			// group_id: 48000582011, // api test
 			responder_id: 48011471036, // christine roblez
 			group_id: 48000495294, // customer support
 			source: 2, // web portal

@@ -1,16 +1,10 @@
 import Router from 'next/router';
+import qs from 'qs';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+import unirest from 'unirest';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
-
-const ACCESS_KEY_PROD = 'e20b50ff-c9c2-4198-b148-b2ebd61763f3';
-const ACCESS_KEY_DEV = '427e0763-715a-488d-b159-140d5a32ca6f';
-
-const ACCESS_KEY =
-	process.env.NODE_ENV === 'development' || !!process.env.STAGING
-		? ACCESS_KEY_DEV
-		: ACCESS_KEY_PROD;
 
 const StyledForm = styled.div`
 	width: 100%;
@@ -526,15 +520,14 @@ const Training = () => {
 	const [contact, setContact] = useState({
 		email: '',
 		name: '',
-		honeypot: '',
-		$District: '',
-		'$Record Series': 'select',
-		'$Training Date 1': now,
-		'$Training Date 2': now,
-		'$Training Date 3': now,
-		'$Training Session': '',
+		district: '',
+		type: 'PNE Training Recommended',
+		recordSeries: 'None',
+		trainingDate1: now,
+		trainingDate2: now,
+		trainingDate3: now,
+		trainingSession: 'select',
 		subject: 'Training Form Submission',
-		accessKey: ACCESS_KEY,
 	});
 
 	const [response, setResponse] = useState({
@@ -548,48 +541,59 @@ const Training = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		let contactData = Object.assign(
-			{},
-			{ ...contact },
-			{
-				'$Training Date 1': new Date(contact['$Training Date 1']).toLocaleString('en-US'),
-				'$Training Date 2': new Date(contact['$Training Date 2']).toLocaleString('en-US'),
-				'$Training Date 3': new Date(contact['$Training Date 3']).toLocaleString('en-US'),
-				accessKey: ACCESS_KEY,
-			}
-		);
 
-		try {
-			const res = await fetch('https://api.staticforms.xyz/submit', {
-				method: 'POST',
-				body: JSON.stringify(contact),
-				headers: { 'Content-Type': 'application/json' },
-			});
+		let description = {
+			'Training Session': `${contact.trainingSession}\n`,
+			'Training Date 1': `${new Date(contact.trainingDate1).toLocaleString('en-US')}\n`,
+			'Training Date 2': `${new Date(contact.trainingDate2).toLocaleString('en-US')}\n`,
+			'Training Date 3': `${new Date(contact.trainingDate3).toLocaleString('en-US')}\n`,
+		};
 
-			const json = await res.json();
+		const fields = {
+			email: contact.email,
+			name: contact.name,
+			type: 'PNE Training Recommended',
+			subject: `Training Requested by ${contact.name} at ${contact.district} - ${contact.trainingSession}`,
+			priority: 2,
+			status: 2,
+			source: 2,
+			group_id: 48000495297, // PNEs
+			responder_id: null,
+			email_config_id: 48000086987,
+			custom_fields: {
+				cf_district: `${contact.district}`,
+				cf_billable: false,
+				cf_record_series1: `${contact.recordSeries}`,
+				cf_hours_spent: null,
+			},
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
+		};
 
-			if (json.success) {
-				console.log(`success!`);
-				Router.push('/request-success');
-			} else {
-				console.error(json.message);
-				setResponse({
-					type: 'error',
-					message: 'An error occured while submitting the form. Please try again.',
-				});
-			}
-		} catch (e) {
-			console.log('An error occurred ', e);
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.type('json')
+			.send(fields);
+
+		let data = resp.body;
+		if (resp.status >= 400) {
 			setResponse({
 				type: 'error',
-				message: 'An error occured while submitting the form. Please try again.',
+				message: resp.message,
 			});
+		} else if (resp.status >= 200 || resp.status < 400) {
+			setResponse({
+				type: 'success',
+				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
+			});
+			return Router.push('/request-success');
 		}
 	};
 
 	const handleClick = e => {
 		e.preventDefault();
-		setContact({ ...contact, '$Training Session': e.target.value });
+		setContact({ ...contact, trainingSession: e.target.value });
 		scrollToBottom();
 	};
 
@@ -687,8 +691,8 @@ const Training = () => {
 								type="text"
 								aria-label="Full Name"
 								id="district"
-								name="$District"
-								value={contact['$District']}
+								name="district"
+								value={contact.district}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							/>
@@ -701,16 +705,16 @@ const Training = () => {
 							<select
 								required
 								id="recordSeries"
-								name="$Record Series"
+								name="recordSeries"
 								aria-label="Record Series"
 								aria-required="true"
 								title="Record Series"
-								defaultValue={contact['$Record Series'] || 'select'}
-								value={contact['$Record Series']}
+								defaultValue={contact.recordSeries || 'None'}
+								value={contact.recordSeries}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							>
-								<option value="select" disabled>
+								<option value="None" disabled>
 									Please Select
 								</option>
 								<option value="Student Records">Student Records</option>
@@ -724,8 +728,8 @@ const Training = () => {
 							<input
 								type="datetime-local"
 								id="trainingDate1"
-								name="$Training Date 1"
-								value={contact['$Training Date 1']}
+								name="trainingDate1"
+								value={contact.trainingDate1}
 								title="Training Date/Time 1"
 								aria-label="Training Date/Time 1"
 								aria-required="true"
@@ -738,8 +742,8 @@ const Training = () => {
 							<input
 								type="datetime-local"
 								id="trainingDate2"
-								name="$Training Date 2"
-								value={contact['$Training Date 2']}
+								name="trainingDate2"
+								value={contact.trainingDate2}
 								title="Training Date/Time 2"
 								aria-label="Training Date/Time 2"
 								aria-required="true"
@@ -752,8 +756,8 @@ const Training = () => {
 							<input
 								type="datetime-local"
 								id="trainingDate3"
-								name="$Training Date 3"
-								value={contact['$Training Date 3']}
+								name="trainingDate3"
+								value={contact.trainingDate3}
 								title="Training Date/Time 3"
 								aria-label="Training Date/Time 3"
 								aria-required="true"
@@ -762,16 +766,16 @@ const Training = () => {
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="recordSeries">Training Session</label>
+							<label htmlFor="trainingSession">Training Session</label>
 							<select
 								required
 								id="trainingSession"
-								name="$Training Session"
+								name="trainingSession"
 								aria-label="Training Session"
 								aria-required="true"
 								title="Training Session"
-								defaultValue={contact['$Training Session'] || 'select'}
-								value={contact['$Training Session']}
+								defaultValue={contact.trainingSession || 'select'}
+								value={contact.trainingSession}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							>

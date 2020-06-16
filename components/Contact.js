@@ -1,5 +1,8 @@
+import Router from 'next/router';
+import qs from 'qs';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import unirest from 'unirest';
 import { size } from './styles/device';
 
 const StyledContact = styled.div`
@@ -319,14 +322,14 @@ const StyledContact = styled.div`
 const ContactForm = props => {
 	const [contact, setContact] = useState({
 		email: '',
-		'$First Name': '',
-		'$Last Name': '',
-		$State: 'select',
-		'$How can we help?': 'select',
-		message: '',
-		honeypot: '',
+		firstName: '',
+		lastName: '',
+		state: '',
+		recordSeries: 'None',
+		district: null,
+		inquiryType: 'select',
 		subject: 'Contact Form Submission',
-		accessKey: 'xxxxx',
+		message: '',
 	});
 
 	const [response, setResponse] = useState({
@@ -338,8 +341,54 @@ const ContactForm = props => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	};
 
+	let description = {
+		'State:': `${contact.state}\n`,
+		'How can we help?': `${contact.inquiryType}\n`,
+		'Message:': `${contact.message}\n`,
+	};
+
 	const handleSubmit = async e => {
 		e.preventDefault();
+		const fields = {
+			email: contact.email,
+			name: `${contact.firstName} ${contact.lastName}`,
+			type: 'Sales Inquiries',
+			subject: `Contact Request from ${contact.email}`,
+			priority: 1,
+			status: 2,
+			source: 2,
+			group_id: 48000581041,
+			responder_id: null,
+			email_config_id: 48000086987,
+			custom_fields: {
+				cf_district: `${contact.district}`,
+				cf_billable: false,
+				cf_record_series1: 'None',
+				cf_hours_spent: null,
+			},
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
+		};
+
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.type('json')
+			.send(fields);
+
+		let data = resp.body;
+		if (resp.status >= 400) {
+			setResponse({
+				type: 'error',
+				message: resp.message,
+			});
+		} else if (resp.status >= 200 || resp.status < 400) {
+			setResponse({
+				type: 'success',
+				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
+			});
+			return Router.push('/request-success');
+		}
 	};
 
 	return (
@@ -408,7 +457,7 @@ const ContactForm = props => {
 							id="firstName"
 							type="text"
 							autoComplete="given-name"
-							name="$First Name"
+							name="firstName"
 							onChange={onFormFieldChange}
 						/>
 					</div>
@@ -416,7 +465,7 @@ const ContactForm = props => {
 						<label htmlFor="lastName">Last Name</label>
 						<input
 							id="lastName"
-							name="$Last Name"
+							name="lastName"
 							type="text"
 							autoComplete="family-name"
 							onChange={onFormFieldChange}
@@ -430,7 +479,7 @@ const ContactForm = props => {
 							required
 							id="state"
 							defaultValue={contact['$State'] || 'select'}
-							name="$State"
+							name="state"
 							onChange={onFormFieldChange}
 						>
 							<option value="select" disabled>
@@ -496,8 +545,8 @@ const ContactForm = props => {
 						<select
 							required
 							id="purpose"
-							defaultValue={contact['$How can we help?'] || 'select'}
-							name="$How can we help?"
+							defaultValue={contact.inquiryType || 'select'}
+							name="inquiryType"
 							onChange={onFormFieldChange}
 						>
 							<option value="select" disabled>
