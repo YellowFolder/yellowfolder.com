@@ -361,12 +361,12 @@ const ContactForm = props => {
 			responder_id: null,
 			email_config_id: 48000086987,
 			custom_fields: {
-				cf_district: `${contact.district}\n`,
+				cf_district: `${contact.district}`,
 				cf_billable: false,
 				cf_record_series1: 'None',
 				cf_hours_spent: null,
 			},
-			description: qs.stringify(description, { encode: false, delimiter: '\n' }),
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
 		};
 
 		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
