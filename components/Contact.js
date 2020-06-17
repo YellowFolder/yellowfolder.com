@@ -341,14 +341,13 @@ const ContactForm = props => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	};
 
-	let description = {
-		'State:': `${contact.state}\n`,
-		'How can we help?': `${contact.inquiryType}\n`,
-		'Message:': `${contact.message}\n`,
-	};
-
 	const handleSubmit = async e => {
 		e.preventDefault();
+		let description = {
+			'State:': `${contact.state}\n`,
+			'How can we help?': `${contact.inquiryType}\n`,
+			'Message:': `${contact.message}\n`,
+		};
 		const fields = {
 			email: contact.email,
 			name: `${contact.firstName} ${contact.lastName}`,
@@ -430,12 +429,7 @@ const ContactForm = props => {
 				</div>
 			</aside>
 			<div className="contact-form--form">
-				<form
-					action="https://api.staticforms.xyz/submit"
-					method="post"
-					id="staticform"
-					onSubmit={handleSubmit}
-				>
+				<form onSubmit={handleSubmit}>
 					<input type="hidden" name="subject" value="Contact Form" />{' '}
 					<div className="form--field-wrapper form--field-item">
 						<label htmlFor="email">

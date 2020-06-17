@@ -1,9 +1,9 @@
+import Router from 'next/router';
+import qs from 'qs';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import unirest from 'unirest';
 import { size } from './styles/device';
-
-const ACCESS_KEY_PROD = 'e20b50ff-c9c2-4198-b148-b2ebd61763f3';
-const ACCESS_KEY_DEV = '427e0763-715a-488d-b159-140d5a32ca6f';
 
 const StyledDemo = styled.div`
 	width: 100%;
@@ -337,15 +337,14 @@ const StyledDemo = styled.div`
 const Demo = () => {
 	const [contact, setContact] = useState({
 		email: '',
-		'$First Name': '',
-		'$Last Name': '',
-		$District: '',
-		$State: 'select',
+		firstName: '',
+		lastName: '',
+		state: 'select',
+		district: null,
 		honeypot: '',
 		subject: 'Demo Request Form Submission',
-		'$Document Storage Issue': '',
-		'$Document Storage Budget': '',
-		accessKey: ACCESS_KEY_PROD,
+		documentStorageIssue: '',
+		documentStorageBudget: '',
 	});
 
 	const [response, setResponse] = useState({
@@ -359,6 +358,54 @@ const Demo = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
+
+		let description = {
+			'State:': `${contact.state}\n`,
+			'Is there a document storage solution in your district/school?': `${contact.documentStorageIssue}\n`,
+			'Has a document storage solution been budgeted for?': `${contact.documentStorageBudget}\n`,
+		};
+
+		const fields = {
+			email: contact.email,
+			name: `${contact.firstName} ${contact.lastName}`,
+			type: 'Sales Inquiries',
+			subject: `Demo Request from ${contact.firstName} ${contact.lastName} at ${contact.district}`,
+			priority: 1,
+			status: 2,
+			source: 2,
+			group_id: 48000495297,
+			responder_id: null,
+			email_config_id: 48000086987,
+			custom_fields: {
+				cf_district: `${contact.district}`,
+				cf_billable: false,
+				cf_record_series1: 'None',
+				cf_hours_spent: null,
+			},
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
+		};
+
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.type('json')
+			.send(fields);
+
+		let data = resp.body;
+		if (resp.status >= 400) {
+			setResponse({
+				type: 'error',
+				message: resp.message,
+			});
+		} else if (resp.status >= 200 || resp.status < 400) {
+			setResponse({
+				type: 'success',
+				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
+			});
+			return Router.push('/request-success');
+		}
+
 		try {
 			const res = await fetch('https://api.staticforms.xyz/submit', {
 				method: 'POST',
@@ -455,12 +502,7 @@ const Demo = () => {
 					</div>
 				</div>
 				<div className="demo-form--form">
-					<form
-						action="https://api.staticforms.xyz/submit"
-						method="post"
-						id="staticform"
-						onSubmit={handleSubmit}
-					>
+					<form onSubmit={handleSubmit}>
 						<input type="hidden" name="subject" value="Demo Request Form" />{' '}
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="email">
@@ -482,7 +524,7 @@ const Demo = () => {
 								id="firstName"
 								type="text"
 								autoComplete="given-name"
-								name="$First Name"
+								name="firstName"
 								onChange={onFormFieldChange}
 							/>
 						</div>
@@ -490,7 +532,7 @@ const Demo = () => {
 							<label htmlFor="lastName">Last Name</label>
 							<input
 								id="lastName"
-								name="$Last Name"
+								name="lastName"
 								type="text"
 								autoComplete="family-name"
 								onChange={onFormFieldChange}
@@ -500,7 +542,7 @@ const Demo = () => {
 							<label htmlFor="district">
 								District or School Name<span>*</span>
 							</label>
-							<input required id="district" name="$District" onChange={onFormFieldChange} />
+							<input required id="district" name="district" onChange={onFormFieldChange} />
 						</div>
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="state">
@@ -509,8 +551,8 @@ const Demo = () => {
 							<select
 								required
 								id="state"
-								defaultValue={contact['$State'] || 'select'}
-								name="$State"
+								defaultValue={contact.state || 'select'}
+								name="state"
 								onChange={onFormFieldChange}
 							>
 								<option value="select" disabled>
