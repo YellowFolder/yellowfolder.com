@@ -407,7 +407,7 @@ const ContactForm = props => {
 					<h3>Sales</h3>
 					<p>
 						<span itemProp="telephone">
-							<a href="tel:+1-844-935-5684">(844) 935-5684</a>
+							<a href="tel:+1-844-935-5694">(844) 935-5694</a>
 						</span>
 						<br />
 						<a href="mailto:sales@yellowfolder.com" itemProp="email">
