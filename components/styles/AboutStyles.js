@@ -162,7 +162,7 @@ const TeamContainer = styled.div`
 
 	.member-row {
 		grid-column: 1 / -1;
-		grid-row: 1 / 8;
+		grid-row: 2 / 8;
 		max-width: ${props => props.theme.maxWidth};
 		margin: 0 auto;
 		display: flex;
@@ -211,8 +211,8 @@ const TeamContainer = styled.div`
 
 	#file-cabinet {
 		grid-column: 4 / 8;
-		grid-row: 4 / 13;
-		margin-top: 25px;
+		grid-row: 5 / 13;
+		/* margin-top: 25px; */
 		display: flex;
 		align-items: center;
 		justify-content: center;
