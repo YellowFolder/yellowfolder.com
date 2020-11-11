@@ -3,7 +3,7 @@ const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 
 module.exports = withCss({
 	target: 'serverless',
-	exportTrailingSlash: false,
+	trailingSlash: false,
 	exportPathMap: async function() {
 		const paths = {
 			'/': { page: '/' },
