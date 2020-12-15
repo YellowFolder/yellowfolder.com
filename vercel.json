@@ -9,32 +9,6 @@
 			"NEXT_PUBLIC_FRESHDESK_BASE_URL": "@next-public-freshdesk-base-url-production-2qkq"
 		}
 	},
-	"routes": [
-		{
-			"src": "/(.*)",
-			"headers": {
-				"Cache-Control": "max-age: 600"
-			},
-			"continue": true
-		},
-		{
-			"src": "/(.*)/",
-			"status": 301,
-			"headers": { "Location": "/$1" }
-		},
-		{
-			"src": "^(/static/.*)",
-			"dest": "$1"
-		},
-		{
-			"src": "/robots.txt",
-			"dest": "/static/robots.txt"
-		},
-		{
-			"src": "/logo@3x.png",
-			"dest": "/static/images/logo-horizontal@3x.png"
-		}
-	],
 	"headers": [
 		{
 			"source": "/(.*)",
