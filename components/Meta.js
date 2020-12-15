@@ -8,6 +8,9 @@ const Meta = () => (
 	<Head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta charSet="utf-8" />
+		<link rel="preload" href="/static/fonts/ClearSans-Medium.woff2" as="font" type="font/woff2" />
+		<link rel="preload" href="/static/fonts/ClearSans-Regular.woff2" as="font" type="font/woff2" />
+		<link rel="preload" href="/static/fonts/ClearSans-Bold.woff2" as="font" type="font/woff2" />
 		<link
 			rel="apple-touch-icon"
 			sizes="180x180"

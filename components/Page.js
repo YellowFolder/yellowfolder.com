@@ -129,15 +129,17 @@ class Page extends Component {
 
 	render() {
 		return (
-			<ThemeProvider theme={theme}>
-				<StyledPage>
-					<GlobalStyle />
-					<Meta />
-					<Header activeRoute={this.props.activeRoute} />
-					<Inner>{this.props.children}</Inner>
-					<Footer />
-				</StyledPage>
-			</ThemeProvider>
+			<>
+				<GlobalStyle />
+				<ThemeProvider theme={theme}>
+					<StyledPage>
+						<Meta />
+						<Header activeRoute={this.props.activeRoute} />
+						<Inner>{this.props.children}</Inner>
+						<Footer />
+					</StyledPage>
+				</ThemeProvider>
+			</>
 		);
 	}
 }
