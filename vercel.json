@@ -6,28 +6,10 @@
 		"env": {
 			"DOMAIN": "yellowfolder.com",
 			"NEXT_PUBLIC_FRESHDESK_KEY_PROD": "@next-public-freshdesk-key-prod-production-46mx",
-			"NEXT_PUBLIC_FRESHDESK_BASE_URL": "@next-public-freshdesk-base-url-production-2qkq"
+			"NEXT_PUBLIC_FRESHDESK_BASE_URL": "@next-public-freshdesk-base-url-production-2qkq",
+			"NEXT_PUBLIC_FRESHCHAT_TOKEN": "@freshchat-token-prod"
 		}
 	},
-	"routes": [
-		{
-			"src": "/(.*)/",
-			"status": 301,
-			"headers": { "Location": "/$1" }
-		},
-		{
-			"src": "^(/static/.*)",
-			"dest": "$1"
-		},
-		{
-			"src": "/robots.txt",
-			"dest": "/static/robots.txt"
-		},
-		{
-			"src": "/logo@3x.png",
-			"dest": "/static/images/logo-horizontal@3x.png"
-		}
-	],
 	"headers": [
 		{
 			"source": "/(.*)",
@@ -38,7 +20,7 @@
 				},
 				{
 					"key": "Content-Security-Policy",
-					"value": "default-src 'self'"
+					"value": "default-src 'self' https: 'unsafe-inline'; style-src 'self' 'unsafe-inline' https: ; script-src 'self' 'unsafe-inline' https: ; script-src-elem 'self' 'unsafe-inline' https: ; img-src 'self' 'unsafe-inline' data: https: ; connect-src https: ; frame-src 'self' https: ; form-action 'self' 'unsafe-inline' https:"
 				},
 				{
 					"key": "Referrer-Policy",

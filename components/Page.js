@@ -37,7 +37,7 @@ const Inner = styled.div`
 const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Clear Sans';
-    font-display: auto;
+    font-display: swap;
     src:
       local('Clear Sans'),
       url('/static/fonts/ClearSans-Regular.woff2') format('woff2');
@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
   }
   @font-face {
     font-family: 'Clear Sans Bold';
-    font-display: auto;
+    font-display: swap;
     src:
       local('Clear Sans Bold'),
       url('/static/fonts/ClearSans-Bold.woff2') format('woff2');
@@ -55,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
   }
   @font-face {
     font-family: 'Clear Sans Medium';
-    font-display: auto;
+    font-display: swap;
     src:
       local('Clear Sans Medium'),
       url('/static/fonts/ClearSans-Medium.woff2') format('woff2');
@@ -117,27 +117,27 @@ const GlobalStyle = createGlobalStyle`
 
 class Page extends Component {
 	componentDidMount() {
-		// add purechat widget.
+		// add freshchat widget.
 		const s = document.createElement('script');
 		s.type = 'text/javascript';
-		s.innerHTML = `
-      window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '7f32e6c2-448e-4961-9efe-23651fcc41e0', f: true }); done = true; } }; })();
-    `;
+		s.innerHTML = `function initFreshChat(){window.fcWidget.init({token:"${process.env.NEXT_PUBLIC_FRESHCHAT_TOKEN}",host:"https://wchat.freshchat.com"})}function initialize(t,i){var e;t.getElementById(i)?initFreshChat():((e=t.createElement("script")).id=i,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,t.head.appendChild(e))}function initiateCall(){initialize(document,"freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);`;
 
 		document.body.appendChild(s);
 	}
 
 	render() {
 		return (
-			<ThemeProvider theme={theme}>
-				<StyledPage>
-					<GlobalStyle />
-					<Meta />
-					<Header activeRoute={this.props.activeRoute} />
-					<Inner>{this.props.children}</Inner>
-					<Footer />
-				</StyledPage>
-			</ThemeProvider>
+			<>
+				<GlobalStyle />
+				<ThemeProvider theme={theme}>
+					<StyledPage>
+						<Meta />
+						<Header activeRoute={this.props.activeRoute} />
+						<Inner>{this.props.children}</Inner>
+						<Footer />
+					</StyledPage>
+				</ThemeProvider>
+			</>
 		);
 	}
 }
