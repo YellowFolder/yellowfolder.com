@@ -13,21 +13,21 @@ const Meta = () => (
 			href="/static/fonts/ClearSans-Medium.woff2"
 			as="font"
 			type="font/woff2"
-			crossOrigin
+			crossOrigin="anonymous"
 		/>
 		<link
 			rel="preload"
 			href="/static/fonts/ClearSans-Regular.woff2"
 			as="font"
 			type="font/woff2"
-			crossOrigin
+			crossOrigin="anonymous"
 		/>
 		<link
 			rel="preload"
 			href="/static/fonts/ClearSans-Bold.woff2"
 			as="font"
 			type="font/woff2"
-			crossOrigin
+			crossOrigin="anonymous"
 		/>
 		<link
 			rel="apple-touch-icon"
