@@ -11,9 +11,6 @@ module.exports = withCss({
 		WEBSITE_DOMAIN: process.env.WEBSITE_DOMAIN,
 	},
 	webpack: (config, { isServer }) => {
-		if (isServer) {
-			require('./lib/generate-sitemap');
-		}
 		// Fixes npm packages that depend on `fs` module
 		config.node = {
 			console: true,
