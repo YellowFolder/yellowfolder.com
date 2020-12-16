@@ -10,6 +10,13 @@ const Meta = () => (
 		<meta charSet="utf-8" />
 		<link
 			rel="preload"
+			href="/static/js/osano.js"
+			as="script"
+			type="text/javascript"
+			crossOrigin="anonymous"
+		/>
+		<link
+			rel="preload"
 			href="/static/fonts/ClearSans-Medium.woff2"
 			as="font"
 			type="font/woff2"
