@@ -117,10 +117,10 @@ const GlobalStyle = createGlobalStyle`
 
 class Page extends Component {
 	componentDidMount() {
-		// add purechat widget.
+		// add freshchat widget.
 		const s = document.createElement('script');
 		s.type = 'text/javascript';
-		s.innerHTML = `function initFreshChat(){window.fcWidget.init({token:${process.env.NEXT_PUBLIC_FRESHCHAT_TOKEN},host:"https://wchat.freshchat.com"})}function initialize(t,i){var e;t.getElementById(i)?initFreshChat():((e=t.createElement("script")).id=i,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,t.head.appendChild(e))}function initiateCall(){initialize(document,"freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);`;
+		s.innerHTML = `function initFreshChat(){window.fcWidget.init({token:"${process.env.NEXT_PUBLIC_FRESHCHAT_TOKEN}",host:"https://wchat.freshchat.com"})}function initialize(t,i){var e;t.getElementById(i)?initFreshChat():((e=t.createElement("script")).id=i,e.async=!0,e.src="https://wchat.freshchat.com/js/widget.js",e.onload=initFreshChat,t.head.appendChild(e))}function initiateCall(){initialize(document,"freshchat-js-sdk")}window.addEventListener?window.addEventListener("load",initiateCall,!1):window.attachEvent("load",initiateCall,!1);`;
 
 		document.body.appendChild(s);
 	}
