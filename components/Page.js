@@ -116,17 +116,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 class Page extends Component {
-	componentDidMount() {
-		// add purechat widget.
-		const s = document.createElement('script');
-		s.type = 'text/javascript';
-		s.innerHTML = `
-      window.purechatApi = { l: [], t: [], on: function () { this.l.push(arguments); } }; (function () { var done = false; var script = document.createElement('script'); script.async = true; script.type = 'text/javascript'; script.src = 'https://app.purechat.com/VisitorWidget/WidgetScript'; document.getElementsByTagName('HEAD').item(0).appendChild(script); script.onreadystatechange = script.onload = function (e) { if (!done && (!this.readyState || this.readyState == 'loaded' || this.readyState == 'complete')) { var w = new PCWidget({c: '7f32e6c2-448e-4961-9efe-23651fcc41e0', f: true }); done = true; } }; })();
-    `;
-
-		document.body.appendChild(s);
-	}
-
 	render() {
 		return (
 			<>
