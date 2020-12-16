@@ -27,7 +27,7 @@ const Masthead = styled.section`
 	background-repeat: no-repeat;
 	display: flex;
 	flex-flow: row nowrap;
-	margin: 0 auto;
+	margin: 0 auto -5px;
 	padding: 3rem 0 0;
 	width: 100%;
 	max-width: ${props => props.theme.maxWidth};
@@ -223,6 +223,7 @@ const InfoRow = styled(ContentRow)`
 	max-height: 270px;
 	background: ${props => props.theme.yellow} url(/static/images/papers-bg.svg) no-repeat center;
 	background-size: 1720px;
+	z-index: 2000;
 `;
 
 const InfoRowContent = styled(ContentContainer)`

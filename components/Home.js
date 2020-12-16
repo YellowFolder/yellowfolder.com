@@ -1,15 +1,16 @@
+import Image from 'next/image';
 import React, { Component } from 'react';
 import {
-	Masthead,
-	SectionCopy,
-	MastheadImage,
-	InfoRow,
-	InfoRowContent,
-	ContentRow,
-	ContentContainer,
 	CabinetToCloud,
 	ContactOptions,
+	ContentContainer,
+	ContentRow,
+	InfoRow,
+	InfoRowContent,
+	Masthead,
+	MastheadImage,
 	OptionsContent,
+	SectionCopy,
 } from './styles/HomeStyles';
 
 class Home extends Component {
@@ -22,10 +23,15 @@ class Home extends Component {
 						<p>We specialize in securely managing education records online.</p>
 					</SectionCopy>
 					<MastheadImage>
-						<img
+						<Image
 							src="/static/images/header-splash-woman.png"
 							alt="Claudia Mullins, Director of Student Services"
+							width={585}
+							height={509}
+							quality={75}
+							priority
 						/>
+
 						<div className="quote">
 							<div id="top">
 								<p>
@@ -44,7 +50,15 @@ class Home extends Component {
 
 				<InfoRow>
 					<InfoRowContent>
-						<img className="row-image" src="/static/images/young-girl.png" alt="Young girl" />
+						<Image
+							className="row-image"
+							src="/static/images/young-girl.png"
+							alt="Young girl"
+							width={372}
+							height={270}
+							quality={75}
+							priority
+						/>
 						<div className="row-text">
 							<div className="row-left">
 								<p>We're educators with one focus, simplifying your records.</p>

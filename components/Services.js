@@ -121,15 +121,14 @@ class Services extends Component {
 					</ServicesPostscript>
 					<ServicesVideo>
 						<div className="video-container">
-							<video id="services-video" poster="/static/images/video-wallpaper.png" controls>
-								<source type="video/mp4" src="/static/video/yf-intro.mp4" />
-								<source type="video/ogg" src="/static/video/yf-intro.ogg" />
-								<source type="video/ogv" src="/static/video/yf-intro.ogv" />
-								<source type="video/webm" src="/static/video/yf-intro.webm" />
-								<p>
-									Sorry, your browser doesn't support HTML5 video so this video cannot be displayed.
-								</p>
-							</video>
+							<iframe
+								width="100%"
+								height="434px"
+								src="https://www.youtube.com/embed/gBqr0GX9mhQ"
+								frameBorder="0"
+								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+								allowFullScreen
+							></iframe>
 						</div>
 					</ServicesVideo>
 					<ActionWrapper>

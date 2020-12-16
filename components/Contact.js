@@ -1,9 +1,9 @@
+import Router from 'next/router';
+import qs from 'qs';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import unirest from 'unirest';
 import { size } from './styles/device';
-
-const ACCESS_KEY_PROD = 'e20b50ff-c9c2-4198-b148-b2ebd61763f3';
-const ACCESS_KEY_DEV = '427e0763-715a-488d-b159-140d5a32ca6f';
 
 const StyledContact = styled.div`
 	width: 100%;
@@ -199,7 +199,6 @@ const StyledContact = styled.div`
 				width: 80%;
 				margin: 0 auto;
 				h1 {
-					/* line-height: calc(64px + (64 - 58) * ((100vw - 800px) / (1000 - 400))); */
 					line-height: 120%;
 					font-size: calc(60px + (72 - 60) * ((100vw - 800px) / (1000 - 400)));
 					margin: 0 0 2rem 0;
@@ -320,17 +319,17 @@ const StyledContact = styled.div`
 	}
 `;
 
-const ContactForm = () => {
+const ContactForm = props => {
 	const [contact, setContact] = useState({
 		email: '',
-		'$First Name': '',
-		'$Last Name': '',
-		$State: 'select',
-		'$How can we help?': 'select',
-		message: '',
-		honeypot: '',
+		firstName: '',
+		lastName: '',
+		state: '',
+		recordSeries: 'None',
+		district: null,
+		inquiryType: 'select',
 		subject: 'Contact Form Submission',
-		accessKey: ACCESS_KEY_PROD,
+		message: '',
 	});
 
 	const [response, setResponse] = useState({
@@ -344,32 +343,50 @@ const ContactForm = () => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		try {
-			const res = await fetch('https://api.staticforms.xyz/submit', {
-				method: 'POST',
-				body: JSON.stringify(contact),
-				headers: { 'Content-Type': 'application/json' },
-			});
+		let description = {
+			'State:': `${contact.state}\n`,
+			'How can we help?': `${contact.inquiryType}\n`,
+			'Message:': `${contact.message}\n`,
+		};
+		const fields = {
+			email: contact.email,
+			name: `${contact.firstName} ${contact.lastName}`,
+			type: 'Sales Inquiries',
+			subject: `Contact Request from ${contact.email}`,
+			priority: 1,
+			status: 2,
+			source: 2,
+			group_id: 48000581041,
+			responder_id: null,
+			email_config_id: 48000086987,
+			custom_fields: {
+				cf_district: `${contact.district}`,
+				cf_billable: false,
+				cf_record_series1: 'None',
+				cf_hours_spent: null,
+			},
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
+		};
 
-			const json = await res.json();
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.type('json')
+			.send(fields);
 
-			if (json.success) {
-				setResponse({
-					type: 'success',
-					message: 'Your email has been successfully delivered. Thank you for reaching out to us.',
-				});
-			} else {
-				setResponse({
-					type: 'error',
-					message: json.message,
-				});
-			}
-		} catch (e) {
-			console.log('An error occurred ', e);
+		let data = resp.body;
+		if (resp.status >= 400) {
 			setResponse({
 				type: 'error',
-				message: 'An error occured while submitting the form. Please try again.',
+				message: resp.message,
 			});
+		} else if (resp.status >= 200 || resp.status < 400) {
+			setResponse({
+				type: 'success',
+				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
+			});
+			return Router.push('/request-success');
 		}
 	};
 
@@ -382,15 +399,15 @@ const ContactForm = () => {
 				<div className="sidebar-contact-info">
 					<h3>YellowFolder</h3>
 					<p>
-						1617 W Crosby Rd., Ste 100 <br />
-						Carrollton, TX 75006
+						P.O. Box 3068 <br />
+						McKinney, TX 75070
 					</p>
 				</div>
 				<div className="sidebar-contact-info">
 					<h3>Sales</h3>
 					<p>
 						<span itemProp="telephone">
-							<a href="tel:+1-844-935-5684">(844) 935-5684</a>
+							<a href="tel:+1-844-935-5694">(844) 935-5694</a>
 						</span>
 						<br />
 						<a href="mailto:sales@yellowfolder.com" itemProp="email">
@@ -412,12 +429,7 @@ const ContactForm = () => {
 				</div>
 			</aside>
 			<div className="contact-form--form">
-				<form
-					action="https://api.staticforms.xyz/submit"
-					method="post"
-					id="staticform"
-					onSubmit={handleSubmit}
-				>
+				<form onSubmit={handleSubmit}>
 					<input type="hidden" name="subject" value="Contact Form" />{' '}
 					<div className="form--field-wrapper form--field-item">
 						<label htmlFor="email">
@@ -439,7 +451,7 @@ const ContactForm = () => {
 							id="firstName"
 							type="text"
 							autoComplete="given-name"
-							name="$First Name"
+							name="firstName"
 							onChange={onFormFieldChange}
 						/>
 					</div>
@@ -447,7 +459,7 @@ const ContactForm = () => {
 						<label htmlFor="lastName">Last Name</label>
 						<input
 							id="lastName"
-							name="$Last Name"
+							name="lastName"
 							type="text"
 							autoComplete="family-name"
 							onChange={onFormFieldChange}
@@ -461,7 +473,7 @@ const ContactForm = () => {
 							required
 							id="state"
 							defaultValue={contact['$State'] || 'select'}
-							name="$State"
+							name="state"
 							onChange={onFormFieldChange}
 						>
 							<option value="select" disabled>
@@ -527,8 +539,8 @@ const ContactForm = () => {
 						<select
 							required
 							id="purpose"
-							defaultValue={contact['$How can we help?'] || 'select'}
-							name="$How can we help?"
+							defaultValue={contact.inquiryType || 'select'}
+							name="inquiryType"
 							onChange={onFormFieldChange}
 						>
 							<option value="select" disabled>

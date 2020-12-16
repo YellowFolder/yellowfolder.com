@@ -3,7 +3,24 @@ const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 
 module.exports = withCss({
 	target: 'serverless',
-	exportTrailingSlash: false,
+	trailingSlash: false,
+	env: {
+		FRESHDESK_KEY: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+		FRESHDESK_BASE_URL: process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL,
+		FRESHCHAT_TOKEN: process.env.NEXT_PUBLIC_FRESHCHAT_TOKEN,
+		WEBSITE_DOMAIN: process.env.WEBSITE_DOMAIN,
+	},
+	webpack: (config, { isServer }) => {
+		// Fixes npm packages that depend on `fs` module
+		config.node = {
+			console: true,
+			fs: 'empty',
+			net: 'empty',
+			tls: 'empty',
+		};
+
+		return config;
+	},
 	exportPathMap: async function() {
 		const paths = {
 			'/': { page: '/' },
@@ -17,15 +34,6 @@ module.exports = withCss({
 			'/services.html': { page: '/services' },
 			'/weekly-training.html': { page: '/weekly-training' },
 		};
-
 		return paths;
-	},
-	webpack: config => {
-		// Fixes npm packages that depend on `fs` module
-		config.node = {
-			fs: 'empty',
-		};
-
-		return config;
 	},
 });

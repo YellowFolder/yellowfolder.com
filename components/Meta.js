@@ -9,6 +9,34 @@ const Meta = () => (
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta charSet="utf-8" />
 		<link
+			rel="preload"
+			href="/static/js/osano.js"
+			as="script"
+			type="text/javascript"
+			crossOrigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/static/fonts/ClearSans-Medium.woff2"
+			as="font"
+			type="font/woff2"
+			crossOrigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/static/fonts/ClearSans-Regular.woff2"
+			as="font"
+			type="font/woff2"
+			crossOrigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/static/fonts/ClearSans-Bold.woff2"
+			as="font"
+			type="font/woff2"
+			crossOrigin="anonymous"
+		/>
+		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
 			href="/static/favicon/apple-touch-icon.png?v=kPvAPQRbj8"

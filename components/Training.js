@@ -1,8 +1,8 @@
-import axios from 'axios';
 import Router from 'next/router';
 import qs from 'qs';
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
+import unirest from 'unirest';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
 
@@ -135,6 +135,44 @@ const StyledForm = styled.div`
 					}
 				}
 			}
+		}
+	}
+	.is-hidden {
+		display: none !important;
+	}
+	.box {
+		background-color: #fff;
+		border-radius: 6px;
+		box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+		color: #4a4a4a;
+		display: block;
+		padding: 1.25rem;
+	}
+	.notification {
+		background-color: #f5f5f5;
+		border-radius: 4px;
+		padding: 1.25rem 2.5rem 1.25rem 1.5rem;
+		position: relative;
+		padding: 1rem;
+		transform: translateY(-20%);
+		opacity: 0;
+		transition: all 0.5s;
+		&.title {
+			color: currentColor;
+		}
+		&.is-success {
+			background-color: #209cee;
+			color: #fff;
+			transform: translateY(0);
+			opacity: 1;
+			display: flex;
+			align-items: center;
+			justify-content: flex-start;
+			margin: 2rem auto;
+		}
+		&.is-danger {
+			background-color: #ff3860;
+			color: #fff;
 		}
 	}
 	@media (max-width: ${size.navMenu}) {
@@ -391,43 +429,46 @@ const StyledTraining = styled.main`
 					display: none;
 				}
 				table.list {
-					tr#rowgap {
-						display: none;
-					}
-					td {
-						position: relative;
+					display: block;
+					tbody {
 						display: block;
-						padding-left: 110px;
-						border: none;
-						font-size: 1.7rem;
-						text-align: right;
-						&:nth-child(1),
-						&:nth-child(2) {
-							width: initial;
-						}
-
-						&:before {
-							position: absolute;
-							left: 10px;
+						tr {
+							padding: 10px 0;
 							display: block;
-							text-transform: capitalize;
-							font-family: ${props => props.theme.boldFont};
-							content: attr(aria-label) ': ';
-						}
-						&#registrationLink {
-							a {
-								button {
-									margin-top: 6px;
-									padding: 0.7rem 2rem;
-									font-size: 1.7rem;
-									border-radius: 3px;
+							&#rowgap {
+								display: none;
+							}
+							td {
+								position: relative;
+								display: block;
+								padding-left: 110px;
+								border: none;
+								font-size: 1.7rem;
+								text-align: right;
+								:nth-child(1),
+								:nth-child(2) {
+									width: 100% !important;
+								}
+								&:before {
+									position: absolute;
+									left: 10px;
+									display: block;
+									text-transform: capitalize;
+									font-family: ${props => props.theme.boldFont};
+									content: attr(aria-label) ': ';
+								}
+								&#registrationLink {
+									a {
+										button {
+											margin-top: 6px;
+											padding: 0.7rem 2rem;
+											font-size: 1.7rem;
+											border-radius: 3px;
+										}
+									}
 								}
 							}
 						}
-					}
-					tr {
-						padding: 10px 0;
-						display: block;
 					}
 				}
 			}
@@ -455,26 +496,16 @@ const StyledTraining = styled.main`
 	}
 `;
 
-const baseURL = 'https://sfapi.formstack.io';
-const formRoute = '/FormEngine/EngineFrame/UploadFile';
-
-const mappedFields = {
-	fullName: 'Case.Requestor_Name__c',
-	email: 'Case.Requestor_Email__c',
-	district: 'Case.Requestor_District__c',
-	recordSeries: 'Case.Record_Series__c',
-	trainingDate1: 'Case.Training_Date_Time_1__c',
-	trainingDate2: 'Case.Training_Date_Time_2__c',
-	trainingDate3: 'Case.Training_Date_Time_3__c',
-	trainingSession: 'Case.Training_Session__c',
-};
-
-const defaultFormValues = {
-	'Case.Origin': 'Web',
-	'Case.RecordTypeId': '012F0000000yHfAIAU',
-	'inputCase.RecordTypeId': 'Training',
-	'Case.Subject': 'Training Session Requested',
-	formName: 'Training',
+const convertDate = date => {
+	let ten = i => {
+		return (i < 10 ? '0' : '') + i;
+	};
+	let year = date.getFullYear();
+	let month = ten(date.getMonth() + 1);
+	let day = ten(date.getDate());
+	let hour = ten(date.getHours());
+	let minute = ten(date.getMinutes());
+	return year + '-' + month + '-' + day + 'T' + hour + ':' + minute;
 };
 
 const Training = () => {
@@ -484,59 +515,85 @@ const Training = () => {
 		formRef.current.scrollIntoView({ behavior: 'smooth' });
 	};
 
+	let now = convertDate(new Date());
+
 	const [contact, setContact] = useState({
-		fullName: '',
 		email: '',
+		name: '',
 		district: '',
-		recordSeries: '',
-		trainingDate1: '',
-		trainingDate2: '',
-		trainingDate3: '',
-		trainingSession: '',
-		honeypot: '',
+		type: 'PNE Training Recommended',
+		recordSeries: 'None',
+		trainingDate1: now,
+		trainingDate2: now,
+		trainingDate3: now,
+		trainingSession: 'select',
 		subject: 'Training Form Submission',
+	});
+
+	const [response, setResponse] = useState({
+		type: '',
+		message: '',
 	});
 
 	const onFormFieldChange = e => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	};
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault();
-		const mappedState = { ...defaultFormValues };
-		for (const c in contact) {
-			mappedState[mappedFields[c]] = contact[c];
-		}
 
-		const headers = {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			Accept:
-				'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+		let description = {
+			'Training Session': `${contact.trainingSession}\n`,
+			'Training Date 1': `${new Date(contact.trainingDate1).toLocaleString('en-US')}\n`,
+			'Training Date 2': `${new Date(contact.trainingDate2).toLocaleString('en-US')}\n`,
+			'Training Date 3': `${new Date(contact.trainingDate3).toLocaleString('en-US')}\n`,
 		};
 
-		const config = {
-			method: 'post',
-			baseURL,
-			url: formRoute,
-			headers,
-			data: qs.stringify(mappedState),
-			params: {
-				encoding: 'UTF-8',
+		const fields = {
+			email: contact.email,
+			name: contact.name,
+			type: 'PNE Training Recommended',
+			subject: `Training Requested by ${contact.name} at ${contact.district} - ${contact.trainingSession}`,
+			priority: 2,
+			status: 2,
+			source: 2,
+			group_id: 48000495297, // PNEs
+			responder_id: null,
+			email_config_id: 48000086987,
+			custom_fields: {
+				cf_district: `${contact.district}`,
+				cf_billable: false,
+				cf_record_series1: `${contact.recordSeries}`,
+				cf_hours_spent: null,
 			},
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
 		};
 
-		console.log(`config `, config);
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.type('json')
+			.send(fields);
 
-		return axios(config).then(resp => {
-			console.log('got response!');
-			console.log(resp);
-			Router.push('/request-success');
-		});
+		let data = resp.body;
+		if (resp.status >= 400) {
+			setResponse({
+				type: 'error',
+				message: resp.message,
+			});
+		} else if (resp.status >= 200 || resp.status < 400) {
+			setResponse({
+				type: 'success',
+				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
+			});
+			return Router.push('/request-success');
+		}
 	};
 
 	const handleClick = e => {
 		e.preventDefault();
-		setContact({ ...contact, [e.target.name]: e.target.value });
+		setContact({ ...contact, trainingSession: e.target.value });
 		scrollToBottom();
 	};
 
@@ -581,26 +638,26 @@ const Training = () => {
 				</div>
 			</div>
 			<StyledForm>
-				<div className="form--header">
+				<div className="form--header" ref={formRef}>
 					<h3>Register for Training</h3>
 				</div>
 				<div className="form--body">
-					<form onSubmit={handleSubmit} encType="multipart/form-data" ref={formRef}>
+					<form onSubmit={handleSubmit}>
 						{' '}
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="fullName">
-								Full Name
+							<label htmlFor="name">
+								Name
 								<span>*</span>
 							</label>
 							<input
 								required
 								aria-required="true"
 								type="text"
-								aria-label="Full Name"
-								id="fullName"
-								name="fullName"
+								aria-label="Name"
+								id="name"
+								name="name"
 								autoComplete="name"
-								value={contact.fullName}
+								value={contact.name}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							/>
@@ -641,7 +698,10 @@ const Training = () => {
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="recordSeries">Record Series</label>
+							<label htmlFor="recordSeries">
+								Record Series
+								<span>*</span>
+							</label>
 							<select
 								required
 								id="recordSeries"
@@ -649,11 +709,12 @@ const Training = () => {
 								aria-label="Record Series"
 								aria-required="true"
 								title="Record Series"
+								defaultValue={contact.recordSeries || 'None'}
 								value={contact.recordSeries}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
 							>
-								<option value="" disabled>
+								<option value="None" disabled>
 									Please Select
 								</option>
 								<option value="Student Records">Student Records</option>
@@ -665,7 +726,6 @@ const Training = () => {
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="trainingDate1">Training Date/Time 1</label>
 							<input
-								required
 								type="datetime-local"
 								id="trainingDate1"
 								name="trainingDate1"
@@ -680,7 +740,6 @@ const Training = () => {
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="trainingDate2">Training Date/Time 2</label>
 							<input
-								required
 								type="datetime-local"
 								id="trainingDate2"
 								name="trainingDate2"
@@ -695,7 +754,6 @@ const Training = () => {
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="trainingDate3">Training Date/Time 3</label>
 							<input
-								required
 								type="datetime-local"
 								id="trainingDate3"
 								name="trainingDate3"
@@ -708,7 +766,7 @@ const Training = () => {
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="recordSeries">Training Session</label>
+							<label htmlFor="trainingSession">Training Session</label>
 							<select
 								required
 								id="trainingSession"
@@ -716,6 +774,7 @@ const Training = () => {
 								aria-label="Training Session"
 								aria-required="true"
 								title="Training Session"
+								defaultValue={contact.trainingSession || 'select'}
 								value={contact.trainingSession}
 								onBlur={onFormFieldChange}
 								onChange={onFormFieldChange}
@@ -742,6 +801,9 @@ const Training = () => {
 					</form>
 				</div>
 			</StyledForm>
+			<div className={response.type === 'error' ? 'title box notification is-danger' : 'is-hidden'}>
+				<p>{response.message}</p>
+			</div>
 		</StyledTraining>
 	);
 };

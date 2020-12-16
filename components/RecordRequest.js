@@ -1,45 +1,16 @@
-import axios from 'axios';
 import Router from 'next/router';
 import qs from 'qs';
-import React, { Component } from 'react';
+import React from 'react';
+import unirest from 'unirest';
 import StyledForm from './styles/FormStyles';
 
-const baseURL = 'https://webto.salesforce.com';
-const formRoute = '/servlet/servlet.WebToCase';
-
-const mappedFields = {
-	district: '00N2I00000DLpvY',
-	name: '00N2I00000DLpvT',
-	email: '00N2I00000DWnY3',
-	phone: '00N2I00000DWnY8',
-	recordSeries: '00NF0000008rQ8F',
-	targetName: '00N2I00000DLpgJ',
-	targetAlias: '00N2I00000DLpgO',
-	targetDOB: '00N2I00000DLpgT',
-	targetCampus: '00N2I00000DLpgY',
-	targetLeaveDate: '00N2I00000DLpgd',
-	targetStatus: '00N2I00000DLpgi',
-	targetID: '00N2I00000DLpgn',
-	targetTerminationDate: '00N2I00000DLpgs',
-	extraInfo: '00N2I00000DLpgx',
-};
-
-const defaultFormValues = {
-	orgid: '00DF0000000507Z',
-	retURL: 'http://www.yellowfolder.com/request-success.html',
-	recordType: '012F0000000yHfU',
-	subject: 'Record Request Web Form',
-	priority: 'P2 - Normal',
-	submit: 'Submit',
-};
-
-class RecordRequest extends Component {
+class RecordRequest extends React.Component {
 	state = {
 		district: '',
 		name: '',
 		email: '',
 		phone: '',
-		recordSeries: '',
+		recordSeries: 'None',
 		targetName: '',
 		targetAlias: '',
 		targetDOB: '',
@@ -51,55 +22,65 @@ class RecordRequest extends Component {
 		extraInfo: '',
 	};
 
-	componentDidMount() {
-		const s = document.createElement('script');
-		s.src = 'https://www.google.com/recaptcha/api.js';
-		document.getElementById('recaptcha-container').appendChild(s);
-
-		const resp = document.createElement('script');
-		resp.innerHTML = `function timestamp() {var response = document.getElementById("g-recaptcha-response"); if (response == null || response.value.trim() == "") {var elems = JSON.parse(document.getElementsByName("captcha_settings")[0].value);elems["ts"] = JSON.stringify(new Date().getTime());document.getElementsByName("captcha_settings")[0].value = JSON.stringify(elems); } } setInterval(timestamp, 500);`;
-
-		document.getElementById('recaptcha-response').appendChild(resp);
-	}
-
 	onFormFieldChange = e => {
 		this.setState({
 			[e.target.id]: e.target.value,
 		});
 	};
 
-	onSubmit = e => {
+	// Create a ticket within freshdesk
+	// For more documentation, check here: https://developers.freshdesk.com/api/#create_ticket
+	onSubmit = async e => {
 		e.preventDefault();
-		const mappedState = { ...defaultFormValues };
-		for (const s in this.state) {
-			mappedState[mappedFields[s]] = this.state[s];
-		}
-		console.log(mappedState);
-
-		const headers = {
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Access-Control-Allow-Origin': '*',
-			Accept:
-				'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+		let description = {
+			'Target Alias or Maiden Name': this.state.alias,
+			'Target Name': this.state.targetName,
+			'Target Date of Birth': this.state.targetDOB,
+			'Target Campus': this.state.targetCampus,
+			'Target Withdrawal/Graduation Date': this.state.targetLeaveDate,
+			'Target Active or Archive': this.state.targetStatus,
+			'Target ID Number': this.state.targetID,
+			'Target Date of Termination': this.state.targetTerminationDate,
+			'Additional Information': this.state.extraInfo,
 		};
 
-		const config = {
-			method: 'POST',
-			baseURL,
-			url: formRoute,
-			headers,
-			data: qs.stringify(mappedState),
-			withCredentials: true,
-			params: {
-				encoding: 'UTF-8',
+		const fields = {
+			email: this.state.email,
+			name: this.state.name,
+			phone: this.state.phone,
+			subject: `Record Request for ${this.state.district}`,
+			type: 'Record Retrieval',
+			status: 2, // "open" (new)
+			priority: 2, // medium
+			responder_id: 48011471036, // christine roblez
+			group_id: 48000495294, // customer support
+			source: 2, // web portal
+			custom_fields: {
+				cf_record_series1: this.state.recordSeries,
+				cf_district: this.state.district,
+				cf_billable: false,
+				cf_hours_spent: null,
 			},
+			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
 		};
 
-		return axios(config).then(resp => {
-			console.log('got response!');
-			console.log(resp);
-			Router.push('/request-success');
-		});
+		let url = `https://yellowfolder.freshdesk.com/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+				sendImmediately: true,
+			})
+			.type('json')
+			.send(fields);
+
+		let data = resp.body;
+
+		if (resp.status === 201) {
+			return Router.push('/request-success');
+		} else {
+			return console.error(resp.headers);
+		}
 	};
 
 	render() {
@@ -148,7 +129,10 @@ class RecordRequest extends Component {
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="name">Your Name</label>
+							<label htmlFor="name">
+								Your Name
+								<span>*</span>
+							</label>
 							<input
 								required
 								aria-required="true"
@@ -212,6 +196,7 @@ class RecordRequest extends Component {
 								<option value="" disabled>
 									Please Select
 								</option>
+								<option value="None">None</option>
 								<option value="Student Records">Student Records</option>
 								<option value="Special Education Records">Special Education Records</option>
 								<option value="Human Resource Records">Human Resource Records</option>

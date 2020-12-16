@@ -44,7 +44,7 @@ export class About extends Component {
 					</div>
 					<div id="grey-bg" />
 					<div id="file-cabinet">
-						<img src="/static/images/file-cabinet.svg" alt="file cabinet" />
+						<img src="/static/images/file-cabinet-update.svg" alt="file cabinet" />
 					</div>
 					<div id="monitor">
 						<img
