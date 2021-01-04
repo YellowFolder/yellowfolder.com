@@ -8,12 +8,9 @@ const Meta = () => (
 	<Head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta charSet="utf-8" />
-		<link
-			rel="preload"
-			href="/static/js/osano.js"
-			as="script"
+		<script
+			src="https://cmp.osano.com/16CVrmSJA89iy110k/1f78e656-b752-4cab-a87a-4836cf183232/osano.js"
 			type="text/javascript"
-			crossOrigin="anonymous"
 		/>
 		<link
 			rel="preload"
