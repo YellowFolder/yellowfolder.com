@@ -182,7 +182,7 @@ const PrivacyPolicy = () => {
 					<h1>Privacy Policy</h1>
 					<div className="privacy-pledge-banner">
 						<a href="https://studentprivacypledge.org/" target="_blank" rel="noopener noreferrer">
-							<img src="/static/images/spp@2x.png" alt="Privacy Pledge Signatory Banner" />
+							<img src="/static/images/spp2020.png" alt="Privacy Pledge Signatory Banner" />
 						</a>
 					</div>
 				</div>
@@ -204,9 +204,9 @@ const PrivacyPolicy = () => {
 						(collectively, “School Information”; User Information and School Information are
 						collectively referred to as “Information”). YellowFolder has taken the commercially
 						reasonable steps to ensure that Information is kept confidential at all times.
-						YellowFolder processes and uses School Information exclusively for purposes of
-						fulfilling contractual agreements between the respective schools and districts that own
-						the School Information.
+						YellowFolder processes and uses School Information exclusively for educational purposes
+						and to fulfill contractual agreements between the respective schools and districts that
+						own the School Information.
 					</p>
 					<div className="subcopy">
 						<h3>These Steps Include:</h3>{' '}
@@ -273,7 +273,7 @@ const PrivacyPolicy = () => {
 					</p>
 				</div>
 				<div className="copy">
-					<h3>Cookies, Google Analytics and Lead Forensics:</h3>
+					<h3>Cookies, Google Analytics and Osano:</h3>
 					<p>
 						YellowFolder uses web analytics services provided by Google (
 						<span>
@@ -285,14 +285,14 @@ const PrivacyPolicy = () => {
 								Google Privacy Policy
 							</a>
 						</span>
-						) and Lead Forensics (
+						) and Osano (
 						<span>
 							<a
-								href="https://www.leadforensics.com/privacy-policy/#"
+								href="https://www.osano.com/legal/privacy/#"
 								target="_blank"
 								rel="noopener noreferrer"
 							>
-								Lead Forensics Privacy Policy
+								Osano Privacy Policy
 							</a>
 						</span>
 						) that both use JavaScript and cookies to help us analyze how visitors use the Site.
@@ -313,9 +313,20 @@ const PrivacyPolicy = () => {
 						privacy requirements. We store the Information you provide on redundant computer systems
 						located in controlled facilities in the United States of America. When transmitting and
 						storing highly confidential information such as School Information, we protect it
-						through the use of encryption by industry standard Secure Sockets Layer
-						(&quot;SSL&quot;) technology using AES 256-bit encryption so that it cannot be read even
-						if it is wrongly intercepted.
+						through the use of encryption by industry standard Secure Sockets Layer ("SSL")
+						technology using AES 256-bit encryption so that it cannot be read even if it is wrongly
+						intercepted.
+					</p>
+				</div>
+
+				<div className="copy">
+					<h3>Breach Response</h3>
+					<p>
+						A breach is defined as an incident where sensitive, protected, or confidential personal
+						information and personal data has potentially been accessed, stolen, or used without
+						authorization. In the event of a data breach, YellowFolder will follow the minimum
+						guidelines or policies formally adopted prior to such breach by the applicable state
+						agency or authority governing the District in responding to such data breach.
 					</p>
 				</div>
 
@@ -329,7 +340,7 @@ const PrivacyPolicy = () => {
 						the Site at that time. We recommend that users re-visit this privacy statement on
 						occasion to learn of any changes. In the event that YellowFolder limits the privacy
 						rights of client Education Entities or their authorized staff in any manner,
-						YellowFolder will provide a notice on the Site at the time of log-in notifying of
+						YellowFolder will provide a notice on the Site at the time of log- in notifying of
 						changes to this privacy statement.
 					</p>
 				</div>
@@ -357,6 +368,9 @@ const PrivacyPolicy = () => {
 							</a>{' '}
 						</p>
 					</div>
+				</div>
+				<div className="copy">
+					<p className="last-updated">Updated: 2/1/2021</p>
 				</div>
 			</div>
 		</StyledPrivacy>
