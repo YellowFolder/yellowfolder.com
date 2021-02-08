@@ -43,7 +43,7 @@ const StyledPrivacy = styled.div`
 				font-size: 3.6rem;
 				line-height: 1.1;
 				font-family: ${props => props.theme.boldFont};
-				width: 75%;
+				width: 100%;
 			}
 			.privacy-pledge-banner {
 				img {
