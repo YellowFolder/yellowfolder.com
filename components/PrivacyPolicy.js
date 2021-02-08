@@ -182,7 +182,7 @@ const PrivacyPolicy = () => {
 					<h1>Privacy Policy</h1>
 					<div className="privacy-pledge-banner">
 						<a href="https://studentprivacypledge.org/" target="_blank" rel="noopener noreferrer">
-							<img src="/static/images/spp2020.png" alt="Privacy Pledge Signatory Banner" />
+							<img src="/static/images/spp@2x.png" alt="Privacy Pledge Signatory Banner" />
 						</a>
 					</div>
 				</div>
