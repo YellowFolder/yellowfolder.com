@@ -295,7 +295,7 @@ const PrivacyPolicy = () => {
 					</div>
 				</div>
 				<div className="copy">
-					<p className="last-updated">Updated: 2/1/2021</p>
+					<p className="last-updated">Updated: 3/18/2021</p>
 				</div>
 			</div>
 		</StyledPrivacy>
