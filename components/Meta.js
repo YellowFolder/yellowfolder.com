@@ -2,7 +2,9 @@
 import Head from 'next/head';
 
 const title =
-	process.env.NODE_ENV === 'development' || !!process.env.STAGING ? 'YF [DEV]' : 'YellowFolder';
+	process.env.NODE_ENV === 'development' || !!process.env.STAGING
+		? 'YF [DEMO]'
+		: 'YellowFolder';
 
 const Meta = () => (
 	<Head>
