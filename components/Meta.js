@@ -40,7 +40,6 @@ const Meta = () => (
 			sizes="180x180"
 			href="/static/favicon/apple-touch-icon.png?v=kPvAPQRbj8"
 		/>
-		>
 		<link
 			rel="icon"
 			type="image/png"

@@ -28,9 +28,12 @@ module.exports = withCss({
 			'/about-us.html': { page: '/about-us' },
 			'/contact.html': { page: '/contact' },
 			'/privacy-policy.html': { page: '/privacy-policy' },
+			'/help.html': { page: '/help' },
 			'/record-request.html': { page: '/record-request' },
 			'/request-success.html': { page: '/request-success' },
-			'/schedule-a-yellow-folder-demo.html': { page: '/schedule-a-yellow-folder-demo' },
+			'/schedule-a-yellow-folder-demo.html': {
+				page: '/schedule-a-yellow-folder-demo',
+			},
 			'/services.html': { page: '/services' },
 			'/weekly-training.html': { page: '/weekly-training' },
 		};
