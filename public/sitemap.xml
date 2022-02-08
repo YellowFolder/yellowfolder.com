@@ -16,6 +16,10 @@
     <changefreq>hourly</changefreq>
   </url>
   <url>
+    <loc>https://yellowfolder.com/help</loc>
+    <changefreq>hourly</changefreq>
+  </url>
+  <url>
     <loc>https://yellowfolder.com/record-request</loc>
     <changefreq>hourly</changefreq>
   </url>
