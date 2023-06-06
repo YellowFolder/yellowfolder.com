@@ -7,7 +7,8 @@
 			"DOMAIN": "yellowfolder.com",
 			"NEXT_PUBLIC_FRESHDESK_KEY_PROD": "@next-public-freshdesk-key-prod-production-46mx",
 			"NEXT_PUBLIC_FRESHDESK_BASE_URL": "@next-public-freshdesk-base-url-production-2qkq",
-			"NEXT_PUBLIC_FRESHCHAT_TOKEN": "@freshchat-token-prod"			
+			"NEXT_PUBLIC_FRESHCHAT_TOKEN": "@freshchat-token-prod",
+			"NODE_OPTIONS": "--openssl-legacy-provider"			
 		}
 	},
 	"headers": [
