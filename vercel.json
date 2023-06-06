@@ -7,8 +7,7 @@
 			"DOMAIN": "yellowfolder.com",
 			"NEXT_PUBLIC_FRESHDESK_KEY_PROD": "@next-public-freshdesk-key-prod-production-46mx",
 			"NEXT_PUBLIC_FRESHDESK_BASE_URL": "@next-public-freshdesk-base-url-production-2qkq",
-			"NEXT_PUBLIC_FRESHCHAT_TOKEN": "@freshchat-token-prod",
-			"NODE_OPTIONS": "--openssl-legacy-provider"			
+			"NEXT_PUBLIC_FRESHCHAT_TOKEN": "@freshchat-token-prod"
 		}
 	},
 	"headers": [
@@ -41,5 +40,13 @@
 				}
 			]
 		}
-	]
+	],
+	"functions": {
+		"preBuild": {
+		  "runtime": "vercel-node@2.4.0",
+		  "memory": 128,
+		  "maxDuration": 10,
+		  "code": "process.env.NODE_OPTIONS = '--openssl-legacy-provider';"
+		}
+	  }
 }
