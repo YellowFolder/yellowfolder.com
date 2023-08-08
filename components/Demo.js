@@ -641,6 +641,31 @@ const Demo = () => {
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="districtmainpriority">
+								Main priority for the district:<span>*</span>
+							</label>
+							<select
+								required
+								id="districtmainpriority"
+								defaultValue={contact.inquiryType || 'select'}
+								name="inquiryType"
+								onChange={onFormFieldChange}
+							>
+								<option value="select" disabled>
+									Please Select
+								</option>
+								<option value="Considering YellowFolder as a records management solution">
+									Considering YellowFolder as a records management solution
+								</option>
+								<option value="Out of storage space and need scanning services">
+									Out of storage space and need scanning services
+								</option>
+								<option value="Exploring options stage for records management">
+									Exploring options stage for records management
+								</option>
+							</select>
+						</div>
+						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="documentIssue">
 								Is there a document storage issue in your district/school?
 							</label>
@@ -699,31 +724,6 @@ const Demo = () => {
 									</li>
 								</ul>
 							</div>
-						</div>
-						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="districtmainpriority">
-								Main priority for the district:<span>*</span>
-							</label>
-							<select
-								required
-								id="districtmainpriority"
-								defaultValue={contact.inquiryType || 'select'}
-								name="inquiryType"
-								onChange={onFormFieldChange}
-							>
-								<option value="select" disabled>
-									Please Select
-								</option>
-								<option value="Considering YellowFolder as a records management solution">
-									Considering YellowFolder as a records management solution
-								</option>
-								<option value="Out of storage space and need scanning services">
-									Out of storage space and need scanning services
-								</option>
-								<option value="Exploring options stage for records management">
-									Exploring options stage for records management
-								</option>
-							</select>
 						</div>
 						<div className="field" style={{ display: 'none' }}>
 							<label className="label">Title</label>
