@@ -688,6 +688,7 @@ const Demo = () => {
 												type="radio"
 												value="No"
 												name="documentStorageIssue"
+												onChange={onFormFieldChange}
 											/>
 											<span>No</span>
 										</label>
@@ -718,6 +719,7 @@ const Demo = () => {
 												type="radio"
 												value="No"
 												name="documentStorageBudget"
+												onChange={onFormFieldChange}
 											/>
 											<span>No</span>
 										</label>
