@@ -365,13 +365,19 @@ const ContactForm = props => {
 				cf_record_series1: 'None',
 				cf_hours_spent: null,
 			},
-			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
+			description: qs.stringify(description, {
+				encode: false,
+				delimiter: '\n<br/><br/>\n',
+			}),
 		};
 
 		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
 		let resp = await unirest
 			.post(url)
-			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.auth({
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+				sendImmediately: true,
+			})
 			.type('json')
 			.send(fields);
 
@@ -546,11 +552,16 @@ const ContactForm = props => {
 							<option value="select" disabled>
 								Please Select
 							</option>
-							<option value="I am interested in using YellowFolder at my school">
-								I am interested in using YellowFolder at my school
+							<option value="I am interested in learning more about YellowFolder for my district">
+								I am interested in learning more about YellowFolder for my
+								district
 							</option>
-							<option value="I recieved an email or call and am interested to learn more">
-								I recieved an email or call and am interested to learn more
+							<option value="I received an email or call and am interested in learning more">
+								I received an email or call and am interested in learning more
+							</option>
+							<option value="I am interested in obtaining information about box scanning options you offer">
+								I am interested in obtaining information about box scanning
+								options you offer
 							</option>
 							<option value="I am a current customer and need assistance">
 								I am a current customer and need assistance
@@ -566,7 +577,11 @@ const ContactForm = props => {
 					</div>
 					<div className="form--field-wrapper form--field-item">
 						<label htmlFor="message">Message</label>
-						<textarea id="message" name="message" onChange={onFormFieldChange} />
+						<textarea
+							id="message"
+							name="message"
+							onChange={onFormFieldChange}
+						/>
 					</div>
 					<div className="field" style={{ display: 'none' }}>
 						<label className="label">Title</label>
@@ -581,9 +596,10 @@ const ContactForm = props => {
 					</div>
 					<div className="form--disclaimer form--field-item">
 						<p>
-							YellowFolder needs the contact information you provide to contact you about our
-							products and services. You may unsubscribe from these communications at any time. For
-							information on how to unsubscribe, as well as our privacy practices and commitment to
+							YellowFolder needs the contact information you provide to contact
+							you about our products and services. You may unsubscribe from
+							these communications at any time. For information on how to
+							unsubscribe, as well as our privacy practices and commitment to
 							protecting your privacy, please review our Privacy Policy.
 						</p>
 					</div>
@@ -595,13 +611,19 @@ const ContactForm = props => {
 				</form>
 				<div
 					className={
-						response.type === 'success' ? 'title box notification is-success' : 'is-hidden'
+						response.type === 'success'
+							? 'title box notification is-success'
+							: 'is-hidden'
 					}
 				>
 					<p>{response.message}</p>
 				</div>
 				<div
-					className={response.type === 'error' ? 'title box notification is-danger' : 'is-hidden'}
+					className={
+						response.type === 'error'
+							? 'title box notification is-danger'
+							: 'is-hidden'
+					}
 				>
 					<p>{response.message}</p>
 				</div>

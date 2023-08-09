@@ -215,7 +215,8 @@ const StyledDemo = styled.div`
 		.box {
 			background-color: #fff;
 			border-radius: 6px;
-			box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+			box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1),
+				0 0 0 1px rgba(10, 10, 10, 0.1);
 			color: #4a4a4a;
 			display: block;
 			padding: 1.25rem;
@@ -345,6 +346,7 @@ const Demo = () => {
 		subject: 'Demo Request Form Submission',
 		documentStorageIssue: '',
 		documentStorageBudget: '',
+		inquiryType: 'select',
 	});
 
 	const [response, setResponse] = useState({
@@ -361,6 +363,7 @@ const Demo = () => {
 
 		let description = {
 			'State:': `${contact.state}\n`,
+			'Main priority for the district:': `${contact.inquiryType}\n`,
 			'Is there a document storage solution in your district/school?': `${contact.documentStorageIssue}\n`,
 			'Has a document storage solution been budgeted for?': `${contact.documentStorageBudget}\n`,
 		};
@@ -382,13 +385,19 @@ const Demo = () => {
 				cf_record_series1: 'None',
 				cf_hours_spent: null,
 			},
-			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
+			description: qs.stringify(description, {
+				encode: false,
+				delimiter: '\n<br/><br/>\n',
+			}),
 		};
 
 		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
 		let resp = await unirest
 			.post(url)
-			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.auth({
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+				sendImmediately: true,
+			})
 			.type('json')
 			.send(fields);
 
@@ -418,7 +427,8 @@ const Demo = () => {
 			if (json.success) {
 				setResponse({
 					type: 'success',
-					message: 'Your email has been successfully delivered. Thank you for reaching out to us.',
+					message:
+						'Your email has been successfully delivered. Thank you for reaching out to us.',
 				});
 			} else {
 				setResponse({
@@ -430,7 +440,8 @@ const Demo = () => {
 			console.log('An error occurred ', e);
 			setResponse({
 				type: 'error',
-				message: 'An error occured while submitting the form. Please try again.',
+				message:
+					'An error occured while submitting the form. Please try again.',
 			});
 		}
 	};
@@ -446,24 +457,32 @@ const Demo = () => {
 			<div className="demo--container">
 				<div className="body">
 					<div className="body-copy">
-						<h3>Learn how to easily store and manage files without the hassle of paper</h3>
+						<h3>
+							Learn how to easily store and manage files without the hassle of
+							paper
+						</h3>
 						<div>
 							<p>
 								Paper records are the traditional K-12 solution,
 								<span>
-									but paper takes time, money, and effort from more important things on everyone’s
-									plate.
+									but paper takes time, money, and effort from more important
+									things on everyone’s plate.
 								</span>{' '}
-								YellowFolder’s cloud-based filing system will make your record management life
-								easier, more streamlined, and far less stressful.
+								YellowFolder’s cloud-based filing system will make your record
+								management life easier, more streamlined, and far less
+								stressful.
 							</p>
 							<p>
-								By scheduling a free demo, we will walk through exactly how we can change all of
-								your current document management processes for the better. We’ll even go into detail
-								about how the platform can apply to your specific department, district, or general
+								By scheduling a free demo, we will walk through exactly how we
+								can change all of your current document management processes for
+								the better. We’ll even go into detail about how the platform can
+								apply to your specific department, district, or general
 								situation.
 							</p>
-							<p>You can learn more about YellowFolder by watching the video below:</p>
+							<p>
+								You can learn more about YellowFolder by watching the video
+								below:
+							</p>
 						</div>
 					</div>
 					<div className="video-container">
@@ -480,22 +499,27 @@ const Demo = () => {
 						<h3>As part of our discussion, we will show you:</h3>
 						<ul>
 							<li>The simplicity of uploading documents digitally</li>
-							<li>The process of organizing, retrieving, and sharing records</li>
-							<li>The effortlessness of managing and changing permissions</li>
-							<li>How to organize your folder system for HR, student records, admin, special ed</li>
 							<li>
-								How AI assists in meeting retention guidelines, so you only keep the records you
-								need
+								The process of organizing, retrieving, and sharing records
+							</li>
+							<li>The effortlessness of managing and changing permissions</li>
+							<li>
+								How to organize your folder system for HR, student records,
+								admin, special ed
+							</li>
+							<li>
+								How AI assists in meeting retention guidelines, so you only keep
+								the records you need
 							</li>
 						</ul>
 						<div className="conclusion">
 							<p>
-								We will also be happy to answer any questions you have along the way. We welcome
-								them!
+								We will also be happy to answer any questions you have along the
+								way. We welcome them!
 							</p>
 							<p>
-								Want to learn how YellowFolder can work for your school? Submit the form to schedule
-								your live demo!
+								Want to learn how YellowFolder can work for your school? Submit
+								the form to schedule your live demo!
 							</p>
 							<p>We look forward to connecting.</p>
 						</div>
@@ -542,7 +566,12 @@ const Demo = () => {
 							<label htmlFor="district">
 								District or School Name<span>*</span>
 							</label>
-							<input required id="district" name="district" onChange={onFormFieldChange} />
+							<input
+								required
+								id="district"
+								name="district"
+								onChange={onFormFieldChange}
+							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
 							<label htmlFor="state">
@@ -612,7 +641,32 @@ const Demo = () => {
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="documentIssue">
+							<label htmlFor="districtmainpriority">
+								Main priority for the district:<span>*</span>
+							</label>
+							<select
+								required
+								id="districtmainpriority"
+								defaultValue={contact.inquiryType || 'select'}
+								name="inquiryType"
+								onChange={onFormFieldChange}
+							>
+								<option value="select" disabled>
+									Please Select
+								</option>
+								<option value="Considering YellowFolder as a records management solution">
+									Considering YellowFolder as a records management solution
+								</option>
+								<option value="Out of storage space and need scanning services">
+									Out of storage space and need scanning services
+								</option>
+								<option value="Exploring options stage for records management">
+									Exploring options stage for records management
+								</option>
+							</select>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="documentStorageIssue">
 								Is there a document storage issue in your district/school?
 							</label>
 							<div className="control">
@@ -622,7 +676,7 @@ const Demo = () => {
 											<input
 												type="radio"
 												value="Yes"
-												name="$Document Storage Issue"
+												name="documentStorageIssue"
 												onChange={onFormFieldChange}
 											/>
 											<span>Yes</span>
@@ -630,7 +684,12 @@ const Demo = () => {
 									</li>
 									<li>
 										<label className="radio-abel">
-											<input type="radio" value="No" name="$Document Storage Issue" />
+											<input
+												type="radio"
+												value="No"
+												name="documentStorageIssue"
+												onChange={onFormFieldChange}
+											/>
 											<span>No</span>
 										</label>
 									</li>
@@ -638,7 +697,7 @@ const Demo = () => {
 							</div>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="documentIssue">
+							<label htmlFor="documentStorageBudget">
 								Has a document storage solution been budgeted for?
 							</label>
 							<div className="control">
@@ -648,7 +707,7 @@ const Demo = () => {
 											<input
 												type="radio"
 												value="Yes"
-												name="$Document Storage Budget"
+												name="documentStorageBudget"
 												onChange={onFormFieldChange}
 											/>
 											<span>Yes</span>
@@ -656,7 +715,12 @@ const Demo = () => {
 									</li>
 									<li>
 										<label className="radio-label">
-											<input type="radio" value="No" name="$Document Storage Budget" />
+											<input
+												type="radio"
+												value="No"
+												name="documentStorageBudget"
+												onChange={onFormFieldChange}
+											/>
 											<span>No</span>
 										</label>
 									</li>
@@ -676,10 +740,11 @@ const Demo = () => {
 						</div>
 						<div className="form--disclaimer form--field-item">
 							<p>
-								YellowFolder needs the contact information you provide to contact you about our
-								products and services. You may unsubscribe from these communications at any time.
-								For information on how to unsubscribe, as well as our privacy practices and
-								commitment to protecting your privacy, please review our Privacy Policy.
+								YellowFolder needs the contact information you provide to
+								contact you about our products and services. You may unsubscribe
+								from these communications at any time. For information on how to
+								unsubscribe, as well as our privacy practices and commitment to
+								protecting your privacy, please review our Privacy Policy.
 							</p>
 						</div>
 						<div className="control form--submit-wrapper">
@@ -690,13 +755,19 @@ const Demo = () => {
 					</form>
 					<div
 						className={
-							response.type === 'success' ? 'title box notification is-success' : 'is-hidden'
+							response.type === 'success'
+								? 'title box notification is-success'
+								: 'is-hidden'
 						}
 					>
 						<p>{response.message}</p>
 					</div>
 					<div
-						className={response.type === 'error' ? 'title box notification is-danger' : 'is-hidden'}
+						className={
+							response.type === 'error'
+								? 'title box notification is-danger'
+								: 'is-hidden'
+						}
 					>
 						<p>{response.message}</p>
 					</div>
