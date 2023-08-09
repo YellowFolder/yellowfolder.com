@@ -363,9 +363,9 @@ const Demo = () => {
 
 		let description = {
 			'State:': `${contact.state}\n`,
+			'Main priority for the district:': `${contact.inquiryType}\n`,
 			'Is there a document storage solution in your district/school?': `${contact.documentStorageIssue}\n`,
 			'Has a document storage solution been budgeted for?': `${contact.documentStorageBudget}\n`,
-			'Main priority for the district:': `${contact.inquiryType}\n`,
 		};
 
 		const fields = {
@@ -666,7 +666,7 @@ const Demo = () => {
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="documentIssue">
+							<label htmlFor="documentStorageIssue">
 								Is there a document storage issue in your district/school?
 							</label>
 							<div className="control">
@@ -676,7 +676,7 @@ const Demo = () => {
 											<input
 												type="radio"
 												value="Yes"
-												name="$Document Storage Issue"
+												name="documentStorageIssue"
 												onChange={onFormFieldChange}
 											/>
 											<span>Yes</span>
@@ -687,7 +687,7 @@ const Demo = () => {
 											<input
 												type="radio"
 												value="No"
-												name="$Document Storage Issue"
+												name="documentStorageIssue"
 											/>
 											<span>No</span>
 										</label>
@@ -696,7 +696,7 @@ const Demo = () => {
 							</div>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="documentIssue">
+							<label htmlFor="documentStorageBudget">
 								Has a document storage solution been budgeted for?
 							</label>
 							<div className="control">
@@ -706,7 +706,7 @@ const Demo = () => {
 											<input
 												type="radio"
 												value="Yes"
-												name="$Document Storage Budget"
+												name="documentStorageBudget"
 												onChange={onFormFieldChange}
 											/>
 											<span>Yes</span>
@@ -717,7 +717,7 @@ const Demo = () => {
 											<input
 												type="radio"
 												value="No"
-												name="$Document Storage Budget"
+												name="documentStorageBudget"
 											/>
 											<span>No</span>
 										</label>
