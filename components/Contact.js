@@ -405,8 +405,8 @@ const ContactForm = props => {
 				<div className="sidebar-contact-info">
 					<h3>YellowFolder</h3>
 					<p>
-						P.O. Box 3068 <br />
-						McKinney, TX 75070
+						1551 E. Lincoln Ave., Ste 100 <br />
+						Madison Heights, MI 48071
 					</p>
 				</div>
 				<div className="sidebar-contact-info">
