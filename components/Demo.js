@@ -378,7 +378,7 @@ const Demo = () => {
 			source: 2,
 			group_id: 48000495297,
 			responder_id: null,
-			email_config_id: 48000086987,
+			email_config_id: 48000068881,
 			custom_fields: {
 				cf_district: `${contact.district}`,
 				cf_billable: false,

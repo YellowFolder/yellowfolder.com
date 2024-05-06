@@ -358,7 +358,7 @@ const ContactForm = props => {
 			source: 2,
 			group_id: 48000581041,
 			responder_id: null,
-			email_config_id: 48000086987,
+			email_config_id: 48000068881, //48000086987,
 			custom_fields: {
 				cf_district: `${contact.district}`,
 				cf_billable: false,

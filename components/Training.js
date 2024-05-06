@@ -544,9 +544,15 @@ const Training = () => {
 
 		let description = {
 			'Training Session': `${contact.trainingSession}\n`,
-			'Training Date 1': `${new Date(contact.trainingDate1).toLocaleString('en-US')}\n`,
-			'Training Date 2': `${new Date(contact.trainingDate2).toLocaleString('en-US')}\n`,
-			'Training Date 3': `${new Date(contact.trainingDate3).toLocaleString('en-US')}\n`,
+			'Training Date 1': `${new Date(contact.trainingDate1).toLocaleString(
+				'en-US'
+			)}\n`,
+			'Training Date 2': `${new Date(contact.trainingDate2).toLocaleString(
+				'en-US'
+			)}\n`,
+			'Training Date 3': `${new Date(contact.trainingDate3).toLocaleString(
+				'en-US'
+			)}\n`,
 		};
 
 		const fields = {
@@ -559,20 +565,26 @@ const Training = () => {
 			source: 2,
 			group_id: 48000495297, // PNEs
 			responder_id: null,
-			email_config_id: 48000086987,
+			email_config_id: 48000068881,
 			custom_fields: {
 				cf_district: `${contact.district}`,
 				cf_billable: false,
 				cf_record_series1: `${contact.recordSeries}`,
 				cf_hours_spent: null,
 			},
-			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
+			description: qs.stringify(description, {
+				encode: false,
+				delimiter: '\n<br/><br/>\n',
+			}),
 		};
 
 		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
 		let resp = await unirest
 			.post(url)
-			.auth({ user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD, sendImmediately: true })
+			.auth({
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+				sendImmediately: true,
+			})
 			.type('json')
 			.send(fields);
 
@@ -602,11 +614,12 @@ const Training = () => {
 			<div className="training-list--header">
 				<h2>Weekly Training Session Offerings</h2>
 				<p>
-					Signing up for our weekly training webinars just got easier and more convenient for you.
-					Simply determine which topic you need additional training on and click the link to provide
-					us with the most convenient times for us to schedule a session with you. Most webinar
-					trainings only last around 15 minutes, however the OVERALL section can take up to 45
-					minutes.
+					Signing up for our weekly training webinars just got easier and more
+					convenient for you. Simply determine which topic you need additional
+					training on and click the link to provide us with the most convenient
+					times for us to schedule a session with you. Most webinar trainings
+					only last around 15 minutes, however the OVERALL section can take up
+					to 45 minutes.
 				</p>
 			</div>
 			<div className="training-list--body">
@@ -615,7 +628,9 @@ const Training = () => {
 						return (
 							<div key={section.section} className="section">
 								<h3>{section.section}</h3>
-								{section.description && <p className="description">{section.description}</p>}
+								{section.description && (
+									<p className="description">{section.description}</p>
+								)}
 								<table className="list">
 									<tbody>
 										{section.classes.map(i => {
@@ -623,7 +638,11 @@ const Training = () => {
 												<tr key={i.title}>
 													<td aria-label="Course">{i.title}</td>
 													<td id="registrationLink" aria-label="Register">
-														<button name="trainingSession" value={i.title} onClick={handleClick}>
+														<button
+															name="trainingSession"
+															value={i.title}
+															onClick={handleClick}
+														>
 															Register
 														</button>
 													</td>
@@ -718,9 +737,15 @@ const Training = () => {
 									Please Select
 								</option>
 								<option value="Student Records">Student Records</option>
-								<option value="Special Education Records">Special Education Records</option>
-								<option value="Human Resource Records">Human Resource Records</option>
-								<option value="Administrative Records">Administrative Records</option>
+								<option value="Special Education Records">
+									Special Education Records
+								</option>
+								<option value="Human Resource Records">
+									Human Resource Records
+								</option>
+								<option value="Administrative Records">
+									Administrative Records
+								</option>
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
@@ -794,14 +819,24 @@ const Training = () => {
 							</select>
 						</div>
 						<div className="form--submit-wrapper">
-							<button className="form--submit-btn" type="submit" onClick={handleSubmit}>
+							<button
+								className="form--submit-btn"
+								type="submit"
+								onClick={handleSubmit}
+							>
 								Submit
 							</button>
 						</div>
 					</form>
 				</div>
 			</StyledForm>
-			<div className={response.type === 'error' ? 'title box notification is-danger' : 'is-hidden'}>
+			<div
+				className={
+					response.type === 'error'
+						? 'title box notification is-danger'
+						: 'is-hidden'
+				}
+			>
 				<p>{response.message}</p>
 			</div>
 		</StyledTraining>
