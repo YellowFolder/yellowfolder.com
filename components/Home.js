@@ -25,7 +25,7 @@ class Home extends Component {
 					<MastheadImage>
 						<Image
 							src="/static/images/header-splash-woman.png"
-							alt="Claudia Mullins, Director of Student Services"
+							alt="Elizabeth Collins, Director of Student Services"
 							width={585}
 							height={509}
 							quality={75}
@@ -40,7 +40,7 @@ class Home extends Component {
 								</p>
 							</div>
 							<div id="btm">
-								<h5 id="name">Claudia Mullins</h5>
+								<h5 id="name">Elizabeth Collins</h5>
 								<p id="title">Director of Student Services</p>
 								<p id="time">23 years</p>
 							</div>
