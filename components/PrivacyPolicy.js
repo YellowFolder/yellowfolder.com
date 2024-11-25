@@ -280,8 +280,8 @@ const PrivacyPolicy = () => {
 					<p>&nbsp;</p>
 					<div className="contact">
 						<p>YellowFolder LLC</p>
-						<p>P.O. Box 3068</p>
-						<p>McKinney, TX 75070</p>
+						<p>1551 E. Lincoln Ave., Ste 100</p>
+						<p>Madison Heights, MI 48071</p>
 						<p>&nbsp;</p>
 
 						<p>
@@ -295,7 +295,7 @@ const PrivacyPolicy = () => {
 					</div>
 				</div>
 				<div className="copy">
-					<p className="last-updated">Updated: 3/18/2021</p>
+					<p className="last-updated">Updated: 11/24/2024</p>
 				</div>
 			</div>
 		</StyledPrivacy>
