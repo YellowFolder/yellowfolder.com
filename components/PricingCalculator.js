@@ -35,8 +35,8 @@ const PricingForm = props => {
 					Going paperless (and converting your existing files) is far less
 					expensive than you think. In fact, your school system will spend less
 					implementing the YellowFolder system than you will spend on paper for
-					the converted files. Enter your information below to see the cost of
-					each Record Series.
+					the converted files. Enter your information below to see the cost each
+					Record Series.
 				</h2>
 			</div>
 			<aside className="calculator-form--sidebar">
