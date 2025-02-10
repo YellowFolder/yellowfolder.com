@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ItemStyles, NavBar } from './styles/NavStyles';
@@ -41,6 +44,11 @@ const Nav = () => {
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/weekly-training">
 							<a>training</a>
+						</Link>
+					</li>
+					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
+						<Link href="/pricing-calculator">
+							<a>pricing calculator</a>
 						</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>

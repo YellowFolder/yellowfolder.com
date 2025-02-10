@@ -21,7 +21,7 @@ module.exports = withCss({
 
 		return config;
 	},
-	exportPathMap: async function() {
+	async exportPathMap() {
 		const paths = {
 			'/': { page: '/' },
 			'/index.html': { page: '/' },
@@ -36,6 +36,7 @@ module.exports = withCss({
 			},
 			'/services.html': { page: '/services' },
 			'/weekly-training.html': { page: '/weekly-training' },
+			'/pricing-calculator.html': { page: '/pricing-calculator' },
 		};
 		return paths;
 	},
