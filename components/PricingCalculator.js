@@ -13,6 +13,7 @@ const PricingForm = props => {
 		inquiryType: 'select',
 		subject: 'Calculator Form Submission',
 		message: '',
+		quantity: 50, // Default quantity
 	});
 
 	const [response, setResponse] = useState({
@@ -28,6 +29,10 @@ const PricingForm = props => {
 		e.preventDefault();
 	};
 
+	const unitPrice = 0.09;
+	const totalMonthlyPrice = calculator.quantity * unitPrice;
+	const totalAnnualPrice = totalMonthlyPrice * 12;
+
 	return (
 		<div className="StyledPricing">
 			<div className="calculator-form--header">
@@ -39,39 +44,6 @@ const PricingForm = props => {
 					Record Series.
 				</h2>
 			</div>
-			<aside className="calculator-form--sidebar">
-				<div className="sidebar-calculator-info">
-					<h3>YellowFolder</h3>
-					<p>
-						1551 E. Lincoln Ave., Ste 100 <br />
-						Madison Heights, MI 48071
-					</p>
-				</div>
-				<div className="sidebar-calculator-info">
-					<h3>Sales</h3>
-					<p>
-						<span itemProp="telephone">
-							<a href="tel:+1-844-935-5694">(844) 935-5694</a>
-						</span>
-						<br />
-						<a href="mailto:sales@yellowfolder.com" itemProp="email">
-							sales@yellowfolder.com
-						</a>
-					</p>
-				</div>
-				<div className="sidebar-calculator-info">
-					<h3>Support</h3>
-					<p>
-						<span itemProp="telephone">
-							<a href="tel:+1-844-935-5699">(844) 935-5699</a>
-						</span>
-						<br />
-						<a href="mailto:support@yellowfolder.com" itemProp="email">
-							support@yellowfolder.com
-						</a>
-					</p>
-				</div>
-			</aside>
 			<div className="calculator-form--form">
 				<form onSubmit={handleSubmit}>
 					<input type="hidden" name="subject" value="Calculator Form" />{' '}
@@ -112,10 +84,11 @@ const PricingForm = props => {
 							</span>
 						</label>
 						<input
-							id="numberOfStudents"
+							idid="quantity"
 							type="number"
-							autoComplete="given-name"
-							name="numberOfStudents"
+							autoComplete="quantity"
+							name="quantity"
+							value={calculator.quantity}
 							onChange={onFormFieldChange}
 						/>
 					</div>
@@ -169,6 +142,65 @@ const PricingForm = props => {
 						</button>
 					</div>
 				</form>
+			</div>
+			<div className="pricing-summary">
+				<h3>Estimated Price to Implement YellowFolder</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>Implementation Fees</th>
+							<th>Quantity</th>
+							<th>Unit Price</th>
+							<th>Total Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>YellowFolder System Set-up</td>
+							<td>1</td>
+							<td>$2,990.00</td>
+							<td>$2,990.00</td>
+						</tr>
+						<tr>
+							<td colSpan="3">
+								Total Implementation Fees (one-time fees charges at the time of
+								implementation)
+							</td>
+							<td>$2,990.00</td>
+						</tr>
+					</tbody>
+				</table>
+				<table>
+					<thead>
+						<tr>
+							<th>
+								Monthly On-Line Fees *All Record Series Minimum $450/month
+							</th>
+							<th>Quantity</th>
+							<th>Unit Price</th>
+							<th>Total Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Online Access for Student Records</td>
+							<td>{calculator.quantity}</td>
+							<td>${unitPrice.toFixed(2)}</td>
+							<td>${totalMonthlyPrice.toFixed(2)}</td>
+						</tr>
+						<tr>
+							<td colSpan="3">
+								Total Monthly Access Fees (charges for the duration of your use
+								of YellowFolder)
+							</td>
+							<td>${totalMonthlyPrice.toFixed(2)}</td>
+						</tr>
+						<tr>
+							<td colSpan="3">x 12 months</td>
+							<td>${totalAnnualPrice.toFixed(2)}</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);

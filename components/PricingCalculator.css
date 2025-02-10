@@ -309,3 +309,50 @@
         font-size: calc(42px + (58 - 42) * ((100vw - 400px) / (1000 - 300)));
     }
 }
+
+.StyledPricing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+.calculator-form--form {
+    grid-column: 1 / 2;
+}
+
+.pricing-summary {
+    grid-column: 2 / 3;
+}
+
+@media (max-width: 768px) {
+    .StyledPricing {
+        grid-template-columns: 1fr;
+    }
+
+    .pricing-summary {
+        grid-column: 1 / 2;
+    }
+}
+
+.pricing-summary h3 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.pricing-summary table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.pricing-summary th,
+.pricing-summary td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.pricing-summary th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
