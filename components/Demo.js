@@ -340,6 +340,7 @@ const Demo = () => {
 		email: '',
 		firstName: '',
 		lastName: '',
+		howdidyouhear:'',
 		state: 'select',
 		district: null,
 		honeypot: '',
@@ -366,6 +367,7 @@ const Demo = () => {
 			'Main priority for the district:': `${contact.inquiryType}\n`,
 			'Is there a document storage solution in your district/school?': `${contact.documentStorageIssue}\n`,
 			'Has a document storage solution been budgeted for?': `${contact.documentStorageBudget}\n`,
+			'How did you hear about YellowFolder (conference, other district, etc.)?':`${contact.howdidyouhear}\n`,
 		};
 
 		const fields = {
@@ -389,6 +391,7 @@ const Demo = () => {
 				encode: false,
 				delimiter: '\n<br/><br/>\n',
 			}),
+			
 		};
 
 		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
@@ -570,6 +573,15 @@ const Demo = () => {
 								required
 								id="district"
 								name="district"
+								onChange={onFormFieldChange}
+							/>
+						</div>
+						<div className="form--field-wrapper form--field-item">
+							<label htmlFor="howdidyouhear">How did you hear about YellowFolder (conference, other district, etc.)?</label>
+							<input
+								id="howdidyouhear"
+								type="text"					
+								name="howdidyouhear"
 								onChange={onFormFieldChange}
 							/>
 						</div>
