@@ -47,8 +47,8 @@ const Nav = () => {
 						</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
-						<Link href="/pricing-calculator">
-							<a>pricing calculator</a>
+						<Link href="/pricing">
+							<a>pricing</a>
 						</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>

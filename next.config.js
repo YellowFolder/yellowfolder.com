@@ -1,5 +1,4 @@
 const withCss = require('@zeit/next-css');
-const withBundleAnalyzer = require('@zeit/next-bundle-analyzer');
 
 module.exports = withCss({
 	target: 'serverless',
@@ -10,7 +9,7 @@ module.exports = withCss({
 		FRESHCHAT_TOKEN: process.env.NEXT_PUBLIC_FRESHCHAT_TOKEN,
 		WEBSITE_DOMAIN: process.env.WEBSITE_DOMAIN,
 	},
-	webpack: (config, { isServer }) => {
+	webpack: config => {
 		// Fixes npm packages that depend on `fs` module
 		config.node = {
 			console: true,
@@ -36,7 +35,7 @@ module.exports = withCss({
 			},
 			'/services.html': { page: '/services' },
 			'/weekly-training.html': { page: '/weekly-training' },
-			'/pricing-calculator.html': { page: '/pricing-calculator' },
+			'/pricing.html': { page: '/pricing' },
 		};
 		return paths;
 	},
