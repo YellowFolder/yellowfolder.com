@@ -51,11 +51,12 @@ const RequestSuccess = () => {
 	return (
 		<StyledSuccess>
 			<h1>Success!</h1>
-			<p>Our team has received your request and will reply to you as soon as possible.</p>
+			<p>
+				Our team has received your request and will reply to you as soon as
+				possible.
+			</p>
 			<button>
-				<Link href="/">
-					<a>Return Home</a>
-				</Link>
+				<Link href="/">Return Home</Link>
 			</button>
 		</StyledSuccess>
 	);

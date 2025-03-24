@@ -135,22 +135,18 @@ const Footer = () => (
 			</div>
 			<div className="content-right">
 				<RequestButton>
-					<Link href="/record-request">
-						<a>Record Request</a>
-					</Link>
+					<Link href="/record-request">Record Request</Link>
 				</RequestButton>
 				<div className="links">
-					<Link href="/privacy-policy">
-						<a>Privacy Policy</a>
-					</Link>
+					<Link href="/privacy-policy">Privacy Policy</Link>
 					<span> • </span>
 					<Link
 						prefetch={false}
 						href="/static/pdf/service_procedures-v1.6-2019.pdf"
+						target="_blank"
+						rel="noopener noreferrer"
 					>
-						<a target="_blank" rel="noopener noreferrer">
-							Service Procedures
-						</a>
+						Service Procedures
 					</Link>
 				</div>
 			</div>
