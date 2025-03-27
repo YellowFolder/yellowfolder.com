@@ -80,9 +80,11 @@ export class Header extends Component {
 					<div className="bar">
 						<Logo>
 							<Link href="/">
-								<a>
-									<img src="/static/images/header-logo.svg" alt="YellowFolder" itemProp="logo" />
-								</a>
+								<img
+									src="/static/images/header-logo.svg"
+									alt="YellowFolder"
+									itemProp="logo"
+								/>
 							</Link>
 						</Logo>
 						<Nav />
@@ -91,12 +93,10 @@ export class Header extends Component {
 				{this.props.activeRoute === '/' && (
 					<Banner>
 						<Link href="/privacy-policy">
-							<a>
-								<img
-									src="/static/images/privacy-banner.svg"
-									alt="Student Privacy Pledge Official Signatory"
-								/>
-							</a>
+							<img
+								src="/static/images/privacy-banner.svg"
+								alt="Student Privacy Pledge Official Signatory"
+							/>
 						</Link>{' '}
 					</Banner>
 				)}

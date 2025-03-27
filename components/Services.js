@@ -20,9 +20,9 @@ class Services extends Component {
 					<div className="header-text">
 						<h1>Solutions that move at a million files per hour.</h1>
 						<p>
-							We are experts in streamlining your district's internal operations while
-							simultaneously securing each document within a private, HIPAA and FERPA compliant
-							database.
+							We are experts in streamlining your district's internal operations
+							while simultaneously securing each document within a private,
+							HIPAA and FERPA compliant database.
 						</p>
 					</div>
 				</PageHeaderContainer>
@@ -88,7 +88,11 @@ class Services extends Component {
 						</CardRow>
 						<div className="options-backdrop" />
 						<div className="postscript-transition">
-							<img className="transition-bracket" src="/static/images/bracket.svg" alt="" />
+							<img
+								className="transition-bracket"
+								src="/static/images/bracket.svg"
+								alt=""
+							/>
 						</div>
 					</ServiceOptions>
 					<ServicesPostscript>
@@ -114,8 +118,8 @@ class Services extends Component {
 						<div className="postscript-copy">
 							<h2>All of your files, for all of your needs.</h2>
 							<p>
-								We understand how unique each area of of your records are so we provide full
-								functionality down to the individual file level.
+								We understand how unique each area of of your records are so we
+								provide full functionality down to the individual file level.
 							</p>
 						</div>
 					</ServicesPostscript>
@@ -134,7 +138,7 @@ class Services extends Component {
 					<ActionWrapper>
 						<div className="cta">
 							<Link href="/schedule-a-yellow-folder-demo">
-								<a>See YellowFolder in Action</a>
+								See YellowFolder in Action
 							</Link>
 						</div>
 						<div className="cta-backdrop" />

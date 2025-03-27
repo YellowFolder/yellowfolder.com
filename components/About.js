@@ -13,9 +13,10 @@ export class About extends Component {
 							<div className="page-intro">
 								<h1>Educators, serving educators.</h1>
 								<p>
-									As former educators ourselves, we know how complicated filing can be. With a
-									little help from our developers and a lot of help from our years in the field,
-									we've perfected record storage for the K-12 market.
+									As former educators ourselves, we know how complicated filing
+									can be. With a little help from our developers and a lot of
+									help from our years in the field, we've perfected record
+									storage for the K-12 market.
 								</p>
 							</div>
 							<h3 className="team-greeting">Come meet the team.</h3>
@@ -44,7 +45,10 @@ export class About extends Component {
 					</div>
 					<div id="grey-bg" />
 					<div id="file-cabinet">
-						<img src="/static/images/file-cabinet-update.svg" alt="file cabinet" />
+						<img
+							src="/static/images/file-cabinet-update.svg"
+							alt="file cabinet"
+						/>
 					</div>
 					<div id="monitor">
 						<img
@@ -56,20 +60,20 @@ export class About extends Component {
 						<span>
 							<h3>We'd love to meet you face to face.</h3>
 							<p>
-								<Link href="/schedule-a-yellow-folder-demo">
-									<a>Click here</a>
-								</Link>{' '}
-								to sign up for a complimentary live demonstration of our innovative,
-								industry-leading software.
+								<Link href="/schedule-a-yellow-folder-demo">Click here</Link> to
+								sign up for a complimentary live demonstration of our
+								innovative, industry-leading software.
 							</p>
 						</span>
 						<p>
-							We use our education experience to provide every district user with the best customer
-							service, consultation and training offered.&nbsp; Every user is on a different comfort
-							level with technology, just like students in the classroom, so we give as much
-							individual attention needed per user to ensure they understand how to utilize
-							YellowFolder.&nbsp; We have incorporated our knowledge of districts and their records
-							to perfect our implementation process, making it simple and easy to use in your
+							We use our education experience to provide every district user
+							with the best customer service, consultation and training
+							offered.&nbsp; Every user is on a different comfort level with
+							technology, just like students in the classroom, so we give as
+							much individual attention needed per user to ensure they
+							understand how to utilize YellowFolder.&nbsp; We have incorporated
+							our knowledge of districts and their records to perfect our
+							implementation process, making it simple and easy to use in your
 							district.
 						</p>
 					</div>
