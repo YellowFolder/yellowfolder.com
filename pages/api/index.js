@@ -5,9 +5,6 @@ import unirest from 'unirest';
 // 	res.statusCode = 200;
 // 	res.end(JSON.stringify({ name: 'YellowFolder' }));
 // };
-
-import unirest from 'unirest';
-
 export default async function handler(req, res) {
 	if (req.method !== 'POST') {
 		return res.status(405).json({ error: 'Method not allowed' });

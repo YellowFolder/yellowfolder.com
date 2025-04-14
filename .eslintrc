@@ -34,12 +34,15 @@
 			"WithStatement"
 		],
 		"no-unused-vars": [
-			1,
+			"error",
 			{
-				"ignoreSiblings": true,
+				"vars": "all",
+				"args": "after-used",
+				"ignoreRestSiblings": true,
 				"argsIgnorePattern": "res|next|^err"
 			}
-		],
+			]
+		},
 		"arrow-body-style": [
 			2,
 			"as-needed"
