@@ -1,3 +1,6 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { ItemStyles, NavBar } from './styles/NavStyles';
@@ -24,34 +27,20 @@ const Nav = () => {
 			<ItemStyles role="navigation" className="nav">
 				<ul className="nav__items">
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
-						<Link href="/about-us">
-							<a>about us</a>
-						</Link>
+						<Link href="/about-us">about us</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
-						<Link href="/services">
-							<a>services</a>
-						</Link>
+						<Link href="/services">services</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
-						<Link href="/contact">
-							<a>contact</a>
-						</Link>
+						<Link href="/contact">contact</Link>
 					</li>
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
-						<Link href="/weekly-training">
-							<a>training</a>
-						</Link>
+						<Link href="/weekly-training">training</Link>
 					</li>
-					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
-						<a
-							href="https://login.yellowfolder.com/"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							log in
-						</a>
-					</li>
+					{/* <li className="nav__item" onClick={() => toggleNav(!isOpen)}>
+						<Link href="/pricing">pricing</Link>
+					</li> */}
 				</ul>
 			</ItemStyles>
 		</NavBar>

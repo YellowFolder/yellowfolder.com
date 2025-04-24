@@ -578,28 +578,32 @@ const Training = () => {
 			}),
 		};
 
-		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
-		let resp = await unirest
-			.post(url)
-			.auth({
-				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
-				sendImmediately: true,
-			})
-			.type('json')
-			.send(fields);
+		try {
+			const response = await fetch('/api/freshdesk/tickets', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(fields),
+			});
 
-		let data = resp.body;
-		if (resp.status >= 400) {
+			const data = await response.json();
+
+			if (!response.ok) {
+				setResponse({
+					type: 'error',
+					message: data.message || 'An error occurred',
+				});
+			} else {
+				setResponse({
+					type: 'success',
+					message: 'Your request has been submitted.',
+				});
+				return Router.push('/request-success');
+			}
+		} catch (error) {
 			setResponse({
 				type: 'error',
-				message: resp.message,
+				message: error.message,
 			});
-		} else if (resp.status >= 200 || resp.status < 400) {
-			setResponse({
-				type: 'success',
-				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
-			});
-			return Router.push('/request-success');
 		}
 	};
 
