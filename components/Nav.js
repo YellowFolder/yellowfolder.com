@@ -41,6 +41,15 @@ const Nav = () => {
 					{/* <li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/pricing">pricing</Link>
 					</li> */}
+					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
+						<a
+							href="https://erm.yellowfolder.com/login/#"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							log in
+						</a>
+					</li>
 				</ul>
 			</ItemStyles>
 		</NavBar>
