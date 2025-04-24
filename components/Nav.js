@@ -38,9 +38,9 @@ const Nav = () => {
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/weekly-training">training</Link>
 					</li>
-					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
+					{/* <li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<Link href="/pricing">pricing</Link>
-					</li>
+					</li> */}
 				</ul>
 			</ItemStyles>
 		</NavBar>
