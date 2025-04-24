@@ -43,7 +43,7 @@ const Nav = () => {
 					</li> */}
 					<li className="nav__item" onClick={() => toggleNav(!isOpen)}>
 						<a
-							href="https://erm.yellowfolder.com/login/#"
+							href="https://login.yellowfolder.com/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
