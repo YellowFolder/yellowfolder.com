@@ -578,33 +578,87 @@ const Training = () => {
 			}),
 		};
 
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+				sendImmediately: true,
+			})
+			.type('json')
+			.send(fields);
+
+		let data = resp.body;
+		if (resp.status >= 400) {
+			setResponse({
+				type: 'error',
+				message: resp.message,
+			});
+		} else if (resp.status >= 200 || resp.status < 400) {
+			setResponse({
+				type: 'success',
+				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
+			});
+			return Router.push('/request-success');
+		}
+
 		try {
-			const response = await fetch('/api/freshdesk/tickets', {
+			const res = await fetch('https://api.staticforms.xyz/submit', {
 				method: 'POST',
+				body: JSON.stringify(contact),
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(fields),
 			});
 
-			const data = await response.json();
+			const json = await res.json();
 
-			if (!response.ok) {
+			if (json.success) {
 				setResponse({
-					type: 'error',
-					message: data.message || 'An error occurred',
+					type: 'success',
+					message:
+						'Your email has been successfully delivered. Thank you for reaching out to us.',
 				});
 			} else {
 				setResponse({
-					type: 'success',
-					message: 'Your request has been submitted.',
+					type: 'error',
+					message: json.message,
 				});
-				return Router.push('/request-success');
 			}
-		} catch (error) {
+		} catch (e) {
+			console.log('An error occurred ', e);
 			setResponse({
 				type: 'error',
-				message: error.message,
+				message:
+					'An error occured while submitting the form. Please try again.',
 			});
 		}
+
+		// try {
+		// 	const response = await fetch(url, {
+		// 		method: 'POST',
+		// 		headers: { 'Content-Type': 'application/json' },
+		// 		body: JSON.stringify(fields),
+		// 	});
+
+		// 	const data = await response.json();
+
+		// 	if (!response.ok) {
+		// 		setResponse({
+		// 			type: 'error',
+		// 			message: data.message || 'An error occurred',
+		// 		});
+		// 	} else {
+		// 		setResponse({
+		// 			type: 'success',
+		// 			message: 'Your request has been submitted.',
+		// 		});
+		// 		return Router.push('/request-success');
+		// 	}
+		// } catch (error) {
+		// 	setResponse({
+		// 		type: 'error',
+		// 		message: error.message,
+		// 	});
+		// }
 	};
 
 	const handleClick = e => {
