@@ -33,7 +33,7 @@ class RecordRequest extends React.Component {
 	onSubmit = async e => {
 		e.preventDefault();
 		let description = {
-			'Target Alias or Maiden Name': this.state.alias,
+			'Target Alias or Maiden Name': this.state.targetAlias,
 			'Target Name': this.state.targetName,
 			'Target Date of Birth': this.state.targetDOB,
 			'Target Campus': this.state.targetCampus,
