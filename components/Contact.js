@@ -2,6 +2,7 @@ import Router from 'next/router';
 import qs from 'qs';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import unirest from 'unirest';
 import { size } from './styles/device';
 
 const StyledContact = styled.div`
@@ -368,38 +369,91 @@ const ContactForm = props => {
 				encode: false,
 				delimiter: '\n<br/><br/>\n',
 			}),
-		};
+		};		
+
 		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
+		let resp = await unirest
+			.post(url)
+			.auth({
+				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
+				sendImmediately: true,
+			})
+			.type('json')
+			.send(fields);
+
+		let data = resp.body;
+		if (resp.status >= 400) {
+			setResponse({
+				type: 'error',
+				message: resp.message,
+			});
+		} else if (resp.status >= 200 || resp.status < 400) {
+			setResponse({
+				type: 'success',
+				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
+			});
+			return Router.push('/request-success');
+		}
+
 		try {
-			const response = await fetch(url, {
+			const res = await fetch('https://api.staticforms.xyz/submit', {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(fields),
+				body: JSON.stringify(contact),
+				headers: { 'Content-Type': 'application/json' },
 			});
 
-			const data = await response.json();
+			const json = await res.json();
 
-			if (!response.ok) {
-				setResponse({
-					type: 'error',
-					message: data.message || 'An error occurred',
-				});
-			} else {
+			if (json.success) {
 				setResponse({
 					type: 'success',
 					message:
 						'Your email has been successfully delivered. Thank you for reaching out to us.',
 				});
-				return Router.push('/request-success');
+			} else {
+				setResponse({
+					type: 'error',
+					message: json.message,
+				});
 			}
-		} catch (error) {
+		} catch (e) {
+			console.log('An error occurred ', e);
 			setResponse({
 				type: 'error',
-				message: error.message,
+				message:
+					'An error occured while submitting the form. Please try again.',
 			});
 		}
+		// try {
+		// 	const response = await fetch(url, {
+		// 		method: 'POST',
+		// 		headers: {
+		// 			'Content-Type': 'application/json',
+		// 		},
+		// 		body: JSON.stringify(fields),
+		// 	});
+
+		// 	const data = await response.json();
+
+		// 	if (!response.ok) {
+		// 		setResponse({
+		// 			type: 'error',
+		// 			message: data.message || 'An error occurred',
+		// 		});
+		// 	} else {
+		// 		setResponse({
+		// 			type: 'success',
+		// 			message:
+		// 				'Your email has been successfully delivered. Thank you for reaching out to us.',
+		// 		});
+		// 		return Router.push('/request-success');
+		// 	}
+		// } catch (error) {
+		// 	setResponse({
+		// 		type: 'error',
+		// 		message: error.message,
+		// 	});
+		// }
 	};
 
 	return (
