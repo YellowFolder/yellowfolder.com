@@ -369,9 +369,9 @@ const ContactForm = props => {
 				delimiter: '\n<br/><br/>\n',
 			}),
 		};
-
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
 		try {
-			const response = await fetch('/api/freshdesk/tickets', {
+			const response = await fetch(url, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

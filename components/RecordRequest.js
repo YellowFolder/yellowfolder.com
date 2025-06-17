@@ -64,7 +64,7 @@ class RecordRequest extends React.Component {
 			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
 		};
 
-		let url = `https://yellowfolder.freshdesk.com/api/v2/tickets`;
+		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
 		let resp = await unirest
 			.post(url)
 			.auth({
