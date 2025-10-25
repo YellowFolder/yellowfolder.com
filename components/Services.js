@@ -91,7 +91,7 @@ class Services extends Component {
 							<img
 								className="transition-bracket"
 								src="/static/images/bracket.svg"
-								alt=""
+								alt="Transition bracket connecting services to record types"
 							/>
 						</div>
 					</ServiceOptions>
@@ -99,19 +99,31 @@ class Services extends Component {
 						<div className="postscript-backdrop" />
 						<div className="service-figures">
 							<div className="figure">
-								<img src="/static/images/services-icon__student.png" alt="" />
+								<img
+									src="/static/images/services-icon__student.png"
+									alt="Student records icon - backpack and books"
+								/>
 								<p>Student</p>
 							</div>
 							<div className="figure">
-								<img src="/static/images/services-icon__sped.png" alt="" />
+								<img
+									src="/static/images/services-icon__sped.png"
+									alt="Special Education records icon - accessibility symbol"
+								/>
 								<p>Special Education</p>
 							</div>
 							<div className="figure">
-								<img src="/static/images/services-icon__hr.png" alt="" />
+								<img
+									src="/static/images/services-icon__hr.png"
+									alt="Faculty records icon - identification badge"
+								/>
 								<p>Faculty</p>
 							</div>
 							<div className="figure">
-								<img src="/static/images/services-icon__admin.png" alt="" />
+								<img
+									src="/static/images/services-icon__admin.png"
+									alt="Administrative records icon - organizational chart"
+								/>
 								<p>Administrative</p>
 							</div>
 						</div>

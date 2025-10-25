@@ -1,42 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://yellowfolder.com/about-us</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
-    <loc>https://yellowfolder.com/contact</loc>
-    <changefreq>hourly</changefreq>
-  </url>
+  <!-- Home Page - Highest Priority -->
   <url>
     <loc>https://yellowfolder.com</loc>
-    <changefreq>hourly</changefreq>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
+
+  <!-- Main Pages - High Priority -->
   <url>
-    <loc>https://yellowfolder.com/privacy-policy</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
-    <loc>https://yellowfolder.com/help</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
-    <loc>https://yellowfolder.com/record-request</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
-    <loc>https://yellowfolder.com/request-success</loc>
-    <changefreq>hourly</changefreq>
-  </url>
-  <url>
-    <loc>https://yellowfolder.com/schedule-a-yellow-folder-demo</loc>
-    <changefreq>hourly</changefreq>
+    <loc>https://yellowfolder.com/about-us</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yellowfolder.com/services</loc>
-    <changefreq>hourly</changefreq>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://yellowfolder.com/pricing</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Action Pages - High Priority -->
+  <url>
+    <loc>https://yellowfolder.com/contact</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://yellowfolder.com/schedule-a-yellow-folder-demo</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://yellowfolder.com/weekly-training</loc>
-    <changefreq>hourly</changefreq>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://yellowfolder.com/record-request</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Support Pages - Medium Priority -->
+  <url>
+    <loc>https://yellowfolder.com/help</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Legal Pages - Lower Priority -->
+  <url>
+    <loc>https://yellowfolder.com/privacy-policy</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Utility Pages - Lowest Priority (no-index recommended) -->
+  <url>
+    <loc>https://yellowfolder.com/request-success</loc>
+    <lastmod>2025-10-25</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
   </url>
 </urlset>

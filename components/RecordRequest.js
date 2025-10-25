@@ -1,7 +1,5 @@
 import Router from 'next/router';
-import qs from 'qs';
 import React from 'react';
-import unirest from 'unirest';
 import StyledForm from './styles/FormStyles';
 
 class RecordRequest extends React.Component {
@@ -28,58 +26,30 @@ class RecordRequest extends React.Component {
 		});
 	};
 
-	// Create a ticket within freshdesk
-	// For more documentation, check here: https://developers.freshdesk.com/api/#create_ticket
 	onSubmit = async e => {
 		e.preventDefault();
-		let description = {
-			'Target Alias or Maiden Name': this.state.targetAlias,
-			'Target Name': this.state.targetName,
-			'Target Date of Birth': this.state.targetDOB,
-			'Target Campus': this.state.targetCampus,
-			'Target Withdrawal/Graduation Date': this.state.targetLeaveDate,
-			'Target Active or Archive': this.state.targetStatus,
-			'Target ID Number': this.state.targetID,
-			'Target Date of Termination': this.state.targetTerminationDate,
-			'Additional Information': this.state.extraInfo,
-		};
 
-		const fields = {
-			email: this.state.email,
-			name: this.state.name,
-			phone: this.state.phone,
-			subject: `Record Request for ${this.state.district}`,
-			type: 'Record Retrieval',
-			status: 2, // "open" (new)
-			priority: 2, // medium
-			responder_id: 48011471036, // christine roblez
-			group_id: 48000495294, // customer support
-			source: 2, // web portal
-			custom_fields: {
-				cf_record_series1: this.state.recordSeries,
-				cf_district: this.state.district,
-				cf_billable: false,
-				cf_hours_spent: null,
-			},
-			description: qs.stringify(description, { encode: false, delimiter: '\n<br/><br/>\n' }),
-		};
+		try {
+			const response = await fetch('/api/record-request', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(this.state),
+			});
 
-		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
-		let resp = await unirest
-			.post(url)
-			.auth({
-				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
-				sendImmediately: true,
-			})
-			.type('json')
-			.send(fields);
+			const data = await response.json();
 
-		let data = resp.body;
-
-		if (resp.status === 201) {
-			return Router.push('/request-success');
-		} else {
-			return console.error(resp.headers);
+			if (!response.ok) {
+				console.error('Record request submission error:', data);
+				alert(
+					data.message ||
+						'An error occurred while submitting the form. Please try again.'
+				);
+			} else {
+				return Router.push('/request-success');
+			}
+		} catch (error) {
+			console.error('Form submission error:', error);
+			alert('An error occurred while submitting the form. Please try again.');
 		}
 	};
 
@@ -105,7 +75,10 @@ class RecordRequest extends React.Component {
 			<StyledForm>
 				<div className="form--header">
 					<h1>Record Request Form</h1>
-					<p>Please complete the form below and our team will begin searching for your records.</p>
+					<p>
+						Please complete the form below and our team will begin searching for
+						your records.
+					</p>
 				</div>
 				<div className="form--body">
 					<form onSubmit={this.onSubmit}>
@@ -198,9 +171,15 @@ class RecordRequest extends React.Component {
 								</option>
 								<option value="None">None</option>
 								<option value="Student Records">Student Records</option>
-								<option value="Special Education Records">Special Education Records</option>
-								<option value="Human Resource Records">Human Resource Records</option>
-								<option value="Administrative Records">Administrative Records</option>
+								<option value="Special Education Records">
+									Special Education Records
+								</option>
+								<option value="Human Resource Records">
+									Human Resource Records
+								</option>
+								<option value="Administrative Records">
+									Administrative Records
+								</option>
 							</select>
 						</div>
 						<div className="form--field-wrapper form--field-item">
@@ -265,7 +244,9 @@ class RecordRequest extends React.Component {
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="targetLeaveDate">Target Withdrawal/Graduation Date</label>
+							<label htmlFor="targetLeaveDate">
+								Target Withdrawal/Graduation Date
+							</label>
 							<input
 								required
 								type="date"
@@ -319,7 +300,9 @@ class RecordRequest extends React.Component {
 							/>
 						</div>
 						<div className="form--field-wrapper form--field-item">
-							<label htmlFor="targetTerminationDate">Target Date of Termination</label>
+							<label htmlFor="targetTerminationDate">
+								Target Date of Termination
+							</label>
 							<input
 								required
 								type="date"
@@ -363,7 +346,11 @@ class RecordRequest extends React.Component {
 								name="captcha_settings"
 								value='{"keyname":"reCaptchaKeyPair","fallback":"true","orgId":"00DF0000000507Z","ts":""}'
 							></input>
-							<button className="form--submit-btn" type="submit" onClick={this.onSubmit}>
+							<button
+								className="form--submit-btn"
+								type="submit"
+								onClick={this.onSubmit}
+							>
 								Submit
 							</button>
 						</div>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YellowFolder - Open Graph Image Template</title>
+    <style>
+        @font-face {
+            font-family: 'Clear Sans';
+            src: url('/static/fonts/ClearSans-Regular.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'Clear Sans Bold';
+            src: url('/static/fonts/ClearSans-Bold.woff2') format('woff2');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #f5f5f5;
+            font-family: 'Clear Sans', Arial, sans-serif;
+        }
+
+        .og-image-container {
+            width: 1200px !important;
+            min-width: 1200px;
+            max-width: 1200px;
+            height: 630px !important;
+            min-height: 630px;
+            max-height: 630px;
+            background: linear-gradient(135deg, #FFC629 0%, #FFD556 100%);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
+        /* Decorative folder pattern background */
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.08;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.5) 35px, rgba(255,255,255,.5) 70px);
+        }
+
+        /* Content container */
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 80px;
+            box-sizing: border-box;
+        }
+
+        /* Logo area */
+        .logo-container {
+            margin-bottom: 50px;
+        }
+
+        .logo-text {
+            font-family: 'Clear Sans Bold', Arial, sans-serif;
+            font-size: 120px;
+            font-weight: bold;
+            color: #393939;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -2px;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-family: 'Clear Sans', Arial, sans-serif;
+            font-size: 42px;
+            color: #393939;
+            text-align: center;
+            max-width: 900px;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+
+        .tagline-bold {
+            font-family: 'Clear Sans Bold', Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        /* Subtitle */
+        .subtitle {
+            font-family: 'Clear Sans', Arial, sans-serif;
+            font-size: 28px;
+            color: #5B6670;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        /* Decorative elements */
+        .folder-icon {
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 400px;
+            height: 400px;
+            opacity: 0.15;
+        }
+
+        .folder-icon-left {
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 350px;
+            height: 350px;
+            opacity: 0.12;
+            transform: rotate(-15deg);
+        }
+
+        /* Website URL badge */
+        .url-badge {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-family: 'Clear Sans Bold', Arial, sans-serif;
+            font-size: 24px;
+            color: #393939;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="og-image-container">
+        <!-- Pattern overlay -->
+        <div class="pattern-overlay"></div>
+
+        <!-- Decorative folder icons -->
+        <svg class="folder-icon-left" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10,20 L45,20 L50,30 L90,30 L90,80 L10,80 Z" fill="#393939"/>
+        </svg>
+
+        <svg class="folder-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10,20 L45,20 L50,30 L90,30 L90,80 L10,80 Z" fill="#393939"/>
+        </svg>
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="logo-container">
+                <div class="logo-text">YellowFolder</div>
+            </div>
+
+            <div class="tagline">
+                <span class="tagline-bold">Cloud-Based</span> Student Records<br/>
+                Management for <span class="tagline-bold">K-12 Schools</span>
+            </div>
+
+            <div class="subtitle">
+                Secure • Compliant • Efficient
+            </div>
+        </div>
+
+        <!-- Website URL -->
+        <div class="url-badge">
+            yellowfolder.com
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center; color: #666; padding: 20px;">
+        <h2>How to Create the Open Graph Image:</h2>
+        <ol style="text-align: left; max-width: 800px; margin: 20px auto; line-height: 1.8;">
+            <li><strong>Option 1 - Screenshot (Quick):</strong>
+                <ul>
+                    <li>Set your browser window to exactly 1200px wide</li>
+                    <li>Take a screenshot of the yellow box above (1200x630px)</li>
+                    <li>Save as: <code>public/static/images/yf-og-image.png</code></li>
+                </ul>
+            </li>
+            <li><strong>Option 2 - Browser DevTools (Precise):</strong>
+                <ul>
+                    <li>Right-click the yellow box → "Inspect Element"</li>
+                    <li>In DevTools, right-click the <code>.og-image-container</code> element</li>
+                    <li>Select "Capture node screenshot"</li>
+                    <li>Save as: <code>public/static/images/yf-og-image.png</code></li>
+                </ul>
+            </li>
+            <li><strong>Option 3 - Design Tool:</strong>
+                <ul>
+                    <li>Copy this design into Figma, Canva, or Photoshop</li>
+                    <li>Export at 1200x630px</li>
+                    <li>Optimize for web (<300KB)</li>
+                </ul>
+            </li>
+            <li><strong>Option 4 - Automated (Advanced):</strong>
+                <ul>
+                    <li>Use Puppeteer or Playwright to screenshot this page</li>
+                    <li>Set viewport to 1200x630px</li>
+                    <li>Save programmatically</li>
+                </ul>
+            </li>
+        </ol>
+        <p style="margin-top: 30px; font-size: 14px; color: #999;">
+            File location: <code>/Users/ryanbell/AI Projects/yellowfolder.com/yellowfolder.com/og-image-template.html</code>
+        </p>
+    </div>
+</body>
+</html>

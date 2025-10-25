@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -49,16 +50,70 @@ const StyledSuccess = styled.div`
 
 const RequestSuccess = () => {
 	return (
-		<StyledSuccess>
-			<h1>Success!</h1>
-			<p>
-				Our team has received your request and will reply to you as soon as
-				possible.
-			</p>
-			<button>
-				<Link href="/">Return Home</Link>
-			</button>
-		</StyledSuccess>
+		<>
+			<Head>
+				<title>Thank You - Your Request Has Been Received | YellowFolder</title>
+				<meta
+					name="description"
+					content="Thank you for contacting YellowFolder. We've received your request and our team will respond shortly. We look forward to helping your school with records management."
+				/>
+
+				{/* Prevent indexing of utility/thank you page */}
+				<meta name="robots" content="noindex, follow" />
+
+				{/* Canonical URL */}
+				<link rel="canonical" href="https://yellowfolder.com/request-success" />
+
+				{/* Open Graph / Facebook */}
+				<meta property="og:type" content="website" />
+				<meta
+					property="og:url"
+					content="https://yellowfolder.com/request-success"
+				/>
+				<meta
+					property="og:title"
+					content="Thank You - Your Request Has Been Received | YellowFolder"
+				/>
+				<meta
+					property="og:description"
+					content="Thank you for contacting YellowFolder. We've received your request and our team will respond shortly. We look forward to helping your school with records management."
+				/>
+				<meta
+					property="og:image"
+					content="https://yellowfolder.com/static/images/yf-og-image.png"
+				/>
+				<meta property="og:site_name" content="YellowFolder" />
+
+				{/* Twitter */}
+				<meta property="twitter:card" content="summary_large_image" />
+				<meta
+					property="twitter:url"
+					content="https://yellowfolder.com/request-success"
+				/>
+				<meta
+					property="twitter:title"
+					content="Thank You - Your Request Has Been Received | YellowFolder"
+				/>
+				<meta
+					property="twitter:description"
+					content="Thank you for contacting YellowFolder. We've received your request and our team will respond shortly. We look forward to helping your school."
+				/>
+				<meta
+					property="twitter:image"
+					content="https://yellowfolder.com/static/images/yf-og-image.png"
+				/>
+			</Head>
+			<StyledSuccess>
+				<h1>Success!</h1>
+				<p>
+					Our team has received your request and will reply to you as soon as
+					possible.
+				</p>
+				<button>
+					<Link href="/">Return Home</Link>
+				</button>
+			</StyledSuccess>
+		</>
 	);
 };
 

@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow: /api
+
+Sitemap: https://yellowfolder.com/sitemap.xml

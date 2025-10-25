@@ -16,8 +16,17 @@ node_modules
 .vscode
 .vercel
 .next
+
+# Environment variables (NEVER commit these!)
 .env
+.env.local
+.env.development
+.env.production
+.env.preview
 .env.*local
+# Only commit the template
+!.env.dist
+
 bundles/
 assets/
 static/video
@@ -26,3 +35,8 @@ static/video
 freshdesk/
 yarn.lock
 package-lock.json
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/

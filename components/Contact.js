@@ -1,8 +1,6 @@
 import Router from 'next/router';
-import qs from 'qs';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import unirest from 'unirest';
 import { size } from './styles/device';
 
 const StyledContact = styled.div`
@@ -343,117 +341,38 @@ const ContactForm = props => {
 
 	const handleSubmit = async e => {
 		e.preventDefault();
-		let description = {
-			'State:': `${contact.state}\n`,
-			'How can we help?': `${contact.inquiryType}\n`,
-			'Message:': `${contact.message}\n`,
-		};
-		const fields = {
-			email: contact.email,
-			name: `${contact.firstName} ${contact.lastName}`,
-			type: 'Sales Inquiries',
-			subject: `Contact Request from ${contact.email}`,
-			priority: 1,
-			status: 2,
-			source: 2,
-			group_id: 48000581041,
-			responder_id: null,
-			email_config_id: 48000068881, //48000086987,
-			custom_fields: {
-				cf_district: `${contact.district}`,
-				cf_billable: false,
-				cf_record_series1: 'None',
-				cf_hours_spent: null,
-			},
-			description: qs.stringify(description, {
-				encode: false,
-				delimiter: '\n<br/><br/>\n',
-			}),
-		};		
-
-		let url = `${process.env.NEXT_PUBLIC_FRESHDESK_BASE_URL}/api/v2/tickets`;
-		let resp = await unirest
-			.post(url)
-			.auth({
-				user: process.env.NEXT_PUBLIC_FRESHDESK_KEY_PROD,
-				sendImmediately: true,
-			})
-			.type('json')
-			.send(fields);
-
-		let data = resp.body;
-		if (resp.status >= 400) {
-			setResponse({
-				type: 'error',
-				message: resp.message,
-			});
-		} else if (resp.status >= 200 || resp.status < 400) {
-			setResponse({
-				type: 'success',
-				message: `Your email has been successfully delivered. Thank you for reaching out to us.`,
-			});
-			return Router.push('/request-success');
-		}
 
 		try {
-			const res = await fetch('https://api.staticforms.xyz/submit', {
+			const response = await fetch('/api/contact', {
 				method: 'POST',
-				body: JSON.stringify(contact),
 				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(contact),
 			});
 
-			const json = await res.json();
+			const data = await response.json();
 
-			if (json.success) {
+			if (!response.ok) {
 				setResponse({
-					type: 'success',
-					message:
-						'Your email has been successfully delivered. Thank you for reaching out to us.',
+					type: 'error',
+					message: data.message || 'An error occurred. Please try again.',
 				});
 			} else {
 				setResponse({
-					type: 'error',
-					message: json.message,
+					type: 'success',
+					message:
+						data.message ||
+						'Your email has been successfully delivered. Thank you for reaching out to us.',
 				});
+				return Router.push('/request-success');
 			}
-		} catch (e) {
-			console.log('An error occurred ', e);
+		} catch (error) {
+			console.error('Form submission error:', error);
 			setResponse({
 				type: 'error',
 				message:
-					'An error occured while submitting the form. Please try again.',
+					'An error occurred while submitting the form. Please try again.',
 			});
 		}
-		// try {
-		// 	const response = await fetch(url, {
-		// 		method: 'POST',
-		// 		headers: {
-		// 			'Content-Type': 'application/json',
-		// 		},
-		// 		body: JSON.stringify(fields),
-		// 	});
-
-		// 	const data = await response.json();
-
-		// 	if (!response.ok) {
-		// 		setResponse({
-		// 			type: 'error',
-		// 			message: data.message || 'An error occurred',
-		// 		});
-		// 	} else {
-		// 		setResponse({
-		// 			type: 'success',
-		// 			message:
-		// 				'Your email has been successfully delivered. Thank you for reaching out to us.',
-		// 		});
-		// 		return Router.push('/request-success');
-		// 	}
-		// } catch (error) {
-		// 	setResponse({
-		// 		type: 'error',
-		// 		message: error.message,
-		// 	});
-		// }
 	};
 
 	return (
