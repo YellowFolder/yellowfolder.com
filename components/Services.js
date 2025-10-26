@@ -140,10 +140,11 @@ class Services extends Component {
 							<iframe
 								width="100%"
 								height="434px"
-								src="https://www.youtube.com/embed/gBqr0GX9mhQ"
+								src="https://www.youtube-nocookie.com/embed/gBqr0GX9mhQ?rel=0&modestbranding=1"
 								frameBorder="0"
 								allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 								allowFullScreen
+								title="YellowFolder Services Overview"
 							></iframe>
 						</div>
 					</ServicesVideo>
