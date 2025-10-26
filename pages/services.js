@@ -32,6 +32,7 @@ const ServicesPage = () => (
 				content="https://yellowfolder.com/static/images/yf-og-image.png"
 			/>
 			<meta property="og:site_name" content="YellowFolder" />
+			<meta property="fb:app_id" content="1972894570219949" />
 
 			{/* Twitter */}
 			<meta property="twitter:card" content="summary_large_image" />
