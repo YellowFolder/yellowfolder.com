@@ -335,6 +335,23 @@ const ContactForm = props => {
 		message: '',
 	});
 
+	const [recaptchaLoaded, setRecaptchaLoaded] = React.useState(false);
+	const [formLoadTime] = React.useState(Date.now());
+
+	React.useEffect(() => {
+		// Load reCAPTCHA script
+		if (!window.grecaptcha) {
+			const script = document.createElement('script');
+			script.src = 'https://www.google.com/recaptcha/api.js';
+			script.async = true;
+			script.defer = true;
+			script.onload = () => setRecaptchaLoaded(true);
+			document.body.appendChild(script);
+		} else {
+			setRecaptchaLoaded(true);
+		}
+	}, []);
+
 	const onFormFieldChange = e => {
 		setContact({ ...contact, [e.target.name]: e.target.value });
 	};
@@ -342,11 +359,30 @@ const ContactForm = props => {
 	const handleSubmit = async e => {
 		e.preventDefault();
 
+		// Get reCAPTCHA token
+		const recaptchaToken = window.grecaptcha?.getResponse();
+
+		if (!recaptchaToken || recaptchaToken === '') {
+			setResponse({
+				type: 'error',
+				message: 'Please complete the reCAPTCHA verification.',
+			});
+			return;
+		}
+
+		// Calculate submission time
+		const submissionTime = Date.now() - formLoadTime;
+
 		try {
 			const response = await fetch('/api/contact', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(contact),
+				body: JSON.stringify({
+					...contact,
+					recaptchaToken,
+					formLoadTime,
+					submissionTime,
+				}),
 			});
 
 			const data = await response.json();
@@ -356,6 +392,8 @@ const ContactForm = props => {
 					type: 'error',
 					message: data.message || 'An error occurred. Please try again.',
 				});
+				// Reset reCAPTCHA on error
+				window.grecaptcha?.reset();
 			} else {
 				setResponse({
 					type: 'success',
@@ -372,6 +410,8 @@ const ContactForm = props => {
 				message:
 					'An error occurred while submitting the form. Please try again.',
 			});
+			// Reset reCAPTCHA on error
+			window.grecaptcha?.reset();
 		}
 	};
 
@@ -581,6 +621,12 @@ const ContactForm = props => {
 							unsubscribe, as well as our privacy practices and commitment to
 							protecting your privacy, please review our Privacy Policy.
 						</p>
+					</div>
+					<div className="form--field-wrapper form--field-item">
+						<div
+							className="g-recaptcha"
+							data-sitekey="6Lf4gAgsAAAAAIHCZsryK8XF9y599H8sL2hptmPK"
+						></div>
 					</div>
 					<div className="control form--submit-wrapper">
 						<button className="form--submit-btn" type="submit">

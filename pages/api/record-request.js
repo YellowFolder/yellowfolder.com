@@ -54,7 +54,61 @@ export default async function handler(req, res) {
 		targetID,
 		targetTerminationDate,
 		extraInfo,
+		recaptchaToken,
+		submissionTime,
 	} = req.body;
+
+	// Timing validation - reject submissions that are too fast (< 3 seconds)
+	if (submissionTime && submissionTime < 3000) {
+		console.log(
+			`[RecordRequest] Submission too fast (${submissionTime}ms) for IP: ${ip}`
+		);
+		return res.status(400).json({
+			error: 'Submission too fast',
+			message: 'Please take your time to fill out the form.',
+		});
+	}
+
+	// reCAPTCHA verification
+	if (!recaptchaToken) {
+		return res.status(400).json({
+			error: 'Missing reCAPTCHA',
+			message: 'Please complete the reCAPTCHA verification.',
+		});
+	}
+
+	try {
+		const verifyURL = 'https://www.google.com/recaptcha/api/siteverify';
+		const recaptchaResponse = await fetch(verifyURL, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+		});
+
+		const recaptchaData = await recaptchaResponse.json();
+
+		if (!recaptchaData.success) {
+			console.log(
+				`[RecordRequest] reCAPTCHA verification failed for IP: ${ip}`,
+				recaptchaData
+			);
+			return res.status(400).json({
+				error: 'reCAPTCHA verification failed',
+				message: 'Please complete the reCAPTCHA verification and try again.',
+			});
+		}
+
+		// Optional: Check score for reCAPTCHA v3 (if you upgrade)
+		// if (recaptchaData.score < 0.5) {
+		//   return res.status(400).json({ error: 'Suspicious activity detected' });
+		// }
+	} catch (error) {
+		console.error('[RecordRequest] reCAPTCHA verification error:', error);
+		return res.status(500).json({
+			error: 'Verification error',
+			message: 'Failed to verify reCAPTCHA. Please try again.',
+		});
+	}
 
 	// Validation
 	if (!email || !name || !district || !phone) {

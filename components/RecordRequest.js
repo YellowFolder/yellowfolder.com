@@ -18,6 +18,7 @@ class RecordRequest extends React.Component {
 		targetID: '',
 		targetTerminationDate: '',
 		extraInfo: '',
+		formLoadTime: Date.now(),
 	};
 
 	onFormFieldChange = e => {
@@ -29,11 +30,26 @@ class RecordRequest extends React.Component {
 	onSubmit = async e => {
 		e.preventDefault();
 
+		// Get reCAPTCHA token
+		const recaptchaToken = window.grecaptcha?.getResponse();
+
+		if (!recaptchaToken || recaptchaToken === '') {
+			alert('Please complete the reCAPTCHA verification.');
+			return;
+		}
+
+		// Calculate submission time
+		const submissionTime = Date.now() - this.state.formLoadTime;
+
 		try {
 			const response = await fetch('/api/record-request', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(this.state),
+				body: JSON.stringify({
+					...this.state,
+					recaptchaToken,
+					submissionTime,
+				}),
 			});
 
 			const data = await response.json();
@@ -44,12 +60,16 @@ class RecordRequest extends React.Component {
 					data.message ||
 						'An error occurred while submitting the form. Please try again.'
 				);
+				// Reset reCAPTCHA on error
+				window.grecaptcha?.reset();
 			} else {
 				return Router.push('/request-success');
 			}
 		} catch (error) {
 			console.error('Form submission error:', error);
 			alert('An error occurred while submitting the form. Please try again.');
+			// Reset reCAPTCHA on error
+			window.grecaptcha?.reset();
 		}
 	};
 
@@ -338,7 +358,7 @@ class RecordRequest extends React.Component {
 							<div id="recaptcha-container" />
 							<div
 								className="g-recaptcha"
-								data-sitekey="6LeUcI0UAAAAAGygzbJtp3JUVb_CeshJvINKIdpP"
+								data-sitekey="6Lf4gAgsAAAAAIHCZsryK8XF9y599H8sL2hptmPK"
 							></div>
 							<div id="recaptcha-response" />
 							<input
