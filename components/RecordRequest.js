@@ -21,6 +21,17 @@ class RecordRequest extends React.Component {
 		formLoadTime: Date.now(),
 	};
 
+	componentDidMount() {
+		// Load reCAPTCHA script
+		if (!window.grecaptcha) {
+			const script = document.createElement('script');
+			script.src = 'https://www.google.com/recaptcha/api.js';
+			script.async = true;
+			script.defer = true;
+			document.body.appendChild(script);
+		}
+	}
+
 	onFormFieldChange = e => {
 		this.setState({
 			[e.target.id]: e.target.value,
