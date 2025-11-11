@@ -58,6 +58,34 @@ const DemoPage = () => (
 				property="twitter:image"
 				content="https://yellowfolder.com/static/images/yf-og-image.png"
 			/>
+
+			{/* VideoObject Schema for Google Video Indexing */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						'@context': 'https://schema.org',
+						'@type': 'VideoObject',
+						name:
+							'YellowFolder Demo - See Our Records Management System in Action',
+						description:
+							'Watch a demo of YellowFolder to see how our cloud-based records management system helps K-12 schools digitize, organize, and retrieve education records efficiently.',
+						thumbnailUrl:
+							'https://i.ytimg.com/vi/gBqr0GX9mhQ/maxresdefault.jpg',
+						uploadDate: '2024-01-15T00:00:00Z',
+						contentUrl: 'https://www.youtube.com/watch?v=gBqr0GX9mhQ',
+						embedUrl: 'https://www.youtube.com/embed/gBqr0GX9mhQ',
+						publisher: {
+							'@type': 'Organization',
+							name: 'YellowFolder',
+							logo: {
+								'@type': 'ImageObject',
+								url: 'https://yellowfolder.com/static/images/yf-logo.png',
+							},
+						},
+					}),
+				}}
+			/>
 		</Head>
 		<Demo />
 	</>

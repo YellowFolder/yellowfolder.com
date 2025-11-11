@@ -47,6 +47,33 @@ const HelpPage = () => (
 				property="twitter:image"
 				content="https://yellowfolder.com/static/images/yf-og-image.png"
 			/>
+
+			{/* VideoObject Schema for Google Video Indexing */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						'@context': 'https://schema.org',
+						'@type': 'VideoObject',
+						name: 'YellowFolder Help Tutorial - Getting Started Guide',
+						description:
+							'Learn how to use YellowFolder for school records management. This tutorial covers the basics of uploading, organizing, and retrieving education records in your district.',
+						thumbnailUrl:
+							'https://i.ytimg.com/vi/G05QahYIq-s/maxresdefault.jpg',
+						uploadDate: '2024-01-15T00:00:00Z',
+						contentUrl: 'https://www.youtube.com/watch?v=G05QahYIq-s',
+						embedUrl: 'https://www.youtube.com/embed/G05QahYIq-s',
+						publisher: {
+							'@type': 'Organization',
+							name: 'YellowFolder',
+							logo: {
+								'@type': 'ImageObject',
+								url: 'https://yellowfolder.com/static/images/yf-logo.png',
+							},
+						},
+					}),
+				}}
+			/>
 		</Head>
 		<Help />
 	</>
