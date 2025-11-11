@@ -71,9 +71,26 @@ const Meta = () => (
 			/>
 			<title>{title}</title>
 		</Head>
+		{/* Google Analytics 4 */}
 		<Script
-			src="https://cmp.osano.com/16CVrmSJA89iy110k/1f78e656-b752-4cab-a87a-4836cf183232/osano.js"
 			strategy="afterInteractive"
+			src={`https://www.googletagmanager.com/gtag/js?id=${process.env
+				.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-D0445ZZ0TQ'}`}
+		/>
+		<Script
+			id="google-analytics"
+			strategy="afterInteractive"
+			dangerouslySetInnerHTML={{
+				__html: `
+					window.dataLayer = window.dataLayer || [];
+					function gtag(){dataLayer.push(arguments);}
+					gtag('js', new Date());
+					gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
+						'G-D0445ZZ0TQ'}', {
+						page_path: window.location.pathname,
+					});
+				`,
+			}}
 		/>
 	</>
 );

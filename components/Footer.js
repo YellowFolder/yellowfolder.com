@@ -128,7 +128,7 @@ const Footer = () => (
 			<div className="content-left">
 				<img src="/static/images/gray-lock.svg" alt="YellowFolder" />
 				<p>
-					&copy;2019 YellowFolder
+					&copy;{new Date().getFullYear()} YellowFolder
 					<br />
 					All Rights Reserved
 				</p>
