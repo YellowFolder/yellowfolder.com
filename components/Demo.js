@@ -2,6 +2,7 @@ import Router from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { size } from './styles/device';
+import { trackFormSubmit } from '../lib/analytics';
 
 const StyledDemo = styled.div`
 	width: 100%;
@@ -419,6 +420,12 @@ const Demo = () => {
 						data.message ||
 						'Your demo request has been successfully submitted. Thank you for reaching out to us.',
 				});
+
+				// Track successful form submission
+				trackFormSubmit('demo_request', {
+					form_location: 'demo_page',
+				});
+
 				return Router.push('/request-success');
 			}
 		} catch (error) {

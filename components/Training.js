@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import trainingSessions from '../lib/trainingSchedule';
 import { size } from './styles/device';
+import { trackFormSubmit } from '../lib/analytics';
 
 const StyledForm = styled.div`
 	width: 100%;
@@ -600,6 +601,13 @@ const Training = () => {
 						data.message ||
 						'Your training request has been submitted successfully.',
 				});
+
+				// Track successful form submission
+				trackFormSubmit('training_registration', {
+					form_location: 'training_page',
+					training_date: contact.training || 'Not specified',
+				});
+
 				return Router.push('/request-success');
 			}
 		} catch (error) {

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import styled from 'styled-components';
 import { size } from './styles/device';
+import { trackButtonClick, trackFileDownload } from '../lib/analytics';
 
 const StyledFooter = styled.footer`
 	width: 100%;
@@ -134,7 +135,9 @@ const Footer = () => (
 				</p>
 			</div>
 			<div className="content-right">
-				<RequestButton>
+				<RequestButton
+					onClick={() => trackButtonClick('Record Request Button', 'footer')}
+				>
 					<Link href="/record-request">Record Request</Link>
 				</RequestButton>
 				<div className="links">
@@ -145,6 +148,9 @@ const Footer = () => (
 						href="/static/pdf/service_procedures-v1.6-2019.pdf"
 						target="_blank"
 						rel="noopener noreferrer"
+						onClick={() =>
+							trackFileDownload('service_procedures-v1.6-2019.pdf', 'pdf')
+						}
 					>
 						Service Procedures
 					</Link>

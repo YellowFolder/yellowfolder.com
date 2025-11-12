@@ -2,6 +2,7 @@ import Router from 'next/router';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { size } from './styles/device';
+import { trackFormSubmit } from '../lib/analytics';
 
 const StyledContact = styled.div`
 	width: 100%;
@@ -401,6 +402,13 @@ const ContactForm = props => {
 						data.message ||
 						'Your email has been successfully delivered. Thank you for reaching out to us.',
 				});
+
+				// Track successful form submission
+				trackFormSubmit('contact', {
+					form_location: 'contact_page',
+					message_type: contact.subject || 'Contact Form',
+				});
+
 				return Router.push('/request-success');
 			}
 		} catch (error) {

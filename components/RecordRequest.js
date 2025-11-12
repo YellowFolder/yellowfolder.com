@@ -1,6 +1,7 @@
 import Router from 'next/router';
 import React from 'react';
 import StyledForm from './styles/FormStyles';
+import { trackFormSubmit } from '../lib/analytics';
 
 class RecordRequest extends React.Component {
 	state = {
@@ -74,6 +75,12 @@ class RecordRequest extends React.Component {
 				// Reset reCAPTCHA on error
 				window.grecaptcha?.reset();
 			} else {
+				// Track successful form submission
+				trackFormSubmit('record_request', {
+					form_location: 'record_request_page',
+					district: this.state.district,
+				});
+
 				return Router.push('/request-success');
 			}
 		} catch (error) {
