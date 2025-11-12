@@ -9,7 +9,7 @@ const PricingPage = () => (
 			</title>
 			<meta
 				name="description"
-				content="Calculate your YellowFolder pricing based on your district's needs. Affordable, transparent pricing for cloud-based school records management. Get a custom quote today."
+				content="Estimate your YellowFolder pricing based on your district's student population and needs. Affordable, transparent pricing for cloud-based school records management. Use our interactive calculator today."
 			/>
 
 			{/* Canonical URL */}
@@ -24,7 +24,7 @@ const PricingPage = () => (
 			/>
 			<meta
 				property="og:description"
-				content="Calculate your YellowFolder pricing based on your district's needs. Affordable, transparent pricing for cloud-based school records management. Get a custom quote today."
+				content="Estimate your YellowFolder pricing based on your district's student population and needs. Affordable, transparent pricing for cloud-based school records management. Use our interactive calculator today."
 			/>
 			<meta
 				property="og:image"
@@ -42,11 +42,57 @@ const PricingPage = () => (
 			/>
 			<meta
 				property="twitter:description"
-				content="Calculate your YellowFolder pricing based on your district's needs. Affordable, transparent pricing for cloud-based school records management. Get a quote today."
+				content="Estimate your YellowFolder pricing based on your district's student population. Affordable, transparent pricing for school records management. Use our calculator today."
 			/>
 			<meta
 				property="twitter:image"
 				content="https://yellowfolder.com/static/images/yf-og-image.png"
+			/>
+
+			{/* SoftwareApplication Schema for Pricing Calculator */}
+			<script
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{
+					__html: JSON.stringify({
+						'@context': 'https://schema.org',
+						'@type': 'SoftwareApplication',
+						name: 'YellowFolder Pricing Calculator',
+						applicationCategory: 'BusinessApplication',
+						description:
+							'Interactive pricing calculator for estimating YellowFolder school records management costs. Enter your district student population and select record series to see estimated first-year pricing for Student Records, Special Education Records, Employee Records, and Administrative Records management.',
+						url: 'https://yellowfolder.com/pricing',
+						offers: {
+							'@type': 'Offer',
+							price: '0',
+							priceCurrency: 'USD',
+							description:
+								'Free pricing calculator tool. Actual service pricing varies by district size and needs.',
+						},
+						operatingSystem: 'Web Browser',
+						softwareVersion: '1.0',
+						provider: {
+							'@type': 'Organization',
+							name: 'YellowFolder',
+							url: 'https://yellowfolder.com',
+						},
+						applicationSubCategory: 'Pricing Calculator',
+						featureList: [
+							'Student Records pricing estimation',
+							'Special Education Records pricing estimation',
+							'Employee Records pricing estimation',
+							'Administrative Records pricing estimation',
+							'Interactive cost breakdown by category',
+							'First-year cost projection',
+							'Instant pricing estimates',
+						],
+						targetProduct: {
+							'@type': 'SoftwareApplication',
+							name: 'YellowFolder',
+							applicationCategory: 'EducationSoftware',
+							description: 'Cloud-based school records management system',
+						},
+					}),
+				}}
 			/>
 		</Head>
 		<Calculator />
